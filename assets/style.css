@@ -95,6 +95,8 @@ small{color:var(--mut)}
 .slot .nm{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:600;font-size:12.5px;line-height:1.25;min-height:2.5em}
 .slot .nm .ally{color:var(--mut2);font-weight:500}
 .slot .en{display:block;font-size:10.5px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.slot .en a,.it .en a,.slot a.en,.it a.en{color:inherit;text-decoration:none;border-bottom:1px dotted var(--line2)}
+.slot .en a:hover,.it .en a:hover,.slot a.en:hover,.it a.en:hover{color:var(--acc);border-bottom-color:var(--acc)}
 .weapons{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(196px,224px));gap:6px;justify-content:space-between}
 .doll .center .small{font-size:10px;color:var(--mut2);text-transform:uppercase;letter-spacing:1.2px}
 .doll .center h2{margin:0;font-size:22px;line-height:1.1;letter-spacing:.3px}

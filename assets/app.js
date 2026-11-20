@@ -4,6 +4,10 @@
 const G = window.GUIDE;
 const ICON = (n, size = 'medium') => `https://wow.zamimg.com/images/wow/icons/${size}/${n || 'inv_misc_questionmark'}.jpg`;
 const WH = id => (lang() === 'ru' ? `https://www.wowhead.com/ru/forever/item=${id}` : `https://www.wowhead.com/forever/item=${id}`);
+const WH_SEARCH = q => (lang() === 'ru' ? 'https://www.wowhead.com/ru/forever/search?q=' : 'https://www.wowhead.com/forever/search?q=') + encodeURIComponent(q);
+// The sim stores SpellItemEnchantment ids, which Wowhead does not serve as pages; enchant names
+// resolve to their item pages through Wowhead search.
+const enchantHref = label => WH_SEARCH(String(label).replace(/\s*\(.*$/, '').trim());
 const WH_TALENTS = (cls, t) => `https://www.wowhead.com/forever/talent-calc/${cls}/${t}`;
 const SIM_HOME = 'https://www.wowsims.com/forever/';
 const CLASS_ICON = id => `https://wow.zamimg.com/images/wow/icons/medium/classicon_${id}.jpg`;
@@ -237,10 +241,14 @@ function renderDoll() {
     if (!spec || !spec[0]) return `<div class="slot empty"><span class="icon"></span><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span><span class="nm">—</span></span></div>`;
     const it = item(spec[0]);
     const q = it && it.q >= 3 ? ` q${it.q}` : '';
+    const enLabel = enchantName(spec);
+    const enHTML = enLabel
+      ? (spec[1] ? `<a class="en" href="${esc(enchantHref(enLabel))}" target="_blank" rel="noopener" title="${esc(enLabel)} — Wowhead">${esc(enLabel)}</a>` : `<span class="en">${esc(enLabel)}</span>`)
+      : '<span class="en">&nbsp;</span>';
     return `<div class="slot" data-go="${s}" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}">
       <img class="icon${q}" src="${ICON(it.icon, 'large')}" alt="" loading="lazy"><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span>
       <span class="nm" style="${qc(it)}">${esc(itemName(spec))}</span>
-      <span class="en">${esc(enchantName(spec)) || '&nbsp;'}</span></span></div>`;
+      ${enHTML}</span></div>`;
   };
   const center = () => {
     if (!L) {
@@ -312,9 +320,12 @@ const bandVars = (x, rows) => {
 function itemHTML(spec, withEnchant) {
   const it = item(spec[0]);
   if (!it) return '<span class="small">—</span>';
-  const en = withEnchant && enchantName(spec);
   const q = it.q >= 3 ? ` q${it.q}` : '';
-  return `<span class="it" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}"><img class="icon xs${q}" loading="lazy" src="${ICON(it.icon)}" alt=""><a class="n" style="${qc(it)}" title="${esc(itemName(spec))}" href="${WH(spec[0])}" target="_blank" rel="noopener">${esc(itemName(spec))}</a>${en ? `<span class="en" title="${esc(en)}">${esc(en)}</span>` : ''}</span>`;
+  const enLabel = withEnchant && enchantName(spec);
+  const en = enLabel
+    ? (spec[1] ? `<a class="en" href="${esc(enchantHref(enLabel))}" target="_blank" rel="noopener" title="${esc(enLabel)} — Wowhead">${esc(enLabel)}</a>` : `<span class="en">${esc(enLabel)}</span>`)
+    : '';
+  return `<span class="it" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}"><img class="icon xs${q}" loading="lazy" src="${ICON(it.icon)}" alt=""><a class="n" style="${qc(it)}" title="${esc(itemName(spec))}" href="${WH(spec[0])}" target="_blank" rel="noopener">${esc(itemName(spec))}</a>${en}</span>`;
 }
 function rowHTML(r, x, bestMove) {
   const specs = Object.entries(r.move).sort((a, b) => SLOT_ORDER.indexOf(a[0]) - SLOT_ORDER.indexOf(b[0]));
@@ -437,7 +448,10 @@ function renderHowto() {
     const v = L.gear[s];
     if (v && v[0] && v[3]) {
       const it = item(v[0]);
-      enchRows.push(`<tr><td>${esc(slotLabel(s))}</td><td><span style="color:var(--fg)">${esc(v[3])}</span></td><td><a class="n" style="${qc(it)}" href="${WH(v[0])}" target="_blank" rel="noopener">${esc(itemName(v))}</a></td></tr>`);
+      const enh = v[1]
+        ? `<a href="${esc(enchantHref(v[3]))}" target="_blank" rel="noopener" title="${esc(v[3])} — Wowhead" style="color:var(--fg)">${esc(v[3])}</a>`
+        : `<span style="color:var(--fg)">${esc(v[3])}</span>`;
+      enchRows.push(`<tr><td>${esc(slotLabel(s))}</td><td>${enh}</td><td><a class="n" style="${qc(it)}" href="${WH(v[0])}" target="_blank" rel="noopener">${esc(itemName(v))}</a></td></tr>`);
     }
   }
   const steps = T('howto_steps');
