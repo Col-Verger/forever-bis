@@ -13,8 +13,43 @@ const $ = id => document.getElementById(id);
 // ---------- i18n ----------
 const STR = {
   tab_gear: { ru: 'Экипировка по слотам', en: 'Gear by slot' },
-  tab_all: { ru: 'Все сеты', en: 'All loadouts' },
+  tab_all: { ru: 'Сеты класса', en: 'Class loadouts' },
+  matrix_sub: { ru: 'Все сеты выбранного класса бок о бок. Затемнённые ряды одинаковы во всех сетах; подсвеченная ячейка отличается от самого частого выбора. Переключай класс и спек сверху.', en: 'Every loadout of the selected class side by side. Faded rows are the same in every loadout; a shaded cell differs from the most common pick. Switch class and spec above.' },
   tab_howto: { ru: 'Как одеваться', en: 'How to gear' },
+  howto_hit_title: { ru: 'Меткость', en: 'Hit' },
+  howto_prio_title: { ru: 'Приоритет статов', en: 'Stat priority' },
+  howto_best_title: { ru: 'Лучший сет', en: 'Best loadout' },
+  howto_best_none: { ru: 'Симы не прогнаны', en: 'Not simmed yet' },
+  howto_nums_title: { ru: 'Числа', en: 'The numbers' },
+  howto_nums_body: { ru: 'Реальные прогоны WoWSims Forever', en: 'Real WoWSims Forever runs' },
+  howto_ench_title: { ru: 'Энчанты лучшего сета (Максимум)', en: 'Best loadout’s enchants (Max)' },
+  howto_ench_none: { ru: 'У сетов этого класса пока нет энчантов.', en: 'No enchants on this class’s sets yet.' },
+  howto_budgets_title: { ru: 'Бюджеты', en: 'Budgets' },
+  howto_budgets_body: { ru: '«Максимум» — весь пул кандидатов: PvP Premier, репутация Revered/Экзальтед, дорогие крафты. «Дёшево» — только свободнодоступное: без PvP-гринда и высокой репутации; «дорогие» слоты пересобираются из дешёвого пула.', en: 'Max — the full candidate pool: PvP Premier, revered+ reputation, expensive crafts. Cheap — freely accessible only: no PvP grind or high reputation; grindy slots rebuild from the cheap pool.' },
+  howto_read_title: { ru: 'Как читать карточки', en: 'Reading the cards' },
+  howto_read_body: { ru: 'Каждая строка — реальный прогон против лучшего предмета слота: полоса — отставание, ус — погрешность сима (95%). Всё в светлой полосе вокруг нуля — то же значение: носи, что уже есть. Клик по слоту куклы прыгает к его карточке; наведение на предмет показывает полный тултип со статами.', en: 'Every row is a real run against the slot’s best: the bar is the gap, the whisker the sim’s 95% margin. Anything in the shading around zero is the same value — wear what you have. Clicking a doll slot jumps to its card; hovering an item shows its full tooltip.' },
+  howto_steps_title: { ru: 'Порядок действий', en: 'The order' },
+  howto_steps: { ru: ['1. Добей кап меткости — см. карточку «Меткость» выше.', '2. Собери «Дёшево»-сет: в каждом слоте бери лучшее из доступного по полосам.', '3. Не гнись за «<6 DPS»: всё в пределах погрешности — то же значение.', '4. Апгрейдь слоты с самым большим разбросом — смотри «Сколько важен каждый слот» на вкладке экипировки.', '5. Сверься с «Максимум»-сетом: разница показана у куклы в факте «Другой бюджет».'], en: ['1. Reach the hit cap — see the Hit card above.', '2. Assemble the Cheap set: take each slot’s best affordable option by the bars.', '3. Do not chase sub-margin gaps: within the whisker it is the same value.', '4. Upgrade the widest-spread slots — see “How much each slot matters” on the gear tab.', '5. Compare against the Max set: the gap sits in the doll’s “Other budget” fact.'] },
+  notes: {
+    mage: { hit: { ru: '16% меткости заклинаний против босса 63 уровня; талант Точность в зачёт.', en: '16% spell hit against a level 63 boss; Precision counts.' },
+            stat: { ru: 'Сила заклинаний, меткость до капа, потом крит; скорость и дух — по мане.', en: 'Spell damage, hit to the cap, then crit; haste and spirit for mana.' } },
+    warlock: { hit: { ru: '16% меткости заклинаний против босса 63 уровня.', en: '16% spell hit against a level 63 boss.' },
+            stat: { ru: 'Сила заклинаний и Shadow-урон, меткость до капа, потом крит.', en: 'Spell/shadow damage, hit to the cap, then crit.' } },
+    priest: { hit: { ru: '16% меткости заклинаний против босса 63 уровня.', en: '16% spell hit against a level 63 boss.' },
+            stat: { ru: 'Shadow-урон и сила заклинаний, меткость до капа, потом крит.', en: 'Shadow damage and spell power, hit to the cap, then crit.' } },
+    druid: { hit: { ru: 'Балансу — 16% меткости заклинаний; фералам — 8% мили; мишке ещё и дефенс-кап 490.', en: 'Balance: 16% spell hit; ferals: 8% melee; bear also wants the 490 defense cap.' },
+            stat: { ru: 'Баланс: сила заклинаний и урон природы. Кот: сила/ЛВ и медленное двуручное; мишка: броня и выносливость.', en: 'Balance: spell power and nature damage. Cat: strength/AP and a slow two-hander; bear: armor and stamina.' } },
+    hunter: { hit: { ru: '8% дальнего боя против босса 63 уровня (талант +3% из Выживания в зачёт).', en: '8% ranged hit against a level 63 boss (the Survival +3% talent counts).' },
+            stat: { ru: 'Ловкость — главный стат; медленное оружие для плетения, быстрый лук — только для турреты.', en: 'Agility leads; a slow melee weapon for weaving, a fast bow only for turret.' } },
+    rogue: { hit: { ru: '8% на спец-атаки; белые удары с двумя оружиями мажут заметно чаще — сим это учитывает.', en: '8% on specials; white swings with two weapons miss far more — the sim accounts for it.' },
+            stat: { ru: 'Ловкость, крит, скорость и экспертиза; медленный клинок в правую руку.', en: 'Agility, crit, haste and expertise; a slow blade in the main hand.' } },
+    shaman: { hit: { ru: 'Элему — 16% меткости заклинаний; энху — 8% мили.', en: 'Elemental: 16% spell hit; Enhancement: 8% melee.' },
+            stat: { ru: 'Элем: сила заклинаний. Энх: медленный правый клинок, сила и ЛВ.', en: 'Elemental: spell power. Enhancement: slow main hand, strength and AP.' } },
+    warrior: { hit: { ru: 'ДПС-воину — 8% на спец-атаки; проту — дефенс-кап 490 (крит-иммунитет).', en: 'DPS warrior: 8% on specials; Protection: the 490 defense cap.' },
+            stat: { ru: 'Фури: сила, крит, скорость, экспертиза. Армс: медленное двуручное. Прот: выносливость и броня.', en: 'Fury: strength, crit, haste, expertise. Arms: a slow two-hander. Prot: stamina and armor.' } },
+    paladin: { hit: { ru: 'Ретри — 8% мили; проту — дефенс-кап 490 (крит-иммунитет).', en: 'Ret: 8% melee; Protection: the 490 defense cap.' },
+            stat: { ru: 'Ретри: сила и экспертиза, медленное двуручное. Прот: выносливость, броня и ТПС.', en: 'Ret: strength and expertise with a slow two-hander. Prot: stamina, armor and TPS.' } }
+  },
   tab_method: { ru: 'Методика', en: 'Method' },
   slot_importance: { ru: 'Сколько важен каждый слот', en: 'How much each slot matters' },
   tab_refresh: { ru: 'Данные и обновление', en: 'Data & refresh' },
@@ -144,7 +179,6 @@ function applyStatic() {
   document.title = lang() === 'ru' ? 'Пререйд-BiS · WoW Forever' : 'Pre-raid BiS · WoW Forever';
   $('pagetitle').textContent = lang() === 'ru' ? 'Пререйд-BiS · все классы' : 'Pre-raid best in slot — every class';
   $('lede').textContent = L2(G.meta.lede);
-  $('howto').innerHTML = L2(G.howto);
   $('method').innerHTML = L2(G.method);
   const stamp = $('stamp');
   stamp.hidden = false;
@@ -351,8 +385,14 @@ function renderOverview(L) {
 
 // ---------- all loadouts ----------
 function renderMatrix() {
-  const ids = Object.keys(G.loadouts);
+  const C = curClass();
+  const prefixes = new Set(C.specs.map(s => s.prefix));
+  const ids = Object.keys(G.loadouts).filter(id => {
+    const sp = specOfPrefix(id);
+    return sp && prefixes.has(sp.prefix);
+  });
   if (!ids.length) { $('matrix').innerHTML = `<div class="empty-note">${esc(T('empty_title'))}</div>`; return; }
+  ids.sort((a, b) => a.localeCompare(b));
   const head = ids.map(id => {
     const sp = specOfPrefix(id);
     const bl = /-cheap$/.test(id) ? ' · ' + T('budget_cheap') : /-max$/.test(id) ? ' · ' + T('budget_max') : '';
@@ -371,6 +411,34 @@ function renderMatrix() {
   $('matrix').innerHTML = `<table><thead><tr><th class="sl">${esc(lang() === 'ru' ? 'Слот' : 'Slot')}</th>${head}</tr></thead><tbody>${rows}</tbody></table>`;
 }
 const specOfPrefix = p => G.classes.flatMap(c => c.specs).find(s => s.prefix === p || s.prefix + '-max' === p || s.prefix + '-cheap' === p);
+
+// ---------- how to gear ----------
+function renderHowto() {
+  const C = curClass();
+  const notes = (STR.notes[C.id] || {});
+  const sp = curSpec();
+  const L = G.loadouts[`${sp.prefix}-max`] || G.loadouts[`${sp.prefix}-cheap`] || G.loadouts[sp.prefix];
+  const enchRows = [];
+  if (L) for (const s of SLOT_ORDER) {
+    const v = L.gear[s];
+    if (v && v[0] && v[3]) enchRows.push(`<tr><td>${esc(slotLabel(s))}</td><td><span style="color:var(--fg)">${esc(v[3])}</span></td><td><span class="w1">${esc(itemName(v))}</span></td></tr>`);
+  }
+  const steps = T('howto_steps');
+  $('howto').innerHTML = `
+    <div class="kpis">
+      <div class="kpi"><b>${esc(T('howto_hit_title'))}</b><span>${esc(L2(notes.hit) || '—')}</span></div>
+      <div class="kpi"><b>${esc(T('howto_prio_title'))}</b><span>${esc(L2(notes.stat) || '—')}</span></div>
+      <div class="kpi"><b>${esc(T('howto_best_title'))}</b><span>${L ? `${fmtMetric(L.value)} ${esc(metricName(L.metric))}` : esc(T('howto_best_none'))}</span></div>
+      <div class="kpi"><b>${esc(T('howto_nums_title'))}</b><span>${esc(T('howto_nums_body'))}${G.meta.simmed ? ' · ' + esc(G.meta.simmed) : ''}</span></div>
+    </div>
+    <h2>${esc(T('howto_ench_title'))}</h2>
+    ${enchRows.length
+      ? `<table><thead><tr><th>${esc(lang() === 'ru' ? 'Слот' : 'Slot')}</th><th>${esc(lang() === 'ru' ? 'Энчант' : 'Enchant')}</th><th>${esc(lang() === 'ru' ? 'Предмет' : 'Item')}</th></tr></thead><tbody>${enchRows.join('')}</tbody></table>`
+      : `<p class="small">${esc(T('howto_ench_none'))}</p>`}
+    <h2>${esc(T('howto_budgets_title'))}</h2><p>${esc(T('howto_budgets_body'))}</p>
+    <h2>${esc(T('howto_read_title'))}</h2><p>${esc(T('howto_read_body'))}</p>
+    <h2>${esc(T('howto_steps_title'))}</h2><ol class="steps">${(Array.isArray(steps) ? steps : []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>`;
+}
 
 // ---------- data status & refresh ----------
 const REFRESH_CMDS = [
@@ -489,6 +557,7 @@ function render() {
   renderChip();
   if (state.tab === 'gear') { renderDoll(); renderCards(); }
   if (state.tab === 'all') renderMatrix();
+  if (state.tab === 'howto') renderHowto();
   if (state.tab === 'refresh') renderRefresh();
   toHash();
 }
