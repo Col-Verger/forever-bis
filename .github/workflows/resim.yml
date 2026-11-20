@@ -138,6 +138,18 @@ jobs:
           git pull --rebase origin ${{ github.ref_name }} || true
           git push
 
+      - name: Cache-bust asset versions
+        run: |
+          python - <<'EOF'
+          import hashlib, re
+          html = open('index.html', encoding='utf-8').read()
+          for asset in ('assets/app.js', 'assets/style.css'):
+              digest = hashlib.sha256(open(asset, 'rb').read()).hexdigest()[:10]
+              html = re.sub(rf'{re.escape(asset)}\?v=[0-9a-zA-Z]+', f'{asset}?v={digest}', html)
+          open('index.html', 'w', encoding='utf-8').write(html)
+          print('asset versions stamped')
+          EOF
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
