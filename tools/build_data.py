@@ -301,7 +301,8 @@ def main():
                 'id': bc['id'].split('-', 1)[1], 'prefix': bid,
                 'metric': bc.get('metric', 'dps'),
                 'name': bc.get('title'), 'build': bc.get('buildName'), 'rotation': bc.get('rotation'),
-                'note': {'ru': bc.get('disabledReason', '') if bc.get('disabled') else '', 'en': ''},
+                'note': {'ru': bc.get('disabledReason', '') if bc.get('disabled') else '',
+                         'en': bc.get('disabledReasonEn', '') if bc.get('disabled') else ''},
             }
             if status == 'no-preset':
                 spec['status'] = 'no-preset'
@@ -334,7 +335,9 @@ def main():
                         rows.append({'move': move, 'd': round(r['d'], 2), 'm': round(r['m'], 2)})
                     groups.append({'id': gslot, 'best': {gslot: spec_l(gslot, gear[gslot])}, 'rows': rows})
                 loadouts[lid] = {
-                    'title': meta.get('title'), 'build': meta.get('buildName'), 'rotation': meta.get('rotation'),
+                    'title': bc.get('title') or meta.get('title'),
+                    'build': bc.get('buildName') or meta.get('buildName'),
+                    'rotation': bc.get('rotation') or meta.get('rotation'),
                     'metric': meta.get('metric', 'dps'), 'budget': budget,
                     'value': meta.get('value'), 'margin': meta.get('margin'),
                     'talents': loadout_talents(meta, bc, a.forever),
@@ -433,16 +436,16 @@ def main():
     }
     method = {
         'ru': ('<h2>Откуда числа</h2><p>Каждая цифра — прогон <a href="https://www.wowsims.com/forever/" target="_blank" rel="noopener">WoWSims Forever</a>: '
-               '180 секунд, один босс 63 уровня, рейд-буфы, расходники и ротации из пресетов самого симулятора, фиксированное зерно рандома. '
-               'Поиск: каждый слот перебирает свой пул кандидатов (configs/pools, порезанный руками); замена принимается, '
-               'только если выигрыш больше погрешности сима (95%-й доверительный интервал); проходы повторяются, пока сет не перестаёт меняться. '
-               'Затем сет и топ опций каждого слота прогоняются на полном числе итераций, и каждая строка получает Δ ± погрешность против лучшей. '
+               '180 секунд, один босс 63 уровня, рейд-бафы, расходники и стандартная ротация симулятора; условия одинаковы для всех вариантов. '
+               'Поиск: каждый слот перебирает заранее отобранных кандидатов; замена принимается, только если выигрыш больше погрешности сима (95%). '
+               'Проходы повторяются, пока сет не перестаёт меняться. Затем сет и лучшие опции каждого слота прогоняются ещё раз, '
+               'и каждая строка получает Δ ± погрешность против лучшей. '
                'Оружие: сет держит один класс оружия (двуручный сет смотрит только двуручки и наоборот). '
                'Что не прогнано — показано как не прогнанное; выдуманных чисел на странице нет.</p>'),
         'en': ('<h2>Where the numbers come from</h2><p>Every number is a <a href="https://www.wowsims.com/forever/" target="_blank" rel="noopener">WoWSims Forever</a> run: '
-               '180 seconds, one level 63 boss, the raid buffs, consumables and rotation of the sim\'s own presets, a fixed random seed. '
-               'Search: each slot sweeps its candidate pool (configs/pools, hand-pruned); a swap is kept only when it beats the sim\'s margin (95% confidence); '
-               'passes repeat until the set stops moving. The finished set and each slot\'s top options then run at full iterations, '
+               '180 seconds, one level 63 boss, the raid buffs, consumables and the sim\'s standard rotation; every option is measured under the same conditions. '
+               'Search: each slot sweeps a hand-picked candidate pool; a swap is kept only when it beats the sim\'s margin (95%). '
+               'Passes repeat until the set stops moving. The finished set and each slot\'s top options then run once more, '
                'and every row carries Δ ± margin against the best. Weapons: a set keeps one weapon class. '
                'What was not simmed is shown as not simmed — no invented numbers anywhere on this page.</p>'),
     }
@@ -451,14 +454,14 @@ def main():
         method['en'] += '<p><b>There are no numbers on this page yet: the runs have not been made.</b></p>'
 
     footer = {
-        'ru': (f'Числа — прогон WoWSims Forever от {today}' + (f', коммит {a.commit}' if a.commit else '') +
-               '. Данные предметов — из базы симулятора; ссылки ведут на Wowhead.'),
-        'en': (f'Simmed with WoWSims Forever on {today}' + (f' (commit {a.commit})' if a.commit else '') +
-               '. Item data from the sim\'s database; links go to Wowhead.'),
+        'ru': (f'Числа — прогон WoWSims Forever от {today}' + (f', версия симулятора {a.commit}' if a.commit else '') +
+               '. Ссылки на предметы ведут на Wowhead.'),
+        'en': (f'Simmed with WoWSims Forever on {today}' + (f' (sim version {a.commit})' if a.commit else '') +
+               '. Item links go to Wowhead.'),
     }
     footer_norun = {
-        'ru': 'Каждая цифра появится здесь только после реального прогона WoWSims Forever; дата и хеш коммита сима будут прошиты здесь.',
-        'en': 'Every number on this page comes from a real WoWSims Forever run, with the sim\'s commit hash and date stamped here.',
+        'ru': 'Каждая цифра появится здесь только после реального прогона WoWSims Forever.',
+        'en': 'Every number on this page comes from a real WoWSims Forever run.',
     }
 
     # Fetch the Russian names for every used item once, in parallel, then cache them.
@@ -479,8 +482,8 @@ def main():
             'staleAfterDays': 7,
             'lede': {'ru': 'WoW Forever · Фаза 1 · пререйд-BiS по симам для каждого класса и спека',
                      'en': 'WoW Forever · Phase 1 · simmed pre-raid best in slot for every class and spec'},
-            'target': {'ru': 'Сим: одиночный босс 63 уровня, 180 секунд, буфы и расходники из пресетов сима.',
-                       'en': 'One level 63 boss, 180 seconds, the sim presets\' buffs and consumables.'},
+            'target': {'ru': 'Сим: один босс 63 уровня, 180 секунд, рейд-бафы и расходники.',
+                       'en': 'One level 63 boss, 180 seconds, raid buffs and consumables.'},
             'footer': footer if has_data else footer_norun,
         },
         'classes': classes_cfg,
@@ -518,7 +521,8 @@ def main():
         spec = importlib.util.spec_from_file_location('audit_data', os.path.join(os.path.dirname(__file__), 'audit_data.py'))
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        problems, notes = mod.run_audit(a.runs, a.configs, a.forever)
+        problems, notes = mod.run_audit(a.runs, a.configs, a.forever,
+                                        a.out, os.path.join(os.path.dirname(os.path.abspath(a.out)), 'assets/style.css'))
         print(f'audit: {len(problems)} problems, {len(notes)} notes')
         for p in problems[:10]:
             print('  PROBLEM:', p)

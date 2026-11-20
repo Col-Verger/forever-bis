@@ -5,17 +5,21 @@ zero values. Exits 1 when a real problem is found.
 
     python tools/audit_data.py [--runs runs] [--configs configs] [--forever forever]
 """
-import argparse, glob, json, os, sys
+import argparse, glob, json, os, re, sys
 
 SLOTS = ['head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands', 'waist', 'legs', 'feet',
          'finger1', 'finger2', 'trinket1', 'trinket2', 'main_hand', 'off_hand', 'ranged']
+
+# WoW quality ids and the colour each must have. The page colours an item name with
+# var(--q<quality>), so a shifted palette makes epics look rare.
+QUALITY_COLOURS = {0: '#9d9d9d', 1: '#ffffff', 2: '#1eff00', 3: '#0070dd', 4: '#a335ee', 5: '#ff8000'}
 
 
 def load_json(path):
     return json.load(open(path, encoding='utf-8'))
 
 
-def run_audit(runs, configs, forever='forever'):
+def run_audit(runs, configs, forever='forever', data=None, css=None):
     """Returns (problems, notes)."""
     pools = {}
     for p in glob.glob(os.path.join(configs, 'pools', '*.pools.json')):
@@ -33,9 +37,11 @@ def run_audit(runs, configs, forever='forever'):
             build_pool[b['id']] = b.get('pool')
 
     hand_type = {}
+    db_items = {}
     try:
         db = load_json(os.path.join(forever, 'assets/database/db.json'))
         hand_type = {it['id']: it.get('handType') for it in db['items']}
+        db_items = {it['id']: it for it in db['items']}
     except Exception:
         pass
 
@@ -81,7 +87,54 @@ def run_audit(runs, configs, forever='forever'):
             if not meta.get('talents'):
                 notes.append(f'{lid}: no talents in meta')
 
+    if data or css:
+        problems += colour_problems(data, css, db_items)
+
     return problems, notes
+
+
+def colour_problems(data_path, css_path, db_items):
+    """Every item's quality must match the simulator's database and have a palette entry."""
+    problems = []
+
+    def hexnorm(h):
+        h = (h or '').lower()
+        return '#' + ''.join(c * 2 for c in h[1:]) if len(h) == 4 else h
+
+    if not data_path or not os.path.exists(data_path):
+        return problems
+    m = re.search(r'window\.GUIDE = (\{.*\});', open(data_path, encoding='utf-8').read(), re.S)
+    if not m:
+        return [f'{data_path}: window.GUIDE not found, item colours cannot be checked']
+    items = json.loads(m.group(1)).get('items') or {}
+
+    css = ''
+    if css_path and os.path.exists(css_path):
+        css = open(css_path, encoding='utf-8').read()
+    palette = {}
+    for q in QUALITY_COLOURS:
+        hit = re.search(rf'--q{q}\s*:\s*(#[0-9a-fA-F]{{3,8}})', css)
+        palette[q] = hit.group(1).lower() if hit else None
+
+    missing = set()
+    for iid, it in items.items():
+        q = it.get('q')
+        want = db_items.get(int(iid)) if db_items else None
+        if db_items and want is None:
+            problems.append(f'item {iid} ({it.get("name")}): not in the simulator database')
+        elif want is not None and q != want.get('quality'):
+            problems.append(f'item {iid} ({it.get("name")}): quality {q} in data.js, '
+                            f'{want.get("quality")} in the simulator database')
+        if not isinstance(q, int) or q not in QUALITY_COLOURS:
+            problems.append(f'item {iid} ({it.get("name")}): quality {q!r} is not 0..5 — no colour for it')
+            continue
+        if palette.get(q) is None:
+            missing.add(q)
+        elif hexnorm(palette[q]) != QUALITY_COLOURS[q]:
+            problems.append(f'style.css: --q{q} is {palette[q]}, expected {QUALITY_COLOURS[q]}')
+    for q in sorted(missing):
+        problems.append(f'style.css: no --q{q} colour for quality {q} (items of that quality are on the page)')
+    return problems
 
 
 def main():
@@ -89,9 +142,11 @@ def main():
     ap.add_argument('--runs', default='runs')
     ap.add_argument('--configs', default='configs')
     ap.add_argument('--forever', default='forever')
+    ap.add_argument('--data', default='data.js', help='generated data.js: checks every item colour against the sim database')
+    ap.add_argument('--css', default='assets/style.css', help='stylesheet: checks the quality palette')
     a = ap.parse_args()
 
-    problems, notes = run_audit(a.runs, a.configs, a.forever)
+    problems, notes = run_audit(a.runs, a.configs, a.forever, a.data, a.css)
     print(f'audited {len(glob.glob(os.path.join(a.runs, "*.gear.json")))} gear files')
     for n in notes:
         print('  note:', n)

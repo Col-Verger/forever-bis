@@ -59,32 +59,37 @@ const STR = {
   tab_refresh: { ru: 'Данные и обновление', en: 'Data & refresh' },
   chip_no_data: { ru: 'Симы не прогнаны', en: 'No sim runs yet' },
   chip_ok: { ru: 'Симы', en: 'Simmed' },
-  chip_stale: { ru: 'данные старше N дней — обнови', en: 'stale — consider a re-run' },
+  chip_stale: { ru: 'данные старше N дней', en: 'data older than N days' },
   ref_status: { ru: 'Статус данных', en: 'Data status' },
   ref_last_update: { ru: 'Последнее обновление', en: 'Last update' },
   ref_owner_only: { ru: 'Данные обновляются автоматически — каждый день. Числа на странице всегда последние; от посетителя ничего не требуется.', en: 'The data refreshes automatically — every day. The numbers on the page are always the latest; visitors never need to do anything.' },
   ref_ok_line: { ru: 'Прогон', en: 'Last run' },
   ref_commit_line: { ru: 'Симулятор', en: 'Simulator' },
   ref_auto: { ru: 'Как числа попадают на сайт', en: 'How numbers get here' },
-  ref_auto_body: { ru: 'Сайт — статическая страница: сам он симы не считает. Числа приносит пайплайн: каждое утро он собирает свежий WoWSims Forever из GitHub, прогоняет каждый спек и пересобирает страницу. Всё происходит автоматически. Хил-спеки сим пока не поддерживает — их сеты взяты из гайдов Wowhead и помечены бейджем; когда в WoWSims появится пресет, пайплайн сам заменит такой сет симмированными числами.', en: 'This site is static: it cannot run sims itself. A pipeline brings the numbers: every morning it builds fresh WoWSims Forever from GitHub, sims every spec and rebuilds the page. Everything happens automatically. Healer specs are not supported by the sim yet — their sets come from Wowhead guides and carry a badge; when WoWSims ships a preset, the pipeline replaces them with simmed numbers on its own.' },
+  ref_auto_body: { ru: 'Сайт не считает симы сам: каждое утро свежая версия WoWSims Forever прогоняет каждый спек, и страница пересобирается с новыми числами. Всё происходит автоматически. Хил-спеки симулятор пока не поддерживает — их сеты взяты из гайдов Wowhead и помечены бейджем; когда поддержка появится, сет заменится симмированными числами сам.', en: 'The site does not run sims itself: every morning a fresh WoWSims Forever build sims every spec and the page is rebuilt with the new numbers. All of it is automatic. Healer specs are not supported by the sim yet — their sets come from Wowhead guides and carry a badge; when support lands, the set is replaced with simmed numbers on its own.' },
   ref_new_title: { ru: 'Как читать числа', en: 'Reading the numbers' },
-  ref_new_body: { ru: 'Каждое число на странице — реальный прогон симулятора, с погрешностью ± на полосах. Проверить любое число можно самостоятельно: скачай runs/<спек>.settings.json из репозитория и импортируй его на wowsims.com — увидишь тот же сет и тот же босс.', en: 'Every number on this page is a real simulator run, with a ± margin on the bars. Any number can be checked: grab runs/<spec>.settings.json from the repo and import it on wowsims.com — same set, same boss.' },
+  ref_new_body: { ru: 'Каждое число на странице — реальный прогон симулятора; на полосах показана погрешность ±. Любое число можно проверить самому: нажми «Открыть сет в WoWSims» над сетом — симулятор откроется с этим же снаряжением, талантами и боссом.', en: 'Every number on this page is a real simulator run; the bars show the ± margin. Any number can be checked: press “Open this set in WoWSims” above the set — the sim opens with the same gear, talents and boss.' },
   no_sim: { ru: 'BiS по гайду Wowhead · сим пока не поддерживает спек', en: 'Wowhead guide BiS · the sim does not support this spec yet' },
   wowhead_badge: { ru: 'Wowhead-гайд', en: 'Wowhead guide' },
-  wowhead_note: { ru: 'Этот сет собран по гайду Wowhead: симулятор пока не поддерживает спек, поэтому Δ-чисел нет. Как только WoWSims добавит пресет, ежедневный пайплайн заменит этот сет симами автоматически.', en: 'This set comes from a Wowhead guide: the simulator does not support this spec yet, so there are no DPS deltas. When WoWSims ships a preset, the daily pipeline replaces it with sims automatically.' },
+  wowhead_note: { ru: 'Этот сет собран по гайду Wowhead: симулятор пока не умеет считать этот спек, поэтому Δ-чисел нет. Когда научится, сет заменится автоматически.', en: 'This set comes from a Wowhead guide: the simulator cannot sim this spec yet, so there are no DPS deltas. When it can, the set is replaced automatically.' },
   open_guide: { ru: 'Открыть гайд Wowhead ↗', en: 'Open the Wowhead guide ↗' },
   cls: { ru: 'Класс', en: 'Class' },
   spec: { ru: 'Спек', en: 'Spec' },
   budget: { ru: 'Бюджет', en: 'Budget' },
   budget_max: { ru: 'Максимум', en: 'Max' },
   budget_cheap: { ru: 'Дёшево', en: 'Cheap' },
-  budget_pending: { ru: 'ещё считается — появится после полного прогона', en: 'still simming — lands after the full run' },
+  budget_pending: { ru: 'ещё считается — появится после ближайшего обновления', en: 'still simming — lands with the next refresh' },
   vs_other: { ru: 'Другой бюджет', en: 'Other budget' },
   howto_open_set: { ru: 'Открыть сет →', en: 'Open the set →' },
   howto_talents: { ru: 'Таланты на Wowhead ↗', en: 'Talents on Wowhead ↗' },
   topn: { ru: 'Опций на слот', en: 'Options per slot' },
   filter: { ru: 'Фильтр', en: 'Filter' },
-  search_ph: { ru: 'Предмет, босс, зона, квест', en: 'Item, boss, zone, quest' },
+  search_ph: { ru: 'Название предмета, босс или зона', en: 'Item, boss or zone name' },
+  q_showing: { ru: 'Показано {n} из {m}', en: 'Showing {n} of {m}' },
+  q_total: { ru: 'вариантов: {m}', en: 'options: {m}' },
+  q_none_short: { ru: 'ничего не найдено', en: 'nothing found' },
+  q_none: { ru: 'По этому запросу ничего нет. Попробуй название предмета, босса или зоны — подсказки появляются при вводе.', en: 'Nothing matches. Try an item, boss or zone name — suggestions appear as you type.' },
+  q_reset: { ru: 'Сбросить фильтр', en: 'Clear filter' },
   every_slot: { ru: 'Каждая опция, слот за слотом', en: 'Every option, slot by slot' },
   matrix_sub: { ru: 'Все сеты бок о бок. Ряды без подсветки одинаковы во всех сетах; подсвеченная ячейка отличается от самого частого выбора.', en: 'Every loadout side by side. Faded rows are the same in every loadout; a shaded cell differs from the most common pick.' },
   best: { ru: 'Лучший', en: 'Best' },
@@ -93,11 +98,11 @@ const STR = {
   show_all: { ru: 'Показать все', en: 'Show all' },
   empty_slot: { ru: 'В этом слоте фильтрам ничего не подходит.', en: 'Nothing in this slot passes your filters.' },
   hidden_best: { ru: 'Лучший предмет слота скрыт вашими фильтрами.', en: 'The best item for this slot is hidden by your filters.' },
-  no_source: { ru: 'Источника в файлах игры нет', en: 'No source in the game files' },
+  no_source: { ru: 'Источник неизвестен', en: 'Source unknown' },
   empty_title: { ru: 'Симы для этого спека ещё не прогнаны', en: 'Not simmed yet' },
   empty_body: { ru: 'На странице нет придуманных чисел: карточки появятся после ближайшего автоматического обновления (ежедневно).', en: 'No invented numbers here: the cards appear after the next automatic refresh (daily).' },
   empty_run: { ru: '', en: '' },
-  no_preset_title: { ru: 'Спек ждёт пресет в симуляторе', en: 'Waiting for the sim to ship a preset' },
+  no_preset_title: { ru: 'Симулятор пока не умеет считать этот спек', en: 'The simulator cannot sim this spec yet' },
   metric_dps: { ru: 'DPS в симе', en: 'DPS in the sim' },
   metric_hps: { ru: 'HPS в симе', en: 'HPS in the sim' },
   build: { ru: 'Билд', en: 'Build' },
@@ -215,7 +220,7 @@ function applyStatic() {
   if (!G.meta.hasData) {
     stamp.innerHTML = `<b class="stale">⚠ ${esc(T('stamp_notrun'))}</b> — ${esc(L2(G.meta.footer))}`;
   } else {
-    stamp.innerHTML = `<b>✓ ${esc(T('stamp_run'))} WoWSims Forever ${esc(fmtSimmed())} (${esc(G.meta.simCommit)})</b> — ${esc(L2(G.meta.footer))}`;
+    stamp.innerHTML = `<b>✓ ${esc(T('stamp_run'))} WoWSims Forever · ${esc(fmtSimmed())}</b> — ${esc(L2(G.meta.footer))}`;
   }
   document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang()));
 }
@@ -231,17 +236,74 @@ function renderSources() {
 }
 
 // ---------- filters ----------
-function rowPasses(specs, r) {
-  const q = state.q.trim().toLowerCase();
-  return specs.every(([, spec]) => {
+const norm = s => String(s == null ? '' : s).toLowerCase().replace(/ё/g, 'е').replace(/\s+/g, ' ').trim();
+const qTokens = () => norm(state.q).split(' ').filter(Boolean);
+
+// Everything a row can be found by: both item names, source strings, slot, type, set.
+function rowText(specs) {
+  const parts = [];
+  for (const [slot, spec] of specs) {
+    const it = item(spec[0]);
+    if (!it) continue;
+    parts.push(itemName(spec), it.name, it.name_ru || '', it.kind || '', it.set || '', slotLabel(slot));
+    parts.push((it.sources || []).join(' '));
+  }
+  return norm(parts.join(' '));
+}
+function rowPasses(specs) {
+  const toks = qTokens();
+  const okSource = specs.every(([, spec]) => {
     const it = item(spec[0]);
     if (!it) return true;
-    if (!(it.kinds || []).some(k => state.srcs.has(k))) return false;
-    return true;
-  }) && (!q || specs.some(([, spec]) => {
-    const it = item(spec[0]);
-    return it && (itemName(spec).toLowerCase().includes(q) || (it.name_ru || '').toLowerCase().includes(q) || (it.sources || []).join(' ').toLowerCase().includes(q));
-  }));
+    return (it.kinds || []).some(k => state.srcs.has(k));
+  });
+  if (!okSource) return false;
+  if (!toks.length) return true;
+  const hay = rowText(specs);
+  return toks.every(t => hay.includes(t));
+}
+
+// Suggestions built from what the page actually lists: names, sources, slots, types.
+function fillSearchSuggestions(L) {
+  const list = $('qlist');
+  if (!list || !L) return;
+  const seen = new Set(), out = [];
+  const add = v => {
+    const s = String(v || '').trim();
+    const k = norm(s);
+    if (k.length < 2 || seen.has(k)) return;
+    seen.add(k);
+    out.push(s);
+  };
+  for (const g of L.groups || []) {
+    add(slotLabel(g.id));
+    for (const row of [g.best, ...(g.rows || [])]) {
+      if (!row || !row.move) continue;
+      for (const [slot, spec] of Object.entries(row.move)) {
+        const it = item(spec[0]);
+        if (!it) continue;
+        add(itemName(spec));
+        add(it.name);
+        add(it.kind);
+        add(it.set);
+        for (const src of it.sources || []) add(src);
+      }
+    }
+  }
+  out.sort((a, b) => a.localeCompare(b, lang()));
+  list.innerHTML = out.slice(0, 500).map(v => `<option value="${esc(v)}"></option>`).join('');
+}
+
+// How many candidate variants pass the current filters, out of all listed.
+function countRows(L) {
+  let shown = 0, all = 0;
+  for (const g of L.groups || []) {
+    const hasBest = g.best && Object.keys(g.best).length > 0;
+    const rows = [...(hasBest ? [{ move: g.best }] : []), ...(g.rows || [])];
+    all += rows.length;
+    shown += rows.filter(r => rowPasses(Object.entries(r.move))).length;
+  }
+  return { shown, all };
 }
 
 // ---------- the character window ----------
@@ -267,17 +329,11 @@ function renderDoll() {
       const waiting = sp.status === 'no-preset';
       return `<div>
         <span class="small">${esc(L2(curClass().name))}</span><h2>${esc(L2(sp.name))}</h2>
-        ${waiting ? `<span class="status-badge">${esc(T('no_preset_title'))}</span>` : ''}
         <p class="target">${esc(L2(G.meta.target))}</p>
         <div class="empty-note">
           <b>${esc(waiting ? T('no_preset_title') : T('empty_title'))}</b><br>
           ${esc(waiting ? L2(sp.note) : T('empty_body'))}
         </div>
-        <dl class="facts">
-          <dt>${esc(T('build'))}</dt><dd>${esc(L2(sp.build))}</dd>
-          <dt>${esc(T('rotation'))}</dt><dd>${esc(L2(sp.rotation)) || '—'}</dd>
-        </dl>
-        <p class="blurb">${esc(L2(sp.note))}</p>
       </div>`;
     }
     const wh = L.source === 'wowhead';
@@ -357,7 +413,8 @@ function rowHTML(r, x, bestMove) {
 function groupHTML(g, L) {
   const hasBest = g.best && Object.keys(g.best).length > 0;
   const rows = [...(hasBest ? [{ move: g.best, d: 0, m: 0, best: true }] : []), ...(g.rows || [])].sort((a, b) => b.d - a.d);
-  const passing = rows.filter(r => rowPasses(Object.entries(r.move), r));
+  const passing = rows.filter(r => rowPasses(Object.entries(r.move)));
+  if (!passing.length && qTokens().length) return '';
   const shown = passing.slice(0, state.topn);
   const x = scaleFor(shown.length ? shown : rows.slice(0, 1));
   const head = `<tr class="gh"><th colspan="4" scope="rowgroup"><span class="ghn">${esc(glabel(g.id))}</span>${g.note ? `<span class="ghnote">${esc(L2(g.note))}</span>` : ''}</th></tr>`;
@@ -375,12 +432,28 @@ function renderCards() {
       $('cards').innerHTML = `<div class="empty-note">${esc(T('empty_title'))} — ${esc(T('empty_body'))}</div>`;
     }
     $('ovd').hidden = true;
+    if ($('qcount')) $('qcount').textContent = '';
     return;
   }
-  $('cards').innerHTML = `<table class="bt">
+  fillSearchSuggestions(L);
+  const { shown, all } = countRows(L);
+  const q = state.q.trim();
+  const cnt = $('qcount');
+  if (cnt) {
+    cnt.textContent = q ? (shown ? T('q_showing').replace('{n}', shown).replace('{m}', all) : T('q_none_short'))
+      : T('q_total').replace('{m}', all);
+    cnt.classList.toggle('none', !!q && !shown);
+  }
+  const qclear = $('qclear');
+  if (qclear) qclear.hidden = !q;
+  const none = q && !shown
+    ? `<div class="empty-note">${esc(T('q_none'))} <button class="linkbtn" type="button" data-qclear="1">${esc(T('q_reset'))}</button></div>`
+    : '';
+  $('cards').innerHTML = none + (q && !shown ? '' : `<table class="bt">
     <colgroup><col class="w-item"><col class="w-where"><col class="w-d"><col class="w-chart"></colgroup>
     <thead><tr><th class="c-item">${esc(lang() === 'ru' ? 'Предмет' : 'Item')}</th><th class="c-where">${esc(lang() === 'ru' ? 'Где достать' : 'Where')}</th><th class="c-d">Δ ${esc(metricName(L.metric))}</th><th class="c-chart">${esc(T('vs_best'))}</th></tr></thead>
-    ${L.groups.map(g => groupHTML(g, L)).join('')}</table>`;
+    ${L.groups.map(g => groupHTML(g, L)).join('')}</table>`);
+  if (q && !shown) $('ovd').hidden = true;
   renderOverview(L);
 }
 function renderKey() {
@@ -611,6 +684,12 @@ document.addEventListener('click', e => {
   if (!t.closest('#srcpick')) $('srcpick').open = false;
   const chip = t.closest('#statuschip');
   if (chip) { state.tab = 'refresh'; render(); return; }
+  if (t.closest('[data-qclear]')) {
+    state.q = '';
+    if ($('q')) $('q').value = '';
+    if (state.tab === 'gear') renderCards();
+    return;
+  }
   if (t.closest('.srcall')) { SOURCE_KINDS.forEach(k => state.srcs.add(k)); renderSources(); if (state.tab === 'gear') renderCards(); return; }
   const b = t.closest('button');
   if (!b) {
@@ -643,6 +722,7 @@ document.addEventListener('change', e => {
   $('srcpick').open = true;
 });
 $('q').addEventListener('input', e => { state.q = e.target.value; if (state.tab === 'gear') renderCards(); });
+$('q').addEventListener('keydown', e => { if (e.key === 'Escape' && state.q) { state.q = ''; e.target.value = ''; if (state.tab === 'gear') renderCards(); } });
 new ResizeObserver(() => document.documentElement.style.setProperty('--barh', $('bar').offsetHeight + 'px')).observe($('bar'));
 
 // Shared links and back/forward navigation: re-read the hash when it changes from outside

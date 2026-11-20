@@ -23,8 +23,8 @@
       "repoFolder": "ui/specs/warlock/dps",
       "buildJson": "builds/sm_ruin.build.json",
       "title": { "ru": "СМ/Рuin", "en": "SM/Ruin" },
-      "buildName": { "ru": "SM/Ruin (билд сима)", "en": "SM/Ruin (the sim's build)" },
-      "rotation": { "ru": "APL из билд-файла репозитория", "en": "the build file's APL" },
+      "buildName": { "ru": "SM/Ruin (билд симулятора)", "en": "SM/Ruin (the sim's build)" },
+      "rotation": { "ru": "Стандартная ротация билда", "en": "the build's rotation" },
       "metric": "dps",
       "pool": "warlock-dps",
       "playerOverrides": {}

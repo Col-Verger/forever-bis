@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=7">
 </head>
 <body>
 <header class="top">
@@ -49,7 +49,8 @@
     <div class="group"><span data-i18n="topn">Опций на слот</span><div class="seg" id="topn"></div></div>
     <div class="group grow"><span data-i18n="filter">Фильтр</span>
       <div class="filter">
-        <input type="search" class="search" id="q" data-i18n-ph="search_ph" placeholder="Предмет, босс, зона, квест" aria-label="Search items">
+        <div class="qbox"><input type="search" class="search" id="q" list="qlist" data-i18n-ph="search_ph" placeholder="Название предмета, босс или зона" aria-label="Search items"><button type="button" class="qclear" id="qclear" data-qclear="1" hidden aria-label="Сбросить фильтр">×</button></div>
+        <datalist id="qlist"></datalist>
         <details class="srcpick" id="srcpick"><summary id="srcsum">Все источники</summary><div class="srcmenu" id="srcs"></div></details>
       </div>
     </div>
@@ -59,7 +60,7 @@
 <main class="wrap">
   <section data-panel="gear">
     <div class="doll" id="doll"></div>
-    <div class="listhead"><h2 data-i18n="every_slot">Каждая опция, слот за слотом</h2></div>
+    <div class="listhead"><h2 data-i18n="every_slot">Каждая опция, слот за слотом</h2><span class="qcount" id="qcount"></span></div>
     <details class="ov" id="ovd" hidden>
       <summary><span class="ov-t" data-i18n="slot_importance">Сколько важен каждый слот</span><span class="small" id="ovteaser"></span></summary>
       <div id="overview"></div>
@@ -80,7 +81,7 @@
 
 <div id="tip" hidden></div>
 
-<script src="data.js?v=345c982c83"></script>
-<script src="assets/app.js?v=4"></script>
+<script src="data.js?v=23dc304b20"></script>
+<script src="assets/app.js?v=7"></script>
 </body>
 </html>
