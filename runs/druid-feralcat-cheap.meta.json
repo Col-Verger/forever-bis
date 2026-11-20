@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 934.65,
- "margin": 0.6,
+ "value": 955.76,
+ "margin": 0.62,
  "hps": 0,
- "threat": 694.9,
+ "threat": 709.4,
  "title": {
   "ru": "Ферал (кот)",
   "en": "Feral (cat)"

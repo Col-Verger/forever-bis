@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 736.71,
- "margin": 0.73,
+ "value": 791.53,
+ "margin": 0.77,
  "hps": 0,
- "threat": 755.5,
+ "threat": 809.6,
  "title": {
   "ru": "Баланс (Мункин)",
   "en": "Balance (Moonkin)"

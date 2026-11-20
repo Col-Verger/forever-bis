@@ -1,39 +1,27 @@
 {
  "builds": [
   {
-   "id": "warrior-fury-max",
+   "id": "druid-balance-cheap",
    "status": "ok",
-   "value": 983.01,
+   "value": 791.53,
    "metric": "dps"
   },
   {
-   "id": "warrior-fury-cheap",
+   "id": "druid-feralcat-cheap",
    "status": "ok",
-   "value": 852.6,
+   "value": 955.76,
    "metric": "dps"
   },
   {
-   "id": "warrior-arms-max",
+   "id": "druid-feralbear-cheap",
    "status": "ok",
-   "value": 894.23,
+   "value": 297.16,
    "metric": "dps"
   },
   {
-   "id": "warrior-arms-cheap",
+   "id": "paladin-protection-cheap",
    "status": "ok",
-   "value": 833.32,
-   "metric": "dps"
-  },
-  {
-   "id": "warrior-protection-max",
-   "status": "ok",
-   "value": 311.63,
-   "metric": "dps"
-  },
-  {
-   "id": "warrior-protection-cheap",
-   "status": "ok",
-   "value": 281.59,
+   "value": 600.82,
    "metric": "dps"
   }
  ]

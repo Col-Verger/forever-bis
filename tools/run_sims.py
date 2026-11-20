@@ -371,13 +371,14 @@ class Build:
             cur |= {gear.get('finger1', [0])[0], gear.get('finger2', [0])[0]}
         if slot == 'trinket1':
             cur |= {gear.get('trinket1', [0])[0], gear.get('trinket2', [0])[0]}
-        twoh = self.base_is_twohand(gear)
+        mh = self.db.item(gear.get('main_hand', [0])[0])
+        twoh = (mh.get('handType') == 4) if mh else None  # no weapon worn: either class may win
         out = []
         for c in self.pool[slot]:
             if c['id'] in cur:
                 continue
-            if slot == 'main_hand' and bool(c.get('twoHand')) != twoh:
-                continue  # one weapon class per set (v1 rule)
+            if slot == 'main_hand' and twoh is not None and bool(c.get('twoHand')) != twoh:
+                continue  # one weapon class per set once a class is worn
             out.append(c)
         return out
 

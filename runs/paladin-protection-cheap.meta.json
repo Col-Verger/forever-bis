@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 560.46,
- "margin": 0.45,
- "hps": 22.5,
- "threat": 1331.1,
+ "value": 600.82,
+ "margin": 0.42,
+ "hps": 28.1,
+ "threat": 1472.6,
  "title": {
   "ru": "Прот (танк)",
   "en": "Protection (tank)"
@@ -18,7 +18,7 @@
   "ru": "Default APL из репозитория сима",
   "en": "the repo's Default APL"
  },
- "talents": "",
+ "talents": "050050002-05302102213301531-502",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,

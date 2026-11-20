@@ -62,18 +62,13 @@ const STR = {
   chip_stale: { ru: 'данные старше N дней — обнови', en: 'stale — consider a re-run' },
   ref_status: { ru: 'Статус данных', en: 'Data status' },
   ref_last_update: { ru: 'Последнее обновление', en: 'Last update' },
-  ref_owner_only: { ru: 'Данные обновляет только владелец репозитория — автоматически по расписанию (раз в неделю) или кнопкой ниже. Посетителям ничего запускать не нужно: числа всегда свежие на странице.', en: 'Only the repo owner refreshes the data — automatically weekly, or with the button below. Visitors never need to run anything: the numbers on the page are the latest.' },
+  ref_owner_only: { ru: 'Данные обновляются автоматически — каждый день. Числа на странице всегда последние; от посетителя ничего не требуется.', en: 'The data refreshes automatically — every day. The numbers on the page are always the latest; visitors never need to do anything.' },
   ref_ok_line: { ru: 'Прогон', en: 'Last run' },
   ref_commit_line: { ru: 'Симулятор', en: 'Simulator' },
   ref_auto: { ru: 'Как числа попадают на сайт', en: 'How numbers get here' },
-  ref_auto_body: { ru: 'Сайт — статическая страница: сам он симы не считает (у wowsims.com нет живого API). Числа приносит пайплайн: он собирает свежий WoWSims Forever из GitHub, прогоняет каждый спек и пересобирает страницу. Запускается автоматически раз в неделю или вручную.', en: 'This site is static: it cannot run sims itself (wowsims.com has no live API). A pipeline brings the numbers: it builds fresh WoWSims Forever from GitHub, sims every spec, rebuilds the page. It runs weekly or manually.' },
-  ref_owner_title: { ru: 'Есть права на репозиторий? Обнови одной кнопкой', en: 'Own the repo? One-click refresh' },
-  ref_owner_body: { ru: 'Кнопка ведёт на GitHub Action «Re-sim and deploy» — нажми Run workflow (вход в GitHub обязателен: анонимные посетители запускать не могут).', en: 'The button opens the “Re-sim and deploy” GitHub Action — press Run workflow (a GitHub login with repo access is required; anonymous visitors cannot trigger it).' },
-  ref_owner_btn: { ru: 'Открыть Action ↗', en: 'Open the Action ↗' },
-  ref_no_repo: { ru: 'Ссылка появится, когда репозиторий будет создан и в data.js прошит --repo владелец/репозиторий.', en: 'The link appears once the repo exists and build_data.py runs with --repo owner/name.' },
-  ref_local_title: { ru: 'Локальный прогон (для владельца)', en: 'Local run (for the owner)' },
-  ref_new_title: { ru: 'Новый пользователь? Прочти это', en: 'New here? Read this' },
-  ref_new_body: { ru: 'Каждое число на странице — реальный прогон симулятора, с погрешностью ± на полосах. Данные обновляются сами по расписанию; если штамп в шапке старый — напиши владельцу или запусти Action, если есть права. Проверить любое число можно самостоятельно: скачай runs/<спек>.settings.json из репозитория и импортируй его на wowsims.com — увидишь тот же сет и тот же босс.', en: 'Every number on this page is a real simulator run, with a ± margin on the bars. Data refreshes on a schedule; if the stamp in the header is old, ping the owner or run the Action if you can. Any number can be checked: grab runs/<spec>.settings.json from the repo and import it on wowsims.com — same set, same boss.' },
+  ref_auto_body: { ru: 'Сайт — статическая страница: сам он симы не считает. Числа приносит пайплайн: каждое утро он собирает свежий WoWSims Forever из GitHub, прогоняет каждый спек и пересобирает страницу. Всё происходит автоматически.', en: 'This site is static: it cannot run sims itself. A pipeline brings the numbers: every morning it builds fresh WoWSims Forever from GitHub, sims every spec and rebuilds the page. Everything happens automatically.' },
+  ref_new_title: { ru: 'Как читать числа', en: 'Reading the numbers' },
+  ref_new_body: { ru: 'Каждое число на странице — реальный прогон симулятора, с погрешностью ± на полосах. Проверить любое число можно самостоятельно: скачай runs/<спек>.settings.json из репозитория и импортируй его на wowsims.com — увидишь тот же сет и тот же босс.', en: 'Every number on this page is a real simulator run, with a ± margin on the bars. Any number can be checked: grab runs/<spec>.settings.json from the repo and import it on wowsims.com — same set, same boss.' },
   ref_copy: { ru: 'Копировать', en: 'Copy' },
   ref_copied: { ru: 'Скопировано', en: 'Copied' },
   copy_set: { ru: 'Скопировать сет', en: 'Copy the set' },
@@ -99,8 +94,8 @@ const STR = {
   hidden_best: { ru: 'Лучший предмет слота скрыт вашими фильтрами.', en: 'The best item for this slot is hidden by your filters.' },
   no_source: { ru: 'Источника в файлах игры нет', en: 'No source in the game files' },
   empty_title: { ru: 'Симы для этого спека ещё не прогнаны', en: 'Not simmed yet' },
-  empty_body: { ru: 'На странице нет придуманных чисел: карточки появятся после реального прогона WoWSims Forever.', en: 'No invented numbers here: the cards fill in after a real WoWSims Forever run.' },
-  empty_run: { ru: 'Запустить пайплайн: README → «Запуск локально» или GitHub Action «Re-sim and deploy».', en: 'Run the pipeline: README → local run, or the “Re-sim and deploy” GitHub Action.' },
+  empty_body: { ru: 'На странице нет придуманных чисел: карточки появятся после ближайшего автоматического обновления (ежедневно).', en: 'No invented numbers here: the cards appear after the next automatic refresh (daily).' },
+  empty_run: { ru: '', en: '' },
   no_preset_title: { ru: 'Спек ждёт пресет в симуляторе', en: 'Waiting for the sim to ship a preset' },
   metric_dps: { ru: 'DPS в симе', en: 'DPS in the sim' },
   metric_hps: { ru: 'HPS в симе', en: 'HPS in the sim' },
@@ -274,8 +269,7 @@ function renderDoll() {
         <p class="target">${esc(L2(G.meta.target))}</p>
         <div class="empty-note">
           <b>${esc(waiting ? T('no_preset_title') : T('empty_title'))}</b><br>
-          ${esc(waiting ? L2(sp.note) : T('empty_body'))} ${esc(waiting ? '' : T('empty_run'))}
-          ${waiting ? '' : `<br><code>python tools/run_sims.py --only ${esc(sp.prefix)}</code>`}
+          ${esc(waiting ? L2(sp.note) : T('empty_body'))}
         </div>
         <dl class="facts">
           <dt>${esc(T('build'))}</dt><dd>${esc(L2(sp.build))}</dd>
@@ -492,15 +486,6 @@ function renderHowto() {
 }
 
 // ---------- data status & refresh ----------
-const REFRESH_CMDS = [
-  ['1', 'git clone --depth 1 https://github.com/wowsims/forever forever'],
-  ['2', 'cd forever && go install google.golang.org/protobuf/cmd/protoc-gen-go@latest'],
-  ['3', 'cd forever && protoc -I=./proto --go_opt=Mgoogle/protobuf/descriptor.proto=google.golang.org/protobuf/types/descriptorpb --go_out=./sim/core ./proto/*.proto'],
-  ['4', 'cd forever && go build --tags=with_db -o ../wowsimcli.exe ./cmd/wowsimcli'],
-  ['5', 'python tools/make_pools.py --forever forever --configs configs'],
-  ['6', 'python tools/run_sims.py --forever forever --wowsimcli wowsimcli.exe --configs configs --out runs'],
-  ['7', 'python tools/build_data.py --forever forever --runs runs --configs configs --out data.js --commit $(git -C forever rev-parse --short HEAD)']
-];
 function chipState() {
   const m = G.meta;
   if (!m.hasData) return { cls: 'none', text: T('chip_no_data') };
@@ -518,9 +503,6 @@ function renderChip() {
   chip.textContent = st.text;
   chip.title = G.meta.simCommit ? `WoWSims Forever commit ${G.meta.simCommit}` : '';
 }
-function cmdBlock([n, cmd]) {
-  return `<div class="cmdrow"><code>${esc(cmd)}</code><button class="copybtn" type="button" data-copy="${esc(cmd)}">${esc(T('ref_copy'))}</button></div>`;
-}
 function renderRefresh() {
   const m = G.meta;
   const st = chipState();
@@ -529,21 +511,12 @@ function renderRefresh() {
         ? `${esc(T('ref_ok_line'))}: <b>${esc(fmtSimmed())}</b> · WoWSims <code>${esc(m.simCommit || '—')}</code>`
         : esc(T('chip_no_data'))}</span>
       <span>${esc(T('ref_owner_only'))}</span></div>`;
-  const owner = m.workflowUrl
-    ? `<div class="panel"><b>${esc(T('ref_owner_title'))}</b><span>${esc(T('ref_owner_body'))}</span>
-        <a class="btn primary" href="${esc(m.workflowUrl)}" target="_blank" rel="noopener">${esc(T('ref_owner_btn'))}</a>
-        ${cmdBlock(['gh', `gh workflow run resim.yml --repo ${m.repoUrl ? m.repoUrl.replace('https://github.com/', '') : 'OWNER/REPO'}`])}</div>`
-    : `<div class="panel"><b>${esc(T('ref_owner_title'))}</b><span>${esc(T('ref_no_repo'))}</span></div>`;
+  const auto = `<div class="panel"><b>${esc(T('ref_auto'))}</b><span>${esc(T('ref_auto_body'))}</span></div>`;
   const newbie = `<div class="panel"><b>${esc(T('ref_new_title'))}</b><span>${esc(T('ref_new_body'))}</span></div>`;
-  const local = `<details class="localrun"><summary>${esc(T('ref_local_title'))}</summary>
-    <div class="localcmds">${REFRESH_CMDS.map(cmdBlock).join('')}</div></details>`;
   $('refresh').innerHTML = `
     <h2>${esc(T('ref_status'))}</h2>
-    <div class="panels">${status}
-      <div class="panel"><b>${esc(T('ref_auto'))}</b><span>${esc(T('ref_auto_body'))}</span></div>
-    </div>
-    <div class="panels">${owner}${newbie}</div>
-    ${local}`;
+    <div class="panels">${status}${auto}</div>
+    <div class="panels">${newbie}</div>`;
 }
 
 // ---------- tooltip ----------
@@ -639,14 +612,6 @@ function setCopyText() {
 document.addEventListener('click', e => {
   const t = e.target;
   if (!t.closest('#srcpick')) $('srcpick').open = false;
-  const cp = t.closest('.copybtn');
-  if (cp) {
-    const text = cp.dataset.copy || '';
-    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(
-      () => { cp.textContent = T('ref_copied'); setTimeout(() => { cp.textContent = T('ref_copy'); }, 1400); },
-      () => {});
-    return;
-  }
   const cs = t.closest('[data-copyset]');
   if (cs) {
     (navigator.clipboard ? navigator.clipboard.writeText(setCopyText()) : Promise.reject()).then(
