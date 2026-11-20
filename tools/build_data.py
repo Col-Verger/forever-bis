@@ -8,6 +8,7 @@ config is disabled) and the site shows its empty state. Nothing is estimated or 
 the footer pins the sim commit and the date of the runs.
 """
 import argparse, datetime, hashlib, json, os, re, urllib.request
+from concurrent.futures import ThreadPoolExecutor
 
 STAT = ['Strength', 'Agility', 'Stamina', 'Intellect', 'Healing Power', 'Spell Damage', 'Arcane Damage',
         'Fire Damage', 'Frost Damage', 'Holy Damage', 'Nature Damage', 'Shadow Damage', 'Spell Piercing',
@@ -38,7 +39,6 @@ BG_QUESTS = ('Korrak', 'Hero of the Frostwolf', 'Hero of the Stormpike')
 
 def pct(v, per):
     return f'{v / per:g}%'
-
 
 def loadout_talents(meta, bc, forever):
     """Talents for a loadout: the meta's own, else the .siml template's line, else the
@@ -158,19 +158,18 @@ def main():
     ru_cache_path = os.path.join(os.path.dirname(__file__), 'ru_names.json')
     ru_cache = json.load(open(ru_cache_path, encoding='utf-8')) if os.path.exists(ru_cache_path) else {}
 
-    def ru_name(iid, en_name):
-        key = str(iid)
-        if key in ru_cache:
-            return ru_cache[key]
+    def ru_fetch(iid, en_name):
         try:
             url = f'https://nether.wowhead.com/tooltip/item/{iid}?locale=ru&dataEnv=16'
             req = urllib.request.Request(url, headers={'User-Agent': 'prebis-bis-build'})
-            with urllib.request.urlopen(req, timeout=15) as r:
+            with urllib.request.urlopen(req, timeout=8) as r:
                 name = json.load(r).get('name', '')
-            ru_cache[key] = name if name and not name.startswith('[') and name != en_name else ''
+            return name if name and not name.startswith('[') and name != en_name else ''
         except Exception:
-            ru_cache[key] = ''
-        return ru_cache[key]
+            return ''
+
+    def ru_name(iid, en_name):
+        return ru_cache.get(str(iid), '')
 
     def icon(it):
         if it.get('icon'):
@@ -383,6 +382,15 @@ def main():
         'ru': 'Каждая цифра появится здесь только после реального прогона WoWSims Forever; дата и хеш коммита сима будут прошиты здесь.',
         'en': 'Every number on this page comes from a real WoWSims Forever run, with the sim\'s commit hash and date stamped here.',
     }
+
+    # Fetch the Russian names for every used item once, in parallel, then cache them.
+    missing = [i for i in sorted(used_items) if str(i) not in ru_cache]
+    if missing:
+        print(f'fetching RU names for {len(missing)} items...')
+        with ThreadPoolExecutor(max_workers=8) as ex:
+            for iid, name in ex.map(lambda i: (i, ru_fetch(i, items[i]['name'])), missing):
+                ru_cache[str(iid)] = name
+        print(f'RU names done ({sum(1 for i in missing if ru_cache.get(str(i)))} translated)')
 
     data = {
         'meta': {
