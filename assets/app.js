@@ -246,7 +246,7 @@ function renderDoll() {
     if (!L) {
       const waiting = sp.status === 'no-preset';
       return `<div>
-        <span class="small">${esc(L2(sp.name))}</span><h2>${esc(L2(sp.name))}</h2>
+        <span class="small">${esc(L2(curClass().name))}</span><h2>${esc(L2(sp.name))}</h2>
         ${waiting ? `<span class="status-badge">${esc(T('no_preset_title'))}</span>` : ''}
         <p class="target">${esc(L2(G.meta.target))}</p>
         <div class="empty-note">
@@ -262,7 +262,7 @@ function renderDoll() {
       </div>`;
     }
     return `<div>
-      <span class="small">${esc(L2(sp.name))}</span><h2>${esc(L2(L.title || sp.name))}</h2>
+      <span class="small">${esc(L2(curClass().name))}</span><h2>${esc(L2(L.title || sp.name))}</h2>
       <p class="target">${esc(L2(G.meta.target))}</p>
       <div class="dps" ${L.margin ? `title="±${L.margin} (95%)"` : ''}><b>${fmtMetric(L.value)}</b><span>${esc(metricName(L.metric))}</span>
         ${L.hit ? `<span class="hps-n">${esc(L.hit)}</span>` : ''}</div>
