@@ -758,8 +758,7 @@ function renderMatrixSlider(ids) {
   const cur = Math.max(0, ids.indexOf(loadoutKey(curSpec())));
   if (cur > 0) rack.scrollLeft = Math.round(cur * width());
   count();
-  let raf = 0;
-  rack.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(count); }, { passive: true });
+  rack.addEventListener('scroll', count, { passive: true });
 }
 const specOfPrefix = p => G.classes.flatMap(c => c.specs).find(s => s.prefix === p || s.prefix + '-max' === p || s.prefix + '-cheap' === p);
 
