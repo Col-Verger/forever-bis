@@ -6,3 +6,4 @@ wowsimcli.*
 __pycache__/
 *.pyc
 .tmp/
+runs_ci/

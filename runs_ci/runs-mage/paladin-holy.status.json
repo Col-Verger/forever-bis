@@ -1,4 +1,0 @@
-{
- "status": "disabled",
- "reason": "В ui/specs/paladin/holy нет ни defaults.siml, ни APL: пресет Holy в симе ещё не готов. Когда появятся — включи запись: disabled:false + строка template по образцу ретри/прота."
-}

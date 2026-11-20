@@ -1,4 +1,0 @@
-{
- "status": "disabled",
- "reason": "В ui/specs/priest/healer нет APL/ротации — пресет хил-приста в симе ещё не готов. Включи запись, когда появится (disabled:false + talents/apls/baseGear)."
-}
