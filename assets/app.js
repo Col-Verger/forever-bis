@@ -100,6 +100,11 @@ const STR = {
   open_sim_bis: { ru: 'Открыть BiS-сет в WoWSims ↗', en: 'Open the BiS set in WoWSims ↗' },
   stats_title: { ru: 'Статы в симуляции', en: 'Stats in the sim' },
   stats_note: { ru: 'с рейд-бафами и расходниками', en: 'with raid buffs and consumables' },
+  stats_title_bis: { ru: 'Статы BiS-сета в симуляции', en: 'BiS set stats in the sim' },
+  stats_delta: { ru: 'Изменение от примерки', en: 'Change from trying items on' },
+  stats_delta_note: { ru: 'по предметам; бонусы комплектов и эффекты не учтены', en: 'from item stats; set bonuses and effects are not counted' },
+  stats_same: { ru: 'Статы предметов не изменились', en: 'Item stats are unchanged' },
+  to_top: { ru: 'Наверх', en: 'Back to top' },
   open_current: { ru: 'Открыть текущий сет в WoWSims ↗', en: 'Open the current set in WoWSims ↗' },
   view_slider: { ru: 'Слайдер', en: 'Slider' },
   view_table: { ru: 'Таблица', en: 'Table' },
@@ -380,6 +385,64 @@ function setChanged(bis, gear) {
   return Object.keys({ ...a, ...b }).some(k => (a[k] || 0) !== (b[k] || 0));
 }
 
+// ---------- stat change from the picks ----------
+// Item stats are additive and known per item (build_data stores them in display
+// units: percentages for ratings, points otherwise). Set bonuses and procs are
+// not part of a single item's stats, so the change is labelled as item-only.
+const PCT_KEYS = new Set(['hit', 'crit', 'haste', 'exp', 'block', 'dodge', 'parry']);
+const SUFFIX_KEY = {
+  Strength: 'str', Agility: 'agi', Stamina: 'sta', Intellect: 'int', Spirit: 'spirit',
+  'Healing Power': 'heal', 'Spell Damage': 'sp', 'Mana per 5 sec.': 'mp5',
+  'Arcane Damage': 'arcane', 'Fire Damage': 'fire', 'Frost Damage': 'frost',
+  'Holy Damage': 'holy', 'Nature Damage': 'nature', 'Shadow Damage': 'shadow',
+  'Attack Power': 'ap', 'Ranged Attack Power': 'rap',
+};
+const MOD_LABEL = {
+  str: ['Сила', 'Strength'], agi: ['Ловкость', 'Agility'], sta: ['Выносливость', 'Stamina'],
+  int: ['Интеллект', 'Intellect'], spirit: ['Дух', 'Spirit'], mp5: ['Мана в 5 сек', 'MP5'],
+  hp: ['Здоровье', 'Health'], mana: ['Мана', 'Mana'], armor: ['Броня', 'Armor'],
+  sp: ['Сила заклинаний', 'Spell power'], heal: ['Сила исцеления', 'Healing power'],
+  ap: ['Сила атаки', 'Attack power'], rap: ['Сила атаки (дальний бой)', 'Ranged attack power'],
+  arcane: ['Урон тайной магии', 'Arcane damage'], fire: ['Урон огня', 'Fire damage'],
+  frost: ['Урон льда', 'Frost damage'], holy: ['Урон света', 'Holy damage'],
+  nature: ['Урон природы', 'Nature damage'], shadow: ['Урон тьмы', 'Shadow damage'],
+  hit: ['Меткость', 'Hit'], crit: ['Крит', 'Crit'], haste: ['Скорость', 'Haste'],
+  exp: ['Мастерство', 'Expertise'], block: ['Блок', 'Block'],
+  dodge: ['Уклонение', 'Dodge'], parry: ['Парирование', 'Parry'],
+  def: ['Защита', 'Defense'], bv: ['Ценность блока', 'Block value'],
+};
+const MOD_ORDER = ['armor', 'sta', 'int', 'str', 'agi', 'spirit', 'sp', 'heal', 'arcane', 'fire', 'frost',
+  'holy', 'nature', 'shadow', 'ap', 'rap', 'hit', 'crit', 'haste', 'exp', 'def', 'dodge', 'parry', 'block', 'bv',
+  'mp5', 'hp', 'mana'];
+
+function gearDelta(bis, gear, metric) {
+  const acc = new Map();
+  const add = (spec, sign) => {
+    if (!spec || !spec[0]) return;
+    const it = item(spec[0]);
+    if (!it) return;
+    for (const [k, v] of it.mods || []) acc.set(k, (acc.get(k) || 0) + sign * v);
+    const sfx = spec[2] && it.suffixStats && it.suffixStats[spec[2]];
+    if (sfx) for (const [name, v] of sfx) {
+      const k = SUFFIX_KEY[name];
+      if (k) acc.set(k, (acc.get(k) || 0) + sign * v);
+    }
+  };
+  for (const s of SLOT_ORDER) { add(bis[s], -1); add(gear[s], 1); }
+  const rows = [];
+  for (const k of MOD_ORDER) {
+    if (k === 'heal' && metric !== 'hps') continue;  // healing power cannot move a DPS number
+    const v = acc.get(k);
+    const label = MOD_LABEL[k];
+    if (!v || !label) continue;
+    const pct = PCT_KEYS.has(k);
+    if (Math.abs(v) < (pct ? 0.05 : 0.5)) continue;
+    rows.push({ ru: label[0], en: label[1], v: pct ? Math.round(v * 10) / 10 : Math.round(v), pct });
+  }
+  return rows;
+}
+const fmtDelta = d => `${d.v > 0 ? '+' : '−'}${Math.abs(d.v)}${d.pct ? '%' : ''}`;
+
 // ---------- a WoWSims link for the set on the doll ----------
 // The share link is the settings as binary protobuf, zlib-deflated, base64. We keep
 // the BiS link's bytes (buffs, encounter, rotation, talents untouched) and replace
@@ -510,6 +573,7 @@ function renderDoll() {
     const est = L.value == null ? null : L.value + ps.delta;
     const dup = ps.count ? duplicateUnique(gear) : null;
     const setsChanged = ps.count ? setChanged(L.gear, gear) : false;
+    const delta = ps.count ? gearDelta(L.gear, gear, L.metric) : [];
     return `<div>
       <span class="small">${esc(L2(curClass().name))}</span><h2>${esc(L2(L.title || sp.name))}${wh ? ` <span class="status-badge wow">${esc(T('wowhead_badge'))}</span>` : ''}</h2>
       <p class="target">${esc(L2(G.meta.target))}</p>
@@ -529,9 +593,15 @@ function renderDoll() {
         ${L.simLink && ps.count ? `<button class="btn primary" type="button" data-opencur="1">${esc(T('open_current'))}</button>` : ''}
         ${L.simLink ? `<a class="btn${ps.count ? '' : ' primary'}" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T(ps.count ? 'open_sim_bis' : 'open_sim'))}</a>` : ''}
       </div>
-      ${!ps.count && L.stats && L.stats.length ? `<div class="statsbox">
-        <div class="statstitle">${esc(T('stats_title'))} <span class="statsnote">${esc(T('stats_note'))}</span></div>
+      ${L.stats && L.stats.length ? `<div class="statsbox">
+        <div class="statstitle">${esc(T(ps.count ? 'stats_title_bis' : 'stats_title'))} <span class="statsnote">${esc(T('stats_note'))}</span></div>
         <div class="statsgrid">${L.stats.map(s => `<span><b>${esc(fmtStat(s))}</b> ${esc(lang() === 'ru' ? s.ru : s.en)}</span>`).join('')}</div>
+        ${ps.count ? `<div class="estats">
+          <div class="estats-t">${esc(T('stats_delta'))} <span>${esc(T('stats_delta_note'))}</span></div>
+          ${delta.length
+            ? `<div class="estats-l">${delta.map(x => `<span class="ed ${x.v > 0 ? 'up' : 'down'}">${esc(fmtDelta(x))}</span> ${esc(lang() === 'ru' ? x.ru : x.en)}`).join(' · ')}</div>`
+            : `<div class="estats-l same">${esc(T('stats_same'))}</div>`}
+        </div>` : ''}
       </div>` : ''}
       ${ps.count ? `<p class="estnote">${esc(T('est_note'))}${setsChanged ? ' ' + esc(T('est_sets')) : ''}${dup ? ' ' + esc(T('est_dup')) + ' ' + esc(itemName([dup.id])) : ''}</p>` : ''}
       <p class="blurb">${esc(wh ? T('wowhead_note') : L2(sp.note))}</p>
@@ -906,6 +976,8 @@ function render() {
   renderSources();
   renderKey();
   renderChip();
+  const top = $('totop');
+  if (top) { top.title = T('to_top'); top.setAttribute('aria-label', T('to_top')); }
   if (state.tab === 'gear') { renderDoll(); renderCards(); }
   if (state.tab === 'all') renderMatrix();
   if (state.tab === 'howto') renderHowto();
@@ -1006,6 +1078,13 @@ document.addEventListener('change', e => {
 });
 $('q').addEventListener('input', e => { state.q = e.target.value; if (state.tab === 'gear') renderCards(); });
 $('q').addEventListener('keydown', e => { if (e.key === 'Escape' && state.q) { state.q = ''; e.target.value = ''; if (state.tab === 'gear') renderCards(); } });
+const totop = $('totop');
+if (totop) {
+  // Always available: it is small, sits in the corner, and needs no scroll wiring.
+  totop.title = T('to_top');
+  totop.setAttribute('aria-label', T('to_top'));
+  totop.addEventListener('click', () => window.scrollTo(0, 0));
+}
 new ResizeObserver(() => document.documentElement.style.setProperty('--barh', $('bar').offsetHeight + 'px')).observe($('bar'));
 
 // Shared links and back/forward navigation: re-read the hash when it changes from outside

@@ -84,6 +84,31 @@ STAT_ORDER = {
              'MeleeHitPercent', 'ExpertisePercent', 'AttackPower'],
 }
 
+# Item stat indices → short key and rating divisor (10 hit rating = 1% hit,
+# 14 crit = 1%, 12 dodge = 1%, 15 parry = 1%, 5 block = 1%).
+ITEM_MOD_KEYS = {
+    0: ('str', 1), 1: ('agi', 1), 2: ('sta', 1), 3: ('int', 1),
+    4: ('heal', 1), 5: ('sp', 1),
+    6: ('arcane', 1), 7: ('fire', 1), 8: ('frost', 1), 9: ('holy', 1), 10: ('nature', 1), 11: ('shadow', 1),
+    13: ('spirit', 1),
+    14: ('ap', 1), 15: ('rap', 1),
+    17: ('hit', 10), 18: ('crit', 14), 19: ('haste', 10), 21: ('exp', 10),
+    22: ('def', 1), 23: ('block', 5), 24: ('bv', 1), 25: ('dodge', 12), 26: ('parry', 15),
+    27: ('armor', 1), 29: ('hp', 1), 30: ('mana', 1), 31: ('mp5', 1),
+}
+MOD_PCT = {'hit', 'crit', 'haste', 'exp', 'block', 'dodge', 'parry'}
+
+
+def item_mods(st):
+    """Gear stats in display units: percentages for ratings, raw points otherwise."""
+    acc = {}
+    for idx, (key, div) in ITEM_MOD_KEYS.items():
+        v = st.get(idx)
+        if not v:
+            continue
+        acc[key] = acc.get(key, 0) + v / div
+    return [[k, round(v, 2) if k in MOD_PCT else int(round(v))] for k, v in acc.items()]
+
 
 def stat_category(prefix):
     if prefix.endswith('-protection') or prefix == 'druid-feralbear':
@@ -359,7 +384,7 @@ def main():
                 'slot': slot, 'kind': kind, 'armor': st.get(27, 0), 'white': white, 'green': green, 'weapon': weapon,
                 'set': it.get('setName', ''), 'unique': bool(it.get('unique')),
                 'side': {1: 'Alliance', 2: 'Horde'}.get(side_of(it), ''), 'sources': srcs, 'kinds': kinds,
-                'suffixStats': sfx}
+                'mods': item_mods(st), 'suffixStats': sfx}
 
     # ---------- configs & runs ----------
     classes_cfg = []
