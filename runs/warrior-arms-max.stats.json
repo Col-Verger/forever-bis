@@ -1,0 +1,51 @@
+{
+ "pseudo": {
+  "BlockValueMultiplier": 1,
+  "BlockValuePerStrength": 0.05,
+  "CastSpeedMultiplier": 1,
+  "DodgePercent": 15.8,
+  "MainHandCritRating": 126,
+  "MainHandDps": 53.888888888888886,
+  "MainHandHitRating": 80,
+  "MeleeCritPercent": 37.8,
+  "MeleeHitPercent": 8,
+  "MeleeSpeedMultiplier": 1,
+  "ParryPercent": 5,
+  "RangedCritPercent": 32.8,
+  "RangedCritRating": 126,
+  "RangedCritSuppressionPercent": 4.8,
+  "RangedHitPercent": 8,
+  "RangedHitRating": 80,
+  "RangedSpeedMultiplier": 1,
+  "SchoolHitPercentArcane": 8,
+  "SchoolHitPercentFire": 8,
+  "SchoolHitPercentFrost": 8,
+  "SchoolHitPercentHoly": 8,
+  "SchoolHitPercentNature": 8,
+  "SchoolHitPercentShadow": 8,
+  "SpellCritPercent": 17,
+  "SpellHitPercent": 8
+ },
+ "sets": [
+  "Battlegear of Heroism (2pc)"
+ ],
+ "stats": {
+  "Agility": 316,
+  "ArcaneResistance": 35,
+  "Armor": 4501,
+  "ArmorNoMods": 385,
+  "AttackPower": 1431,
+  "CritRating": 126,
+  "FireResistance": 48,
+  "FrostResistance": 35,
+  "Health": 4809,
+  "HitRating": 80,
+  "Intellect": 51,
+  "NatureResistance": 35,
+  "RangedAttackPower": 124,
+  "ShadowResistance": 35,
+  "Spirit": 82,
+  "Stamina": 330,
+  "Strength": 460
+ }
+}

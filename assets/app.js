@@ -98,6 +98,8 @@ const STR = {
   est_sets: { ru: 'Комплект изменился — оценка особенно грубая.', en: 'A set bonus changed — the estimate is especially rough.' },
   est_dup: { ru: 'Уникальный предмет выбран дважды:', en: 'A unique item is picked twice:' },
   open_sim_bis: { ru: 'Открыть BiS-сет в WoWSims ↗', en: 'Open the BiS set in WoWSims ↗' },
+  stats_title: { ru: 'Статы в симуляции', en: 'Stats in the sim' },
+  stats_note: { ru: 'с рейд-бафами и расходниками', en: 'with raid buffs and consumables' },
   every_slot: { ru: 'Каждая опция, слот за слотом', en: 'Every option, slot by slot' },
   matrix_sub: { ru: 'Все сеты бок о бок. Ряды без подсветки одинаковы во всех сетах; подсвеченная ячейка отличается от самого частого выбора.', en: 'Every loadout side by side. Faded rows are the same in every loadout; a shaded cell differs from the most common pick.' },
   best: { ru: 'Лучший', en: 'Best' },
@@ -207,7 +209,8 @@ const fmtSimmed = () => {
   }
   return m.simmed || '';
 };
-const fmtMetric = v => (v == null ? '—' : v >= 10000 ? (v / 1000).toFixed(1) + 'k' : Math.round(v).toString());
+const fmtMetric = v => (v == null ? '-' : v >= 10000 ? (v / 1000).toFixed(1) + 'k' : Math.round(v).toString());
+const fmtStat = s => s.pct ? Number(s.v).toFixed(1) + '%' : Number(s.v).toLocaleString(lang() === 'ru' ? 'ru-RU' : 'en-US');
 const pluralRu = (n, forms) => { const d10 = n % 10, d100 = n % 100; return d10 === 1 && d100 !== 11 ? forms[0] : (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) ? forms[1] : forms[2]; };
 const metricName = m => T(m === 'hps' ? 'metric_hps' : 'metric_dps');
 const SLOT_ORDER = ['head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands', 'waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2', 'main_hand', 'off_hand', 'ranged'];
@@ -427,6 +430,10 @@ function renderDoll() {
       <div class="center-actions">
         ${L.simLink ? `<a class="btn primary" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T(ps.count ? 'open_sim_bis' : 'open_sim'))}</a>` : ''}
       </div>
+      ${!ps.count && L.stats && L.stats.length ? `<div class="statsbox">
+        <div class="statstitle">${esc(T('stats_title'))} <span class="statsnote">${esc(T('stats_note'))}</span></div>
+        <div class="statsgrid">${L.stats.map(s => `<span><b>${esc(fmtStat(s))}</b> ${esc(lang() === 'ru' ? s.ru : s.en)}</span>`).join('')}</div>
+      </div>` : ''}
       ${ps.count ? `<p class="estnote">${esc(T('est_note'))}${setsChanged ? ' ' + esc(T('est_sets')) : ''}${dup ? ' ' + esc(T('est_dup')) + ' ' + esc(itemName([dup.id])) : ''}</p>` : ''}
       <p class="blurb">${esc(wh ? T('wowhead_note') : L2(sp.note))}</p>
     </div>`;

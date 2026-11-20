@@ -320,8 +320,21 @@ class Build:
             print(f'  share link failed: {e}', flush=True)
         return None
 
+    def write_stats(self, settings_path, lid):
+        """The sim's own ComputeStats for this set → runs/<id>.stats.json."""
+        exe = getattr(self.args, 'statdump', '') or ''
+        if not (exe and os.path.exists(exe)):
+            return
+        out = os.path.join(self.args.out, f'{lid}.stats.json')
+        try:
+            proc = subprocess.run([exe, '-in', settings_path, '-out', out],
+                                  capture_output=True, text=True, timeout=300)
+            if proc.returncode != 0 or not os.path.exists(out):
+                print(f'  stats failed: {(proc.stderr or proc.stdout).strip()[:200]}', flush=True)
+        except Exception as e:
+            print(f'  stats failed: {e}', flush=True)
+
     def settings_export_siml(self, gear, tmpdir):
-        """Same IndividualSimSettings JSON for a .siml build: the sim's own parser resolves the setup."""
         src = os.path.join(tmpdir, f'{self.id}-export.siml')
         with open(src, 'w', encoding='utf-8') as f:
             f.write(self.siml(gear, self.args.final_iterations, self.args.seed))
@@ -508,6 +521,7 @@ def main():
     ap.add_argument('--settings-only', action='store_true',
                     help='no sims: rewrite runs/<id>.settings.json from the gear already in runs/ (share links)')
     ap.add_argument('--linkhash', default='', help='linkhash binary: also write a WoWSims share link into each meta')
+    ap.add_argument('--statdump', default='', help='statdump binary: also write the sim-computed stats to runs/<id>.stats.json')
     ap.add_argument('--verbose', action='store_true')
     a = ap.parse_args()
     if os.path.exists(a.wowsimcli):
@@ -612,6 +626,7 @@ def main():
                 link = b.share_link(settings_path)
                 if link:
                     meta['simLink'] = link
+                b.write_stats(settings_path, lid)
             except SystemExit:
                 raise
             except Exception as e:

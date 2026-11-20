@@ -29,6 +29,96 @@ SLOT_ORDER = ['head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands', 'wa
               'finger1', 'finger2', 'trinket1', 'trinket2', 'main_hand', 'off_hand', 'ranged']
 PROF = {1: 'Alchemy', 2: 'Blacksmithing', 3: 'Enchanting', 4: 'Engineering', 8: 'Leatherworking', 11: 'Tailoring'}
 REP = {4: 'Neutral', 5: 'Friendly', 6: 'Honored', 7: 'Revered', 8: 'Exalted'}
+
+# What the site shows under a set: the sim's ComputeStats values (gear + enchants +
+# talents + buffs + consumables), labelled in both languages. Percent entries are
+# already percentage points.
+STAT_LABELS = {
+    'SpellDamage': ('Сила заклинаний', 'Spell power', 'flat'),
+    'HealingPower': ('Сила исцеления', 'Healing power', 'flat'),
+    'AttackPower': ('Сила атаки', 'Attack power', 'flat'),
+    'RangedAttackPower': ('Сила атаки (дальний бой)', 'Ranged attack power', 'flat'),
+    'FireDamage': ('Урон огня', 'Fire damage', 'flat'),
+    'FrostDamage': ('Урон льда', 'Frost damage', 'flat'),
+    'ShadowDamage': ('Урон тьмы', 'Shadow damage', 'flat'),
+    'NatureDamage': ('Урон природы', 'Nature damage', 'flat'),
+    'ArcaneDamage': ('Урон тайной магии', 'Arcane damage', 'flat'),
+    'HolyDamage': ('Урон света', 'Holy damage', 'flat'),
+    'SpellHitPercent': ('Меткость заклинаний', 'Spell hit', 'pct'),
+    'SpellCritPercent': ('Крит заклинаний', 'Spell crit', 'pct'),
+    'MeleeHitPercent': ('Меткость', 'Hit', 'pct'),
+    'MeleeCritPercent': ('Крит', 'Crit', 'pct'),
+    'RangedHitPercent': ('Меткость (дальний бой)', 'Ranged hit', 'pct'),
+    'RangedCritPercent': ('Крит (дальний бой)', 'Ranged crit', 'pct'),
+    'DodgePercent': ('Уклонение', 'Dodge', 'pct'),
+    'ParryPercent': ('Парирование', 'Parry', 'pct'),
+    'BlockPercent': ('Блок', 'Block', 'pct'),
+    'ExpertisePercent': ('Мастерство', 'Expertise', 'pct'),
+    'Stamina': ('Выносливость', 'Stamina', 'flat'),
+    'Intellect': ('Интеллект', 'Intellect', 'flat'),
+    'Strength': ('Сила', 'Strength', 'flat'),
+    'Agility': ('Ловкость', 'Agility', 'flat'),
+    'Spirit': ('Дух', 'Spirit', 'flat'),
+    'MP5': ('Мана в 5 сек', 'MP5', 'flat'),
+    'Health': ('Здоровье', 'Health', 'flat'),
+    'Mana': ('Мана', 'Mana', 'flat'),
+    'Armor': ('Броня', 'Armor', 'flat'),
+    'DefenseRating': ('Рейтинг защиты', 'Defense rating', 'flat'),
+}
+
+SCHOOL_STATS = ['FireDamage', 'FrostDamage', 'ShadowDamage', 'NatureDamage', 'ArcaneDamage', 'HolyDamage']
+SCHOOL_BY_PREFIX = {
+    'mage-fire': 'FireDamage', 'mage-ffb': 'FrostDamage', 'mage-frost': 'FrostDamage',
+    'mage-arcane': 'ArcaneDamage',
+    'warlock-smruin': 'ShadowDamage', 'priest-shadow': 'ShadowDamage',
+    'shaman-elemental': 'NatureDamage', 'shaman-enhancement': 'NatureDamage',
+    'druid-balance': 'NatureDamage', 'paladin-retribution': 'HolyDamage',
+}
+STAT_ORDER = {
+    'caster': ['SpellDamage'] + SCHOOL_STATS + ['SpellHitPercent', 'SpellCritPercent', 'Intellect', 'Spirit',
+                                                'MP5', 'Stamina', 'Health', 'Armor'],
+    'hunter': ['RangedAttackPower', 'RangedHitPercent', 'RangedCritPercent', 'Agility', 'Stamina', 'Health', 'Armor'],
+    'melee': ['AttackPower'] + SCHOOL_STATS + ['MeleeHitPercent', 'MeleeCritPercent', 'Strength', 'Agility',
+                                               'Stamina', 'Health', 'Armor'],
+    'tank': ['Armor', 'Stamina', 'Health', 'DodgePercent', 'ParryPercent', 'BlockPercent', 'DefenseRating',
+             'MeleeHitPercent', 'ExpertisePercent', 'AttackPower'],
+}
+
+
+def stat_category(prefix):
+    if prefix.endswith('-protection') or prefix == 'druid-feralbear':
+        return 'tank'
+    if prefix == 'hunter-dps':
+        return 'hunter'
+    cls = prefix.split('-', 1)[0]
+    if cls in ('mage', 'warlock', 'priest') or prefix in ('shaman-elemental', 'druid-balance'):
+        return 'caster'
+    return 'melee'
+
+
+def stat_rows(prefix, data):
+    """Pick the stats worth showing for this spec, in a stable order."""
+    flat, pct = data.get('stats') or {}, data.get('pseudo') or {}
+    order = list(STAT_ORDER.get(stat_category(prefix), STAT_ORDER['melee']))
+    school = SCHOOL_BY_PREFIX.get(prefix)
+    order = ([order[0], school] + [k for k in order[1:] if k not in SCHOOL_STATS]) if school \
+        else [k for k in order if k not in SCHOOL_STATS]
+    rows = []
+    for key in order:
+        if key not in STAT_LABELS:
+            continue
+        ru, en, kind = STAT_LABELS[key]
+        v = pct.get(key) if kind == 'pct' else flat.get(key)
+        if v is None or abs(v) < 0.05:
+            continue
+        if kind == 'pct':
+            rows.append({'ru': ru, 'en': en, 'v': round(v, 1), 'pct': True})
+        else:
+            rows.append({'ru': ru, 'en': en, 'v': int(round(v)) if abs(v) >= 10 else round(v, 1), 'pct': False})
+        if len(rows) == 8:
+            break
+    return rows
+
 DUNGEONS = {1584, 1583, 2017, 2057, 2557, 2100, 1477, 1176, 1337, 722, 491, 796, 209, 719, 721, 1581, 717, 2437, 718,
             16620, 16554, 16842, 17191, 16550, 16919, 16651}
 BG_VENDORS = {'Samuel Hawke', 'Rutherford Twing', 'Kelm Hargunth', 'Illiyana Moonblaze', 'Grunnda Wolfheart',
@@ -342,6 +432,8 @@ def main():
                     'value': meta.get('value'), 'margin': meta.get('margin'),
                     'talents': loadout_talents(meta, bc, a.forever),
                     'simLink': meta.get('simLink') or sim_link(lid, bid),
+                    'stats': stat_rows(bid, json.load(open(os.path.join(a.runs, f'{lid}.stats.json'), encoding='utf-8')))
+                             if os.path.exists(os.path.join(a.runs, f'{lid}.stats.json')) else None,
                     'gear': full, 'groups': groups,
                 }
                 values[(bid, budget)] = meta.get('value')

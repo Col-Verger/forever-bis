@@ -86,6 +86,15 @@ def run_audit(runs, configs, forever='forever', data=None, css=None):
                 problems.append(f'{lid}: headline value is {meta.get("value")!r}')
             if not meta.get('talents'):
                 notes.append(f'{lid}: no talents in meta')
+        sp = os.path.join(runs, f'{lid}.settings.json')
+        st = os.path.join(runs, f'{lid}.stats.json')
+        if os.path.exists(sp):
+            if not os.path.exists(st):
+                notes.append(f'{lid}: no sim stats export (run tools/make_stats.py)')
+            else:
+                sdata = load_json(st)
+                if not (sdata.get('stats') or sdata.get('pseudo')):
+                    problems.append(f'{lid}: stats export is empty')
 
     if data or css:
         problems += colour_problems(data, css, db_items)

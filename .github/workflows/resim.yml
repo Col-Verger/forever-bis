@@ -82,6 +82,10 @@ jobs:
         working-directory: tools/linkhash
         run: go build -o ../../linkhash .
 
+      - name: Build the stats tool (the sim's own ComputeStats)
+        working-directory: tools/statdump
+        run: go build --tags=with_db -o ../../statdump .
+
       - name: Materialize candidate pools
         run: python tools/make_pools.py --forever forever --configs configs
 
@@ -91,6 +95,7 @@ jobs:
           --configs configs --out runs --verbose --jobs 3
           --class ${{ matrix.class }}
           --linkhash ./linkhash
+          --statdump ./statdump
           --search-iterations ${{ inputs.search_iterations || '2500' }}
           --final-iterations ${{ inputs.final_iterations || '10000' }}
           --budgets ${{ inputs.budgets || 'max,cheap' }}
