@@ -531,6 +531,10 @@ document.addEventListener('change', e => {
 $('q').addEventListener('input', e => { state.q = e.target.value; if (state.tab === 'gear') renderCards(); });
 new ResizeObserver(() => document.documentElement.style.setProperty('--barh', $('bar').offsetHeight + 'px')).observe($('bar'));
 
+// Shared links and back/forward navigation: re-read the hash when it changes from outside
+// (toHash uses replaceState, so this never loops).
+window.addEventListener('hashchange', () => { fromHash(); render(); });
+
 fromHash();
 if (G.meta.hasData) { /* data present: plain render */ }
 render();
