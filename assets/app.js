@@ -181,6 +181,21 @@ const itemName = spec => {
 };
 const enchantName = spec => spec[3] || (spec[1] ? 'Enchant ' + spec[1] : '');
 const fmt = v => `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(1)}`;
+const fmtSimmed = () => {
+  const m = G.meta;
+  if (!m.hasData) return '';
+  if (m.simmedAt) {
+    const d = new Date(m.simmedAt);
+    if (!isNaN(d.getTime())) {
+      const p = n => String(n).padStart(2, '0');
+      const date = lang() === 'ru'
+        ? `${p(d.getUTCDate())}.${p(d.getUTCMonth() + 1)}.${d.getUTCFullYear()}`
+        : `${d.getUTCFullYear()}-${p(d.getUTCMonth() + 1)}-${p(d.getUTCDate())}`;
+      return `${date} · ${p(d.getUTCHours())}:${p(d.getUTCMinutes())} UTC`;
+    }
+  }
+  return m.simmed || '';
+};
 const fmtMetric = v => (v == null ? '—' : v >= 10000 ? (v / 1000).toFixed(1) + 'k' : Math.round(v).toString());
 const pluralRu = (n, forms) => { const d10 = n % 10, d100 = n % 100; return d10 === 1 && d100 !== 11 ? forms[0] : (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) ? forms[1] : forms[2]; };
 const metricName = m => T(m === 'hps' ? 'metric_hps' : 'metric_dps');
@@ -203,7 +218,7 @@ function applyStatic() {
   if (!G.meta.hasData) {
     stamp.innerHTML = `<b class="stale">⚠ ${esc(T('stamp_notrun'))}</b> — ${esc(L2(G.meta.footer))}`;
   } else {
-    stamp.innerHTML = `<b>✓ ${esc(T('stamp_run'))} WoWSims Forever ${esc(G.meta.simmed)} (${esc(G.meta.simCommit)})</b> — ${esc(L2(G.meta.footer))}`;
+    stamp.innerHTML = `<b>✓ ${esc(T('stamp_run'))} WoWSims Forever ${esc(fmtSimmed())} (${esc(G.meta.simCommit)})</b> — ${esc(L2(G.meta.footer))}`;
   }
   document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang()));
 }
@@ -460,7 +475,7 @@ function renderHowto() {
       <div class="kpi"><b>${esc(T('howto_hit_title'))}</b><span>${esc(L2(notes.hit) || '—')}</span></div>
       <div class="kpi"><b>${esc(T('howto_prio_title'))}</b><span>${esc(L2(notes.stat) || '—')}</span></div>
       <div class="kpi"><b>${esc(T('howto_best_title'))}</b><span>${L ? `${fmtMetric(L.value)} ${esc(metricName(L.metric))}` : esc(T('howto_best_none'))}</span></div>
-      <div class="kpi"><b>${esc(T('howto_nums_title'))}</b><span>${esc(T('howto_nums_body'))}${G.meta.simmed ? ' · ' + esc(G.meta.simmed) : ''}</span></div>
+      <div class="kpi"><b>${esc(T('howto_nums_title'))}</b><span>${esc(T('howto_nums_body'))}${G.meta.simmed ? ' · ' + esc(fmtSimmed()) : ''}</span></div>
     </div>
     <div class="center-actions">
       <button class="btn" data-tab="gear">${esc(T('howto_open_set'))}</button>
@@ -491,8 +506,8 @@ function chipState() {
   if (!m.hasData) return { cls: 'none', text: T('chip_no_data') };
   const staleDays = m.staleAfterDays || 7;
   const age = (Date.now() - new Date(m.simmed)) / 86400000;
-  if (age > staleDays) return { cls: 'stale', text: `${T('chip_ok')} ${m.simmed} · ${T('chip_stale')}`.replace('N', staleDays) };
-  return { cls: 'ok', text: `${T('chip_ok')}: ${m.simmed}` };
+  if (age > staleDays) return { cls: 'stale', text: `${T('chip_ok')}: ${fmtSimmed()} · ${T('chip_stale')}`.replace('N', staleDays) };
+  return { cls: 'ok', text: `${T('chip_ok')}: ${fmtSimmed()}` };
 }
 function renderChip() {
   const chip = $('statuschip');
@@ -511,7 +526,7 @@ function renderRefresh() {
   const st = chipState();
   const status = `<div class="panel ${st.cls}"><b>${esc(T('ref_last_update'))}</b>
       <span>${m.hasData
-        ? `${esc(T('ref_ok_line'))}: <b>${esc(m.simmed)}</b> · WoWSims <code>${esc(m.simCommit || '—')}</code>`
+        ? `${esc(T('ref_ok_line'))}: <b>${esc(fmtSimmed())}</b> · WoWSims <code>${esc(m.simCommit || '—')}</code>`
         : esc(T('chip_no_data'))}</span>
       <span>${esc(T('ref_owner_only'))}</span></div>`;
   const owner = m.workflowUrl
@@ -586,6 +601,8 @@ function renderControls() {
     $('budget').innerHTML =
       `<button data-budget="max" ${hasMax ? '' : `disabled title="${esc(T('budget_pending'))}"`}>${esc(T('budget_max'))}</button>` +
       `<button data-budget="cheap" ${hasCheap ? '' : `disabled title="${esc(T('budget_pending'))}"`}>${esc(T('budget_cheap'))}</button>`;
+  } else {
+    $('budget').innerHTML = '';
   }
   $('topn').innerHTML = [3, 4, 6].map(n => `<button data-topn="${n}">${n}</button>`).join('');
   pressed('[data-cls]', 'cls', state.cls);
@@ -610,7 +627,7 @@ function render() {
 function setCopyText() {
   const sp = curSpec(), L = loadout();
   const lines = [`${L2(sp.name)} · ${L2(L.build || sp.build)}${budgetOf(sp) ? ' · ' + T('budget_' + state.budget) : ''} — ${fmtMetric(L.value)} ${L.metric === 'hps' ? 'HPS' : 'DPS'}`];
-  lines.push(`${lang() === 'ru' ? 'Сим' : 'Sim'}: WoWSims Forever ${G.meta.simmed || ''}${G.meta.simCommit ? ' (' + G.meta.simCommit + ')' : ''}`);
+  lines.push(`${lang() === 'ru' ? 'Сим' : 'Sim'}: WoWSims Forever ${fmtSimmed()}${G.meta.simCommit ? ' (' + G.meta.simCommit + ')' : ''}`);
   for (const s of SLOT_ORDER) {
     const v = L.gear[s];
     if (!v || !v[0]) continue;

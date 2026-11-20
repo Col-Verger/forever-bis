@@ -337,6 +337,7 @@ def main():
 
     has_data = bool(loadouts)
     today = datetime.date.today().isoformat()
+    now_utc = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%MZ')
 
     # ---------- prose ----------
     howto = {
@@ -394,7 +395,7 @@ def main():
 
     data = {
         'meta': {
-            'hasData': has_data, 'simmed': today if has_data else '', 'simCommit': a.commit,
+            'hasData': has_data, 'simmed': today if has_data else '', 'simmedAt': now_utc if has_data else '', 'simCommit': a.commit,
             'simRepo': 'wowsims/forever',
             'repoUrl': f'https://github.com/{a.repo}' if a.repo else '',
             'workflowUrl': f'https://github.com/{a.repo}/actions/workflows/resim.yml' if a.repo else '',
