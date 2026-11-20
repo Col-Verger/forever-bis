@@ -1,0 +1,44 @@
+{
+ "builds": [
+  {
+   "id": "druid-balance-max",
+   "status": "ok",
+   "value": 811.01,
+   "metric": "dps"
+  },
+  {
+   "id": "druid-balance-cheap",
+   "status": "ok",
+   "value": 736.71,
+   "metric": "dps"
+  },
+  {
+   "id": "druid-feralcat-max",
+   "status": "ok",
+   "value": 1008.44,
+   "metric": "dps"
+  },
+  {
+   "id": "druid-feralcat-cheap",
+   "status": "ok",
+   "value": 934.65,
+   "metric": "dps"
+  },
+  {
+   "id": "druid-feralbear-max",
+   "status": "ok",
+   "value": 478.66,
+   "metric": "dps"
+  },
+  {
+   "id": "druid-feralbear-cheap",
+   "status": "ok",
+   "value": 277.53,
+   "metric": "dps"
+  },
+  {
+   "id": "druid-restoration",
+   "status": "disabled"
+  }
+ ]
+}

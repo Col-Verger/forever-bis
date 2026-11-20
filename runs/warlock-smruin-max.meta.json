@@ -1,0 +1,26 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 814.56,
+ "margin": 0.9,
+ "hps": 0,
+ "threat": 644.0,
+ "title": {
+  "ru": "СМ/Рuin",
+  "en": "SM/Ruin"
+ },
+ "buildName": {
+  "ru": "SM/Ruin (билд сима)",
+  "en": "SM/Ruin (the sim's build)"
+ },
+ "rotation": {
+  "ru": "APL из билд-файла репозитория",
+  "en": "the build file's APL"
+ },
+ "talents": "",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}

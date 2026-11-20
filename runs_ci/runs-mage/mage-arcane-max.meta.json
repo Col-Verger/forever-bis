@@ -1,0 +1,26 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 827.25,
+ "margin": 0.73,
+ "hps": 0,
+ "threat": 722.9,
+ "title": {
+  "ru": "Аркейн",
+  "en": "Arcane"
+ },
+ "buildName": {
+  "ru": "Аркейн",
+  "en": "Arcane"
+ },
+ "rotation": {
+  "ru": "Arcane (APL сима)",
+  "en": "Arcane (the sim's APL)"
+ },
+ "talents": "050205223101311531-5500003-003",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}

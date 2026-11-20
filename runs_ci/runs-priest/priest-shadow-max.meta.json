@@ -1,0 +1,26 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 823.56,
+ "margin": 0.57,
+ "hps": 0,
+ "threat": 586.4,
+ "title": {
+  "ru": "Шэдоу",
+  "en": "Shadow"
+ },
+ "buildName": {
+  "ru": "Shadow Testing (билд сима)",
+  "en": "Shadow Testing (the sim's build)"
+ },
+ "rotation": {
+  "ru": "APL из тестинг-билда репозитория",
+  "en": "the testing build's APL"
+ },
+ "talents": "",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}

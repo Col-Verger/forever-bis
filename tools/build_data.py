@@ -153,6 +153,25 @@ def main():
     icon_cache_path = os.path.join(os.path.dirname(__file__), 'icons.json')
     icon_cache = json.load(open(icon_cache_path, encoding='utf-8')) if os.path.exists(icon_cache_path) else {}
 
+    # Russian item names, fetched once from Wowhead's tooltip API and cached.
+    # Custom Forever items stay English (Wowhead returns them untranslated).
+    ru_cache_path = os.path.join(os.path.dirname(__file__), 'ru_names.json')
+    ru_cache = json.load(open(ru_cache_path, encoding='utf-8')) if os.path.exists(ru_cache_path) else {}
+
+    def ru_name(iid, en_name):
+        key = str(iid)
+        if key in ru_cache:
+            return ru_cache[key]
+        try:
+            url = f'https://nether.wowhead.com/tooltip/item/{iid}?locale=ru&dataEnv=16'
+            req = urllib.request.Request(url, headers={'User-Agent': 'prebis-bis-build'})
+            with urllib.request.urlopen(req, timeout=15) as r:
+                name = json.load(r).get('name', '')
+            ru_cache[key] = name if name and not name.startswith('[') and name != en_name else ''
+        except Exception:
+            ru_cache[key] = ''
+        return ru_cache[key]
+
     def icon(it):
         if it.get('icon'):
             return it['icon']
@@ -216,7 +235,7 @@ def main():
             s = suffixes[sid]
             sfx[sid] = [[STAT[i] if i < len(STAT) else f'stat {i}', round(x * so.get('randPropPoints', 0) / 10000)]
                         for i, x in enumerate(s['stats']) if x]
-        return {'name': it['name'], 'q': it.get('quality', 1), 'ilvl': so.get('ilvl', 0), 'icon': icon(it),
+        return {'name': it['name'], 'name_ru': ru_name(iid, it['name']), 'q': it.get('quality', 1), 'ilvl': so.get('ilvl', 0), 'icon': icon(it),
                 'slot': slot, 'kind': kind, 'armor': st.get(27, 0), 'white': white, 'green': green, 'weapon': weapon,
                 'set': it.get('setName', ''), 'unique': bool(it.get('unique')),
                 'side': {1: 'Alliance', 2: 'Horde'}.get(side_of(it), ''), 'sources': srcs, 'kinds': kinds,
@@ -393,6 +412,7 @@ def main():
         f.write(';\n')
 
     json.dump(icon_cache, open(icon_cache_path, 'w', encoding='utf-8'), indent=1, sort_keys=True)
+    json.dump(ru_cache, open(ru_cache_path, 'w', encoding='utf-8'), indent=1, sort_keys=True)
 
     # cache-bust the data script tag in index.html
     index = os.path.join(os.path.dirname(os.path.abspath(a.out)), 'index.html')

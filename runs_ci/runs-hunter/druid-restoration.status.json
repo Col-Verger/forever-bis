@@ -1,0 +1,4 @@
+{
+ "status": "disabled",
+ "reason": "В ui/specs/druid/restoration нет APL/ротации — пресет рестор-друида в симе ещё не готов. Включи запись, когда появится (disabled:false + talents/apls/baseGear)."
+}

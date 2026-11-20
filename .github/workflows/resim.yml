@@ -118,11 +118,13 @@ jobs:
           pattern: runs-*
           merge-multiple: true
 
-      - name: Fetch the sim commit hash
-        if: ${{ !inputs.skip_sims }}
+      - name: Fetch the sim, its commit hash and its item database
         run: |
-          git clone --depth 1 --filter=blob:none --no-checkout https://github.com/wowsims/forever forever
-          echo "SIM_HASH=$(git -C forever rev-parse --short HEAD)" >> $GITHUB_ENV
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/wowsims/forever forever
+          cd forever
+          git sparse-checkout set assets/database
+          echo "SIM_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          ls assets/database/db.json
 
       - name: Rebuild data.js
         run: >

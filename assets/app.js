@@ -3,7 +3,7 @@
 'use strict';
 const G = window.GUIDE;
 const ICON = (n, size = 'medium') => `https://wow.zamimg.com/images/wow/icons/${size}/${n || 'inv_misc_questionmark'}.jpg`;
-const WH = id => `https://www.wowhead.com/forever/item=${id}`;
+const WH = id => (lang() === 'ru' ? `https://www.wowhead.com/ru/forever/item=${id}` : `https://www.wowhead.com/forever/item=${id}`);
 const WH_TALENTS = (cls, t) => `https://www.wowhead.com/forever/talent-calc/${cls}/${t}`;
 const SIM_HOME = 'https://www.wowsims.com/forever/';
 const CLASS_ICON = id => `https://wow.zamimg.com/images/wow/icons/medium/classicon_${id}.jpg`;
@@ -168,7 +168,13 @@ const lang = () => state.lang;
 const L2 = o => (o && typeof o === 'object') ? (o[lang()] || o.en || o.ru || '') : (o == null ? '' : o);
 const item = id => G.items[id];
 const qc = it => `color:var(--q${it ? it.q : 1})`;
-const itemName = spec => { const it = item(spec[0]); return it ? it.name + (spec[2] && G.suffixes[spec[2]] ? ' ' + G.suffixes[spec[2]] : '') : '—'; };
+const itemName = spec => {
+  const it = item(spec[0]);
+  if (!it) return '—';
+  const sfx = spec[2] && G.suffixes[spec[2]] ? ' ' + G.suffixes[spec[2]] : '';
+  const ru = lang() === 'ru' && it.name_ru;
+  return (ru ? it.name_ru : it.name) + sfx;
+};
 const enchantName = spec => spec[3] || (spec[1] ? 'Enchant ' + spec[1] : '');
 const fmt = v => `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(1)}`;
 const fmtMetric = v => (v == null ? '—' : v >= 10000 ? (v / 1000).toFixed(1) + 'k' : Math.round(v).toString());
@@ -218,7 +224,7 @@ function rowPasses(specs, r) {
     return true;
   }) && (!q || specs.some(([, spec]) => {
     const it = item(spec[0]);
-    return it && (itemName(spec).toLowerCase().includes(q) || (it.sources || []).join(' ').toLowerCase().includes(q));
+    return it && (itemName(spec).toLowerCase().includes(q) || (it.name_ru || '').toLowerCase().includes(q) || (it.sources || []).join(' ').toLowerCase().includes(q));
   }));
 }
 
@@ -525,7 +531,7 @@ function tipHTML(id, sfx) {
   (it.white || []).forEach(([k, v]) => lines.push(`<div class="w">+${v} ${esc(k)}</div>`));
   if (sx) sx.forEach(([k, v]) => lines.push(`<div class="w">+${v} ${esc(k)}</div>`));
   (it.green || []).forEach(l => lines.push(`<div class="g">${esc(l)}</div>`));
-  return `<div class="t" style="${qc(it)}">${esc(it.name)}${sfx && G.suffixes[sfx] ? ' ' + esc(G.suffixes[sfx]) : ''}</div>
+  return `<div class="t" style="${qc(it)}">${esc(itemName({ 0: id, 1: 0, 2: sfx }))}</div>
     ${it.unique ? '<div class="w">Unique</div>' : ''}
     <div class="row"><span class="w">${esc(it.slot)}</span><span class="w">${esc(it.kind || '')}</span></div>
     ${lines.join('')}

@@ -1,0 +1,26 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 1287.52,
+ "margin": 0.94,
+ "hps": 15.1,
+ "threat": 1314.9,
+ "title": {
+  "ru": "Хантер (weave)",
+  "en": "Hunter (weave)"
+ },
+ "buildName": {
+  "ru": "SV Weave (defaults сима)",
+  "en": "SV Weave (the sim's defaults)"
+ },
+ "rotation": {
+  "ru": "Default APL из репозитория сима",
+  "en": "the repo's Default APL"
+ },
+ "talents": "",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}

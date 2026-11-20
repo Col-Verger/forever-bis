@@ -1,0 +1,26 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 478.66,
+ "margin": 0.65,
+ "hps": 27.5,
+ "threat": 2211.9,
+ "title": {
+  "ru": "Ферал (медведь, танк)",
+  "en": "Feral (bear, tank)"
+ },
+ "buildName": {
+  "ru": "Bear (defaults сима)",
+  "en": "Bear (the sim's defaults)"
+ },
+ "rotation": {
+  "ru": "Adaptive Bear APL из репозитория сима",
+  "en": "the repo's Adaptive Bear APL"
+ },
+ "talents": "050022-5023030212310112501-055",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}

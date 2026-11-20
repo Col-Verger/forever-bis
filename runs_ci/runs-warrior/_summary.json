@@ -1,0 +1,40 @@
+{
+ "builds": [
+  {
+   "id": "warrior-fury-max",
+   "status": "ok",
+   "value": 983.01,
+   "metric": "dps"
+  },
+  {
+   "id": "warrior-fury-cheap",
+   "status": "ok",
+   "value": 852.6,
+   "metric": "dps"
+  },
+  {
+   "id": "warrior-arms-max",
+   "status": "ok",
+   "value": 894.23,
+   "metric": "dps"
+  },
+  {
+   "id": "warrior-arms-cheap",
+   "status": "ok",
+   "value": 833.32,
+   "metric": "dps"
+  },
+  {
+   "id": "warrior-protection-max",
+   "status": "ok",
+   "value": 311.63,
+   "metric": "dps"
+  },
+  {
+   "id": "warrior-protection-cheap",
+   "status": "ok",
+   "value": 281.59,
+   "metric": "dps"
+  }
+ ]
+}

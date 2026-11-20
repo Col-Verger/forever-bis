@@ -1,0 +1,26 @@
+{
+ "status": "ok",
+ "budget": "cheap",
+ "metric": "dps",
+ "value": 736.71,
+ "margin": 0.73,
+ "hps": 0,
+ "threat": 755.5,
+ "title": {
+  "ru": "Баланс (Мункин)",
+  "en": "Balance (Moonkin)"
+ },
+ "buildName": {
+  "ru": "Moonkin (defaults сима)",
+  "en": "Moonkin (the sim's defaults)"
+ },
+ "rotation": {
+  "ru": "Default APL из репозитория сима",
+  "en": "the repo's Default APL"
+ },
+ "talents": "5232220115501351--5053",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}

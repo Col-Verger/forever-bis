@@ -1,0 +1,32 @@
+{
+ "builds": [
+  {
+   "id": "paladin-retribution-max",
+   "status": "ok",
+   "value": 964.2,
+   "metric": "dps"
+  },
+  {
+   "id": "paladin-retribution-cheap",
+   "status": "ok",
+   "value": 884.92,
+   "metric": "dps"
+  },
+  {
+   "id": "paladin-protection-max",
+   "status": "ok",
+   "value": 607.45,
+   "metric": "dps"
+  },
+  {
+   "id": "paladin-protection-cheap",
+   "status": "ok",
+   "value": 560.46,
+   "metric": "dps"
+  },
+  {
+   "id": "paladin-holy",
+   "status": "disabled"
+  }
+ ]
+}

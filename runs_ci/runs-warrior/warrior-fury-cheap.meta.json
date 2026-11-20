@@ -1,0 +1,26 @@
+{
+ "status": "ok",
+ "budget": "cheap",
+ "metric": "dps",
+ "value": 852.6,
+ "margin": 0.91,
+ "hps": 4.5,
+ "threat": 708.1,
+ "title": {
+  "ru": "Фури (DW)",
+  "en": "Fury (DW)"
+ },
+ "buildName": {
+  "ru": "Fury (defaults сима)",
+  "en": "Fury (the sim's defaults)"
+ },
+ "rotation": {
+  "ru": "Fury APL из репозитория сима",
+  "en": "the repo's Fury APL"
+ },
+ "talents": "30303213002-050530045122100231",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}

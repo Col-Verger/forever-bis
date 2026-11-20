@@ -1,0 +1,26 @@
+{
+ "status": "ok",
+ "budget": "cheap",
+ "metric": "dps",
+ "value": 857.03,
+ "margin": 0.7,
+ "hps": 0,
+ "threat": 884.5,
+ "title": {
+  "ru": "Энх",
+  "en": "Enhancement"
+ },
+ "buildName": {
+  "ru": "Enhancement (тестинг-билд сима)",
+  "en": "Enhancement (the sim's testing build)"
+ },
+ "rotation": {
+  "ru": "APL из билд-файла репозитория (включая подмену оружия)",
+  "en": "the build file's APL (with weapon swap)"
+ },
+ "talents": "",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}

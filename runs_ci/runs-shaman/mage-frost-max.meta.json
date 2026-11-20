@@ -1,0 +1,25 @@
+{
+ "status": "ok",
+ "metric": "dps",
+ "value": 839.24,
+ "margin": 1.09,
+ "hps": 0,
+ "threat": 775.3,
+ "title": {
+  "ru": "Фрост",
+  "en": "Frost"
+ },
+ "buildName": {
+  "ru": "Фрост (Frost Incin)",
+  "en": "Frost (Frost Incin)"
+ },
+ "rotation": {
+  "ru": "Frost (APL сима)",
+  "en": "Frost (the sim's APL)"
+ },
+ "talents": "203205-5-053500011121331251",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}

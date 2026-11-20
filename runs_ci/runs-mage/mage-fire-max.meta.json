@@ -1,0 +1,26 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 951.41,
+ "margin": 0.96,
+ "hps": 0,
+ "threat": 951.3,
+ "title": {
+  "ru": "Фаер (Fireball)",
+  "en": "Fire (Fireball)"
+ },
+ "buildName": {
+  "ru": "Дип-Фаер",
+  "en": "Deep Fire"
+ },
+ "rotation": {
+  "ru": "Deep Fire (APL сима)",
+  "en": "Deep Fire (the sim's APL)"
+ },
+ "talents": "0502052001001-55500001230133031-003",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}

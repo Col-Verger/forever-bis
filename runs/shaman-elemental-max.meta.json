@@ -1,0 +1,26 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 850.4,
+ "margin": 0.68,
+ "hps": 0,
+ "threat": 779.6,
+ "title": {
+  "ru": "Элем",
+  "en": "Elemental"
+ },
+ "buildName": {
+  "ru": "Elemental (билд сима)",
+  "en": "Elemental (the sim's build)"
+ },
+ "rotation": {
+  "ru": "APL из билд-файла репозитория",
+  "en": "the build file's APL"
+ },
+ "talents": "",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}
