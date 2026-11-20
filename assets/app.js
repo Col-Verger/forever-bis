@@ -6,6 +6,7 @@ const ICON = (n, size = 'medium') => `https://wow.zamimg.com/images/wow/icons/${
 const WH = id => `https://www.wowhead.com/forever/item=${id}`;
 const WH_TALENTS = (cls, t) => `https://www.wowhead.com/forever/talent-calc/${cls}/${t}`;
 const SIM_HOME = 'https://www.wowsims.com/forever/';
+const CLASS_ICON = id => `https://wow.zamimg.com/images/wow/icons/medium/classicon_${id}.jpg`;
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const $ = id => document.getElementById(id);
 
@@ -34,6 +35,7 @@ const STR = {
   ref_new_body: { ru: 'Каждое число на странице — реальный прогон симулятора, с погрешностью ± на полосах. Данные обновляются сами по расписанию; если штамп в шапке старый — напиши владельцу или запусти Action, если есть права. Проверить любое число можно самостоятельно: скачай runs/<спек>.settings.json из репозитория и импортируй его на wowsims.com — увидишь тот же сет и тот же босс.', en: 'Every number on this page is a real simulator run, with a ± margin on the bars. Data refreshes on a schedule; if the stamp in the header is old, ping the owner or run the Action if you can. Any number can be checked: grab runs/<spec>.settings.json from the repo and import it on wowsims.com — same set, same boss.' },
   ref_copy: { ru: 'Копировать', en: 'Copy' },
   ref_copied: { ru: 'Скопировано', en: 'Copied' },
+  copy_set: { ru: 'Скопировать сет', en: 'Copy the set' },
   cls: { ru: 'Класс', en: 'Class' },
   spec: { ru: 'Спек', en: 'Spec' },
   budget: { ru: 'Бюджет', en: 'Budget' },
@@ -186,8 +188,9 @@ function renderDoll() {
     const spec = L.gear[s];
     if (!spec || !spec[0]) return `<div class="slot empty"><span class="icon"></span><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span><span class="nm">—</span></span></div>`;
     const it = item(spec[0]);
+    const q = it && it.q >= 3 ? ` q${it.q}` : '';
     return `<div class="slot" data-go="${s}" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}">
-      <img class="icon" src="${ICON(it.icon, 'large')}" alt="" loading="lazy"><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span>
+      <img class="icon${q}" src="${ICON(it.icon, 'large')}" alt="" loading="lazy"><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span>
       <span class="nm" style="${qc(it)}">${esc(itemName(spec))}</span>
       <span class="en">${esc(enchantName(spec)) || '&nbsp;'}</span></span></div>`;
   };
@@ -222,6 +225,9 @@ function renderDoll() {
         ${L.vsOther ? `<dt>${esc(T('vs_other'))}</dt><dd>${esc(L2(L.vsOther))}</dd>` : ''}
       </dl>
       ${L.simLink ? `<a class="btn primary" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T('open_sim'))}</a>` : ''}
+      <div class="center-actions">
+        <button class="btn" type="button" data-copyset="1">${esc(T('copy_set'))}</button>
+      </div>
       <p class="blurb">${esc(L2(sp.note))}</p>
     </div>`;
   };
@@ -259,7 +265,8 @@ function itemHTML(spec, withEnchant) {
   const it = item(spec[0]);
   if (!it) return '<span class="small">—</span>';
   const en = withEnchant && enchantName(spec);
-  return `<span class="it" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}"><img class="icon xs" loading="lazy" src="${ICON(it.icon)}" alt=""><a class="n" style="${qc(it)}" href="${WH(spec[0])}" target="_blank" rel="noopener">${esc(itemName(spec))}</a>${en ? `<span class="en" title="${esc(en)}">${esc(en)}</span>` : ''}</span>`;
+  const q = it.q >= 3 ? ` q${it.q}` : '';
+  return `<span class="it" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}"><img class="icon xs${q}" loading="lazy" src="${ICON(it.icon)}" alt=""><a class="n" style="${qc(it)}" href="${WH(spec[0])}" target="_blank" rel="noopener">${esc(itemName(spec))}</a>${en ? `<span class="en" title="${esc(en)}">${esc(en)}</span>` : ''}</span>`;
 }
 function rowHTML(r, x, bestMove) {
   const specs = Object.entries(r.move).sort((a, b) => SLOT_ORDER.indexOf(a[0]) - SLOT_ORDER.indexOf(b[0]));
@@ -459,7 +466,7 @@ function renderControls() {
   pressed('[data-spec]', 'spec', state.spec);
   pressed('[data-budget]', 'budget', state.budget);
   pressed('[data-topn]', 'topn', state.topn);
-  $('cls').innerHTML = G.classes.map(c => `<button data-cls="${c.id}">${esc(L2(c.name))}</button>`).join('');
+  $('cls').innerHTML = G.classes.map(c => `<button data-cls="${c.id}"><img src="${CLASS_ICON(c.id)}" alt="">${esc(L2(c.name))}</button>`).join('');
   const C = curClass();
   $('spec').innerHTML = C.specs.map(s => `<button data-spec="${s.id}" title="${esc(L2(s.name))}">${esc(L2(s.name))}</button>`).join('');
   const hasBudget = !!budgetOf(curSpec());
@@ -484,6 +491,18 @@ function render() {
   toHash();
 }
 
+function setCopyText() {
+  const sp = curSpec(), L = loadout();
+  const lines = [`${L2(sp.name)} · ${L2(L.build || sp.build)}${budgetOf(sp) ? ' · ' + T('budget_' + state.budget) : ''} — ${fmtMetric(L.value)} ${L.metric === 'hps' ? 'HPS' : 'DPS'}`];
+  lines.push(`${lang() === 'ru' ? 'Сим' : 'Sim'}: WoWSims Forever ${G.meta.simmed || ''}${G.meta.simCommit ? ' (' + G.meta.simCommit + ')' : ''}`);
+  for (const s of SLOT_ORDER) {
+    const v = L.gear[s];
+    if (!v || !v[0]) continue;
+    lines.push(`${slotLabel(s)}: ${itemName(v)}${v[3] ? ' (+ ' + v[3] + ')' : ''} — wowhead.com/forever/item=${v[0]}`);
+  }
+  return lines.join('\n');
+}
+
 document.addEventListener('click', e => {
   const t = e.target;
   if (!t.closest('#srcpick')) $('srcpick').open = false;
@@ -492,6 +511,13 @@ document.addEventListener('click', e => {
     const text = cp.dataset.copy || '';
     (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(
       () => { cp.textContent = T('ref_copied'); setTimeout(() => { cp.textContent = T('ref_copy'); }, 1400); },
+      () => {});
+    return;
+  }
+  const cs = t.closest('[data-copyset]');
+  if (cs) {
+    (navigator.clipboard ? navigator.clipboard.writeText(setCopyText()) : Promise.reject()).then(
+      () => { const old = cs.textContent; cs.textContent = T('ref_copied'); setTimeout(() => { cs.textContent = old; }, 1400); },
       () => {});
     return;
   }
