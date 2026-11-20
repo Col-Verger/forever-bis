@@ -15,6 +15,7 @@ const STR = {
   tab_all: { ru: 'Все сеты', en: 'All loadouts' },
   tab_howto: { ru: 'Как одеваться', en: 'How to gear' },
   tab_method: { ru: 'Методика', en: 'Method' },
+  slot_importance: { ru: 'Сколько важен каждый слот', en: 'How much each slot matters' },
   tab_refresh: { ru: 'Данные и обновление', en: 'Data & refresh' },
   chip_no_data: { ru: 'Симы не прогнаны', en: 'No sim runs yet' },
   chip_ok: { ru: 'Симы', en: 'Simmed' },
@@ -288,11 +289,13 @@ function renderCards() {
   const L = loadout();
   if (!L || !L.groups || !L.groups.length) {
     $('cards').innerHTML = `<div class="empty-note">${esc(T('empty_title'))} — ${esc(T('empty_body'))}</div>`;
+    $('ovd').hidden = true;
     return;
   }
   $('cards').innerHTML = `<table class="bt">
     <thead><tr><th class="c-item">${esc(lang() === 'ru' ? 'Предмет' : 'Item')}</th><th class="c-d">Δ ${esc(metricName(L.metric))}</th><th class="c-chart">${esc(T('vs_best'))}</th></tr></thead>
     ${L.groups.map(g => groupHTML(g, L)).join('')}</table>`;
+  renderOverview(L);
 }
 function renderKey() {
   const kx = v => (v + 9) / 18 * 100;
@@ -300,6 +303,42 @@ function renderKey() {
   $('key').innerHTML = ex.map(([r, l]) => `<span class="k"><span class="kchart" style="--z:${kx(0).toFixed(2)}%">${gapChart(r, kx)}</span>${esc(l)}</span>`).join('')
     + `<span class="ktext">${esc(T('key_text'))}</span>`;
 }
+
+// ---------- how much each slot matters ----------
+const OV_LABEL = { two_hand: 'Двуручное', weapons: 'Оружие' };
+function renderOverview(L) {
+  const lines = L.groups.map(g => {
+    const rows = [...(g.rows || [])].sort((a, b) => b.d - a.d).slice(0, 6);
+    return rows.length || true ? { g, rows } : null;
+  }).filter(Boolean);
+  const ds = lines.flatMap(o => o.rows.map(r => r.d));
+  if (!ds.length) { $('overview').innerHTML = ''; $('ovd').hidden = true; return; }
+  const lo = Math.max(-40, Math.min(-10, ...ds)), hi = Math.max(5, Math.max(...ds, 0));
+  const pad = (hi - lo) * 0.04;
+  const x = v => (Math.min(hi, Math.max(lo, v)) - lo + pad) / (hi - lo + 2 * pad) * 100;
+  const ticks = [];
+  for (let t = Math.ceil(lo / 10) * 10; t <= hi; t += 10) ticks.push(t);
+  const same = lines.reduce((n, o) => n + o.rows.filter(r => kindOf(r) === 'same').length, 0);
+  $('ovteaser').textContent = same ? `${same} ${lang() === 'ru' ? 'опций равны лучшим (в пределах погрешности)' : 'options tie the best (within the margin)'}` : (lang() === 'ru' ? 'все опции хуже лучших' : 'no option ties the best');
+  const rowsHTML = lines.map(({ g, rows }) => {
+    const m = median(rows.map(r => r.m));
+    const dots = rows.map(r => {
+      const spec = Object.values(r.move).find(v => v && v[0]) || [0];
+      return `<i class="od ${kindOf(r)}" style="left:${x(r.d).toFixed(2)}%" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}" data-d="${r.d}" data-m="${r.m}"></i>`;
+    }).join('');
+    return `<button class="ov-row" type="button" data-grp="${g.id}"><span class="ov-l">${esc(slotLabel(g.id))}</span>
+      <span class="ov-s" style="--z:${x(0).toFixed(2)}%;--b0:${x(-m).toFixed(2)}%;--b1:${x(m).toFixed(2)}%">${dots}</span>
+      <span class="ov-n">${rows.filter(r => kindOf(r) === 'same').length || ''}</span></button>`;
+  }).join('');
+  $('ovd').hidden = false;
+  $('overview').innerHTML = `
+    <p class="small ov-p">${esc(lang() === 'ru'
+      ? 'Топ-6 опций каждого слота против лучшего, на одной шкале. Точки в светлой полосе — то же значение: носи, что уже есть. Разброс — слот, за который стоит гнаться.'
+      : 'Every slot’s top six options against its best, on one scale. Dots inside the shading are the same value: wear what you have. Spread out — a slot worth chasing.')}</p>
+    ${ticks.map(t => `<i class="tk" style="left:${x(t).toFixed(2)}%"></i>`).join('')}
+    ${rowsHTML}`;
+}
+
 
 // ---------- all loadouts ----------
 function renderMatrix() {
@@ -466,6 +505,11 @@ document.addEventListener('click', e => {
       const card = $('card-' + go.dataset.go);
       if (card) { card.scrollIntoView({ block: 'start' }); card.classList.add('flash'); setTimeout(() => card.classList.remove('flash'), 1400); }
     }
+    return;
+  }
+  if (b.dataset.grp) {
+    const body = $('card-' + b.dataset.grp);
+    if (body) { body.scrollIntoView({ block: 'start' }); body.classList.add('flash'); setTimeout(() => body.classList.remove('flash'), 1400); }
     return;
   }
   if (b.dataset.lang) { state.lang = b.dataset.lang; localStorage.setItem('bislang', state.lang); render(); return; }
