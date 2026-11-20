@@ -99,7 +99,8 @@ jobs:
 
   publish:
     needs: [resim]
-    if: ${{ always() && !cancelled() }}
+    # Only publish from real sims (or a manual skip_sims rebuild): never from a failed matrix.
+    if: ${{ always() && (inputs.skip_sims || needs.resim.result == 'success') }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

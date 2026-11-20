@@ -471,6 +471,8 @@ def main():
     ap.add_argument('--validate', action='store_true', help='run only the base sim of each build')
     ap.add_argument('--verbose', action='store_true')
     a = ap.parse_args()
+    if os.path.exists(a.wowsimcli):
+        a.wowsimcli = os.path.abspath(a.wowsimcli)  # Linux subprocess needs a path, not a bare name
     only = set(x for part in a.only for x in part.split(',')) if a.only else None
 
     db = Db(a.forever)
