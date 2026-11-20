@@ -1,27 +1,9 @@
 {
  "builds": [
   {
-   "id": "druid-balance-cheap",
-   "status": "ok",
-   "value": 791.53,
-   "metric": "dps"
-  },
-  {
    "id": "druid-feralcat-cheap",
    "status": "ok",
-   "value": 955.76,
-   "metric": "dps"
-  },
-  {
-   "id": "druid-feralbear-cheap",
-   "status": "ok",
-   "value": 297.16,
-   "metric": "dps"
-  },
-  {
-   "id": "paladin-protection-cheap",
-   "status": "ok",
-   "value": 600.82,
+   "value": 974.36,
    "metric": "dps"
   }
  ]

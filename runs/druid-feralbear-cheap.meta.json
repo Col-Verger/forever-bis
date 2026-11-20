@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 297.16,
- "margin": 0.42,
- "hps": 26.2,
- "threat": 1392.2,
+ "value": 459.51,
+ "margin": 0.63,
+ "hps": 27.2,
+ "threat": 2116.2,
  "title": {
   "ru": "Ферал (медведь, танк)",
   "en": "Feral (bear, tank)"

@@ -358,7 +358,8 @@ class Build:
         for s in SLOTS:
             if s not in self.pool or not self.pool[s]:
                 continue
-            if s in ('finger2', 'trinket2'):  # covered by the finger1/trinket1 sweep
+            # finger2/trinket2 are covered by the finger1/trinket1 sweep — unless they started empty.
+            if s in ('finger2', 'trinket2') and gear.get(s) and gear.get(s)[0]:
                 continue
             if s == 'off_hand' and (twoh or not gear.get('main_hand', [0])[0]):
                 continue
@@ -367,9 +368,9 @@ class Build:
 
     def candidates(self, slot, gear):
         cur = {gear.get(slot, [0])[0]}
-        if slot == 'finger1':
+        if slot in ('finger1', 'finger2'):
             cur |= {gear.get('finger1', [0])[0], gear.get('finger2', [0])[0]}
-        if slot == 'trinket1':
+        if slot in ('trinket1', 'trinket2'):
             cur |= {gear.get('trinket1', [0])[0], gear.get('trinket2', [0])[0]}
         mh = self.db.item(gear.get('main_hand', [0])[0])
         twoh = (mh.get('handType') == 4) if mh else None  # no weapon worn: either class may win
