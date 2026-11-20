@@ -276,7 +276,8 @@ function rowHTML(r, x, bestMove) {
   const sourceLine = srcs.map(it => (it.sources || []).join(' | ') || T('no_source')).join(' + ');
   const d = r.best ? `<b>${esc(T('best'))}</b>` : `<b>${fmt(r.d)}</b> <small>±${r.m.toFixed(1)}</small>`;
   return `<tr class="${k}">
-    <td class="c-item"><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span><span class="c-where" title="${esc(sourceLine)}">${esc((srcs.map(it => (it.sources || [])[0] || T('no_source')).join(' + ')))}</span></td>
+    <td class="c-item"><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span></td>
+    <td class="c-where" title="${esc(sourceLine)}">${esc(srcs.map(it => (it.sources || [])[0] || T('no_source')).join(' + '))}</td>
     <td class="c-d" title="${r.best ? '' : fmt(r.d)}">${d}</td>
     <td class="c-chart">${gapChart(r, x)}</td></tr>`;
 }
@@ -286,9 +287,9 @@ function groupHTML(g, L) {
   const passing = rows.filter(r => rowPasses(Object.entries(r.move), r));
   const shown = passing.slice(0, state.topn);
   const x = scaleFor(shown.length ? shown : rows.slice(0, 1));
-  const head = `<tr class="gh"><th colspan="3" scope="rowgroup"><span class="ghn">${esc(glabel(g.id))}</span>${g.note ? `<span class="ghnote">${esc(L2(g.note))}</span>` : ''}</th></tr>`;
-  const body = shown.length ? shown.map(r => rowHTML(r, x, g.best)).join('') : `<tr><td colspan="3" class="empty">${esc(T('empty_slot'))}</td></tr>`;
-  const hiddenBest = hasBest && shown.length && !rowPasses(Object.entries(g.best)) ? `<tr><td colspan="3" class="empty">${esc(T('hidden_best'))}</td></tr>` : '';
+  const head = `<tr class="gh"><th colspan="4" scope="rowgroup"><span class="ghn">${esc(glabel(g.id))}</span>${g.note ? `<span class="ghnote">${esc(L2(g.note))}</span>` : ''}</th></tr>`;
+  const body = shown.length ? shown.map(r => rowHTML(r, x, g.best)).join('') : `<tr><td colspan="4" class="empty">${esc(T('empty_slot'))}</td></tr>`;
+  const hiddenBest = hasBest && shown.length && !rowPasses(Object.entries(g.best)) ? `<tr><td colspan="4" class="empty">${esc(T('hidden_best'))}</td></tr>` : '';
   return `<tbody class="grp" id="card-${g.id}" style="${bandVars(x, shown)}">${head}${body}${hiddenBest}</tbody>`;
 }
 const glabel = id => slotLabel(id === 'two_hand' ? 'two_hand' : id === 'weapons' ? 'weapons' : id);
@@ -300,7 +301,8 @@ function renderCards() {
     return;
   }
   $('cards').innerHTML = `<table class="bt">
-    <thead><tr><th class="c-item">${esc(lang() === 'ru' ? 'Предмет' : 'Item')}</th><th class="c-d">Δ ${esc(metricName(L.metric))}</th><th class="c-chart">${esc(T('vs_best'))}</th></tr></thead>
+    <colgroup><col class="w-item"><col class="w-where"><col class="w-d"><col class="w-chart"></colgroup>
+    <thead><tr><th class="c-item">${esc(lang() === 'ru' ? 'Предмет' : 'Item')}</th><th class="c-where">${esc(lang() === 'ru' ? 'Где достать' : 'Where')}</th><th class="c-d">Δ ${esc(metricName(L.metric))}</th><th class="c-chart">${esc(T('vs_best'))}</th></tr></thead>
     ${L.groups.map(g => groupHTML(g, L)).join('')}</table>`;
   renderOverview(L);
 }

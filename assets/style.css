@@ -123,8 +123,13 @@ small{color:var(--mut)}
 .listhead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:18px}
 .listhead h2{margin:0;font-size:22px;letter-spacing:.4px}
 .cards{margin-top:12px}
-table.bt{width:100%;border-collapse:collapse}
-table.bt thead th{position:sticky;top:var(--barh);background:var(--bg2);z-index:30;font-size:9.5px;text-transform:uppercase;letter-spacing:1.1px;color:var(--mut2);text-align:left;padding:8px 12px;border-bottom:1px solid var(--line2)}
+table.bt{width:100%;border-collapse:collapse;table-layout:fixed}
+table.bt col.w-item{width:auto}
+table.bt col.w-where{width:24%}
+table.bt col.w-d{width:76px}
+table.bt col.w-chart{width:206px}
+table.bt thead th{position:sticky;top:var(--barh);background:var(--bg2);z-index:30;font-size:9.5px;text-transform:uppercase;letter-spacing:1.1px;color:var(--mut2);text-align:left;padding:8px 12px;border-bottom:1px solid var(--line2);white-space:nowrap}
+table.bt thead th.c-d{text-align:right}
 table.bt td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
 tbody.grp{--z:50%;--b0:47%;--b1:53%}
 tbody.grp:hover tr td{background:color-mix(in srgb, var(--bg2) 70%, transparent)}
@@ -145,7 +150,7 @@ tr.same td{opacity:.85}
 .it .n .ally{color:var(--mut2);font-weight:500}
 .it .en{display:block;font-size:10.5px;color:var(--mut);margin-top:1px;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .plus{color:var(--mut2);font-size:11px}
-.c-where{display:block;max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.c-where{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11.5px;color:var(--mut)}
 .w1{font-size:11.5px;color:var(--mut)}
 .c-d{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;font-size:13px}
 .c-d b{font-weight:700}
@@ -241,18 +246,20 @@ details.ov[open] summary{border-bottom:1px solid var(--line)}
   .doll .center{grid-column:1/-1;grid-row:auto;order:-1}
   .doll .col.right{grid-column:2}
   .weapons{grid-column:1/-1;grid-row:auto;grid-template-columns:repeat(auto-fit,minmax(196px,224px));justify-content:start}
-  .c-chart{width:140px}
-  .c-where{max-width:240px}
+  table.bt col.w-where{width:0}
+  table.bt th.c-where, table.bt td.c-where{display:none}
+  table.bt col.w-chart{width:150px}
 }
 @media (max-width:720px){
   .doll{grid-template-columns:1fr}
   .doll .col.right{grid-column:1}
-  .c-where{display:none}
-  .it .en{display:none}
   .c-d{font-size:12px}
   .top h1{font-size:24px}
   table.bt td{padding:7px 8px}
-  .c-chart{width:96px}
+  table.bt col.w-chart{width:104px}
+  table.bt col.w-d{width:64px}
+  .it .n{max-width:180px}
+  .it .en{display:none}
   .ov-row{grid-template-columns:120px 1fr 34px}
   .brandrow{flex-direction:column;gap:8px;align-items:flex-start}
   .brand-right{align-self:stretch;display:flex;justify-content:space-between}
