@@ -177,6 +177,9 @@ tools/run_sims.py               драйвер: per-slot поиск через w
 tools/make_pools.py             генератор пулов из assets/database/db.json
 tools/build_data.py             склейка runs + db.json → data.js, RU-имена, аудит
 tools/audit_data.py             проверка дефектов данных (пустые слоты, дубли, нули)
+tools/linkhash/                 IndividualSimSettings → ссылка-шар «открыть сет в WoWSims» (Go)
+tools/make_links.py             проставляет такие ссылки в runs/*.meta.json
+tools/spec_routes.py            маршрут страницы спека в UI симулятора (для ссылок)
 tools/wowhead_bis.json          BiS хил-спеков из гайдов Wowhead (фолбэк до симов)
 tools/ru_names.json             кэш русских названий предметов
 tools/icons.json                кэш иконок

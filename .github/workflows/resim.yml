@@ -78,6 +78,10 @@ jobs:
           PATH: ${{ env.PATH }}:${{ env.HOME }}/go/bin
         run: go build --tags=with_db -o ../wowsimcli ./cmd/wowsimcli
 
+      - name: Build the share-link tool (the site's "open this set in WoWSims")
+        working-directory: tools/linkhash
+        run: go build -o ../../linkhash .
+
       - name: Materialize candidate pools
         run: python tools/make_pools.py --forever forever --configs configs
 
@@ -86,6 +90,7 @@ jobs:
           python tools/run_sims.py --forever forever --wowsimcli wowsimcli
           --configs configs --out runs --verbose --jobs 3
           --class ${{ matrix.class }}
+          --linkhash ./linkhash
           --search-iterations ${{ inputs.search_iterations || '2500' }}
           --final-iterations ${{ inputs.final_iterations || '10000' }}
           --budgets ${{ inputs.budgets || 'max,cheap' }}

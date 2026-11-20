@@ -7,7 +7,7 @@ Honest data policy: a spec with no run files gets status 'pending' (or 'no-prese
 config is disabled) and the site shows its empty state. Nothing is estimated or invented;
 the footer pins the sim commit and the date of the runs.
 """
-import argparse, datetime, hashlib, json, os, re, urllib.request
+import argparse, datetime, hashlib, json, os, re, subprocess, urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
 STAT = ['Strength', 'Agility', 'Stamina', 'Intellect', 'Healing Power', 'Spell Damage', 'Arcane Damage',
@@ -139,7 +139,38 @@ def main():
     ap.add_argument('--out', default='data.js')
     ap.add_argument('--commit', default='')
     ap.add_argument('--repo', default='', help='owner/name of this site repo: fills the site\'s Action button link')
+    ap.add_argument('--linkhash', default='linkhash.exe',
+                    help='linkhash binary: turns runs/<id>.settings.json into a WoWSims share link')
     a = ap.parse_args()
+
+    from spec_routes import SPEC_ROUTES
+    link_cache = {}
+
+    def sim_link(lid, bid):
+        """A WoWSims share link that opens this exact set (gear, talents, buffs, rotation).
+
+        Built from runs/<lid>.settings.json by tools/linkhash; None when the export
+        or the tool is missing, so the site simply shows no button.
+        """
+        if lid in link_cache:
+            return link_cache[lid]
+        url = None
+        route = SPEC_ROUTES.get(bid)
+        settings = os.path.join(a.runs, lid + '.settings.json')
+        if not os.path.exists(settings):
+            settings = os.path.join(a.runs, bid + '.settings.json')  # older single-budget export
+        if route and os.path.exists(settings) and a.linkhash and os.path.exists(a.linkhash):
+            try:
+                proc = subprocess.run([a.linkhash, '-in', settings, '-route', route, '-url'],
+                                      capture_output=True, text=True, timeout=60)
+                if proc.returncode == 0 and proc.stdout.strip():
+                    url = proc.stdout.strip()
+                else:
+                    print(f'simLink: {lid}: {proc.stderr.strip()[:200]}')
+            except Exception as e:  # a broken tool must not stop the data build
+                print(f'simLink: {lid}: {e}')
+        link_cache[lid] = url
+        return url
 
     db = json.load(open(os.path.join(a.forever, 'assets/database/db.json'), encoding='utf-8'))
     items = {it['id']: it for it in db['items']}
@@ -307,7 +338,7 @@ def main():
                     'metric': meta.get('metric', 'dps'), 'budget': budget,
                     'value': meta.get('value'), 'margin': meta.get('margin'),
                     'talents': loadout_talents(meta, bc, a.forever),
-                    'simLink': meta.get('simLink'),
+                    'simLink': meta.get('simLink') or sim_link(lid, bid),
                     'gear': full, 'groups': groups,
                 }
                 values[(bid, budget)] = meta.get('value')

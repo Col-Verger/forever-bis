@@ -69,13 +69,10 @@ const STR = {
   ref_auto_body: { ru: 'Сайт — статическая страница: сам он симы не считает. Числа приносит пайплайн: каждое утро он собирает свежий WoWSims Forever из GitHub, прогоняет каждый спек и пересобирает страницу. Всё происходит автоматически. Хил-спеки сим пока не поддерживает — их сеты взяты из гайдов Wowhead и помечены бейджем; когда в WoWSims появится пресет, пайплайн сам заменит такой сет симмированными числами.', en: 'This site is static: it cannot run sims itself. A pipeline brings the numbers: every morning it builds fresh WoWSims Forever from GitHub, sims every spec and rebuilds the page. Everything happens automatically. Healer specs are not supported by the sim yet — their sets come from Wowhead guides and carry a badge; when WoWSims ships a preset, the pipeline replaces them with simmed numbers on its own.' },
   ref_new_title: { ru: 'Как читать числа', en: 'Reading the numbers' },
   ref_new_body: { ru: 'Каждое число на странице — реальный прогон симулятора, с погрешностью ± на полосах. Проверить любое число можно самостоятельно: скачай runs/<спек>.settings.json из репозитория и импортируй его на wowsims.com — увидишь тот же сет и тот же босс.', en: 'Every number on this page is a real simulator run, with a ± margin on the bars. Any number can be checked: grab runs/<spec>.settings.json from the repo and import it on wowsims.com — same set, same boss.' },
-  ref_copy: { ru: 'Копировать', en: 'Copy' },
-  ref_copied: { ru: 'Скопировано', en: 'Copied' },
   no_sim: { ru: 'BiS по гайду Wowhead · сим пока не поддерживает спек', en: 'Wowhead guide BiS · the sim does not support this spec yet' },
   wowhead_badge: { ru: 'Wowhead-гайд', en: 'Wowhead guide' },
   wowhead_note: { ru: 'Этот сет собран по гайду Wowhead: симулятор пока не поддерживает спек, поэтому Δ-чисел нет. Как только WoWSims добавит пресет, ежедневный пайплайн заменит этот сет симами автоматически.', en: 'This set comes from a Wowhead guide: the simulator does not support this spec yet, so there are no DPS deltas. When WoWSims ships a preset, the daily pipeline replaces it with sims automatically.' },
   open_guide: { ru: 'Открыть гайд Wowhead ↗', en: 'Open the Wowhead guide ↗' },
-  copy_set: { ru: 'Скопировать сет', en: 'Copy the set' },
   cls: { ru: 'Класс', en: 'Class' },
   spec: { ru: 'Спек', en: 'Spec' },
   budget: { ru: 'Бюджет', en: 'Budget' },
@@ -297,10 +294,9 @@ function renderDoll() {
         ${!wh && L.rotation ? `<dt>${esc(T('rotation'))}</dt><dd>${esc(L2(L.rotation))}</dd>` : ''}
         ${L.vsOther ? `<dt>${esc(T('vs_other'))}</dt><dd>${esc(L2(L.vsOther))}</dd>` : ''}
       </dl>
-      ${L.simLink ? `<a class="btn primary" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T('open_sim'))}</a>` : ''}
       ${wh && L.wowheadUrl ? `<a class="btn primary" href="${esc(L.wowheadUrl)}" target="_blank" rel="noopener">${esc(T('open_guide'))}</a>` : ''}
       <div class="center-actions">
-        <button class="btn" type="button" data-copyset="1">${esc(T('copy_set'))}</button>
+        ${L.simLink ? `<a class="btn primary" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T('open_sim'))}</a>` : ''}
       </div>
       <p class="blurb">${esc(wh ? T('wowhead_note') : L2(sp.note))}</p>
     </div>`;
@@ -610,28 +606,9 @@ function render() {
   toHash();
 }
 
-function setCopyText() {
-  const sp = curSpec(), L = loadout();
-  const lines = [`${L2(sp.name)} · ${L2(L.build || sp.build)}${budgetOf(sp) ? ' · ' + T('budget_' + state.budget) : ''} — ${fmtMetric(L.value)} ${L.metric === 'hps' ? 'HPS' : 'DPS'}`];
-  lines.push(`${lang() === 'ru' ? 'Сим' : 'Sim'}: WoWSims Forever ${fmtSimmed()}${G.meta.simCommit ? ' (' + G.meta.simCommit + ')' : ''}`);
-  for (const s of SLOT_ORDER) {
-    const v = L.gear[s];
-    if (!v || !v[0]) continue;
-    lines.push(`${slotLabel(s)}: ${itemName(v)}${v[3] ? ' (+ ' + v[3] + ')' : ''} — wowhead.com/forever/item=${v[0]}`);
-  }
-  return lines.join('\n');
-}
-
 document.addEventListener('click', e => {
   const t = e.target;
   if (!t.closest('#srcpick')) $('srcpick').open = false;
-  const cs = t.closest('[data-copyset]');
-  if (cs) {
-    (navigator.clipboard ? navigator.clipboard.writeText(setCopyText()) : Promise.reject()).then(
-      () => { const old = cs.textContent; cs.textContent = T('ref_copied'); setTimeout(() => { cs.textContent = old; }, 1400); },
-      () => {});
-    return;
-  }
   const chip = t.closest('#statuschip');
   if (chip) { state.tab = 'refresh'; render(); return; }
   if (t.closest('.srcall')) { SOURCE_KINDS.forEach(k => state.srcs.add(k)); renderSources(); if (state.tab === 'gear') renderCards(); return; }

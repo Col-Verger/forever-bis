@@ -25,6 +25,8 @@ a two-hand base only considers two-handers, a one-hand base only one-handers.
 import argparse, json, os, re, subprocess, sys, tempfile, time
 from concurrent.futures import ThreadPoolExecutor
 
+from spec_routes import SPEC_ROUTES
+
 SLOTS = ['head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands', 'waist', 'legs', 'feet',
          'finger1', 'finger2', 'trinket1', 'trinket2', 'main_hand', 'off_hand', 'ranged']
 STAT_IDX = {'strength': 0, 'agility': 1, 'stamina': 2, 'intellect': 3, 'attackPower': 14,
@@ -302,6 +304,34 @@ class Build:
                 'debuffs': self.debuffs, 'encounter': req['encounter'],
                 'settings': {'iterations': self.args.final_iterations, 'fixedRngSeed': self.args.seed}}
 
+    def share_link(self, settings_path):
+        """A WoWSims URL that opens this exact set (gear, talents, buffs, rotation)."""
+        exe = getattr(self.args, 'linkhash', '') or ''
+        route = SPEC_ROUTES.get(self.id)
+        if not (route and exe and os.path.exists(exe)):
+            return None
+        try:
+            proc = subprocess.run([exe, '-in', settings_path, '-route', route, '-url'],
+                                  capture_output=True, text=True, timeout=60)
+            if proc.returncode == 0 and proc.stdout.strip():
+                return proc.stdout.strip()
+            print(f'  share link failed: {proc.stderr.strip()[:200]}', flush=True)
+        except Exception as e:
+            print(f'  share link failed: {e}', flush=True)
+        return None
+
+    def settings_export_siml(self, gear, tmpdir):
+        """Same IndividualSimSettings JSON for a .siml build: the sim's own parser resolves the setup."""
+        src = os.path.join(tmpdir, f'{self.id}-export.siml')
+        with open(src, 'w', encoding='utf-8') as f:
+            f.write(self.siml(gear, self.args.final_iterations, self.args.seed))
+        proc = subprocess.run([self.args.wowsimcli, 'siml', 'parse', '-json', src],
+                              capture_output=True, text=True, timeout=600)
+        if proc.returncode != 0 or not proc.stdout.strip():
+            raise RuntimeError(f'{self.id}: siml parse failed ({proc.returncode}):\n{proc.stderr[-1500:]}')
+        os.remove(src)
+        return json.loads(proc.stdout)
+
     def siml(self, gear, iters, seed):
         """A full-setup .siml from the build's template: repo APL via use + our sim and gear sections."""
         cfg = self.cfg
@@ -475,6 +505,9 @@ def main():
     ap.add_argument('--jobs', type=int, default=1)
     ap.add_argument('--dry-run', action='store_true', help='write one sample payload per build and exit (format smoke test)')
     ap.add_argument('--validate', action='store_true', help='run only the base sim of each build')
+    ap.add_argument('--settings-only', action='store_true',
+                    help='no sims: rewrite runs/<id>.settings.json from the gear already in runs/ (share links)')
+    ap.add_argument('--linkhash', default='', help='linkhash binary: also write a WoWSims share link into each meta')
     ap.add_argument('--verbose', action='store_true')
     a = ap.parse_args()
     if os.path.exists(a.wowsimcli):
@@ -515,6 +548,20 @@ def main():
             raise SystemExit(f'{b.id}: pool file {pools_path} not found — run tools/make_pools.py first')
         full_pool = {k: v for k, v in json.load(open(pools_path, encoding='utf-8')).items() if not k.startswith('_')}
 
+        if a.settings_only:
+            tmp = tempfile.mkdtemp(prefix='bis')
+            for budget in budgets:
+                lid = f'{b.id}-{budget}'
+                gp = os.path.join(a.out, f'{lid}.gear.json')
+                if not os.path.exists(gp):
+                    continue
+                gear = json.load(open(gp, encoding='utf-8'))
+                settings = b.settings_export(gear) if b.mode == 'protojson' else b.settings_export_siml(gear, tmp)
+                json.dump(settings, open(os.path.join(a.out, f'{lid}.settings.json'), 'w', encoding='utf-8'), indent=1)
+                print(f'{lid}: settings written')
+            summary.append({'id': b.id, 'status': 'settings-only'})
+            continue
+
         if a.dry_run:
             payload = (json.dumps(b.request(b.base_gear, a.search_iterations, a.seed), indent=1)
                        if b.mode == 'protojson' else b.siml(b.base_gear, a.search_iterations, a.seed))
@@ -549,6 +596,8 @@ def main():
             gear, rows_out = search(b, tmp, pool)
             base, guide = finalize(b, gear, rows_out, tmp, pool)
             lid = f'{b.id}-{budget}'
+            json.dump(gear, open(os.path.join(a.out, f'{lid}.gear.json'), 'w', encoding='utf-8'), indent=1)
+            json.dump(guide, open(os.path.join(a.out, f'{lid}.guide.json'), 'w', encoding='utf-8'), indent=1)
             meta = {
                 'status': 'ok', 'budget': budget, 'metric': b.metric, 'value': round(base.avg, 2),
                 'margin': round(1.96 * base.sem(), 2), 'hps': round(base.hps, 1), 'threat': round(base.threat, 1),
@@ -556,14 +605,21 @@ def main():
                 'talents': b.talents, 'iterations': a.final_iterations, 'seed': a.seed,
                 'searchIterations': a.search_iterations, 'warnings': b.warnings,
             }
+            settings_path = os.path.join(a.out, f'{lid}.settings.json')
+            try:
+                settings = b.settings_export(gear) if b.mode == 'protojson' else b.settings_export_siml(gear, tmp)
+                json.dump(settings, open(settings_path, 'w', encoding='utf-8'), indent=1)
+                link = b.share_link(settings_path)
+                if link:
+                    meta['simLink'] = link
+            except SystemExit:
+                raise
+            except Exception as e:
+                print(f'  settings export failed: {e}', flush=True)
             link_path = os.path.join(a.out, f'{b.id}.link.txt')
             if os.path.exists(link_path):  # optional: a WoWSims share link, saved by hand once
                 meta['simLink'] = open(link_path, encoding='utf-8').read().strip()
-            json.dump(gear, open(os.path.join(a.out, f'{lid}.gear.json'), 'w', encoding='utf-8'), indent=1)
-            json.dump(guide, open(os.path.join(a.out, f'{lid}.guide.json'), 'w', encoding='utf-8'), indent=1)
             json.dump(meta, open(os.path.join(a.out, f'{lid}.meta.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-            if b.mode == 'protojson':
-                json.dump(b.settings_export(gear), open(os.path.join(a.out, f'{lid}.settings.json'), 'w', encoding='utf-8'), indent=1)
             summary.append({'id': lid, 'status': 'ok', 'value': meta['value'], 'metric': b.metric})
             print(f'  done: {meta["value"]} {b.metric.upper()}', flush=True)
 
