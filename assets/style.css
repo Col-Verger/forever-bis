@@ -211,6 +211,24 @@ tbody.grp.flash{outline:2px solid var(--acc);outline-offset:-2px;border-radius:6
 
 /* ---------- matrix ---------- */
 .sub{color:var(--mut);margin:18px 0}
+.slbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:4px 0 12px}
+.slviews{display:flex;border:1px solid var(--line2);border-radius:8px;overflow:hidden}
+.slviews button{background:none;border:0;color:var(--mut);padding:6px 12px;cursor:pointer;font:600 12px Inter}
+.slviews button.on{background:var(--acc);color:#10131a}
+.slnav{display:flex;align-items:center;gap:10px}
+.slnav button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line2);background:var(--bg3);color:var(--fg);font:16px/1 Inter;cursor:pointer}
+.slnav button:hover{border-color:var(--acc)}
+#slcount{color:var(--mut);font:12px Inter;font-variant-numeric:tabular-nums;min-width:56px;text-align:center}
+.slrack{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.slrack::-webkit-scrollbar{display:none}
+.slcard{flex:0 0 100%;scroll-snap-align:start;border:1px solid var(--line);border-radius:var(--rad);background:var(--bg2);padding:14px 16px}
+.slchead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:10px}
+.slchead h3{margin:2px 0 0;font-size:28px;line-height:1;color:var(--acc);font-family:'Barlow Condensed','Oswald';font-variant-numeric:tabular-nums}
+.slchead h3 span{font-size:11px;color:var(--mut);font-family:Inter;font-weight:600}
+.slgear{display:grid;grid-template-columns:1fr 1fr;gap:7px 22px}
+.srow{display:flex;gap:10px;align-items:center;min-width:0}
+.srow .lbl{color:var(--mut2);font-size:10px;text-transform:uppercase;letter-spacing:.7px;width:92px;flex:none}
+@media (max-width:760px){ .slgear{grid-template-columns:1fr} }
 .matrix{overflow-x:auto}
 .matrix table{border-collapse:collapse;min-width:900px}
 .matrix th,.matrix td{padding:9px 12px;border:1px solid var(--line);font-size:12.5px;text-align:left;vertical-align:top}

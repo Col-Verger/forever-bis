@@ -100,6 +100,12 @@ const STR = {
   open_sim_bis: { ru: 'Открыть BiS-сет в WoWSims ↗', en: 'Open the BiS set in WoWSims ↗' },
   stats_title: { ru: 'Статы в симуляции', en: 'Stats in the sim' },
   stats_note: { ru: 'с рейд-бафами и расходниками', en: 'with raid buffs and consumables' },
+  open_current: { ru: 'Открыть текущий сет в WoWSims ↗', en: 'Open the current set in WoWSims ↗' },
+  view_slider: { ru: 'Слайдер', en: 'Slider' },
+  view_table: { ru: 'Таблица', en: 'Table' },
+  set_counter: { ru: '{i} из {n}', en: '{i} of {n}' },
+  prev_set: { ru: 'Предыдущий сет', en: 'Previous set' },
+  next_set: { ru: 'Следующий сет', en: 'Next set' },
   every_slot: { ru: 'Каждая опция, слот за слотом', en: 'Every option, slot by slot' },
   matrix_sub: { ru: 'Все сеты бок о бок. Ряды без подсветки одинаковы во всех сетах; подсвеченная ячейка отличается от самого частого выбора.', en: 'Every loadout side by side. Faded rows are the same in every loadout; a shaded cell differs from the most common pick.' },
   best: { ru: 'Лучший', en: 'Best' },
@@ -152,7 +158,7 @@ const state = {
   lang: localStorage.getItem('bislang') || 'ru',
   cls: G.classes[0].id, spec: G.classes[0].specs[0].id,
   budget: 'max', topn: 4, q: '', srcs: new Set(SOURCE_KINDS), tab: 'gear',
-  pick: {}, pickLid: ''
+  pick: {}, pickLid: '', matrixView: 'slider'
 };
 const fromHash = () => {
   const p = new URLSearchParams(location.hash.slice(1));
@@ -374,6 +380,98 @@ function setChanged(bis, gear) {
   return Object.keys({ ...a, ...b }).some(k => (a[k] || 0) !== (b[k] || 0));
 }
 
+// ---------- a WoWSims link for the set on the doll ----------
+// The share link is the settings as binary protobuf, zlib-deflated, base64. We keep
+// the BiS link's bytes (buffs, encounter, rotation, talents untouched) and replace
+// only player.equipment (IndividualSimSettings.player = 3, Player.equipment = 3,
+// EquipmentSpec.items = 1, ItemSpec id/enchant/randomSuffix = 1/3/2).
+const SIM_SLOTS = ['head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands', 'waist', 'legs', 'feet',
+  'finger1', 'finger2', 'trinket1', 'trinket2', 'main_hand', 'off_hand', 'ranged'];
+
+function varint(n) {
+  const out = [];
+  n = Math.max(0, n | 0);
+  while (n > 127) { out.push((n & 127) | 128); n >>>= 7; }
+  out.push(n);
+  return out;
+}
+const tagOf = (f, w) => varint((f << 3) | w);
+const fieldVarint = (f, v) => (v ? [...tagOf(f, 0), ...varint(v)] : []);
+const fieldBytes = (f, bytes) => [...tagOf(f, 2), ...varint(bytes.length), ...bytes];
+
+function parseFields(bytes) {
+  const out = [];
+  let i = 0;
+  const readVarint = () => {
+    let shift = 0, val = 0;
+    for (;;) {
+      const b = bytes[i++];
+      val += (b & 0x7f) * 2 ** shift;
+      if (!(b & 0x80)) return val;
+      shift += 7;
+    }
+  };
+  while (i < bytes.length) {
+    const start = i, key = readVarint(), field = Math.floor(key / 8), wire = key & 7;
+    let data = null;
+    if (wire === 0) readVarint();
+    else if (wire === 2) { const len = readVarint(); data = bytes.subarray(i, i + len); i += len; }
+    else if (wire === 5) i += 4;
+    else if (wire === 1) i += 8;
+    else throw new Error('protobuf wire type ' + wire);
+    out.push({ field, wire, data, start, end: i });
+  }
+  return out;
+}
+
+// The message bytes with one field's payload replaced; every other byte is kept as is.
+function replacePayload(bytes, field, make) {
+  const chunks = [];
+  let hit = 0;
+  for (const f of parseFields(bytes)) {
+    if (f.field === field && f.wire === 2) {
+      chunks.push(new Uint8Array(fieldBytes(field, make(f.data))));
+      hit++;
+    } else {
+      chunks.push(bytes.subarray(f.start, f.end));
+    }
+  }
+  if (!hit) throw new Error('field ' + field + ' not found');
+  return new Uint8Array(chunks.flatMap(c => Array.from(c)));
+}
+
+function equipmentBytes(gear) {
+  const out = [];
+  for (const s of SIM_SLOTS) {
+    const v = gear[s] || [];
+    out.push(...fieldBytes(1, [
+      ...fieldVarint(1, v[0] | 0),
+      ...fieldVarint(2, v[2] | 0),
+      ...fieldVarint(3, v[1] | 0),
+    ]));
+  }
+  return new Uint8Array(out);
+}
+
+const inflateBytes = async bytes => new Uint8Array(await new Response(
+  new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer());
+const deflateBytes = async bytes => new Uint8Array(await new Response(
+  new Blob([bytes]).stream().pipeThrough(new CompressionStream('deflate'))).arrayBuffer());
+const b64encode = bytes => {
+  let s = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  return btoa(s);
+};
+
+async function currentSimLink(L, gear) {
+  if (!L || !L.simLink) return null;
+  const [base, hash] = L.simLink.split('#');
+  if (!hash) return null;
+  const bin = await inflateBytes(Uint8Array.from(atob(hash), c => c.charCodeAt(0)));
+  const patched = replacePayload(bin, 3, player => replacePayload(player, 3, () => equipmentBytes(gear)));
+  return base + '#' + b64encode(await deflateBytes(patched));
+}
+
 // ---------- the character window ----------
 function renderDoll() {
   const sp = curSpec(), L = loadout(sp);
@@ -428,7 +526,8 @@ function renderDoll() {
       </dl>
       ${wh && L.wowheadUrl ? `<a class="btn primary" href="${esc(L.wowheadUrl)}" target="_blank" rel="noopener">${esc(T('open_guide'))}</a>` : ''}
       <div class="center-actions">
-        ${L.simLink ? `<a class="btn primary" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T(ps.count ? 'open_sim_bis' : 'open_sim'))}</a>` : ''}
+        ${L.simLink && ps.count ? `<button class="btn primary" type="button" data-opencur="1">${esc(T('open_current'))}</button>` : ''}
+        ${L.simLink ? `<a class="btn${ps.count ? '' : ' primary'}" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T(ps.count ? 'open_sim_bis' : 'open_sim'))}</a>` : ''}
       </div>
       ${!ps.count && L.stats && L.stats.length ? `<div class="statsbox">
         <div class="statstitle">${esc(T('stats_title'))} <span class="statsnote">${esc(T('stats_note'))}</span></div>
@@ -589,15 +688,31 @@ function renderOverview(L) {
 
 
 // ---------- all loadouts ----------
-function renderMatrix() {
+function matrixIds() {
   const C = curClass();
   const prefixes = new Set(C.specs.map(s => s.prefix));
-  const ids = Object.keys(G.loadouts).filter(id => {
+  return Object.keys(G.loadouts).filter(id => {
     const sp = specOfPrefix(id);
     return sp && prefixes.has(sp.prefix);
-  });
+  }).sort((a, b) => a.localeCompare(b));
+}
+
+const matrixBar = slider => `<div class="slbar">
+  <div class="slviews">
+    <button data-matrixview="slider" class="${slider ? 'on' : ''}">${esc(T('view_slider'))}</button>
+    <button data-matrixview="table" class="${slider ? '' : 'on'}">${esc(T('view_table'))}</button>
+  </div>
+  ${slider ? `<div class="slnav"><button data-slide="-1" aria-label="${esc(T('prev_set'))}">‹</button><span id="slcount"></span><button data-slide="1" aria-label="${esc(T('next_set'))}">›</button></div>` : ''}
+</div>`;
+
+function renderMatrix() {
+  const ids = matrixIds();
   if (!ids.length) { $('matrix').innerHTML = `<div class="empty-note">${esc(T('empty_title'))}</div>`; return; }
-  ids.sort((a, b) => a.localeCompare(b));
+  if (state.matrixView === 'table') renderMatrixTable(ids);
+  else renderMatrixSlider(ids);
+}
+
+function renderMatrixTable(ids) {
   const head = ids.map(id => {
     const sp = specOfPrefix(id);
     const bl = /-cheap$/.test(id) ? ' · ' + T('budget_cheap') : /-max$/.test(id) ? ' · ' + T('budget_max') : '';
@@ -613,7 +728,38 @@ function renderMatrix() {
     return `<tr class="${same ? 'same' : ''}"><td class="sl">${esc(slotLabel(s))}</td>${cells.map(c =>
       c[0] ? `<td class="${!same && c[0] !== common ? 'odd' : ''}">${itemHTML(c, true)}</td>` : '<td>—</td>').join('')}</tr>`;
   }).join('');
-  $('matrix').innerHTML = `<table><thead><tr><th class="sl">${esc(lang() === 'ru' ? 'Слот' : 'Slot')}</th>${head}</tr></thead><tbody>${rows}</tbody></table>`;
+  $('matrix').innerHTML = matrixBar(false) +
+    `<div class="matrix-table"><table><thead><tr><th class="sl">${esc(lang() === 'ru' ? 'Слот' : 'Slot')}</th>${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function renderMatrixSlider(ids) {
+  const cards = ids.map(id => {
+    const L = G.loadouts[id], sp = specOfPrefix(id);
+    const bl = /-cheap$/.test(id) ? ' · ' + T('budget_cheap') : /-max$/.test(id) ? ' · ' + T('budget_max') : '';
+    const gearRows = SLOT_ORDER.filter(s => L.gear[s] && L.gear[s][0]).map(s =>
+      `<div class="srow"><span class="lbl">${esc(slotLabel(s))}</span>${itemHTML(L.gear[s], true)}</div>`).join('');
+    return `<article class="slcard">
+      <div class="slchead">
+        <div><span class="small">${esc(sp ? L2(sp.name) : '')}${esc(bl)}</span>
+          <h3>${fmtMetric(L.value)} <span>${L.metric === 'hps' ? 'HPS' : 'DPS'}</span></h3></div>
+        ${L.source === 'wowhead' ? `<span class="status-badge wow">${esc(T('wowhead_badge'))}</span>` : ''}
+      </div>
+      <div class="slgear">${gearRows}</div>
+    </article>`;
+  });
+  $('matrix').innerHTML = matrixBar(true) + `<div class="slrack" id="slrack">${cards.join('')}</div>`;
+
+  const rack = $('slrack'), n = ids.length;
+  const width = () => (rack.firstElementChild ? rack.firstElementChild.getBoundingClientRect().width + 14 : rack.clientWidth);
+  const count = () => {
+    const i = Math.min(n - 1, Math.max(0, Math.round(rack.scrollLeft / Math.max(1, width()))));
+    if ($('slcount')) $('slcount').textContent = T('set_counter').replace('{i}', i + 1).replace('{n}', n);
+  };
+  const cur = Math.max(0, ids.indexOf(loadoutKey(curSpec())));
+  if (cur > 0) rack.scrollLeft = Math.round(cur * width());
+  count();
+  let raf = 0;
+  rack.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(count); }, { passive: true });
 }
 const specOfPrefix = p => G.classes.flatMap(c => c.specs).find(s => s.prefix === p || s.prefix + '-max' === p || s.prefix + '-cheap' === p);
 
@@ -782,6 +928,34 @@ document.addEventListener('click', e => {
   if (t.closest('[data-pickreset]')) {
     state.pick = {};
     renderDoll(); renderCards();
+    return;
+  }
+  const openCur = t.closest('[data-opencur]');
+  if (openCur) {
+    const sp = curSpec(), L = loadout(sp);
+    if (L) {
+      const win = window.open('', '_blank');
+      openCur.disabled = true;
+      currentSimLink(L, effectiveGear(L))
+        .then(url => {
+          if (!url) throw new Error('no share link for this set');
+          if (win) win.location.replace(url); else location.href = url;
+        })
+        .catch(err => { console.warn('current set link:', err); if (win) win.close(); })
+        .finally(() => { openCur.disabled = false; });
+    }
+    return;
+  }
+  const mv = t.closest('[data-matrixview]');
+  if (mv) { state.matrixView = mv.dataset.matrixview; renderMatrix(); return; }
+  const sl = t.closest('[data-slide]');
+  if (sl) {
+    const rack = $('slrack');
+    if (rack) {
+      const card = rack.firstElementChild;
+      const w = card ? card.getBoundingClientRect().width + 14 : rack.clientWidth;
+      rack.scrollBy({ left: +sl.dataset.slide * w, behavior: 'smooth' });
+    }
     return;
   }
   const pickRow = t.closest('tr[data-pick]');
