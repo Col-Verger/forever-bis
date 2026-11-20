@@ -954,7 +954,7 @@ document.addEventListener('click', e => {
     if (rack) {
       const card = rack.firstElementChild;
       const w = card ? card.getBoundingClientRect().width + 14 : rack.clientWidth;
-      rack.scrollBy({ left: +sl.dataset.slide * w, behavior: 'smooth' });
+      rack.scrollTo({ left: rack.scrollLeft + (+sl.dataset.slide) * w });
     }
     return;
   }

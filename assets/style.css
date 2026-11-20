@@ -219,7 +219,7 @@ tbody.grp.flash{outline:2px solid var(--acc);outline-offset:-2px;border-radius:6
 .slnav button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line2);background:var(--bg3);color:var(--fg);font:16px/1 Inter;cursor:pointer}
 .slnav button:hover{border-color:var(--acc)}
 #slcount{color:var(--mut);font:12px Inter;font-variant-numeric:tabular-nums;min-width:56px;text-align:center}
-.slrack{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.slrack{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding-bottom:4px}
 .slrack::-webkit-scrollbar{display:none}
 .slcard{flex:0 0 100%;scroll-snap-align:start;border:1px solid var(--line);border-radius:var(--rad);background:var(--bg2);padding:14px 16px}
 .slchead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:10px}
