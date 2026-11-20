@@ -3,12 +3,12 @@
 'use strict';
 const G = window.GUIDE;
 const ICON = (n, size = 'medium') => `https://wow.zamimg.com/images/wow/icons/${size}/${n || 'inv_misc_questionmark'}.jpg`;
-const WH = id => (lang() === 'ru' ? `https://www.wowhead.com/ru/forever/item=${id}` : `https://www.wowhead.com/forever/item=${id}`);
-const WH_SEARCH = q => (lang() === 'ru' ? 'https://www.wowhead.com/ru/forever/search?q=' : 'https://www.wowhead.com/forever/search?q=') + encodeURIComponent(q);
+const WH = id => (lang() === 'ru' ? `https://www.wowhead.com/forever/ru/item=${id}` : `https://www.wowhead.com/forever/item=${id}`);
+const WH_SEARCH = q => (lang() === 'ru' ? 'https://www.wowhead.com/forever/ru/search?q=' : 'https://www.wowhead.com/forever/search?q=') + encodeURIComponent(q);
 // The sim stores SpellItemEnchantment ids, which Wowhead does not serve as pages; enchant names
 // resolve to their item pages through Wowhead search.
 const enchantHref = label => WH_SEARCH(String(label).replace(/\s*\(.*$/, '').trim());
-const WH_TALENTS = (cls, t) => `https://www.wowhead.com/forever/talent-calc/${cls}/${t}`;
+const WH_TALENTS = (cls, t) => (lang() === 'ru' ? `https://www.wowhead.com/forever/ru/talent-calc/${cls}/${t}` : `https://www.wowhead.com/forever/talent-calc/${cls}/${t}`);
 const SIM_HOME = 'https://www.wowsims.com/forever/';
 const CLASS_ICON = id => `https://wow.zamimg.com/images/wow/icons/medium/classicon_${id}.jpg`;
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);

@@ -130,6 +130,24 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "drop: Stratholme"
+  },
+  {
+   "id": 18421,
+   "name": "Backwood Helm",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: The Treasure of the Shen'dralar | quest: The Treasure of the Shen'dralar"
+  },
+  {
+   "id": 280019,
+   "name": "Dinofrill Casque",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
   }
  ],
  "neck": [
@@ -386,6 +404,78 @@
    "twoHand": false,
    "tier": "max",
    "src": "pvp"
+  },
+  {
+   "id": 227003,
+   "name": "Pauldrons of The Five Thunders",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 227011,
+   "name": "Mantle of The Five Thunders",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 227019,
+   "name": "Spaulders of The Five Thunders",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 14548,
+   "name": "Royal Cap Spaulders",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 18686,
+   "name": "Bone Golem Shoulders",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 279903,
+   "name": "Diemetradon Scale Spaulders",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Panic at the Digsite"
+  },
+  {
+   "id": 279904,
+   "name": "Crystalline Pauldrons",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Crystalline Elements"
+  },
+  {
+   "id": 13133,
+   "name": "Drakesfire Epaulets",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
   }
  ],
  "back": [
@@ -514,6 +604,15 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 13340,
+   "name": "Cape of the Black Baron",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
   }
  ],
  "chest": [
@@ -642,6 +741,33 @@
    "twoHand": false,
    "tier": "max",
    "src": "pvp"
+  },
+  {
+   "id": 16666,
+   "name": "Vest of Elements",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 16674,
+   "name": "Beaststalker's Tunic",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 280013,
+   "name": "Frostfang Mail Vest",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
   }
  ],
  "wrist": [
@@ -770,6 +896,33 @@
    "twoHand": false,
    "tier": "max",
    "src": "vendor: Sergeant Ba'sha | pvp"
+  },
+  {
+   "id": 13528,
+   "name": "Twilight Void Bracers",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
+  },
+  {
+   "id": 18394,
+   "name": "Demon Howl Wristguards",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  },
+  {
+   "id": 18508,
+   "name": "Swift Flight Bracers",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "crafted: 8"
   }
  ],
  "hands": [
@@ -898,6 +1051,60 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 227014,
+   "name": "Grasp of The Five Thunders",
+   "q": 4,
+   "ilvl": 55,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 227022,
+   "name": "Fists of The Five Thunders",
+   "q": 4,
+   "ilvl": 55,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 17007,
+   "name": "Stonerender Gauntlets",
+   "q": 4,
+   "ilvl": 51,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 13344,
+   "name": "Dracorian Gauntlets",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
+  },
+  {
+   "id": 18527,
+   "name": "Harmonious Gauntlets",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  },
+  {
+   "id": 22343,
+   "name": "Handguards of Savagery",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
   }
  ],
  "waist": [
@@ -1026,6 +1233,15 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 18676,
+   "name": "Sash of the Windreaver",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Silithus"
   }
  ],
  "legs": [
@@ -1154,6 +1370,60 @@
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
+  },
+  {
+   "id": 227005,
+   "name": "Kilt of The Five Thunders",
+   "q": 3,
+   "ilvl": 66,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 227012,
+   "name": "Leggings of The Five Thunders",
+   "q": 3,
+   "ilvl": 66,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 227020,
+   "name": "Legplates of The Five Thunders",
+   "q": 3,
+   "ilvl": 66,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 12964,
+   "name": "Tristam Legguards",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 18524,
+   "name": "Leggings of Destruction",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  },
+  {
+   "id": 14522,
+   "name": "Maelstrom Leggings",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
   }
  ],
  "feet": [
@@ -1282,6 +1552,51 @@
    "twoHand": false,
    "tier": "max",
    "src": "rep: 509 lvl 7 | vendor: Samuel Hawke"
+  },
+  {
+   "id": 280017,
+   "name": "Octoclaw Chain Boots",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 18047,
+   "name": "Flame Walkers",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 18379,
+   "name": "Odious Greaves",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  },
+  {
+   "id": 18694,
+   "name": "Shadowy Mail Greaves",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 13260,
+   "name": "Wind Dancer Boots",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
   }
  ],
  "finger1": [
@@ -1410,6 +1725,24 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "?"
+  },
+  {
+   "id": 942,
+   "name": "Freezing Band",
+   "q": 4,
+   "ilvl": 52,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 275972,
+   "name": "Tracker's Signet of Ferocity",
+   "q": 3,
+   "ilvl": 68,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "rep: 2819 lvl 6"
   }
  ],
  "finger2": [
@@ -1538,6 +1871,24 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "?"
+  },
+  {
+   "id": 942,
+   "name": "Freezing Band",
+   "q": 4,
+   "ilvl": 52,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 275972,
+   "name": "Tracker's Signet of Ferocity",
+   "q": 3,
+   "ilvl": 68,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "rep: 2819 lvl 6"
   }
  ],
  "trinket1": [
@@ -1922,6 +2273,69 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 14555,
+   "name": "Alcor's Sunrazor",
+   "q": 4,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 2243,
+   "name": "Hand of Edward the Odd",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 13937,
+   "name": "Headmaster's Charge",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 944,
+   "name": "Elemental Mage Staff",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 11684,
+   "name": "Ironfoe",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Depths"
+  },
+  {
+   "id": 19324,
+   "name": "The Lobotomizer",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Gaelden Hammersmith | vendor: Thanthaldis Snowgleam"
+  },
+  {
+   "id": 811,
+   "name": "Axe of the Deep Woods",
+   "q": 4,
+   "ilvl": 57,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
   }
  ],
  "off_hand": [

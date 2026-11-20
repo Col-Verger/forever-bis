@@ -386,6 +386,69 @@
    "twoHand": false,
    "tier": "max",
    "src": "pvp"
+  },
+  {
+   "id": 14548,
+   "name": "Royal Cap Spaulders",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 18686,
+   "name": "Bone Golem Shoulders",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 279903,
+   "name": "Diemetradon Scale Spaulders",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Panic at the Digsite"
+  },
+  {
+   "id": 279904,
+   "name": "Crystalline Pauldrons",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Crystalline Elements"
+  },
+  {
+   "id": 13133,
+   "name": "Drakesfire Epaulets",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 275737,
+   "name": "Hermit's Pauldron",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 13538,
+   "name": "Windshrieker Pauldrons",
+   "q": 3,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
   }
  ],
  "back": [
@@ -770,6 +833,15 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "crafted: 8"
+  },
+  {
+   "id": 20481,
+   "name": "Spitfire Bracers",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "crafted: 8"
   }
  ],
  "hands": [
@@ -898,6 +970,42 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "drop: Dire Maul"
+  },
+  {
+   "id": 22343,
+   "name": "Handguards of Savagery",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 22410,
+   "name": "Gauntlets of Deftness",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
+  },
+  {
+   "id": 280026,
+   "name": "Albinofur Grips",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 20477,
+   "name": "Sandstalker Gauntlets",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "crafted: 8"
   }
  ],
  "waist": [
@@ -1026,6 +1134,24 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "drop: Scholomance | drop: Scholomance"
+  },
+  {
+   "id": 18393,
+   "name": "Warpwood Binding",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  },
+  {
+   "id": 18721,
+   "name": "Barrage Girdle",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
   }
  ],
  "legs": [
@@ -1154,6 +1280,42 @@
    "twoHand": false,
    "tier": "max",
    "src": "pvp"
+  },
+  {
+   "id": 18524,
+   "name": "Leggings of Destruction",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  },
+  {
+   "id": 14522,
+   "name": "Maelstrom Leggings",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 15052,
+   "name": "Black Dragonscale Leggings",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 18378,
+   "name": "Silvermoon Leggings",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
   }
  ],
  "feet": [
@@ -1282,6 +1444,33 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "drop: Scholomance"
+  },
+  {
+   "id": 13260,
+   "name": "Wind Dancer Boots",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 13967,
+   "name": "Windreaver Greaves",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 14616,
+   "name": "Bloodmail Boots",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance | drop: Scholomance"
   }
  ],
  "finger1": [
@@ -1410,6 +1599,24 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "?"
+  },
+  {
+   "id": 942,
+   "name": "Freezing Band",
+   "q": 4,
+   "ilvl": 52,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 275972,
+   "name": "Tracker's Signet of Ferocity",
+   "q": 3,
+   "ilvl": 68,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "rep: 2819 lvl 6"
   }
  ],
  "finger2": [
@@ -1538,6 +1745,24 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "?"
+  },
+  {
+   "id": 942,
+   "name": "Freezing Band",
+   "q": 4,
+   "ilvl": 52,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 275972,
+   "name": "Tracker's Signet of Ferocity",
+   "q": 3,
+   "ilvl": 68,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "rep: 2819 lvl 6"
   }
  ],
  "trinket1": [
@@ -1922,6 +2147,33 @@
    "twoHand": true,
    "tier": "cheap",
    "src": "drop: Dire Maul"
+  },
+  {
+   "id": 13937,
+   "name": "Headmaster's Charge",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 944,
+   "name": "Elemental Mage Staff",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 1263,
+   "name": "Brain Hacker",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "?"
   }
  ],
  "ranged": [
@@ -2050,6 +2302,24 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "?"
+  },
+  {
+   "id": 16996,
+   "name": "Gorewood Bow",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: The Scarlet Oracle, Demetria | quest: Order Must Be Restored"
+  },
+  {
+   "id": 18388,
+   "name": "Stoneshatter",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
   }
  ]
 }

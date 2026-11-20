@@ -435,6 +435,19 @@ def main():
     for bid, st in statuses.items():
         print(f'  {bid}: {st}')
 
+    # Data sanity audit (empty slots that should have been filled, duplicated specials...).
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('audit_data', os.path.join(os.path.dirname(__file__), 'audit_data.py'))
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        problems, notes = mod.run_audit(a.runs, a.configs, a.forever)
+        print(f'audit: {len(problems)} problems, {len(notes)} notes')
+        for p in problems[:10]:
+            print('  PROBLEM:', p)
+    except Exception as e:
+        print(f'audit: skipped ({e})')
+
 
 if __name__ == '__main__':
     main()

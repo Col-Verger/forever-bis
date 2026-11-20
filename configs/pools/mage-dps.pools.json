@@ -386,6 +386,24 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 14139,
+   "name": "Mooncloth Shoulders",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "crafted: 11"
+  },
+  {
+   "id": 14633,
+   "name": "Necropile Mantle",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance | drop: Scholomance"
   }
  ],
  "back": [
@@ -898,6 +916,33 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "crafted: 11"
+  },
+  {
+   "id": 18693,
+   "name": "Shivery Handwraps",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 22304,
+   "name": "Ironweave Gloves",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  },
+  {
+   "id": 13253,
+   "name": "Hands of Power",
+   "q": 3,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
   }
  ],
  "waist": [
@@ -1026,6 +1071,24 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "drop: Scholomance"
+  },
+  {
+   "id": 18740,
+   "name": "Thuzadin Sash",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
+  },
+  {
+   "id": 22306,
+   "name": "Ironweave Belt",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
   }
  ],
  "legs": [
@@ -1282,6 +1345,15 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "drop: Stratholme"
+  },
+  {
+   "id": 13391,
+   "name": "The Postmaster's Treads",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
   }
  ],
  "finger1": [
@@ -1410,6 +1482,24 @@
    "twoHand": false,
    "tier": "max",
    "src": "rep: 2819 lvl 7"
+  },
+  {
+   "id": 2246,
+   "name": "Myrmidon's Signet",
+   "q": 4,
+   "ilvl": 58,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 942,
+   "name": "Freezing Band",
+   "q": 4,
+   "ilvl": 52,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
   }
  ],
  "finger2": [
@@ -1538,6 +1628,24 @@
    "twoHand": false,
    "tier": "max",
    "src": "rep: 2819 lvl 7"
+  },
+  {
+   "id": 2246,
+   "name": "Myrmidon's Signet",
+   "q": 4,
+   "ilvl": 58,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 942,
+   "name": "Freezing Band",
+   "q": 4,
+   "ilvl": 52,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
   }
  ],
  "trinket1": [
@@ -1922,6 +2030,60 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 14555,
+   "name": "Alcor's Sunrazor",
+   "q": 4,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 13937,
+   "name": "Headmaster's Charge",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 944,
+   "name": "Elemental Mage Staff",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 19324,
+   "name": "The Lobotomizer",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Gaelden Hammersmith | vendor: Thanthaldis Snowgleam"
+  },
+  {
+   "id": 10847,
+   "name": "Dragon's Call",
+   "q": 4,
+   "ilvl": 57,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: The Temple of Atal'Hakkar"
+  },
+  {
+   "id": 2244,
+   "name": "Krol Blade",
+   "q": 4,
+   "ilvl": 56,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
   }
  ],
  "off_hand": [

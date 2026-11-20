@@ -145,7 +145,10 @@ def main():
                             continue
                     cands.append(it)
                 cands.sort(key=lambda x: (-(x.get('quality') or 0), -x.get('scalingOptions', {}).get('0', {}).get('ilvl', 0), x['id']))
-                cands = cands[:pool.get('maxPerSlot', 14)]
+                top = cands[:pool.get('maxPerSlot', 14)]
+                # Never let max-tier items crowd out the cheap budget: keep a cheap slice too.
+                cheap_extra = [c for c in cands if item_tier(c) == 'cheap'][:8]
+                cands = top + [c for c in cheap_extra if c not in top]
                 if include:
                     for iid in include:
                         it = next((x for x in items if x['id'] == iid), None)
