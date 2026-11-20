@@ -66,11 +66,15 @@ const STR = {
   ref_ok_line: { ru: 'Прогон', en: 'Last run' },
   ref_commit_line: { ru: 'Симулятор', en: 'Simulator' },
   ref_auto: { ru: 'Как числа попадают на сайт', en: 'How numbers get here' },
-  ref_auto_body: { ru: 'Сайт — статическая страница: сам он симы не считает. Числа приносит пайплайн: каждое утро он собирает свежий WoWSims Forever из GitHub, прогоняет каждый спек и пересобирает страницу. Всё происходит автоматически.', en: 'This site is static: it cannot run sims itself. A pipeline brings the numbers: every morning it builds fresh WoWSims Forever from GitHub, sims every spec and rebuilds the page. Everything happens automatically.' },
+  ref_auto_body: { ru: 'Сайт — статическая страница: сам он симы не считает. Числа приносит пайплайн: каждое утро он собирает свежий WoWSims Forever из GitHub, прогоняет каждый спек и пересобирает страницу. Всё происходит автоматически. Хил-спеки сим пока не поддерживает — их сеты взяты из гайдов Wowhead и помечены бейджем; когда в WoWSims появится пресет, пайплайн сам заменит такой сет симмированными числами.', en: 'This site is static: it cannot run sims itself. A pipeline brings the numbers: every morning it builds fresh WoWSims Forever from GitHub, sims every spec and rebuilds the page. Everything happens automatically. Healer specs are not supported by the sim yet — their sets come from Wowhead guides and carry a badge; when WoWSims ships a preset, the pipeline replaces them with simmed numbers on its own.' },
   ref_new_title: { ru: 'Как читать числа', en: 'Reading the numbers' },
   ref_new_body: { ru: 'Каждое число на странице — реальный прогон симулятора, с погрешностью ± на полосах. Проверить любое число можно самостоятельно: скачай runs/<спек>.settings.json из репозитория и импортируй его на wowsims.com — увидишь тот же сет и тот же босс.', en: 'Every number on this page is a real simulator run, with a ± margin on the bars. Any number can be checked: grab runs/<spec>.settings.json from the repo and import it on wowsims.com — same set, same boss.' },
   ref_copy: { ru: 'Копировать', en: 'Copy' },
   ref_copied: { ru: 'Скопировано', en: 'Copied' },
+  no_sim: { ru: 'BiS по гайду Wowhead · сим пока не поддерживает спек', en: 'Wowhead guide BiS · the sim does not support this spec yet' },
+  wowhead_badge: { ru: 'Wowhead-гайд', en: 'Wowhead guide' },
+  wowhead_note: { ru: 'Этот сет собран по гайду Wowhead: симулятор пока не поддерживает спек, поэтому Δ-чисел нет. Как только WoWSims добавит пресет, ежедневный пайплайн заменит этот сет симами автоматически.', en: 'This set comes from a Wowhead guide: the simulator does not support this spec yet, so there are no DPS deltas. When WoWSims ships a preset, the daily pipeline replaces it with sims automatically.' },
+  open_guide: { ru: 'Открыть гайд Wowhead ↗', en: 'Open the Wowhead guide ↗' },
   copy_set: { ru: 'Скопировать сет', en: 'Copy the set' },
   cls: { ru: 'Класс', en: 'Class' },
   spec: { ru: 'Спек', en: 'Spec' },
@@ -156,6 +160,7 @@ const loadoutKey = sp => {
   const P = sp.prefix, L = G.loadouts;
   if (L[`${P}-${state.budget}`]) return `${P}-${state.budget}`;
   if (L[`${P}-max`]) return `${P}-max`;
+  if (L[`${P}-wowhead`]) return `${P}-wowhead`;
   return P;
 };
 const loadout = sp => G.loadouts[loadoutKey(sp || curSpec())];
@@ -278,22 +283,26 @@ function renderDoll() {
         <p class="blurb">${esc(L2(sp.note))}</p>
       </div>`;
     }
+    const wh = L.source === 'wowhead';
     return `<div>
-      <span class="small">${esc(L2(curClass().name))}</span><h2>${esc(L2(L.title || sp.name))}</h2>
+      <span class="small">${esc(L2(curClass().name))}</span><h2>${esc(L2(L.title || sp.name))}${wh ? ` <span class="status-badge wow">${esc(T('wowhead_badge'))}</span>` : ''}</h2>
       <p class="target">${esc(L2(G.meta.target))}</p>
-      <div class="dps" ${L.margin ? `title="±${L.margin} (95%)"` : ''}><b>${fmtMetric(L.value)}</b><span>${esc(metricName(L.metric))}</span>
-        ${L.hit ? `<span class="hps-n">${esc(L.hit)}</span>` : ''}</div>
+      ${wh
+        ? `<div class="dps wowsource"><b>—</b><span>${esc(T('no_sim'))}</span></div>`
+        : `<div class="dps" ${L.margin ? `title="±${L.margin} (95%)"` : ''}><b>${fmtMetric(L.value)}</b><span>${esc(metricName(L.metric))}</span>
+        ${L.hit ? `<span class="hps-n">${esc(L.hit)}</span>` : ''}</div>`}
       <dl class="facts">
         <dt>${esc(T('build'))}</dt><dd>${esc(L2(L.build))}</dd>
-        <dt>${esc(T('talents'))}</dt><dd><a href="${esc(WH_TALENTS(state.cls, L.talents))}" target="_blank" rel="noopener" title="Wowhead"><code>${esc(L.talents)}</code></a></dd>
-        <dt>${esc(T('rotation'))}</dt><dd>${esc(L2(L.rotation))}</dd>
+        ${!wh && L.talents ? `<dt>${esc(T('talents'))}</dt><dd><a href="${esc(WH_TALENTS(state.cls, L.talents))}" target="_blank" rel="noopener" title="Wowhead"><code>${esc(L.talents)}</code></a></dd>` : ''}
+        ${!wh && L.rotation ? `<dt>${esc(T('rotation'))}</dt><dd>${esc(L2(L.rotation))}</dd>` : ''}
         ${L.vsOther ? `<dt>${esc(T('vs_other'))}</dt><dd>${esc(L2(L.vsOther))}</dd>` : ''}
       </dl>
       ${L.simLink ? `<a class="btn primary" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T('open_sim'))}</a>` : ''}
+      ${wh && L.wowheadUrl ? `<a class="btn primary" href="${esc(L.wowheadUrl)}" target="_blank" rel="noopener">${esc(T('open_guide'))}</a>` : ''}
       <div class="center-actions">
         <button class="btn" type="button" data-copyset="1">${esc(T('copy_set'))}</button>
       </div>
-      <p class="blurb">${esc(L2(sp.note))}</p>
+      <p class="blurb">${esc(wh ? T('wowhead_note') : L2(sp.note))}</p>
     </div>`;
   };
   $('doll').innerHTML = `
@@ -364,7 +373,11 @@ const glabel = id => slotLabel(id === 'two_hand' ? 'two_hand' : id === 'weapons'
 function renderCards() {
   const L = loadout();
   if (!L || !L.groups || !L.groups.length) {
-    $('cards').innerHTML = `<div class="empty-note">${esc(T('empty_title'))} — ${esc(T('empty_body'))}</div>`;
+    if (L && L.source === 'wowhead') {
+      $('cards').innerHTML = `<div class="empty-note">${esc(T('wowhead_note'))}${L.wowheadUrl ? ` <a href="${esc(L.wowheadUrl)}" target="_blank" rel="noopener">${esc(T('open_guide'))}</a>` : ''}</div>`;
+    } else {
+      $('cards').innerHTML = `<div class="empty-note">${esc(T('empty_title'))} — ${esc(T('empty_body'))}</div>`;
+    }
     $('ovd').hidden = true;
     return;
   }
@@ -468,7 +481,7 @@ function renderHowto() {
     <div class="kpis">
       <div class="kpi"><b>${esc(T('howto_hit_title'))}</b><span>${esc(L2(notes.hit) || '—')}</span></div>
       <div class="kpi"><b>${esc(T('howto_prio_title'))}</b><span>${esc(L2(notes.stat) || '—')}</span></div>
-      <div class="kpi"><b>${esc(T('howto_best_title'))}</b><span>${L ? `${fmtMetric(L.value)} ${esc(metricName(L.metric))}` : esc(T('howto_best_none'))}</span></div>
+      <div class="kpi"><b>${esc(T('howto_best_title'))}</b><span>${L ? (L.source === 'wowhead' ? esc(T('wowhead_badge')) : `${fmtMetric(L.value)} ${esc(metricName(L.metric))}`) : esc(T('howto_best_none'))}</span></div>
       <div class="kpi"><b>${esc(T('howto_nums_title'))}</b><span>${esc(T('howto_nums_body'))}${G.meta.simmed ? ' · ' + esc(fmtSimmed()) : ''}</span></div>
     </div>
     <div class="center-actions">

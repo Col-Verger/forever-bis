@@ -119,6 +119,9 @@ small{color:var(--mut)}
 .empty-note b{color:var(--warn)}
 .empty-note code{display:inline-block;margin-top:8px}
 .status-badge{display:inline-block;border:1px solid var(--warn);color:var(--warn);border-radius:99px;padding:2px 10px;font-size:11px;font-weight:600}
+.status-badge.wow{border-color:var(--acc);color:var(--acc)}
+.dps.wowsource{border-style:dashed}
+.dps.wowsource b{color:var(--mut)}
 
 /* ---------- key ---------- */
 .key{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:6px 0 16px;padding:9px 12px;background:var(--bg2);border:1px solid var(--line);border-radius:var(--rad);font-size:11.5px;color:var(--mut)}

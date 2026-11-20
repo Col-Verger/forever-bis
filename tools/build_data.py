@@ -339,6 +339,52 @@ def main():
     today = datetime.date.today().isoformat()
     now_utc = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%MZ')
 
+    # Wowhead-guide BiS fallback for specs the simulator does not support yet (healers).
+    # Sims always win: a spec with any sim loadout ignores these lists.
+    wh_path = os.path.join(os.path.dirname(__file__), 'wowhead_bis.json')
+    wh_bis = json.load(open(wh_path, encoding='utf-8')) if os.path.exists(wh_path) else {}
+    SLOT_ITEM_TYPE = {'head': 1, 'neck': 2, 'shoulder': 3, 'back': 4, 'chest': 5, 'wrist': 6, 'hands': 7,
+                      'waist': 8, 'legs': 9, 'feet': 10, 'finger1': 11, 'finger2': 11, 'trinket1': 12,
+                      'trinket2': 12, 'main_hand': 13, 'off_hand': 13, 'ranged': 14}
+
+    def wowhead_gear(entry):
+        gear = {}
+        for slot, ids in (entry.get('slots') or {}).items():
+            want = SLOT_ITEM_TYPE.get(slot)
+            for iid in ids:
+                it = items.get(iid)
+                if it and it.get('type') == want:
+                    gear[slot] = [iid, 0, 0]
+                    break
+        return {s: spec_l(s, v) for s, v in gear.items()}
+
+    for cls in classes_cfg:
+        for sp in cls['specs']:
+            if sp['prefix'] in loadouts:
+                sp['source'] = 'sims'
+                continue
+            entry = wh_bis.get(sp['prefix'])
+            if not entry:
+                continue
+            gear = wowhead_gear(entry)
+            if not gear:
+                continue
+            loadouts[sp['prefix'] + '-wowhead'] = {
+                'title': sp['name'], 'build': {'ru': 'BiS по гайду Wowhead', 'en': 'Wowhead guide BiS'},
+                'rotation': {'ru': '', 'en': ''}, 'metric': sp.get('metric', 'hps'),
+                'value': None, 'margin': None, 'talents': '', 'source': 'wowhead',
+                'wowheadUrl': entry.get('url'), 'fetched': entry.get('fetched'),
+                'gear': gear, 'groups': [],
+            }
+            sp['source'] = 'wowhead'
+            for s, spec in gear.items():
+                used_items.add(spec[0])
+                if spec[2]:
+                    used_suffixes.setdefault(spec[0], set()).add(spec[2])
+
+    for lid, L in loadouts.items():
+        L.setdefault('source', 'sims')
+
     # ---------- prose ----------
     howto = {
         'ru': ('<h2>Как одеваться</h2><p>Симы уже расставили всё за тебя: каждая строка карточек — реальный прогон. '
