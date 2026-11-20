@@ -130,6 +130,18 @@ small{color:var(--mut)}
 .status-badge.wow{border-color:var(--acc);color:var(--acc)}
 .dps.wowsource{border-style:dashed}
 .dps.wowsource b{color:var(--mut)}
+.dps.est{border-style:dashed}
+.dps.est b{color:var(--fg)}
+.estline{display:flex;gap:10px;justify-content:center;align-items:baseline;flex-wrap:wrap;font-size:12px;color:var(--mut);margin-top:6px}
+.estline b{font-size:13px;font-variant-numeric:tabular-nums}
+.estline .up{color:var(--good)}
+.estline .down{color:var(--warn)}
+.estnote{margin:8px auto 0;max-width:430px;color:var(--mut2);font-size:11.5px;line-height:1.45;text-align:left}
+tr[data-pick]{cursor:pointer}
+tr[data-pick]:hover{background:rgba(255,255,255,.03)}
+tr.picked{background:var(--acc-soft)}
+.pickmark{display:inline-block;width:10px;height:10px;border-radius:50%;border:1px solid var(--line2);margin-right:8px;vertical-align:middle}
+tr.picked .pickmark{background:var(--acc);border-color:var(--acc)}
 
 /* ---------- key ---------- */
 .key{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:6px 0 16px;padding:9px 12px;background:var(--bg2);border:1px solid var(--line);border-radius:var(--rad);font-size:11.5px;color:var(--mut)}
@@ -140,6 +152,8 @@ small{color:var(--mut)}
 /* ---------- cards ---------- */
 .listhead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:4px}
 .listhead h2{margin:0;font-size:22px;letter-spacing:.4px}
+.listmeta{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.pickhint{color:var(--mut2);font:12px Inter}
 .cards{margin-top:12px}
 table.bt{width:100%;border-collapse:collapse;table-layout:fixed}
 table.bt col.w-item{width:auto}

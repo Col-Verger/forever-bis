@@ -90,6 +90,14 @@ const STR = {
   q_none_short: { ru: 'ничего не найдено', en: 'nothing found' },
   q_none: { ru: 'По этому запросу ничего нет. Попробуй название предмета, босса или зоны — подсказки появляются при вводе.', en: 'Nothing matches. Try an item, boss or zone name — suggestions appear as you type.' },
   q_reset: { ru: 'Сбросить фильтр', en: 'Clear filter' },
+  pick_hint: { ru: 'Клик по строке — примерить предмет', en: 'Click a row to try the item on' },
+  est_label: { ru: 'оценка сборки', en: 'build estimate' },
+  est_reset: { ru: 'Вернуть BiS', en: 'Back to BiS' },
+  est_bis: { ru: 'BiS', en: 'BiS' },
+  est_note: { ru: 'Оценка — сумма вкладов замен, измеренных по одной. Бонусы комплектов и связи статов могут её сдвинуть; точное число даст только новый прогон.', en: 'The estimate adds up the swaps’ measured contributions, one at a time. Set bonuses and stat interactions can shift it; only a new run gives the exact number.' },
+  est_sets: { ru: 'Комплект изменился — оценка особенно грубая.', en: 'A set bonus changed — the estimate is especially rough.' },
+  est_dup: { ru: 'Уникальный предмет выбран дважды:', en: 'A unique item is picked twice:' },
+  open_sim_bis: { ru: 'Открыть BiS-сет в WoWSims ↗', en: 'Open the BiS set in WoWSims ↗' },
   every_slot: { ru: 'Каждая опция, слот за слотом', en: 'Every option, slot by slot' },
   matrix_sub: { ru: 'Все сеты бок о бок. Ряды без подсветки одинаковы во всех сетах; подсвеченная ячейка отличается от самого частого выбора.', en: 'Every loadout side by side. Faded rows are the same in every loadout; a shaded cell differs from the most common pick.' },
   best: { ru: 'Лучший', en: 'Best' },
@@ -141,7 +149,8 @@ const SOURCE_KINDS = ['dungeon', 'quest', 'craft', 'vendor', 'rep', 'bg', 'world
 const state = {
   lang: localStorage.getItem('bislang') || 'ru',
   cls: G.classes[0].id, spec: G.classes[0].specs[0].id,
-  budget: 'max', topn: 4, q: '', srcs: new Set(SOURCE_KINDS), tab: 'gear'
+  budget: 'max', topn: 4, q: '', srcs: new Set(SOURCE_KINDS), tab: 'gear',
+  pick: {}, pickLid: ''
 };
 const fromHash = () => {
   const p = new URLSearchParams(location.hash.slice(1));
@@ -306,12 +315,71 @@ function countRows(L) {
   return { shown, all };
 }
 
+// ---------- trying items on ----------
+const sigOf = move => Object.entries(move || {})
+  .sort((a, b) => a[0].localeCompare(b[0]))
+  .map(([s, v]) => `${s}:${v[0]}:${v[2] || 0}`).join('|');
+
+// What the visitor picked, group by group; an empty map means the BiS set.
+function pickState(L) {
+  let delta = 0, count = 0;
+  for (const [gid, p] of Object.entries(state.pick)) {
+    const g = (L.groups || []).find(x => x.id === gid);
+    if (!g || !p || p.sig === 'best') continue;
+    delta += p.d;
+    count++;
+  }
+  return { delta, count };
+}
+
+function effectiveGear(L) {
+  const gear = { ...L.gear };
+  for (const [gid, p] of Object.entries(state.pick)) {
+    const g = (L.groups || []).find(x => x.id === gid);
+    if (!g || !p || p.sig === 'best') continue;
+    for (const s of Object.keys(g.best || {})) delete gear[s];
+    Object.assign(gear, p.move);
+  }
+  return gear;
+}
+
+// A unique item (a ring, a trinket) cannot be worn twice, even after picks.
+function duplicateUnique(gear) {
+  const seen = new Set();
+  for (const v of Object.values(gear)) {
+    if (!v || !v[0]) continue;
+    const it = item(v[0]);
+    if (!it || !it.unique) continue;
+    if (seen.has(v[0])) return it;
+    seen.add(v[0]);
+  }
+  return null;
+}
+
+// Picking pieces can take the set count up or down, which the per-slot sums miss.
+function setChanged(bis, gear) {
+  const counts = g => {
+    const m = {};
+    for (const v of Object.values(g || {})) {
+      if (!v || !v[0]) continue;
+      const it = item(v[0]);
+      if (it && it.set) m[it.set] = (m[it.set] || 0) + 1;
+    }
+    return m;
+  };
+  const a = counts(bis), b = counts(gear);
+  return Object.keys({ ...a, ...b }).some(k => (a[k] || 0) !== (b[k] || 0));
+}
+
 // ---------- the character window ----------
 function renderDoll() {
   const sp = curSpec(), L = loadout(sp);
+  const lid = L ? loadoutKey(sp) : '';
+  if (state.pickLid !== lid) { state.pickLid = lid; state.pick = {}; }
+  const gear = L ? effectiveGear(L) : null;
   const slotHTML = s => {
     if (!L) return `<div class="slot empty"><span class="icon"></span><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span><span class="nm">—</span></span></div>`;
-    const spec = L.gear[s];
+    const spec = gear[s];
     if (!spec || !spec[0]) return `<div class="slot empty"><span class="icon"></span><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span><span class="nm">—</span></span></div>`;
     const it = item(spec[0]);
     const q = it && it.q >= 3 ? ` q${it.q}` : '';
@@ -337,13 +405,18 @@ function renderDoll() {
       </div>`;
     }
     const wh = L.source === 'wowhead';
+    const ps = pickState(L);
+    const est = L.value == null ? null : L.value + ps.delta;
+    const dup = ps.count ? duplicateUnique(gear) : null;
+    const setsChanged = ps.count ? setChanged(L.gear, gear) : false;
     return `<div>
       <span class="small">${esc(L2(curClass().name))}</span><h2>${esc(L2(L.title || sp.name))}${wh ? ` <span class="status-badge wow">${esc(T('wowhead_badge'))}</span>` : ''}</h2>
       <p class="target">${esc(L2(G.meta.target))}</p>
       ${wh
         ? `<div class="dps wowsource"><b>—</b><span>${esc(T('no_sim'))}</span></div>`
-        : `<div class="dps" ${L.margin ? `title="±${L.margin} (95%)"` : ''}><b>${fmtMetric(L.value)}</b><span>${esc(metricName(L.metric))}</span>
-        ${L.hit ? `<span class="hps-n">${esc(L.hit)}</span>` : ''}</div>`}
+        : `<div class="dps${ps.count ? ' est' : ''}" ${L.margin && !ps.count ? `title="±${L.margin} (95%)"` : ''}><b>${ps.count ? '≈ ' : ''}${fmtMetric(est)}</b><span>${ps.count ? esc(T('est_label')) + ' · ' : ''}${esc(metricName(L.metric))}</span>
+        ${L.hit ? `<span class="hps-n">${esc(L.hit)}</span>` : ''}</div>
+        ${ps.count ? `<div class="estline"><span>${esc(T('est_bis'))} ${fmtMetric(L.value)}</span><b class="${ps.delta >= 0 ? 'up' : 'down'}">${ps.delta >= 0 ? '+' : ''}${ps.delta.toFixed(1)}</b><button class="linkbtn" type="button" data-pickreset="1">${esc(T('est_reset'))}</button></div>` : ''}`}
       <dl class="facts">
         <dt>${esc(T('build'))}</dt><dd>${esc(L2(L.build))}</dd>
         ${!wh && L.talents ? `<dt>${esc(T('talents'))}</dt><dd><a href="${esc(WH_TALENTS(state.cls, L.talents))}" target="_blank" rel="noopener" title="Wowhead"><code>${esc(L.talents)}</code></a></dd>` : ''}
@@ -352,8 +425,9 @@ function renderDoll() {
       </dl>
       ${wh && L.wowheadUrl ? `<a class="btn primary" href="${esc(L.wowheadUrl)}" target="_blank" rel="noopener">${esc(T('open_guide'))}</a>` : ''}
       <div class="center-actions">
-        ${L.simLink ? `<a class="btn primary" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T('open_sim'))}</a>` : ''}
+        ${L.simLink ? `<a class="btn primary" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T(ps.count ? 'open_sim_bis' : 'open_sim'))}</a>` : ''}
       </div>
+      ${ps.count ? `<p class="estnote">${esc(T('est_note'))}${setsChanged ? ' ' + esc(T('est_sets')) : ''}${dup ? ' ' + esc(T('est_dup')) + ' ' + esc(itemName([dup.id])) : ''}</p>` : ''}
       <p class="blurb">${esc(wh ? T('wowhead_note') : L2(sp.note))}</p>
     </div>`;
   };
@@ -397,15 +471,16 @@ function itemHTML(spec, withEnchant) {
     : '';
   return `<span class="it" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}"><img class="icon xs${q}" loading="lazy" src="${ICON(it.icon)}" alt=""><a class="n" style="${qc(it)}" title="${esc(itemName(spec))}" href="${WH(spec[0])}" target="_blank" rel="noopener">${esc(itemName(spec))}</a>${en}</span>`;
 }
-function rowHTML(r, x, bestMove) {
+function rowHTML(r, x, gid, picked) {
   const specs = Object.entries(r.move).sort((a, b) => SLOT_ORDER.indexOf(a[0]) - SLOT_ORDER.indexOf(b[0]));
   const k = kindOf(r);
   const its = specs.map(([, spec]) => item(spec[0])).filter(Boolean);
   const srcs = its.length ? its : [];
   const sourceLine = srcs.map(it => (it.sources || []).join(' | ') || T('no_source')).join(' + ');
   const d = r.best ? `<b>${esc(T('best'))}</b>` : `<b>${fmt(r.d)}</b> <small>±${r.m.toFixed(1)}</small>`;
-  return `<tr class="${k}">
-    <td class="c-item"><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span></td>
+  const sig = r.best ? 'best' : sigOf(r.move);
+  return `<tr class="${k}${picked ? ' picked' : ''}" data-pick="1" data-g="${esc(gid)}" data-sig="${esc(sig)}" data-d="${r.best ? 0 : r.d}">
+    <td class="c-item"><span class="pickmark" aria-hidden="true"></span><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span></td>
     <td class="c-where" title="${esc(sourceLine)}">${esc(srcs.map(it => (it.sources || [])[0] || T('no_source')).join(' + '))}</td>
     <td class="c-d" title="${r.best ? '' : fmt(r.d)}">${d}</td>
     <td class="c-chart">${gapChart(r, x)}</td></tr>`;
@@ -417,8 +492,13 @@ function groupHTML(g, L) {
   if (!passing.length && qTokens().length) return '';
   const shown = passing.slice(0, state.topn);
   const x = scaleFor(shown.length ? shown : rows.slice(0, 1));
+  const cur = state.pick[g.id];
   const head = `<tr class="gh"><th colspan="4" scope="rowgroup"><span class="ghn">${esc(glabel(g.id))}</span>${g.note ? `<span class="ghnote">${esc(L2(g.note))}</span>` : ''}</th></tr>`;
-  const body = shown.length ? shown.map(r => rowHTML(r, x, g.best)).join('') : `<tr><td colspan="4" class="empty">${esc(T('empty_slot'))}</td></tr>`;
+  const body = shown.length ? shown.map(r => {
+    const sig = r.best ? 'best' : sigOf(r.move);
+    const picked = cur ? cur.sig === sig : !!r.best;
+    return rowHTML(r, x, g.id, picked);
+  }).join('') : `<tr><td colspan="4" class="empty">${esc(T('empty_slot'))}</td></tr>`;
   const hiddenBest = hasBest && shown.length && !rowPasses(Object.entries(g.best)) ? `<tr><td colspan="4" class="empty">${esc(T('hidden_best'))}</td></tr>` : '';
   return `<tbody class="grp" id="card-${g.id}" style="${bandVars(x, shown)}">${head}${body}${hiddenBest}</tbody>`;
 }
@@ -433,6 +513,7 @@ function renderCards() {
     }
     $('ovd').hidden = true;
     if ($('qcount')) $('qcount').textContent = '';
+    if ($('pickhint')) $('pickhint').hidden = true;
     return;
   }
   fillSearchSuggestions(L);
@@ -446,6 +527,7 @@ function renderCards() {
   }
   const qclear = $('qclear');
   if (qclear) qclear.hidden = !q;
+  if ($('pickhint')) $('pickhint').hidden = false;
   const none = q && !shown
     ? `<div class="empty-note">${esc(T('q_none'))} <button class="linkbtn" type="button" data-qclear="1">${esc(T('q_reset'))}</button></div>`
     : '';
@@ -688,6 +770,27 @@ document.addEventListener('click', e => {
     state.q = '';
     if ($('q')) $('q').value = '';
     if (state.tab === 'gear') renderCards();
+    return;
+  }
+  if (t.closest('[data-pickreset]')) {
+    state.pick = {};
+    renderDoll(); renderCards();
+    return;
+  }
+  const pickRow = t.closest('tr[data-pick]');
+  if (pickRow && !t.closest('a,button')) {
+    const sp = curSpec(), L = loadout(sp);
+    const gid = pickRow.dataset.g, sig = pickRow.dataset.sig;
+    const g = L && (L.groups || []).find(x => x.id === gid);
+    if (g) {
+      if (sig === 'best') {
+        delete state.pick[gid];
+      } else {
+        const r = (g.rows || []).find(x => sigOf(x.move) === sig);
+        if (r) state.pick[gid] = { sig, d: r.d, move: r.move };
+      }
+      renderDoll(); renderCards();
+    }
     return;
   }
   if (t.closest('.srcall')) { SOURCE_KINDS.forEach(k => state.srcs.add(k)); renderSources(); if (state.tab === 'gear') renderCards(); return; }
