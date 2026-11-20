@@ -132,8 +132,8 @@ const fmtMetric = v => (v == null ? '—' : v >= 10000 ? (v / 1000).toFixed(1) +
 const pluralRu = (n, forms) => { const d10 = n % 10, d100 = n % 100; return d10 === 1 && d100 !== 11 ? forms[0] : (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) ? forms[1] : forms[2]; };
 const metricName = m => T(m === 'hps' ? 'metric_hps' : 'metric_dps');
 const SLOT_ORDER = ['head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands', 'waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2', 'main_hand', 'off_hand', 'ranged'];
-const LEFT = ['head', 'neck', 'shoulder', 'back', 'chest', 'wrist'];
-const RIGHT = ['hands', 'waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2'];
+const LEFT = ['head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands'];
+const RIGHT = ['waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2'];
 const slotLabel = s => T('slot.' + s);
 
 // ---------- static text ----------
@@ -266,17 +266,17 @@ function itemHTML(spec, withEnchant) {
   if (!it) return '<span class="small">—</span>';
   const en = withEnchant && enchantName(spec);
   const q = it.q >= 3 ? ` q${it.q}` : '';
-  return `<span class="it" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}"><img class="icon xs${q}" loading="lazy" src="${ICON(it.icon)}" alt=""><a class="n" style="${qc(it)}" href="${WH(spec[0])}" target="_blank" rel="noopener">${esc(itemName(spec))}</a>${en ? `<span class="en" title="${esc(en)}">${esc(en)}</span>` : ''}</span>`;
+  return `<span class="it" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}"><img class="icon xs${q}" loading="lazy" src="${ICON(it.icon)}" alt=""><a class="n" style="${qc(it)}" title="${esc(itemName(spec))}" href="${WH(spec[0])}" target="_blank" rel="noopener">${esc(itemName(spec))}</a>${en ? `<span class="en" title="${esc(en)}">${esc(en)}</span>` : ''}</span>`;
 }
 function rowHTML(r, x, bestMove) {
   const specs = Object.entries(r.move).sort((a, b) => SLOT_ORDER.indexOf(a[0]) - SLOT_ORDER.indexOf(b[0]));
   const k = kindOf(r);
   const its = specs.map(([, spec]) => item(spec[0])).filter(Boolean);
   const srcs = its.length ? its : [];
-  const sourceLine = srcs.map(it => (it.sources || [])[0] || T('no_source')).join(' + ');
+  const sourceLine = srcs.map(it => (it.sources || []).join(' | ') || T('no_source')).join(' + ');
   const d = r.best ? `<b>${esc(T('best'))}</b>` : `<b>${fmt(r.d)}</b> <small>±${r.m.toFixed(1)}</small>`;
   return `<tr class="${k}">
-    <td class="c-item"><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span><span class="c-where">${esc(sourceLine)}</span></td>
+    <td class="c-item"><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span><span class="c-where" title="${esc(sourceLine)}">${esc((srcs.map(it => (it.sources || [])[0] || T('no_source')).join(' + ')))}</span></td>
     <td class="c-d" title="${r.best ? '' : fmt(r.d)}">${d}</td>
     <td class="c-chart">${gapChart(r, x)}</td></tr>`;
 }
