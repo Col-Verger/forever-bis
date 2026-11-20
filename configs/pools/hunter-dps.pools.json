@@ -1,0 +1,2055 @@
+{
+ "_meta": {
+  "generated": "tools/make_pools.py",
+  "reviewable": true,
+  "note": "Pool content is an editor decision; prune via excludeIds in the config and re-run."
+ },
+ "head": [
+  {
+   "id": 272531,
+   "name": "Premier Warlord's Chain Helmet",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272774,
+   "name": "Premier Field Marshal's Chainmail Helm",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 252604,
+   "name": "Blue Dragonscale Helm",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 252605,
+   "name": "Black Dragonscale Helm",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 226887,
+   "name": "Beastmaster's Cap",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 2245,
+   "name": "Helm of Narv",
+   "q": 4,
+   "ilvl": 59,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 13359,
+   "name": "Crown of Tyranny",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
+  },
+  {
+   "id": 16428,
+   "name": "Lieutenant Commander's Chain Helmet",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 18421,
+   "name": "Backwood Helm",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: The Treasure of the Shen'dralar | quest: The Treasure of the Shen'dralar"
+  },
+  {
+   "id": 280019,
+   "name": "Dinofrill Casque",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 16667,
+   "name": "Coif of Elements",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 16677,
+   "name": "Beaststalker's Cap",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  },
+  {
+   "id": 18807,
+   "name": "Helm of Latent Power",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 12636,
+   "name": "Helm of the Great Chief",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "crafted: 8 | crafted: 2"
+  }
+ ],
+ "neck": [
+  {
+   "id": 18404,
+   "name": "Onyxia Tooth Pendant",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: For All To See | quest: Celebrating Good Times"
+  },
+  {
+   "id": 19426,
+   "name": "Orb of the Darkmoon",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: 1200 Tickets - Orb of the Darkmoon"
+  },
+  {
+   "id": 19491,
+   "name": "Amulet of the Darkmoon",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: 1200 Tickets - Amulet of the Darkmoon"
+  },
+  {
+   "id": 20685,
+   "name": "Wavefront Necklace",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Silithus"
+  },
+  {
+   "id": 14558,
+   "name": "Lady Maye's Pendant",
+   "q": 4,
+   "ilvl": 64,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: None"
+  },
+  {
+   "id": 1443,
+   "name": "Jeweled Amulet of Cainwyn",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 1315,
+   "name": "Lei of Lilies",
+   "q": 4,
+   "ilvl": 51,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 12103,
+   "name": "Star of Mystaria",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
+  },
+  {
+   "id": 13141,
+   "name": "Tooth of Gnarr",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 15411,
+   "name": "Mark of Fordring",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: In Dreams"
+  },
+  {
+   "id": 16309,
+   "name": "Drakefire Amulet",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Drakefire Amulet | quest: Blood of the Black Dragon Champion"
+  },
+  {
+   "id": 16335,
+   "name": "Senior Sergeant's Insignia",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "vendor: Sergeant Ba'sha | pvp"
+  },
+  {
+   "id": 18443,
+   "name": "Master Sergeant's Insignia",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "vendor: Master Sergeant Biggins | vendor: Officer Areyn"
+  },
+  {
+   "id": 19534,
+   "name": "Scout's Medallion",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "vendor: Kelm Hargunth | pvp"
+  }
+ ],
+ "shoulder": [
+  {
+   "id": 20055,
+   "name": "Highlander's Chain Pauldrons",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 509 lvl 8 | vendor: Samuel Hawke"
+  },
+  {
+   "id": 20056,
+   "name": "Highlander's Mail Pauldrons",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 509 lvl 8 | vendor: Samuel Hawke"
+  },
+  {
+   "id": 20158,
+   "name": "Defiler's Chain Pauldrons",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 510 lvl 8 | vendor: Rutherford Twing"
+  },
+  {
+   "id": 20203,
+   "name": "Defiler's Mail Pauldrons",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 510 lvl 8 | vendor: Rutherford Twing"
+  },
+  {
+   "id": 271956,
+   "name": "Theramore Epaulets",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2799 lvl 8"
+  },
+  {
+   "id": 272106,
+   "name": "Darkspear Epaulets",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2798 lvl 8 | vendor: Creeg Bothunk"
+  },
+  {
+   "id": 272533,
+   "name": "Premier General's Chain Shoulders",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272777,
+   "name": "Premier Marshal's Chainmail Spaulders",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272957,
+   "name": "Theramore Shoulderguards",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2799 lvl 8"
+  },
+  {
+   "id": 272958,
+   "name": "Darkspear Shoulderguards",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2798 lvl 8 | vendor: Creeg Bothunk"
+  },
+  {
+   "id": 279255,
+   "name": "Eternity Pauldrons",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 273902,
+   "name": "Wildstalker's Spaulders",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 226884,
+   "name": "Beastmaster's Mantle",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 16427,
+   "name": "Lieutenant Commander's Chain Pauldrons",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  }
+ ],
+ "back": [
+  {
+   "id": 3475,
+   "name": "Cloak of Flames",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 20068,
+   "name": "Deathguard's Cloak",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 510 lvl 8 | vendor: Rutherford Twing"
+  },
+  {
+   "id": 20073,
+   "name": "Cloak of the Honor Guard",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 509 lvl 8 | vendor: Samuel Hawke"
+  },
+  {
+   "id": 279269,
+   "name": "Fel Cape",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 11"
+  },
+  {
+   "id": 18509,
+   "name": "Chromatic Cloak",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 18510,
+   "name": "Hide of the Wild",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 18511,
+   "name": "Shifting Cloak",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 272411,
+   "name": "Arcanoweave Cloak",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Pix Xizzix"
+  },
+  {
+   "id": 272413,
+   "name": "Drape of Recovery",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Pix Xizzix"
+  },
+  {
+   "id": 272414,
+   "name": "Howler's Furs",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Pix Xizzix"
+  },
+  {
+   "id": 272415,
+   "name": "Stalwart Cloak",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Pix Xizzix"
+  },
+  {
+   "id": 12967,
+   "name": "Bloodmoon Cloak",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 12968,
+   "name": "Frostweaver Cape",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 13340,
+   "name": "Cape of the Black Baron",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
+  }
+ ],
+ "chest": [
+  {
+   "id": 272530,
+   "name": "Premier Warlord's Chain Chestpiece",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272775,
+   "name": "Premier Field Marshal's Chainmail Breastplate",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 12641,
+   "name": "Invulnerable Mail",
+   "q": 4,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8 | crafted: 2"
+  },
+  {
+   "id": 15141,
+   "name": "Onyxia Scale Breastplate",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 226886,
+   "name": "Beastmaster's Tunic",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 11726,
+   "name": "Savage Gladiator Chain",
+   "q": 4,
+   "ilvl": 57,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Depths"
+  },
+  {
+   "id": 13090,
+   "name": "Breastplate of the Chosen",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 16425,
+   "name": "Knight-Captain's Chain Hauberk",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 16525,
+   "name": "Legionnaire's Chain Breastplate",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 16666,
+   "name": "Vest of Elements",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 16674,
+   "name": "Beaststalker's Tunic",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 280013,
+   "name": "Frostfang Mail Vest",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 13123,
+   "name": "Dreamwalker Armor",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 18530,
+   "name": "Ogre Forged Hauberk",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  }
+ ],
+ "wrist": [
+  {
+   "id": 16461,
+   "name": "Marshal's Chain Bracers",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 16570,
+   "name": "General's Chain Wristguards",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 19582,
+   "name": "Windtalker's Wristguards",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Illiyana Moonblaze | vendor: Kelm Hargunth"
+  },
+  {
+   "id": 272535,
+   "name": "Premier Legionnaire's Chain Wristguards",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272770,
+   "name": "Premier Knight-Captain's Chainmail Bracers",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 279256,
+   "name": "Tranquil Wristguards",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 19583,
+   "name": "Windtalker's Wristguards",
+   "q": 4,
+   "ilvl": 55,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Illiyana Moonblaze | vendor: Kelm Hargunth"
+  },
+  {
+   "id": 226885,
+   "name": "Beastmaster's Bindings",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 16532,
+   "name": "First Sergeant's Mail Wristguards",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "vendor: Sergeant Ba'sha | pvp"
+  },
+  {
+   "id": 18448,
+   "name": "Sergeant Major's Chain Armguards",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "vendor: Master Sergeant Biggins | vendor: Officer Areyn"
+  },
+  {
+   "id": 13528,
+   "name": "Twilight Void Bracers",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
+  },
+  {
+   "id": 18394,
+   "name": "Demon Howl Wristguards",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  },
+  {
+   "id": 18508,
+   "name": "Swift Flight Bracers",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 20476,
+   "name": "Sandstalker Bracers",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "crafted: 8"
+  }
+ ],
+ "hands": [
+  {
+   "id": 271950,
+   "name": "Theramore Handguards",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2799 lvl 8"
+  },
+  {
+   "id": 272101,
+   "name": "Raider Handguards",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2798 lvl 8 | vendor: Creeg Bothunk"
+  },
+  {
+   "id": 272536,
+   "name": "Premier Champion's Chain Gloves",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272772,
+   "name": "Premier Lieutenant Commander's Chainmail Grips",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 279257,
+   "name": "Mourning Handguards",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 273901,
+   "name": "Wildstalker's Gauntlets",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 226883,
+   "name": "Beastmaster's Gauntlets",
+   "q": 4,
+   "ilvl": 55,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 271951,
+   "name": "Theramore Handguards",
+   "q": 4,
+   "ilvl": 55,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2799 lvl 8"
+  },
+  {
+   "id": 272102,
+   "name": "Raider Handguards",
+   "q": 4,
+   "ilvl": 55,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2798 lvl 8 | vendor: Creeg Bothunk"
+  },
+  {
+   "id": 17007,
+   "name": "Stonerender Gauntlets",
+   "q": 4,
+   "ilvl": 51,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 13344,
+   "name": "Dracorian Gauntlets",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
+  },
+  {
+   "id": 16403,
+   "name": "Knight-Lieutenant's Chain Gauntlets",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 16530,
+   "name": "Blood Guard's Chain Gauntlets",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 18527,
+   "name": "Harmonious Gauntlets",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  }
+ ],
+ "waist": [
+  {
+   "id": 16464,
+   "name": "Marshal's Chain Girdle",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 16572,
+   "name": "General's Chain Girdle",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272537,
+   "name": "Premier Legionnaire's Chain Girdle",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272773,
+   "name": "Premier Knight-Captain's Chainmail Girdle",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272397,
+   "name": "Ranger's Belt",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Pix Xizzix"
+  },
+  {
+   "id": 226888,
+   "name": "Beastmaster's Belt",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 18104,
+   "name": "Feralsurge Girdle",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 20043,
+   "name": "Highlander's Chain Girdle",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 509 lvl 6 | vendor: Samuel Hawke"
+  },
+  {
+   "id": 20044,
+   "name": "Highlander's Mail Girdle",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 509 lvl 6 | vendor: Samuel Hawke"
+  },
+  {
+   "id": 20150,
+   "name": "Defiler's Chain Girdle",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 510 lvl 6 | vendor: Rutherford Twing"
+  },
+  {
+   "id": 20195,
+   "name": "Defiler's Mail Girdle",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 510 lvl 6 | vendor: Rutherford Twing"
+  },
+  {
+   "id": 18676,
+   "name": "Sash of the Windreaver",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Silithus"
+  },
+  {
+   "id": 13387,
+   "name": "Foresight Girdle",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
+  },
+  {
+   "id": 14614,
+   "name": "Bloodmail Belt",
+   "q": 3,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance | drop: Scholomance"
+  }
+ ],
+ "legs": [
+  {
+   "id": 22673,
+   "name": "Outrider's Chain Leggings",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "vendor: Kelm Hargunth | pvp"
+  },
+  {
+   "id": 22676,
+   "name": "Outrider's Mail Leggings",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "vendor: Kelm Hargunth | pvp"
+  },
+  {
+   "id": 22748,
+   "name": "Sentinel's Chain Leggings",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "vendor: Illiyana Moonblaze | pvp"
+  },
+  {
+   "id": 272532,
+   "name": "Premier General's Chain Legguards",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272776,
+   "name": "Premier Marshal's Chainmail Legguards",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 12903,
+   "name": "Legguards of the Chromatic Defier",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Legplates of the Chromatic Defier"
+  },
+  {
+   "id": 12945,
+   "name": "Legplates of the Chromatic Defier",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Legplates of the Chromatic Defier"
+  },
+  {
+   "id": 252603,
+   "name": "Red Dragonscale Leggings",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 252606,
+   "name": "Pristine Scorpid Leggings",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 273900,
+   "name": "Wildstalker's Legguards",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 226882,
+   "name": "Beastmaster's Pants",
+   "q": 3,
+   "ilvl": 66,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 12964,
+   "name": "Tristam Legguards",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 16426,
+   "name": "Knight-Captain's Chain Leggings",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 16527,
+   "name": "Legionnaire's Chain Leggings",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  }
+ ],
+ "feet": [
+  {
+   "id": 272534,
+   "name": "Premier Centurion's Chain Sabatons",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272771,
+   "name": "Premier Knight-Champion's Chainmail Boots",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 273903,
+   "name": "Wildstalker's Greaves",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 226881,
+   "name": "Beastmaster's Treads",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 16401,
+   "name": "Knight-Lieutenant's Chain Boots",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 16531,
+   "name": "Blood Guard's Chain Boots",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 20050,
+   "name": "Highlander's Chain Greaves",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 509 lvl 7 | vendor: Samuel Hawke"
+  },
+  {
+   "id": 20051,
+   "name": "Highlander's Mail Greaves",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 509 lvl 7 | vendor: Samuel Hawke"
+  },
+  {
+   "id": 20154,
+   "name": "Defiler's Chain Greaves",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 510 lvl 7 | vendor: Rutherford Twing"
+  },
+  {
+   "id": 20199,
+   "name": "Defiler's Mail Greaves",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 510 lvl 7 | vendor: Rutherford Twing"
+  },
+  {
+   "id": 280017,
+   "name": "Octoclaw Chain Boots",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 18047,
+   "name": "Flame Walkers",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 18379,
+   "name": "Odious Greaves",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  },
+  {
+   "id": 18694,
+   "name": "Shadowy Mail Greaves",
+   "q": 3,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Scholomance"
+  }
+ ],
+ "finger1": [
+  {
+   "id": 284716,
+   "name": "Band of the Better Half",
+   "q": 4,
+   "ilvl": 70,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 18403,
+   "name": "Dragonslayer's Signet",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: For All To See | quest: Celebrating Good Times"
+  },
+  {
+   "id": 20682,
+   "name": "Elemental Focus Band",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Silithus"
+  },
+  {
+   "id": 275981,
+   "name": "Warden's Signet of Ferocity",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 8"
+  },
+  {
+   "id": 275982,
+   "name": "Warden's Signet of Brilliance",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 8"
+  },
+  {
+   "id": 275983,
+   "name": "Warden's Signet of Resolve",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 8"
+  },
+  {
+   "id": 275984,
+   "name": "Warden's Signet of Vigilance",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 8"
+  },
+  {
+   "id": 13143,
+   "name": "Mark of the Dragon Lord",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 19325,
+   "name": "Don Julio's Band",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Gaelden Hammersmith | vendor: Thanthaldis Snowgleam"
+  },
+  {
+   "id": 275976,
+   "name": "Watcher's Signet of Ferocity",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 7"
+  },
+  {
+   "id": 275977,
+   "name": "Watcher's Signet of Brilliance",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 7"
+  },
+  {
+   "id": 275979,
+   "name": "Watcher's Signet of Resolve",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 7"
+  },
+  {
+   "id": 275980,
+   "name": "Watcher's Signet of Vigilance",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 7"
+  },
+  {
+   "id": 2246,
+   "name": "Myrmidon's Signet",
+   "q": 4,
+   "ilvl": 58,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  }
+ ],
+ "finger2": [
+  {
+   "id": 284716,
+   "name": "Band of the Better Half",
+   "q": 4,
+   "ilvl": 70,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 18403,
+   "name": "Dragonslayer's Signet",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: For All To See | quest: Celebrating Good Times"
+  },
+  {
+   "id": 20682,
+   "name": "Elemental Focus Band",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Silithus"
+  },
+  {
+   "id": 275981,
+   "name": "Warden's Signet of Ferocity",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 8"
+  },
+  {
+   "id": 275982,
+   "name": "Warden's Signet of Brilliance",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 8"
+  },
+  {
+   "id": 275983,
+   "name": "Warden's Signet of Resolve",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 8"
+  },
+  {
+   "id": 275984,
+   "name": "Warden's Signet of Vigilance",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 8"
+  },
+  {
+   "id": 13143,
+   "name": "Mark of the Dragon Lord",
+   "q": 4,
+   "ilvl": 61,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 19325,
+   "name": "Don Julio's Band",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Gaelden Hammersmith | vendor: Thanthaldis Snowgleam"
+  },
+  {
+   "id": 275976,
+   "name": "Watcher's Signet of Ferocity",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 7"
+  },
+  {
+   "id": 275977,
+   "name": "Watcher's Signet of Brilliance",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 7"
+  },
+  {
+   "id": 275979,
+   "name": "Watcher's Signet of Resolve",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 7"
+  },
+  {
+   "id": 275980,
+   "name": "Watcher's Signet of Vigilance",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 2819 lvl 7"
+  },
+  {
+   "id": 2246,
+   "name": "Myrmidon's Signet",
+   "q": 4,
+   "ilvl": 58,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  }
+ ],
+ "trinket1": [
+  {
+   "id": 18406,
+   "name": "Onyxia Blood Talisman",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: For All To See | quest: Celebrating Good Times"
+  },
+  {
+   "id": 19287,
+   "name": "Darkmoon Card: Heroism",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Darkmoon Warlords Deck"
+  },
+  {
+   "id": 19288,
+   "name": "Darkmoon Card: Blue Dragon",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Darkmoon Beast Deck"
+  },
+  {
+   "id": 19289,
+   "name": "Darkmoon Card: Maelstrom",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Darkmoon Elementals Deck"
+  },
+  {
+   "id": 19290,
+   "name": "Darkmoon Card: Twisting Nether",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Darkmoon Portals Deck"
+  },
+  {
+   "id": 14557,
+   "name": "The Lion Horn of Stormwind",
+   "q": 4,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: None"
+  },
+  {
+   "id": 21326,
+   "name": "Defender of the Timbermaw",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 576 lvl 8 | quest: The Root of All Evil"
+  },
+  {
+   "id": 268873,
+   "name": "Defender of the Barkskin",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 17904,
+   "name": "Stormpike Insignia Rank 6",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "quest: The Eye of Command | pvp"
+  },
+  {
+   "id": 17909,
+   "name": "Frostwolf Insignia Rank 6",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "quest: The Eye of Command | pvp"
+  },
+  {
+   "id": 191312,
+   "name": "Failsafe Phylactery",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 833,
+   "name": "Lifestone",
+   "q": 4,
+   "ilvl": 56,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 19979,
+   "name": "Hook of the Master Angler",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Master Angler"
+  },
+  {
+   "id": 272437,
+   "name": "Adaptive Combat Assistant",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Pix Xizzix"
+  }
+ ],
+ "trinket2": [
+  {
+   "id": 18406,
+   "name": "Onyxia Blood Talisman",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: For All To See | quest: Celebrating Good Times"
+  },
+  {
+   "id": 19287,
+   "name": "Darkmoon Card: Heroism",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Darkmoon Warlords Deck"
+  },
+  {
+   "id": 19288,
+   "name": "Darkmoon Card: Blue Dragon",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Darkmoon Beast Deck"
+  },
+  {
+   "id": 19289,
+   "name": "Darkmoon Card: Maelstrom",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Darkmoon Elementals Deck"
+  },
+  {
+   "id": 19290,
+   "name": "Darkmoon Card: Twisting Nether",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Darkmoon Portals Deck"
+  },
+  {
+   "id": 14557,
+   "name": "The Lion Horn of Stormwind",
+   "q": 4,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "drop: None"
+  },
+  {
+   "id": 21326,
+   "name": "Defender of the Timbermaw",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "max",
+   "src": "rep: 576 lvl 8 | quest: The Root of All Evil"
+  },
+  {
+   "id": 268873,
+   "name": "Defender of the Barkskin",
+   "q": 4,
+   "ilvl": 62,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 17904,
+   "name": "Stormpike Insignia Rank 6",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "quest: The Eye of Command | pvp"
+  },
+  {
+   "id": 17909,
+   "name": "Frostwolf Insignia Rank 6",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "quest: The Eye of Command | pvp"
+  },
+  {
+   "id": 191312,
+   "name": "Failsafe Phylactery",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 833,
+   "name": "Lifestone",
+   "q": 4,
+   "ilvl": 56,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 19979,
+   "name": "Hook of the Master Angler",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: Master Angler"
+  },
+  {
+   "id": 272437,
+   "name": "Adaptive Combat Assistant",
+   "q": 3,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Pix Xizzix"
+  }
+ ],
+ "main_hand": [
+  {
+   "id": 272593,
+   "name": "Premier High Warlord's Battle Axe",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": true,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272602,
+   "name": "Premier High Warlord's Pig Sticker",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": true,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272603,
+   "name": "Premier High Warlord's War Staff",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": true,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272604,
+   "name": "Premier High Warlord's Greatsword",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": true,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272840,
+   "name": "Premier Grand Marshal's Sunderer",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": true,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272849,
+   "name": "Premier Grand Marshal's Glaive",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": true,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272850,
+   "name": "Premier Grand Marshal's Stave",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": true,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272851,
+   "name": "Premier Grand Marshal's Claymore",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": true,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 279260,
+   "name": "Forest Defender's Axe",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": true,
+   "tier": "max",
+   "src": "crafted: 2"
+  },
+  {
+   "id": 2801,
+   "name": "Blade of Hanna",
+   "q": 4,
+   "ilvl": 64,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 12592,
+   "name": "Blackblade of Shahram",
+   "q": 4,
+   "ilvl": 63,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "drop: Blackrock Spire"
+  },
+  {
+   "id": 13505,
+   "name": "Runeblade of Baron Rivendare",
+   "q": 4,
+   "ilvl": 63,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "drop: Stratholme"
+  },
+  {
+   "id": 17223,
+   "name": "Thunderstrike",
+   "q": 4,
+   "ilvl": 63,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 18538,
+   "name": "Treant's Bane",
+   "q": 4,
+   "ilvl": 63,
+   "twoHand": true,
+   "tier": "cheap",
+   "src": "drop: Dire Maul"
+  }
+ ],
+ "ranged": [
+  {
+   "id": 272594,
+   "name": "Premier High Warlord's Recurve",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272595,
+   "name": "Premier High Warlord's Crossbow",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272599,
+   "name": "Premier High Warlord's Street Sweeper",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272841,
+   "name": "Premier Grand Marshal's Bullseye",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272842,
+   "name": "Premier Grand Marshal's Repeater",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 272846,
+   "name": "Premier Grand Marshal's Hand Cannon",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "pvp"
+  },
+  {
+   "id": 279273,
+   "name": "Hyper Deluxe Sniper Rifle Mk XVII",
+   "q": 4,
+   "ilvl": 65,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 4"
+  },
+  {
+   "id": 2099,
+   "name": "Dwarven Hand Cannon",
+   "q": 4,
+   "ilvl": 58,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 2824,
+   "name": "Hurricane",
+   "q": 4,
+   "ilvl": 53,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 13023,
+   "name": "Eaglehorn Long Bow",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  },
+  {
+   "id": 19107,
+   "name": "Bloodseeker",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "quest: The Legend of Korrak | quest: Korrak the Bloodrager"
+  },
+  {
+   "id": 19558,
+   "name": "Outrider's Bow",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "max",
+   "src": "vendor: Kelm Hargunth | pvp"
+  },
+  {
+   "id": 19562,
+   "name": "Outrunner's Bow",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "vendor: Illiyana Moonblaze"
+  },
+  {
+   "id": 280020,
+   "name": "Deep Jungle Rifle",
+   "q": 3,
+   "ilvl": 63,
+   "twoHand": false,
+   "tier": "cheap",
+   "src": "?"
+  }
+ ]
+}

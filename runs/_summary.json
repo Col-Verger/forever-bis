@@ -1,0 +1,110 @@
+{
+ "builds": [
+  {
+   "id": "druid-balance",
+   "status": "validated",
+   "value": 740.7
+  },
+  {
+   "id": "druid-feralcat",
+   "status": "validated",
+   "value": 976.8
+  },
+  {
+   "id": "druid-feralbear",
+   "status": "validated",
+   "value": 428.7
+  },
+  {
+   "id": "druid-restoration",
+   "status": "disabled"
+  },
+  {
+   "id": "hunter-dps",
+   "status": "validated",
+   "value": 1256.0
+  },
+  {
+   "id": "mage-arcane",
+   "status": "validated",
+   "value": 827.7
+  },
+  {
+   "id": "mage-fire",
+   "status": "validated",
+   "value": 952.4
+  },
+  {
+   "id": "mage-ffb",
+   "status": "validated",
+   "value": 873.3
+  },
+  {
+   "id": "mage-frost",
+   "status": "validated",
+   "value": 838.8
+  },
+  {
+   "id": "paladin-retribution",
+   "status": "validated",
+   "value": 887.8
+  },
+  {
+   "id": "paladin-protection",
+   "status": "validated",
+   "value": 499.2
+  },
+  {
+   "id": "paladin-holy",
+   "status": "disabled"
+  },
+  {
+   "id": "priest-shadow",
+   "status": "validated",
+   "value": 778.2
+  },
+  {
+   "id": "priest-healer",
+   "status": "disabled"
+  },
+  {
+   "id": "rogue-combat",
+   "status": "validated",
+   "value": 856.9
+  },
+  {
+   "id": "shaman-elemental",
+   "status": "validated",
+   "value": 844.8
+  },
+  {
+   "id": "shaman-enhancement",
+   "status": "validated",
+   "value": 830.6
+  },
+  {
+   "id": "shaman-restoration",
+   "status": "disabled"
+  },
+  {
+   "id": "warlock-smruin",
+   "status": "validated",
+   "value": 766.0
+  },
+  {
+   "id": "warrior-fury",
+   "status": "validated",
+   "value": 941.0
+  },
+  {
+   "id": "warrior-arms",
+   "status": "validated",
+   "value": 874.5
+  },
+  {
+   "id": "warrior-protection",
+   "status": "validated",
+   "value": 235.4
+  }
+ ]
+}

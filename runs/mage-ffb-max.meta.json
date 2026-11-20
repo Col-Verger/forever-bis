@@ -1,0 +1,25 @@
+{
+ "status": "ok",
+ "metric": "dps",
+ "value": 882.76,
+ "margin": 1.17,
+ "hps": 0,
+ "threat": 910.3,
+ "title": {
+  "ru": "Фаер (Frostfire)",
+  "en": "Fire (Frostfire)"
+ },
+ "buildName": {
+  "ru": "Frostfire Bolt",
+  "en": "Frostfire Bolt"
+ },
+ "rotation": {
+  "ru": "FFB (APL сима)",
+  "en": "FFB (the sim's APL)"
+ },
+ "talents": "-5550000123011303-2035010311013002",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": []
+}

@@ -1,0 +1,170 @@
+{
+  "class": "druid",
+  "className": {"ru": "Друид", "en": "Druid"},
+
+  "_comment": "Друид: транскрибировано с ui/specs/druid/{balance,feralcat,feralbear,restoration} (presets.ts + spec.ts). Фералы симмируются без подмены оружия (MCP-опенер не моделируется — честная пометка). Рестор выключен: нет APL в репозитории сима.",
+
+  "playerTemplate": {
+    "classEnum": "ClassDruid",
+    "race": "RaceNightElf",
+    "professions": ["Enchanting", "Tailoring"],
+    "channelClipDelayMs": 100,
+    "distanceFromTarget": 20,
+    "encounterNote": "общий босс 63 уровня из конфига encounter ниже; ферал-медведь берёт encounterOverrides"
+  },
+
+  "encounter": {
+    "duration": 180, "durationVariation": 5,
+    "executeProportion20": 0.2, "executeProportion35": 0.35,
+    "target": {
+      "id": 31146, "name": "Raid Target", "level": 63,
+      "mobType": "MobTypeMechanical",
+      "stats": { "attackPower": 320, "blockValue": 54, "armor": 3731, "health": 1428900 },
+      "minBaseDamage": 2601, "damageSpread": 0.5, "swingSpeed": 2,
+      "parryHaste": true, "canCrush": true
+    }
+  },
+
+  "builds": [
+    {
+      "id": "druid-balance",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/druid/balance",
+      "title": { "ru": "Баланс (Мункин)", "en": "Balance (Moonkin)" },
+      "buildName": { "ru": "Moonkin (defaults сима)", "en": "Moonkin (the sim's defaults)" },
+      "rotation": { "ru": "Default APL из репозитория сима", "en": "the repo's Default APL" },
+      "metric": "dps",
+      "talents": "5232220115501351--5053",
+      "apls": "apls/default.apl.json",
+      "baseGear": "gear_sets/prebis.gear.json",
+      "pool": "druid-dps",
+      "specOptions": { "balanceDruid": { "options": { "classOptions": { "innervateTarget": { } } } } },
+      "consumables": {
+        "flask": "Flask of Supreme Power", "food": "Lobster Stew", "conjured": "Demonic Rune",
+        "mhImbue": "Brilliant Wizard Oil", "resourcePot": "Major Mana Potion",
+        "elixirs": ["Greater Arcane Elixir", "Elixir of Nature Power", "Elixir of the Owl", "Greater Mageblood Elixir"]
+      },
+      "raidBuffs": { "arcaneIntellect": true, "markOfTheWild": true, "powerWordFortitude": true, "prayerOfSpirit": true },
+      "partyBuffs": { "manaSpringTotem": "TristateEffectRegular" },
+      "individualBuffs": { "greaterBlessingOfKings": true, "greaterBlessingOfWisdom": 1 },
+      "debuffs": { "curseOfElements": true, "judgementOfWisdom": true },
+      "playerOverrides": {}
+    },
+    {
+      "id": "druid-feralcat",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/druid/feralcat",
+      "title": { "ru": "Ферал (кот)", "en": "Feral (cat)" },
+      "buildName": { "ru": "Cat (defaults сима)", "en": "Cat (the sim's defaults)" },
+      "rotation": { "ru": "Adaptive Cat APL; без подмены оружия (MCP-опенер не моделируется)", "en": "Adaptive Cat APL; no weapon swap (the MCP opener is not modelled)" },
+      "metric": "dps",
+      "talents": "050021-53200032123012125001-055",
+      "apls": "apls/adaptive.apl.json",
+      "baseGear": "gear_sets/pre_raid.gear.json",
+      "pool": "druid-melee",
+      "specOptions": { "feralCatDruid": { "options": { "assumeBleedActive": true } } },
+      "consumables": {
+        "flask": "Flask of Natural Aggression", "food": "Swiftstrike Steak", "conjured": "Demonic Rune",
+        "mhImbue": "Dense Weightstone", "resourcePot": "Major Mana Potion", "offensivePot": "Mighty Rage Potion",
+        "elixirs": ["Elixir of Cunning", "Elixir of Sages", "Elixir of the Phalanx", "Greater Mageblood Elixir", "Elixir of the Grizzly"],
+        "extras": ["Juju Might", "Ground Scorpok Assay", "Goblin Sapper Charge"]
+      },
+      "raidBuffs": { "arcaneIntellect": true, "prayerOfSpirit": true, "markOfTheWild": true, "powerWordFortitude": true, "strengthOfEarthTotem": 1, "graceOfAirTotem": 1, "windfuryTotem": true, "battleShout": 1 },
+      "partyBuffs": { "manaSpringTotem": "TristateEffectRegular" },
+      "individualBuffs": { "greaterBlessingOfKings": true, "greaterBlessingOfMight": 1 },
+      "debuffs": { "judgementOfWisdom": true, "sunderArmor": true, "giftOfArthas": true, "vindication": true },
+      "playerOverrides": { "race": "RaceTauren", "reactionTimeMs": 250, "distanceFromTarget": 25, "profession1": "Engineering", "profession2": "Enchanting" }
+    },
+    {
+      "id": "druid-feralbear",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/druid/feralbear",
+      "title": { "ru": "Ферал (медведь, танк)", "en": "Feral (bear, tank)" },
+      "buildName": { "ru": "Bear (defaults сима)", "en": "Bear (the sim's defaults)" },
+      "rotation": { "ru": "Adaptive Bear APL из репозитория сима", "en": "the repo's Adaptive Bear APL" },
+      "metric": "dps",
+      "talents": "050022-5023030212310112501-055",
+      "apls": "apls/adaptive.apl.json",
+      "baseGear": "gear_sets/default.gear.json",
+      "pool": "druid-melee",
+      "specOptions": { "feralBearDruid": { "options": { "assumeBleedActive": true } } },
+      "consumables": {
+        "flask": "Flask of Natural Precision", "food": "Dirge's Kickin' Chimaerok Chops", "conjured": "Major Healthstone",
+        "mhImbue": "Elemental Sharpening Stone", "defensivePot": "Greater Stoneshield Potion", "offensivePot": "Mighty Rage Potion",
+        "elixirs": ["Gift of Arthas", "Elixir of the Grizzly", "Elixir of Cunning", "Elixir of the Phalanx", "Elixir of Greater Defense"],
+        "extras": ["Goblin Sapper Charge", "Juju Might", "Scroll of Stamina IV", "Lung Juice Cocktail"]
+      },
+      "raidBuffs": { "arcaneIntellect": true, "prayerOfSpirit": true, "markOfTheWild": true, "powerWordFortitude": true, "shadowProtection": true, "strengthOfEarthTotem": 1, "graceOfAirTotem": 1, "windfuryTotem": true, "battleShout": 1 },
+      "partyBuffs": { "devotionAura": true, "manaSpringTotem": "TristateEffectRegular", "retributionAura": true },
+      "individualBuffs": { "greaterBlessingOfKings": true, "greaterBlessingOfMight": 1, "thorns": true },
+      "debuffs": { "judgementOfLight": true, "judgementOfWisdom": true, "exposeArmor": true, "sunderArmor": true, "vindication": true },
+      "encounterOverrides": { "minBaseDamage": 6000 },
+      "playerOverrides": {
+        "race": "RaceTauren", "reactionTimeMs": 250, "distanceFromTarget": 25,
+        "profession1": "Engineering", "profession2": "Enchanting", "inFrontOfTarget": true,
+        "healingModel": { "hps": 2200, "cadenceSeconds": 0.4, "cadenceVariation": 1.2, "absorbFrac": 0.02, "burstWindow": 6, "inspirationUptime": 0.25 }
+      }
+    },
+    {
+      "id": "druid-restoration",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/druid/restoration",
+      "disabled": true,
+      "disabledReason": "В ui/specs/druid/restoration нет APL/ротации — пресет рестор-друида в симе ещё не готов. Включи запись, когда появится (disabled:false + talents/apls/baseGear).",
+      "title": { "ru": "Рестор", "en": "Restoration" },
+      "buildName": { "ru": "Рестор", "en": "Restoration" },
+      "rotation": { "ru": "", "en": "" },
+      "metric": "hps",
+      "talents": "", "apls": "", "baseGear": "",
+      "pool": "druid-dps",
+      "playerOverrides": {}
+    }
+  ],
+
+  "pools": {
+    "druid-dps": {
+      "classId": 11,
+      "qualityMin": 2, "ilvlMin": 50, "maxPerSlot": 14,
+      "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
+      "excludeIds": [], "includeIds": [],
+      "slots": {
+        "head":     { "armorType": 2 },
+        "neck":     { },
+        "shoulder": { "armorType": 2 },
+        "back":     { },
+        "chest":    { "armorType": 2 },
+        "wrist":    { "armorType": 2 },
+        "hands":    { "armorType": 2 },
+        "waist":    { "armorType": 2 },
+        "legs":     { "armorType": 2 },
+        "feet":     { "armorType": 2 },
+        "finger1":  { },
+        "trinket1": { },
+        "main_hand": { "anyOf": [ { "weaponTypes": [8], "handTypes": [4] }, { "weaponTypes": [4], "handTypes": [1, 2, 4] }, { "weaponTypes": [2], "handTypes": [1, 2] } ] },
+        "ranged":    { "rangedTypes": [6] }
+      }
+    },
+    "druid-melee": {
+      "classId": 11,
+      "qualityMin": 2, "ilvlMin": 50, "maxPerSlot": 14,
+      "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
+      "excludeIds": [], "includeIds": [],
+      "slots": {
+        "head":     { "armorType": 2 },
+        "neck":     { },
+        "shoulder": { "armorType": 2 },
+        "back":     { },
+        "chest":    { "armorType": 2 },
+        "wrist":    { "armorType": 2 },
+        "hands":    { "armorType": 2 },
+        "waist":    { "armorType": 2 },
+        "legs":     { "armorType": 2 },
+        "feet":     { "armorType": 2 },
+        "finger1":  { },
+        "trinket1": { },
+        "main_hand": { "anyOf": [ { "weaponTypes": [8], "handTypes": [4] }, { "weaponTypes": [4], "handTypes": [4] } ] },
+        "ranged":    { "rangedTypes": [6] }
+      }
+    }
+  }
+}

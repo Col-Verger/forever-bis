@@ -1,0 +1,148 @@
+name: Re-sim and deploy
+
+# Builds the sim CLI from the latest wowsims/forever master, re-runs every class's
+# per-slot searches IN PARALLEL (one matrix job per class: max & cheap budgets),
+# then merges all runs, rebuilds data.js (with the sim's commit hash and date
+# stamped into it), commits the runs and deploys the static site to GitHub Pages.
+#
+# One-time setup: repo Settings → Pages → Source: GitHub Actions.
+
+on:
+  workflow_dispatch:
+    inputs:
+      search_iterations:
+        description: 'Iterations per search sim'
+        default: '2500'
+      final_iterations:
+        description: 'Iterations for the final table runs'
+        default: '10000'
+      only_class:
+        description: 'Only this class (empty = all)'
+        default: ''
+      budgets:
+        description: 'Budgets to sim (max,cheap)'
+        default: 'max,cheap'
+      skip_sims:
+        description: 'Only rebuild data.js from existing runs (no sims)'
+        type: boolean
+        default: false
+  schedule:
+    - cron: '0 4 * * 1' # Mondays 04:00 UTC; edit to taste.
+
+permissions:
+  contents: write
+
+concurrency:
+  group: resim
+  cancel-in-progress: false
+
+jobs:
+  resim:
+    if: ${{ !inputs.skip_sims }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        class: [mage, paladin, druid, hunter, priest, rogue, shaman, warlock, warrior]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install protoc
+        run: |
+          sudo apt-get update && sudo apt-get install -y protobuf-compiler
+          protoc --version
+
+      - name: Clone the simulator
+        run: git clone --depth 1 https://github.com/wowsims/forever forever
+
+      - name: Generate the proto packages
+        run: |
+          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+          cd forever
+          protoc -I=./proto \
+            --go_opt=Mgoogle/protobuf/descriptor.proto=google.golang.org/protobuf/types/descriptorpb \
+            --go_out=./sim/core ./proto/*.proto
+
+      - name: Build wowsimcli (with the embedded item database)
+        working-directory: forever
+        env:
+          PATH: ${{ env.PATH }}:${{ env.HOME }}/go/bin
+        run: go build --tags=with_db -o ../wowsimcli ./cmd/wowsimcli
+
+      - name: Materialize candidate pools
+        run: python tools/make_pools.py --forever forever --configs configs
+
+      - name: Run the per-slot searches (${{ matrix.class }})
+        run: >
+          python tools/run_sims.py --forever forever --wowsimcli wowsimcli
+          --configs configs --out runs --verbose --jobs 3
+          --class ${{ matrix.class }}
+          --search-iterations ${{ inputs.search_iterations || '2500' }}
+          --final-iterations ${{ inputs.final_iterations || '10000' }}
+          --budgets ${{ inputs.budgets || 'max,cheap' }}
+
+      - name: Upload the runs
+        uses: actions/upload-artifact@v4
+        with:
+          name: runs-${{ matrix.class }}
+          path: runs/
+          retention-days: 5
+
+  publish:
+    needs: [resim]
+    if: ${{ always() && !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Collect the runs from every class
+        if: ${{ !inputs.skip_sims }}
+        uses: actions/download-artifact@v4
+        with:
+          path: runs/
+          pattern: runs-*
+          merge-multiple: true
+
+      - name: Fetch the sim commit hash
+        if: ${{ !inputs.skip_sims }}
+        run: |
+          git clone --depth 1 --filter=blob:none --no-checkout https://github.com/wowsims/forever forever
+          echo "SIM_HASH=$(git -C forever rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Rebuild data.js
+        run: >
+          python tools/build_data.py --forever forever --runs runs --configs configs
+          --out data.js --commit "${{ env.SIM_HASH || 'committed' }}" --repo "${{ github.repository }}"
+
+      - name: Commit the runs and the data
+        run: |
+          git config user.name "resim-bot"
+          git config user.email "actions@github.com"
+          git add data.js index.html runs configs/pools tools/icons.json
+          git commit -m "Re-sim: ${{ env.SIM_HASH || 'manual' }} $(date -u +%F)" || echo "nothing changed"
+          git push
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

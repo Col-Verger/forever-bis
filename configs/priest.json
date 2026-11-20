@@ -1,0 +1,91 @@
+{
+  "class": "priest",
+  "className": {"ru": "Прист", "en": "Priest"},
+
+  "_comment": "Прист: тень — из тестингового билд-JSON репозитория (ротация/сет/таленты внутри) + пресетные буфы/расходники из presets.ts. Хил-прист выключен: ротации в репозитории нет.",
+
+  "playerTemplate": {
+    "classEnum": "ClassPriest",
+    "race": "RaceUndead",
+    "professions": ["Enchanting", "Tailoring"],
+    "reactionTimeMs": 100,
+    "channelClipDelayMs": 100,
+    "distanceFromTarget": 20
+  },
+
+  "encounter": {
+    "duration": 180, "durationVariation": 5,
+    "executeProportion20": 0.2, "executeProportion35": 0.35,
+    "target": {
+      "id": 31146, "name": "Raid Target", "level": 63,
+      "mobType": "MobTypeMechanical",
+      "stats": { "attackPower": 320, "blockValue": 54, "armor": 3731, "health": 1428900 },
+      "minBaseDamage": 2601, "damageSpread": 0.5, "swingSpeed": 2,
+      "parryHaste": true, "canCrush": true
+    }
+  },
+
+  "builds": [
+    {
+      "id": "priest-shadow",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/priest/dps",
+      "buildJson": "builds/testing.build.json",
+      "title": { "ru": "Шэдоу", "en": "Shadow" },
+      "buildName": { "ru": "Shadow Testing (билд сима)", "en": "Shadow Testing (the sim's build)" },
+      "rotation": { "ru": "APL из тестинг-билда репозитория", "en": "the testing build's APL" },
+      "metric": "dps",
+      "pool": "priest-dps",
+      "specOptions": { "dpsPriest": { "options": { "classOptions": { "armor": "InnerFire", "preShadowform": true } } } },
+      "consumables": {
+        "flask": "Flask of Supreme Power", "food": "Nightfin Soup", "conjured": "Demonic Rune",
+        "mhImbue": "Brilliant Wizard Oil", "offensivePot": "Major Spellblasting Potion", "resourcePot": "Major Mana Potion",
+        "elixirs": ["Elixir of Shadow Power", "Greater Arcane Elixir", "Elixir of Cunning", "Elixir of the Owl", "Elixir of Sages", "Greater Mageblood Elixir"]
+      },
+      "raidBuffs": { "arcaneIntellect": true, "markOfTheWild": true, "powerWordFortitude": true, "prayerOfSpirit": true, "moonkinAura": true },
+      "partyBuffs": { "manaSpringTotem": "TristateEffectRegular" },
+      "individualBuffs": { "greaterBlessingOfKings": true, "greaterBlessingOfWisdom": 1 },
+      "debuffs": { "judgementOfTheCrusader": "TristateEffectRegular", "judgementOfWisdom": true, "curseOfElements": true },
+      "playerOverrides": {}
+    },
+    {
+      "id": "priest-healer",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/priest/healer",
+      "disabled": true,
+      "disabledReason": "В ui/specs/priest/healer нет APL/ротации — пресет хил-приста в симе ещё не готов. Включи запись, когда появится (disabled:false + talents/apls/baseGear).",
+      "title": { "ru": "Хил (Диск/Холи)", "en": "Healer (Disc/Holy)" },
+      "buildName": { "ru": "Хил", "en": "Healer" },
+      "rotation": { "ru": "", "en": "" },
+      "metric": "hps",
+      "pool": "priest-dps",
+      "playerOverrides": {}
+    }
+  ],
+
+  "pools": {
+    "priest-dps": {
+      "classId": 5,
+      "qualityMin": 2, "ilvlMin": 50, "maxPerSlot": 14,
+      "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
+      "excludeIds": [], "includeIds": [],
+      "slots": {
+        "head":     { "armorType": 1 },
+        "neck":     { },
+        "shoulder": { "armorType": 1 },
+        "back":     { },
+        "chest":    { "armorType": 1 },
+        "wrist":    { "armorType": 1 },
+        "hands":    { "armorType": 1 },
+        "waist":    { "armorType": 1 },
+        "legs":     { "armorType": 1 },
+        "feet":     { "armorType": 1 },
+        "finger1":  { },
+        "trinket1": { },
+        "main_hand": { "anyOf": [ { "weaponTypes": [8], "handTypes": [4] }, { "weaponTypes": [4, 2], "handTypes": [1, 2] } ] },
+        "off_hand":  { "weaponTypes": [5], "handTypes": [3] },
+        "ranged":    { "rangedTypes": [5] }
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "class": "shaman",
+  "className": {"ru": "Шаман", "en": "Shaman"},
+
+  "_comment": "Шаман: элем и энх — полные билд-JSON репозитория (включая item swap энха); весь player берётся из них. Рестор выключен: ротации нет.",
+
+  "encounter": {
+    "duration": 180, "durationVariation": 5,
+    "executeProportion20": 0.2, "executeProportion35": 0.35,
+    "target": {
+      "id": 31146, "name": "Raid Target", "level": 63,
+      "mobType": "MobTypeMechanical",
+      "stats": { "attackPower": 320, "blockValue": 54, "armor": 3731, "health": 1428900 },
+      "minBaseDamage": 2601, "damageSpread": 0.5, "swingSpeed": 2,
+      "parryHaste": true, "canCrush": true
+    }
+  },
+
+  "builds": [
+    {
+      "id": "shaman-elemental",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/shaman/elemental",
+      "buildJson": "builds/default.build.json",
+      "title": { "ru": "Элем", "en": "Elemental" },
+      "buildName": { "ru": "Elemental (билд сима)", "en": "Elemental (the sim's build)" },
+      "rotation": { "ru": "APL из билд-файла репозитория", "en": "the build file's APL" },
+      "metric": "dps",
+      "pool": "shaman-caster",
+      "playerOverrides": {}
+    },
+    {
+      "id": "shaman-enhancement",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/shaman/enhancement",
+      "buildJson": "builds/testing.build.json",
+      "title": { "ru": "Энх", "en": "Enhancement" },
+      "buildName": { "ru": "Enhancement (тестинг-билд сима)", "en": "Enhancement (the sim's testing build)" },
+      "rotation": { "ru": "APL из билд-файла репозитория (включая подмену оружия)", "en": "the build file's APL (with weapon swap)" },
+      "metric": "dps",
+      "pool": "shaman-melee",
+      "playerOverrides": {}
+    },
+    {
+      "id": "shaman-restoration",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/shaman/restoration",
+      "disabled": true,
+      "disabledReason": "В ui/specs/shaman/restoration нет ни APL, ни билд-файла — пресет рестор-шамана в симе ещё не готов. Включи запись, когда появится.",
+      "title": { "ru": "Рестор", "en": "Restoration" },
+      "buildName": { "ru": "Рестор", "en": "Restoration" },
+      "rotation": { "ru": "", "en": "" },
+      "metric": "hps",
+      "pool": "shaman-caster",
+      "playerOverrides": {}
+    }
+  ],
+
+  "pools": {
+    "shaman-caster": {
+      "classId": 7,
+      "qualityMin": 2, "ilvlMin": 50, "maxPerSlot": 14,
+      "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
+      "excludeIds": [], "includeIds": [],
+      "slots": {
+        "head":     { "armorType": 3 },
+        "neck":     { },
+        "shoulder": { "armorType": 3 },
+        "back":     { },
+        "chest":    { "armorType": 3 },
+        "wrist":    { "armorType": 3 },
+        "hands":    { "armorType": 3 },
+        "waist":    { "armorType": 3 },
+        "legs":     { "armorType": 3 },
+        "feet":     { "armorType": 3 },
+        "finger1":  { },
+        "trinket1": { },
+        "main_hand": { "anyOf": [ { "weaponTypes": [8], "handTypes": [4] }, { "weaponTypes": [4, 2, 1], "handTypes": [1, 2] } ] },
+        "off_hand":  { "weaponTypes": [7], "handTypes": [3] },
+        "ranged":    { "rangedTypes": [8] }
+      }
+    },
+    "shaman-melee": {
+      "classId": 7,
+      "qualityMin": 2, "ilvlMin": 50, "maxPerSlot": 14,
+      "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
+      "excludeIds": [], "includeIds": [],
+      "slots": {
+        "head":     { "armorType": 3 },
+        "neck":     { },
+        "shoulder": { "armorType": 3 },
+        "back":     { },
+        "chest":    { "armorType": 3 },
+        "wrist":    { "armorType": 3 },
+        "hands":    { "armorType": 3 },
+        "waist":    { "armorType": 3 },
+        "legs":     { "armorType": 3 },
+        "feet":     { "armorType": 3 },
+        "finger1":  { },
+        "trinket1": { },
+        "main_hand": { "weaponTypes": [4, 1, 9, 2], "handTypes": [1, 2] },
+        "off_hand":  { "weaponTypes": [4, 1, 9, 2], "handTypes": [1, 2, 3] },
+        "ranged":    { "rangedTypes": [8] }
+      }
+    }
+  }
+}

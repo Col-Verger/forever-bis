@@ -1,0 +1,8 @@
+# Scratch and local checkouts — never commit these.
+forever/
+wowsimcli
+wowsimcli.exe
+wowsimcli.*
+__pycache__/
+*.pyc
+.tmp/

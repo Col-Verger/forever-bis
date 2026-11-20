@@ -1,0 +1,109 @@
+{
+  "class": "paladin",
+  "className": {"ru": "Паладин", "en": "Paladin"},
+
+  "_comment": "Билды паладина для tools/run_sims.py. Режим siml: драйвер генерирует полный '.siml'-setup (use репозиторного APL + транскрибированные настройки билда + секция gear). Обновляй строку template при заметных изменениях defaults.siml/билдов сима.",
+
+  "builds": [
+    {
+      "id": "paladin-retribution",
+      "mode": "siml",
+      "repoFolder": "ui/specs/paladin/retribution",
+      "specLine": "retribution_paladin",
+      "baseGear": "gear_sets/default.gear.siml",
+      "apls": "apls/default.apl.siml",
+      "title": { "ru": "Ретри", "en": "Retribution" },
+      "buildName": { "ru": "Unsealed Wrath", "en": "Unsealed Wrath" },
+      "rotation": { "ru": "Default APL из репозитория сима", "en": "the repo's Default APL" },
+      "pool": "paladin-melee",
+      "twoHandExpected": true,
+      "playerOverrides": {},
+      "template": "siml 1\nspec retribution_paladin\ntalents \"050250002-501-05233011201301351\"\nuse \"{{APL}}\"\n\nsettings:\n  race human\n  profession1 engineering\n  profession2 blacksmithing\n  reaction_time 100ms\n  distance_from_target 25\n\nconsumables:\n  offensive_pot major_spellblasting_potion\n  resource_pot major_mana_potion\n  flask flask_of_supreme_power\n  food lobster_stew\n  conjured demonic_rune\n  mh_imbue shadow_oil\n  extra r_o_i_d_s, goblin_sapper_charge, dragonbreath_chili, gordok_green_grog\n  elixir elixir_of_holy_power, elixir_of_sages, elixir_of_the_mongoose, elixir_of_the_owl, elixir_of_the_grizzly, elixir_of_the_phalanx, greater_arcane_elixir, greater_mageblood_elixir, juju_might\n\nbuffs:\n  greater_blessing_of_kings\n  greater_blessing_of_might 1\n  greater_blessing_of_wisdom 1\n\nparty_buffs: mana_spring_totem\n\nraid_buffs:\n  arcane_intellect, prayer_of_spirit, mark_of_the_wild, power_word_fortitude\n  strength_of_earth_totem 1\n  grace_of_air_totem 1\n  windfury_totem\n  battle_shout 1\n  leader_of_the_pack\n\ndebuffs:\n  judgement_of_light, judgement_of_wisdom, curse_of_elements, curse_of_recklessness, faerie_fire\n  expose_armor, sunder_armor\n\nsim:\n  iterations {{ITERS}}\n  fixed_rng_seed {{SEED}}\n\nencounter:\n  duration 180\n  duration_variation 5\n  execute_proportion_20 0.2\n  execute_proportion_35 0.35\n  targets(id=31146, name=\"Raid Target\", level=63, mob_type=mechanical,\n      stats(attack_power=320, block_value=54, armor=3731, health=1428900),\n      min_base_damage=2601, damage_spread=0.5, swing_speed=2, parry_haste, can_crush)\n\ngear:\n{{GEAR}}"
+    },
+    {
+      "id": "paladin-protection",
+      "mode": "siml",
+      "repoFolder": "ui/specs/paladin/protection",
+      "specLine": "protection_paladin",
+      "baseGear": "gear_sets/default.gear.siml",
+      "apls": "apls/default.apl.siml",
+      "title": { "ru": "Прот (танк)", "en": "Protection (tank)" },
+      "buildName": { "ru": "Прот (defaults спека)", "en": "Protection (the spec's defaults)" },
+      "rotation": { "ru": "Default APL из репозитория сима", "en": "the repo's Default APL" },
+      "pool": "paladin-melee",
+      "twoHandExpected": false,
+      "playerOverrides": {},
+      "template": "siml 1\nspec protection_paladin\ntalents \"050050002-05302102213301531-502\"\nuse \"{{APL}}\"\n\nsettings:\n  race human\n  profession1 engineering\n  profession2 enchanting\n  reaction_time 100ms\n  in_front_of_target\n  distance_from_target 5\n  healing_model(hps=2200, cadence_seconds=0.4, cadence_variation=1.2, absorb_frac=0.02, burst_window=6, inspiration_uptime=0.25)\n  tanks player1\n\nconsumables:\n  defensive_pot greater_stoneshield_potion\n  flask flask_of_supreme_power\n  food baked_salmon\n  conjured demonic_rune\n  explosive ez_thro_dynamite_ii\n  mh_imbue brilliant_wizard_oil\n  extra goblin_sapper_charge, juju_might, scroll_of_stamina_iv\n  elixir elixir_of_holy_power, greater_arcane_elixir, elixir_of_the_owl, elixir_of_sages, elixir_of_greater_fortitude, greater_mageblood_elixir, elixir_of_greater_defense, elixir_of_ferocity, elixir_of_the_mongoose\n\nbuffs:\n  thorns, greater_blessing_of_kings\n  greater_blessing_of_might 1\n  greater_blessing_of_wisdom 1\n\nparty_buffs: mana_spring_totem\n\nraid_buffs:\n  arcane_intellect, prayer_of_spirit, mark_of_the_wild, power_word_fortitude, shadow_protection\n  grace_of_air_totem 1\n  windfury_totem\n  battle_shout 1\n  leader_of_the_pack\n\ndebuffs:\n  judgement_of_the_crusader, judgement_of_light, judgement_of_wisdom, curse_of_elements\n  curse_of_recklessness, faerie_fire, expose_armor, sunder_armor, gift_of_arthas\n  demoralizing_shout, insect_swarm\n\nsim:\n  iterations {{ITERS}}\n  fixed_rng_seed {{SEED}}\n\nencounter:\n  duration 180\n  duration_variation 5\n  execute_proportion_20 0.2\n  execute_proportion_35 0.35\n  targets(id=31146, name=\"Raid Target\", level=63, mob_type=mechanical,\n      stats(attack_power=320, block_value=54, armor=3731, health=1428900),\n      min_base_damage=2601, damage_spread=0.5, swing_speed=2, parry_haste, can_crush)\n\ngear:\n{{GEAR}}"
+    },
+    {
+      "id": "paladin-holy",
+      "mode": "siml",
+      "disabled": true,
+      "disabledReason": "В ui/specs/paladin/holy нет ни defaults.siml, ни APL: пресет Holy в симе ещё не готов. Когда появятся — включи запись: disabled:false + строка template по образцу ретри/прота.",
+      "repoFolder": "ui/specs/paladin/holy",
+      "specLine": "holy_paladin",
+      "use": "",
+      "baseGear": "gear_sets/default.gear.siml",
+      "title": { "ru": "Холи", "en": "Holy" },
+      "buildName": { "ru": "Холи", "en": "Holy" },
+      "rotation": { "ru": "", "en": "" },
+      "pool": "paladin-holy",
+      "playerOverrides": {}
+    }
+  ],
+
+  "pools": {
+    "paladin-melee": {
+      "classId": 2,
+      "qualityMin": 2,
+      "ilvlMin": 50,
+      "maxPerSlot": 14,
+      "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
+      "excludeIds": [],
+      "includeIds": [],
+      "slots": {
+        "head":     { "armorType": 4 },
+        "neck":     { },
+        "shoulder": { "armorType": 4 },
+        "back":     { },
+        "chest":    { "armorType": 4 },
+        "wrist":    { "armorType": 4 },
+        "hands":    { "armorType": 4 },
+        "waist":    { "armorType": 4 },
+        "legs":     { "armorType": 4 },
+        "feet":     { "armorType": 4 },
+        "finger1":  { },
+        "trinket1": { },
+        "main_hand": { "weaponTypes": [1, 4, 9, 6], "handTypes": [1, 2, 4] },
+        "off_hand":  { "weaponTypes": [7], "handTypes": [3] },
+        "ranged":    { "rangedTypes": [7] }
+      }
+    },
+    "paladin-holy": {
+      "classId": 2,
+      "qualityMin": 2,
+      "ilvlMin": 50,
+      "maxPerSlot": 14,
+      "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
+      "excludeIds": [],
+      "includeIds": [],
+      "slots": {
+        "head":     { "armorType": 4 },
+        "neck":     { },
+        "shoulder": { "armorType": 4 },
+        "back":     { },
+        "chest":    { "armorType": 4 },
+        "wrist":    { "armorType": 4 },
+        "hands":    { "armorType": 4 },
+        "waist":    { "armorType": 4 },
+        "legs":     { "armorType": 4 },
+        "feet":     { "armorType": 4 },
+        "finger1":  { },
+        "trinket1": { },
+        "main_hand": { "weaponTypes": [4, 9], "handTypes": [1, 2] },
+        "off_hand":  { "weaponTypes": [7], "handTypes": [3] },
+        "ranged":    { "rangedTypes": [7] }
+      }
+    }
+  }
+}

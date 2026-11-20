@@ -1,0 +1,79 @@
+{
+  "class": "rogue",
+  "className": {"ru": "Рог", "en": "Rogue"},
+
+  "_comment": "Рог: Combat SS (билд по умолчанию репозитория) с их Direct APL и прерайд-сетом «Slow Main Hand». Расходники — из presets.ts (яды через weapon imbues).",
+
+  "playerTemplate": {
+    "classEnum": "ClassRogue",
+    "race": "RaceOrc",
+    "professions": ["Engineering", "Enchanting"],
+    "distanceFromTarget": 5
+  },
+
+  "encounter": {
+    "duration": 180, "durationVariation": 5,
+    "executeProportion20": 0.2, "executeProportion35": 0.35,
+    "target": {
+      "id": 31146, "name": "Raid Target", "level": 63,
+      "mobType": "MobTypeMechanical",
+      "stats": { "attackPower": 320, "blockValue": 54, "armor": 3731, "health": 1428900 },
+      "minBaseDamage": 2601, "damageSpread": 0.5, "swingSpeed": 2,
+      "parryHaste": true, "canCrush": true
+    }
+  },
+
+  "builds": [
+    {
+      "id": "rogue-combat",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/rogue/dps",
+      "title": { "ru": "Комбат", "en": "Combat" },
+      "buildName": { "ru": "Combat SS (defaults сима)", "en": "Combat SS (the sim's defaults)" },
+      "rotation": { "ru": "Direct APL из репозитория сима", "en": "the repo's Direct APL" },
+      "metric": "dps",
+      "talents": "00530320201-3200132202012321551",
+      "apls": "apls/default.apl.json",
+      "baseGear": "gear_sets/sinister.gear.json",
+      "pool": "rogue-dps",
+      "specOptions": { "rogue": { "options": { "classOptions": { } } } },
+      "consumables": {
+        "food": "Swiftstrike Steak", "offensivePot": "Major Frenzy Potion", "conjured": "Thistle Tea",
+        "mhImbue": "Dense Weightstone", "ohImbue": "Dense Sharpening Stone",
+        "mhWeaponImbue": "Instant Poison VI", "ohWeaponImbue": "Deadly Poison IV",
+        "elixirs": ["Elixir of the Mongoose", "Elixir of Greater Fortitude", "Elixir of Ferocity", "Juju Might"]
+      },
+      "raidBuffs": { "markOfTheWild": true, "strengthOfEarthTotem": 1, "windfuryTotem": true, "battleShout": 1, "leaderOfThePack": true, "graceOfAirTotem": 1, "moonkinAura": true },
+      "partyBuffs": { },
+      "individualBuffs": { "greaterBlessingOfKings": true, "greaterBlessingOfMight": 1 },
+      "debuffs": { "curseOfRecklessness": true, "faerieFire": true, "giftOfArthas": true, "sunderArmor": true, "curseOfElements": true, "armorShatter": true },
+      "playerOverrides": {}
+    }
+  ],
+
+  "pools": {
+    "rogue-dps": {
+      "classId": 4,
+      "qualityMin": 2, "ilvlMin": 50, "maxPerSlot": 14,
+      "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
+      "excludeIds": [], "includeIds": [],
+      "slots": {
+        "head":     { "armorType": 2 },
+        "neck":     { },
+        "shoulder": { "armorType": 2 },
+        "back":     { },
+        "chest":    { "armorType": 2 },
+        "wrist":    { "armorType": 2 },
+        "hands":    { "armorType": 2 },
+        "waist":    { "armorType": 2 },
+        "legs":     { "armorType": 2 },
+        "feet":     { "armorType": 2 },
+        "finger1":  { },
+        "trinket1": { },
+        "main_hand": { "weaponTypes": [2, 4, 9, 3], "handTypes": [1, 2] },
+        "off_hand":  { "weaponTypes": [2, 4, 9, 3], "handTypes": [1, 2, 3] },
+        "ranged":    { "rangedTypes": [4] }
+      }
+    }
+  }
+}

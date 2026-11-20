@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Пререйд-BiS · WoW Forever</title>
+<meta name="description" content="Пререйд-BiS по симам для каждого класса и спека, WoW Forever Фаза 1.">
+<link rel="icon" href="https://wow.zamimg.com/images/wow/icons/medium/classicon_mage.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=1">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brandrow">
+      <span class="brand">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18.5 9.5 13.9 11.4 12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M5 19l14-14"/></svg>
+        <span>Pre-raid BiS</span>
+        <span class="tag" id="brandtag">WoW Forever</span>
+      </span>
+      <div class="brand-right">
+        <nav class="lang" role="group" aria-label="Language">
+          <button data-lang="ru" aria-pressed="true">RU</button>
+          <button data-lang="en" aria-pressed="false">EN</button>
+        </nav>
+        <button class="statuschip" id="statuschip" type="button" hidden></button>
+      </div>
+    </div>
+    <h1 id="pagetitle">Пререйд-BiS · все классы</h1>
+    <p class="lede" id="lede"></p>
+    <div class="stamp" id="stamp" hidden></div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="gear" aria-selected="true" data-i18n="tab_gear">Экипировка по слотам</button>
+      <button role="tab" data-tab="all" aria-selected="false" data-i18n="tab_all">Все сеты</button>
+      <button role="tab" data-tab="howto" aria-selected="false" data-i18n="tab_howto">Как одеваться</button>
+      <button role="tab" data-tab="method" aria-selected="false" data-i18n="tab_method">Методика</button>
+      <button role="tab" data-tab="refresh" aria-selected="false" data-i18n="tab_refresh">Данные и обновление</button>
+    </nav>
+  </div>
+</header>
+
+<div class="bar" id="bar">
+  <div class="wrap bar-in">
+    <div class="group"><span data-i18n="cls">Класс</span><div class="seg" id="cls"></div></div>
+    <div class="group"><span data-i18n="spec">Спек</span><div class="seg" id="spec"></div></div>
+    <div class="group" id="budgetgroup" hidden><span data-i18n="budget">Бюджет</span><div class="seg" id="budget"></div></div>
+    <div class="group"><span data-i18n="topn">Опций на слот</span><div class="seg" id="topn"></div></div>
+    <div class="group grow"><span data-i18n="filter">Фильтр</span>
+      <div class="filter">
+        <input type="search" class="search" id="q" data-i18n-ph="search_ph" placeholder="Предмет, босс, зона, квест" aria-label="Search items">
+        <details class="srcpick" id="srcpick"><summary id="srcsum">Все источники</summary><div class="srcmenu" id="srcs"></div></details>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section data-panel="gear">
+    <div class="doll" id="doll"></div>
+    <div class="listhead"><h2 data-i18n="every_slot">Каждая опция, слот за слотом</h2></div>
+    <div class="key" id="key"></div>
+    <div class="cards" id="cards"></div>
+  </section>
+  <section data-panel="all" hidden>
+    <p class="sub" data-i18n="matrix_sub">Все сеты бок о бок. Ряды без подсветки одинаковы во всех сетах; подсвеченная ячейка отличается от самого частого выбора.</p>
+    <div class="matrix" id="matrix"></div>
+  </section>
+  <section data-panel="howto" hidden><div class="prose" id="howto"></div></section>
+  <section data-panel="method" hidden><div class="prose" id="method"></div></section>
+  <section data-panel="refresh" hidden><div class="prose" id="refresh"></div></section>
+</main>
+
+<footer class="wrap foot" id="foot"></footer>
+
+<div id="tip" hidden></div>
+
+<script src="data.js?v=dd3adf21cb"></script>
+<script src="assets/app.js?v=2"></script>
+</body>
+</html>

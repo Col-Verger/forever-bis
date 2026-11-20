@@ -1,0 +1,52 @@
+{
+  "class": "hunter",
+  "className": {"ru": "Хантер", "en": "Hunter"},
+
+  "_comment": "Хантер: полный .siml-setup, транскрибированный с ui/specs/hunter/dps/defaults.siml (weave-билд) + use их Default APL. База — их prebis_weave.gear.siml. Плейстайлы turret/melee можно добавить отдельными билдами позже (каждый = ещё строка в builds).",
+
+  "builds": [
+    {
+      "id": "hunter-dps",
+      "mode": "siml",
+      "repoFolder": "ui/specs/hunter/dps",
+      "specLine": "hunter",
+      "baseGear": "gear_sets/prebis_weave.gear.siml",
+      "apls": "apls/default.apl.siml",
+      "title": { "ru": "Хантер (weave)", "en": "Hunter (weave)" },
+      "buildName": { "ru": "SV Weave (defaults сима)", "en": "SV Weave (the sim's defaults)" },
+      "rotation": { "ru": "Default APL из репозитория сима", "en": "the repo's Default APL" },
+      "pool": "hunter-dps",
+      "twoHandExpected": true,
+      "playerOverrides": {},
+      "template": "siml 1\nspec hunter\ntalents \"-00530501114-530200230050220151\"\nuse \"{{APL}}\"\n\nsettings:\n  race orc\n  profession1 engineering\n  profession2 blacksmithing\n  reaction_time 150ms 350ms\n  channel_clip_delay 100ms\n  distance_from_target 12\n  quiver_bonus ancient_sinew_wrapped_lamina\n  ammo thorium_headed_arrow\n  pet_uptime 1\n  pet_attack_speed faster_attack_ii\n\nconsumables:\n  flask flask_of_natural_aggression\n  food swiftstrike_steak\n  conjured demonic_rune\n  explosive ez_thro_dynamite_ii\n  mh_imbue elemental_sharpening_stone\n  extra goblin_sapper_charge, scroll_of_strength_iv, juju_might, dragonbreath_chili, ground_scorpok_assay\n  elixir elixir_of_the_mongoose, greater_mageblood_elixir, elixir_of_greater_intellect\n  resource_pot major_mana_potion\n  offensive_pot major_frenzy_potion\n\nbuffs:\n  greater_blessing_of_kings\n  greater_blessing_of_might 1\n  greater_blessing_of_wisdom 1\n\nraid_buffs:\n  arcane_intellect, prayer_of_spirit, mark_of_the_wild\n  strength_of_earth_totem 1\n  grace_of_air_totem 1\n  windfury_totem\n  battle_shout 1\n  leader_of_the_pack\n\ndebuffs:\n  judgement_of_light, judgement_of_wisdom, curse_of_elements, curse_of_recklessness, faerie_fire\n  expose_armor, sunder_armor, gift_of_arthas, insect_swarm\n\nsim:\n  iterations {{ITERS}}\n  fixed_rng_seed {{SEED}}\n\nencounter:\n  duration 180\n  duration_variation 5\n  execute_proportion_20 0.2\n  execute_proportion_35 0.35\n  targets(id=31146, name=\"Raid Target\", level=63, mob_type=dragonkin,\n      stats(attack_power=320, block_value=54, armor=3731, health=1428900),\n      min_base_damage=2601, damage_spread=0.5, swing_speed=2, parry_haste, can_crush)\n\ngear:\n{{GEAR}}"
+    }
+  ],
+
+  "pools": {
+    "hunter-dps": {
+      "classId": 3,
+      "qualityMin": 2,
+      "ilvlMin": 50,
+      "maxPerSlot": 14,
+      "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
+      "excludeIds": [],
+      "includeIds": [],
+      "slots": {
+        "head":     { "armorType": 3 },
+        "neck":     { },
+        "shoulder": { "armorType": 3 },
+        "back":     { },
+        "chest":    { "armorType": 3 },
+        "wrist":    { "armorType": 3 },
+        "hands":    { "armorType": 3 },
+        "waist":    { "armorType": 3 },
+        "legs":     { "armorType": 3 },
+        "feet":     { "armorType": 3 },
+        "finger1":  { },
+        "trinket1": { },
+        "main_hand": { "weaponTypes": [1, 6, 8, 9], "handTypes": [4] },
+        "ranged":    { "rangedTypes": [1, 2, 3] }
+      }
+    }
+  }
+}
