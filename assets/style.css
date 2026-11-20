@@ -63,6 +63,8 @@ small{color:var(--mut)}
 .seg button{display:inline-flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:5px 12px;cursor:pointer;font:600 12.5px Inter}
 .seg button[aria-pressed="true"]{background:var(--acc-soft);border-color:var(--acc);color:var(--acc)}
 .seg button:hover{border-color:var(--acc)}
+.seg button:disabled{opacity:.35;cursor:not-allowed;border-style:dashed}
+.seg button:disabled:hover{border-color:var(--line)}
 .seg button img{width:16px;height:16px;border-radius:4px}
 .filter{display:flex;gap:8px;align-items:center}
 .search{flex:1;min-width:160px;background:var(--bg3);border:1px solid var(--line);color:var(--fg);border-radius:7px;padding:6px 11px;font:13px Inter;outline:none}
@@ -234,6 +236,13 @@ details.ov[open] summary{border-bottom:1px solid var(--line)}
 .cmdrow code{flex:1;background:none;border:0;padding:0;font-size:11.5px;word-break:break-all;color:var(--fg)}
 .copybtn{background:none;border:1px solid var(--line2);color:var(--acc);border-radius:6px;padding:3px 10px;cursor:pointer;font:600 11px Inter;white-space:nowrap}
 .copybtn:hover{border-color:var(--acc)}
+details.localrun{border:1px solid var(--line);border-radius:var(--rad);background:var(--bg2);margin:12px 0}
+details.localrun summary{cursor:pointer;list-style:none;padding:11px 16px;color:var(--mut);font:600 13px Inter}
+details.localrun summary::-webkit-details-marker{display:none}
+details.localrun summary::before{content:'▸ ';color:var(--mut2)}
+details.localrun[open] summary::before{content:'▾ '}
+details.localrun[open] summary{border-bottom:1px solid var(--line)}
+.localcmds{padding:10px 14px 12px;display:flex;flex-direction:column;gap:6px}
 
 /* ---------- footer / tooltip ---------- */
 .foot{border-top:1px solid var(--line);margin-top:40px;padding-top:18px;padding-bottom:30px;color:var(--mut2);font-size:12.5px}

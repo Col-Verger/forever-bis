@@ -57,6 +57,8 @@ const STR = {
   chip_ok: { ru: 'Симы', en: 'Simmed' },
   chip_stale: { ru: 'данные старше N дней — обнови', en: 'stale — consider a re-run' },
   ref_status: { ru: 'Статус данных', en: 'Data status' },
+  ref_last_update: { ru: 'Последнее обновление', en: 'Last update' },
+  ref_owner_only: { ru: 'Данные обновляет только владелец репозитория — автоматически по расписанию (раз в неделю) или кнопкой ниже. Посетителям ничего запускать не нужно: числа всегда свежие на странице.', en: 'Only the repo owner refreshes the data — automatically weekly, or with the button below. Visitors never need to run anything: the numbers on the page are the latest.' },
   ref_ok_line: { ru: 'Прогон', en: 'Last run' },
   ref_commit_line: { ru: 'Симулятор', en: 'Simulator' },
   ref_auto: { ru: 'Как числа попадают на сайт', en: 'How numbers get here' },
@@ -65,7 +67,7 @@ const STR = {
   ref_owner_body: { ru: 'Кнопка ведёт на GitHub Action «Re-sim and deploy» — нажми Run workflow (вход в GitHub обязателен: анонимные посетители запускать не могут).', en: 'The button opens the “Re-sim and deploy” GitHub Action — press Run workflow (a GitHub login with repo access is required; anonymous visitors cannot trigger it).' },
   ref_owner_btn: { ru: 'Открыть Action ↗', en: 'Open the Action ↗' },
   ref_no_repo: { ru: 'Ссылка появится, когда репозиторий будет создан и в data.js прошит --repo владелец/репозиторий.', en: 'The link appears once the repo exists and build_data.py runs with --repo owner/name.' },
-  ref_local_title: { ru: 'Локальный прогон (полный контроль)', en: 'Local run (full control)' },
+  ref_local_title: { ru: 'Локальный прогон (для владельца)', en: 'Local run (for the owner)' },
   ref_new_title: { ru: 'Новый пользователь? Прочти это', en: 'New here? Read this' },
   ref_new_body: { ru: 'Каждое число на странице — реальный прогон симулятора, с погрешностью ± на полосах. Данные обновляются сами по расписанию; если штамп в шапке старый — напиши владельцу или запусти Action, если есть права. Проверить любое число можно самостоятельно: скачай runs/<спек>.settings.json из репозитория и импортируй его на wowsims.com — увидишь тот же сет и тот же босс.', en: 'Every number on this page is a real simulator run, with a ± margin on the bars. Data refreshes on a schedule; if the stamp in the header is old, ping the owner or run the Action if you can. Any number can be checked: grab runs/<spec>.settings.json from the repo and import it on wowsims.com — same set, same boss.' },
   ref_copy: { ru: 'Копировать', en: 'Copy' },
@@ -76,7 +78,10 @@ const STR = {
   budget: { ru: 'Бюджет', en: 'Budget' },
   budget_max: { ru: 'Максимум', en: 'Max' },
   budget_cheap: { ru: 'Дёшево', en: 'Cheap' },
+  budget_pending: { ru: 'ещё считается — появится после полного прогона', en: 'still simming — lands after the full run' },
   vs_other: { ru: 'Другой бюджет', en: 'Other budget' },
+  howto_open_set: { ru: 'Открыть сет →', en: 'Open the set →' },
+  howto_talents: { ru: 'Таланты на Wowhead ↗', en: 'Talents on Wowhead ↗' },
   topn: { ru: 'Опций на слот', en: 'Options per slot' },
   filter: { ru: 'Фильтр', en: 'Filter' },
   search_ph: { ru: 'Предмет, босс, зона, квест', en: 'Item, boss, zone, quest' },
@@ -150,11 +155,14 @@ const curClass = () => G.classes.find(c => c.id === state.cls);
 const curSpec = () => (curClass() || G.classes[0]).specs.find(s => s.id === state.spec) || (curClass() || G.classes[0]).specs[0];
 const loadoutKey = sp => {
   const P = sp.prefix, L = G.loadouts;
-  if ((L[`${P}-max`] && L[`${P}-cheap`])) return `${P}-${state.budget}`;
-  return L[`${P}-max`] ? `${P}-max` : P;
+  if (L[`${P}-${state.budget}`]) return `${P}-${state.budget}`;
+  if (L[`${P}-max`]) return `${P}-max`;
+  return P;
 };
 const loadout = sp => G.loadouts[loadoutKey(sp || curSpec())];
 const budgetOf = sp => !!(G.loadouts[`${sp.prefix}-max`] && G.loadouts[`${sp.prefix}-cheap`]);
+const hasMaxOf = sp => !!(G.loadouts[`${sp.prefix}-max`] || G.loadouts[sp.prefix]);
+const hasCheapOf = sp => !!G.loadouts[`${sp.prefix}-cheap`];
 const budgetLabel = b => T(b === 'cheap' ? 'budget_cheap' : 'budget_max');
 const lang = () => state.lang;
 const L2 = o => (o && typeof o === 'object') ? (o[lang()] || o.en || o.ru || '') : (o == null ? '' : o);
@@ -421,7 +429,10 @@ function renderHowto() {
   const enchRows = [];
   if (L) for (const s of SLOT_ORDER) {
     const v = L.gear[s];
-    if (v && v[0] && v[3]) enchRows.push(`<tr><td>${esc(slotLabel(s))}</td><td><span style="color:var(--fg)">${esc(v[3])}</span></td><td><span class="w1">${esc(itemName(v))}</span></td></tr>`);
+    if (v && v[0] && v[3]) {
+      const it = item(v[0]);
+      enchRows.push(`<tr><td>${esc(slotLabel(s))}</td><td><span style="color:var(--fg)">${esc(v[3])}</span></td><td><a class="n" style="${qc(it)}" href="${WH(v[0])}" target="_blank" rel="noopener">${esc(itemName(v))}</a></td></tr>`);
+    }
   }
   const steps = T('howto_steps');
   $('howto').innerHTML = `
@@ -430,6 +441,11 @@ function renderHowto() {
       <div class="kpi"><b>${esc(T('howto_prio_title'))}</b><span>${esc(L2(notes.stat) || '—')}</span></div>
       <div class="kpi"><b>${esc(T('howto_best_title'))}</b><span>${L ? `${fmtMetric(L.value)} ${esc(metricName(L.metric))}` : esc(T('howto_best_none'))}</span></div>
       <div class="kpi"><b>${esc(T('howto_nums_title'))}</b><span>${esc(T('howto_nums_body'))}${G.meta.simmed ? ' · ' + esc(G.meta.simmed) : ''}</span></div>
+    </div>
+    <div class="center-actions">
+      <button class="btn" data-tab="gear">${esc(T('howto_open_set'))}</button>
+      ${L && L.talents ? `<a class="btn" href="${esc(WH_TALENTS(state.cls, L.talents))}" target="_blank" rel="noopener">${esc(T('howto_talents'))}</a>` : ''}
+      ${L && L.simLink ? `<a class="btn primary" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T('open_sim'))}</a>` : ''}
     </div>
     <h2>${esc(T('howto_ench_title'))}</h2>
     ${enchRows.length
@@ -473,22 +489,26 @@ function cmdBlock([n, cmd]) {
 function renderRefresh() {
   const m = G.meta;
   const st = chipState();
-  const status = `<div class="panel ${st.cls}"><b>${esc(st.text)}</b>
-      <span>${esc(T('ref_ok_line'))}: <b>${esc(m.simmed || '—')}</b></span>
-      <span>${esc(T('ref_commit_line'))}: <code>${esc(m.simCommit || '—')}</code></span></div>`;
+  const status = `<div class="panel ${st.cls}"><b>${esc(T('ref_last_update'))}</b>
+      <span>${m.hasData
+        ? `${esc(T('ref_ok_line'))}: <b>${esc(m.simmed)}</b> · WoWSims <code>${esc(m.simCommit || '—')}</code>`
+        : esc(T('chip_no_data'))}</span>
+      <span>${esc(T('ref_owner_only'))}</span></div>`;
   const owner = m.workflowUrl
     ? `<div class="panel"><b>${esc(T('ref_owner_title'))}</b><span>${esc(T('ref_owner_body'))}</span>
         <a class="btn primary" href="${esc(m.workflowUrl)}" target="_blank" rel="noopener">${esc(T('ref_owner_btn'))}</a>
         ${cmdBlock(['gh', `gh workflow run resim.yml --repo ${m.repoUrl ? m.repoUrl.replace('https://github.com/', '') : 'OWNER/REPO'}`])}</div>`
     : `<div class="panel"><b>${esc(T('ref_owner_title'))}</b><span>${esc(T('ref_no_repo'))}</span></div>`;
-  const local = `<div class="panel"><b>${esc(T('ref_local_title'))}</b>${REFRESH_CMDS.map(cmdBlock).join('')}</div>`;
   const newbie = `<div class="panel"><b>${esc(T('ref_new_title'))}</b><span>${esc(T('ref_new_body'))}</span></div>`;
+  const local = `<details class="localrun"><summary>${esc(T('ref_local_title'))}</summary>
+    <div class="localcmds">${REFRESH_CMDS.map(cmdBlock).join('')}</div></details>`;
   $('refresh').innerHTML = `
     <h2>${esc(T('ref_status'))}</h2>
     <div class="panels">${status}
       <div class="panel"><b>${esc(T('ref_auto'))}</b><span>${esc(T('ref_auto_body'))}</span></div>
     </div>
-    <div class="panels">${owner}${local}${newbie}</div>`;
+    <div class="panels">${owner}${newbie}</div>
+    ${local}`;
 }
 
 // ---------- tooltip ----------
@@ -539,9 +559,14 @@ function renderControls() {
   $('cls').innerHTML = G.classes.map(c => `<button data-cls="${c.id}"><img src="${CLASS_ICON(c.id)}" alt="">${esc(L2(c.name))}</button>`).join('');
   const C = curClass();
   $('spec').innerHTML = C.specs.map(s => `<button data-spec="${s.id}" title="${esc(L2(s.name))}">${esc(L2(s.name))}</button>`).join('');
-  const hasBudget = !!budgetOf(curSpec());
-  $('budgetgroup').hidden = !hasBudget;
-  if (hasBudget) $('budget').innerHTML = `<button data-budget="max">${esc(T('budget_max'))}</button><button data-budget="cheap">${esc(T('budget_cheap'))}</button>`;
+  const spNow = curSpec();
+  const hasMax = hasMaxOf(spNow), hasCheap = hasCheapOf(spNow);
+  $('budgetgroup').hidden = !(hasMax || hasCheap);
+  if (hasMax || hasCheap) {
+    $('budget').innerHTML =
+      `<button data-budget="max" ${hasMax ? '' : `disabled title="${esc(T('budget_pending'))}"`}>${esc(T('budget_max'))}</button>` +
+      `<button data-budget="cheap" ${hasCheap ? '' : `disabled title="${esc(T('budget_pending'))}"`}>${esc(T('budget_cheap'))}</button>`;
+  }
   $('topn').innerHTML = [3, 4, 6].map(n => `<button data-topn="${n}">${n}</button>`).join('');
   pressed('[data-cls]', 'cls', state.cls);
   pressed('[data-spec]', 'spec', state.spec);

@@ -172,13 +172,13 @@ class Build:
         self.warnings = []
         self.player_base = None
         if self.mode == 'protojson':
-            if cfg.get('buildJson'):
-                # A full preset build JSON (warlock/shaman/priest): the whole Player protojson
+            if cfg.get('buildJson'):                # A full preset build JSON (warlock/shaman/priest): the whole Player protojson
                 # rides along — race, professions, consumables, buffs, cooldowns, item swap —
                 # staying faithful to the repo file; only gear and sim options are ours.
                 bj = json.load(open(os.path.join(forever, cfg['repoFolder'], cfg['buildJson']), encoding='utf-8'))
                 pl = bj['player']
                 self.player_base = pl
+                self.talents = cfg.get('talents') or pl.get('talentsString', '')
                 self.raid_buffs = bj.get('raidBuffs') or tpl.get('raidBuffs') or {}
                 self.party_buffs = bj.get('partyBuffs') or {}
                 self.debuffs = bj.get('debuffs') or {}
@@ -196,6 +196,7 @@ class Build:
                 self.base_gear = {s: [it.get('id', 0), it.get('enchant', 0), it.get('randomSuffix', 0)]
                                   for s, it in zip(SLOTS, base['items'])}
                 self.apl = json.load(open(os.path.join(forever, cfg['repoFolder'], cfg['apls']), encoding='utf-8'))
+                self.talents = cfg.get('talents', '')
                 self.consumables = self.resolve_consumables(cfg.get('consumables') or tpl.get('consumables') or {})
                 self.raid_buffs = cfg.get('raidBuffs') or tpl.get('raidBuffs') or {}
                 self.party_buffs = cfg.get('partyBuffs') or tpl.get('partyBuffs') or {}
@@ -206,6 +207,9 @@ class Build:
             self.base_gear = parse_gear_siml(os.path.join(forever, cfg['repoFolder'], cfg['baseGear']), db)
             self.base_gear = {s: self.base_gear.get(s, [0, 0, 0]) for s in SLOTS}
             self.apl = None
+            # .siml setups keep their talents inside the template string.
+            tm = re.search(r'talents "([^"]+)"', cfg.get('template') or '')
+            self.talents = cfg.get('talents') or (tm.group(1) if tm else '')
 
     def resolve_consumables(self, cons):
         out = {}
@@ -547,7 +551,7 @@ def main():
                 'status': 'ok', 'budget': budget, 'metric': b.metric, 'value': round(base.avg, 2),
                 'margin': round(1.96 * base.sem(), 2), 'hps': round(base.hps, 1), 'threat': round(base.threat, 1),
                 'title': bc.get('title'), 'buildName': bc.get('buildName'), 'rotation': bc.get('rotation'),
-                'talents': bc.get('talents', ''), 'iterations': a.final_iterations, 'seed': a.seed,
+                'talents': b.talents, 'iterations': a.final_iterations, 'seed': a.seed,
                 'searchIterations': a.search_iterations, 'warnings': b.warnings,
             }
             link_path = os.path.join(a.out, f'{b.id}.link.txt')

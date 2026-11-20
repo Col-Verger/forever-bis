@@ -40,6 +40,23 @@ def pct(v, per):
     return f'{v / per:g}%'
 
 
+def loadout_talents(meta, bc, forever):
+    """Talents for a loadout: the meta's own, else the .siml template's line, else the
+    build JSON's player. Older runs wrote empty talents for .siml/buildJson builds."""
+    tal = meta.get('talents', '')
+    if not tal:
+        tm = re.search(r'talents "([^"]+)"', bc.get('template') or '')
+        if tm:
+            return tm.group(1)
+    if not tal and bc.get('buildJson'):
+        try:
+            bj = json.load(open(os.path.join(forever, bc['repoFolder'], bc['buildJson']), encoding='utf-8'))
+            return bj['player'].get('talentsString', '')
+        except Exception:
+            return ''
+    return tal
+
+
 def side_of(it):
     if it.get('factionRestriction'):
         return it['factionRestriction']
@@ -271,7 +288,8 @@ def main():
                     'title': meta.get('title'), 'build': meta.get('buildName'), 'rotation': meta.get('rotation'),
                     'metric': meta.get('metric', 'dps'), 'budget': budget,
                     'value': meta.get('value'), 'margin': meta.get('margin'),
-                    'talents': meta.get('talents', ''), 'simLink': meta.get('simLink'),
+                    'talents': loadout_talents(meta, bc, a.forever),
+                    'simLink': meta.get('simLink'),
                     'gear': full, 'groups': groups,
                 }
                 values[(bid, budget)] = meta.get('value')
