@@ -102,7 +102,7 @@ const STR = {
   stats_note: { ru: 'с рейд-бафами и расходниками', en: 'with raid buffs and consumables' },
   stats_title_bis: { ru: 'Статы BiS-сета в симуляции', en: 'BiS set stats in the sim' },
   stats_delta: { ru: 'Изменение от примерки', en: 'Change from trying items on' },
-  stats_delta_note: { ru: 'по предметам; бонусы комплектов и эффекты не учтены', en: 'from item stats; set bonuses and effects are not counted' },
+  stats_delta_note: { ru: 'по предметам и энчантам; бонусы комплектов и эффекты не учтены', en: 'from item stats and enchants; set bonuses and effects are not counted' },
   stats_same: { ru: 'Статы предметов не изменились', en: 'Item stats are unchanged' },
   to_top: { ru: 'Наверх', en: 'Back to top' },
   open_current: { ru: 'Открыть текущий сет в WoWSims ↗', en: 'Open the current set in WoWSims ↗' },
@@ -414,10 +414,15 @@ const MOD_LABEL = {
 const MOD_ORDER = ['armor', 'sta', 'int', 'str', 'agi', 'spirit', 'sp', 'heal', 'arcane', 'fire', 'frost',
   'holy', 'nature', 'shadow', 'ap', 'rap', 'hit', 'crit', 'haste', 'exp', 'def', 'dodge', 'parry', 'block', 'bv',
   'mp5', 'hp', 'mana'];
+// Gear slot → the item type an enchant is keyed by (same numbers the game data uses).
+const SLOT_TYPE = {
+  head: 1, neck: 2, shoulder: 3, back: 4, chest: 5, wrist: 6, hands: 7, waist: 8, legs: 9, feet: 10,
+  finger1: 11, finger2: 11, trinket1: 12, trinket2: 12, main_hand: 13, off_hand: 13, ranged: 14,
+};
 
 function gearDelta(bis, gear, metric) {
   const acc = new Map();
-  const add = (spec, sign) => {
+  const add = (spec, sign, slot) => {
     if (!spec || !spec[0]) return;
     const it = item(spec[0]);
     if (!it) return;
@@ -427,8 +432,14 @@ function gearDelta(bis, gear, metric) {
       const k = SUFFIX_KEY[name];
       if (k) acc.set(k, (acc.get(k) || 0) + sign * v);
     }
+    const em = spec[1] && G.enchants && G.enchants[String(spec[1])];
+    if (em) {
+      const keys = Object.keys(em);
+      const md = em[SLOT_TYPE[slot]] || (keys.length === 1 ? em[keys[0]] : null);
+      if (md) for (const [k, v] of md) acc.set(k, (acc.get(k) || 0) + sign * v);
+    }
   };
-  for (const s of SLOT_ORDER) { add(bis[s], -1); add(gear[s], 1); }
+  for (const s of SLOT_ORDER) { add(bis[s], -1, s); add(gear[s], 1, s); }
   const rows = [];
   for (const k of MOD_ORDER) {
     if (k === 'heal' && metric !== 'hps') continue;  // healing power cannot move a DPS number

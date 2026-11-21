@@ -98,8 +98,63 @@ def run_audit(runs, configs, forever='forever', data=None, css=None):
 
     if data or css:
         problems += colour_problems(data, css, db_items)
+        problems += enchant_problems(data, forever)
 
     return problems, notes
+
+
+# Gear slot → the item type an enchant is keyed by (same numbers the game data uses).
+SLOT_TYPE = {'head': 1, 'neck': 2, 'shoulder': 3, 'back': 4, 'chest': 5, 'wrist': 6, 'hands': 7,
+             'waist': 8, 'legs': 9, 'feet': 10, 'finger1': 11, 'finger2': 11, 'trinket1': 12,
+             'trinket2': 12, 'main_hand': 13, 'off_hand': 13, 'ranged': 14}
+
+
+def enchant_problems(data_path, forever):
+    """A stat-bearing enchant used by any set must carry its stats into data.js.
+
+    The try-on delta adds and removes enchant stats per slot; a missing entry means
+    the page would quietly understate the change. Proc enchantments have no item
+    stats and are correctly absent.
+    """
+    problems = []
+    db_path = os.path.join(forever, 'assets/database/db.json')
+    if not data_path or not os.path.exists(data_path) or not os.path.exists(db_path):
+        return problems
+    m = re.search(r'window\.GUIDE = (\{.*\});', open(data_path, encoding='utf-8').read(), re.S)
+    if not m:
+        return problems
+    data = json.loads(m.group(1))
+    ench = {}
+    for e in load_json(db_path)['enchants']:
+        ench.setdefault(str(e['effectId']), []).append(e)
+    got = data.get('enchants') or {}
+
+    used = set()
+    for L in (data.get('loadouts') or {}).values():
+        for slot, v in (L.get('gear') or {}).items():
+            if v and len(v) > 1 and v[1]:
+                used.add((str(v[1]), slot))
+        for grp in L.get('groups') or []:
+            sid = grp.get('id')
+            for r in grp.get('rows') or []:
+                mv = (r.get('move') or {}).get(sid)
+                if mv and len(mv) > 1 and mv[1]:
+                    used.add((str(mv[1]), sid))
+
+    for eff, slot in sorted(used):
+        recs = ench.get(eff)
+        if not recs:
+            problems.append(f'enchant {eff} on {slot}: not in the simulator database')
+            continue
+        named = [e for e in recs if any(e.get('stats') or [])]
+        if not named:
+            continue  # a proc or a use effect: no stats of its own to count
+        entry = got.get(eff)
+        if not entry:
+            problems.append(f'enchant {eff} ({named[0]["name"]}) on {slot}: has item stats but no entry in data.js')
+        elif str(SLOT_TYPE.get(slot)) not in entry and len(entry) != 1:
+            problems.append(f'enchant {eff} ({named[0]["name"]}) on {slot}: no stats for item type {SLOT_TYPE.get(slot)}')
+    return problems
 
 
 def colour_problems(data_path, css_path, db_items):

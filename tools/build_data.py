@@ -94,13 +94,17 @@ ITEM_MOD_KEYS = {
     14: ('ap', 1), 15: ('rap', 1),
     17: ('hit', 10), 18: ('crit', 14), 19: ('haste', 10), 21: ('exp', 10),
     22: ('def', 1), 23: ('block', 5), 24: ('bv', 1), 25: ('dodge', 12), 26: ('parry', 15),
-    27: ('armor', 1), 29: ('hp', 1), 30: ('mana', 1), 31: ('mp5', 1),
+    27: ('armor', 1), 28: ('armor', 1), 29: ('hp', 1), 30: ('mana', 1), 31: ('mp5', 1),
 }
 MOD_PCT = {'hit', 'crit', 'haste', 'exp', 'block', 'dodge', 'parry'}
 
 
 def item_mods(st):
-    """Gear stats in display units: percentages for ratings, raw points otherwise."""
+    """Gear stats in display units: percentages for ratings, raw points otherwise.
+
+    Index 27 is base armor and 28 the extra "bonus armor" some items and armor
+    kits carry; both count towards armor, so they are summed.
+    """
     acc = {}
     for idx, (key, div) in ITEM_MOD_KEYS.items():
         v = st.get(idx)
@@ -108,6 +112,26 @@ def item_mods(st):
             continue
         acc[key] = acc.get(key, 0) + v / div
     return [[k, round(v, 2) if k in MOD_PCT else int(round(v))] for k, v in acc.items()]
+
+
+def enchant_mods(db):
+    """Per enchant effect: its stats by the item type it can be applied to.
+
+    A gear slot is always enchanted with one effect id, and the same effect can
+    hold different numbers for different item types (a cloak enchant vs a weapon
+    enchant), so the map keeps a list per type. The try-on delta needs these to
+    describe what an enchant change does.
+    """
+    out = {}
+    for e in db['enchants']:
+        md = item_mods({i: v for i, v in enumerate(e.get('stats') or []) if v})
+        if not md:
+            continue
+        types = ([e['type']] if e.get('type') else []) + list(e.get('extraTypes') or [])
+        for t in types:
+            if t:
+                out.setdefault(str(e['effectId']), {})[str(t)] = md
+    return out
 
 
 def stat_category(prefix):
@@ -606,6 +630,7 @@ def main():
         'classes': classes_cfg,
         'loadouts': loadouts,
         'items': {str(i): item_data(i, used_suffixes) for i in sorted(used_items)},
+        'enchants': enchant_mods(db),
         'suffixes': {str(sid): suffixes[sid]['name'] for sid in suffixes},
         'howto': howto,
         'method': method,
