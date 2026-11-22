@@ -7,7 +7,7 @@
    "items": [
     {
      "id": 12640,
-     "enchant": 1506,
+     "enchant": 2543,
      "randomSuffix": 0
     },
     {
@@ -16,7 +16,7 @@
      "randomSuffix": 0
     },
     {
-     "id": 20057,
+     "id": 273946,
      "enchant": 0,
      "randomSuffix": 0
     },
@@ -31,12 +31,12 @@
      "randomSuffix": 0
     },
     {
-     "id": 12936,
+     "id": 19578,
      "enchant": 1885,
      "randomSuffix": 0
     },
     {
-     "id": 226861,
+     "id": 271940,
      "enchant": 8207,
      "randomSuffix": 0
     },
@@ -47,7 +47,7 @@
     },
     {
      "id": 22385,
-     "enchant": 1506,
+     "enchant": 2543,
      "randomSuffix": 0
     },
     {
@@ -56,12 +56,12 @@
      "randomSuffix": 0
     },
     {
-     "id": 19325,
+     "id": 272408,
      "enchant": 0,
      "randomSuffix": 0
     },
     {
-     "id": 13098,
+     "id": 19325,
      "enchant": 0,
      "randomSuffix": 0
     },
@@ -71,7 +71,7 @@
      "randomSuffix": 0
     },
     {
-     "id": 11815,
+     "id": 13965,
      "enchant": 0,
      "randomSuffix": 0
     },
@@ -82,7 +82,7 @@
     },
     {},
     {
-     "id": 272594,
+     "id": 19107,
      "enchant": 0,
      "randomSuffix": 0
     }
@@ -158,7 +158,7 @@
      "action": {
       "castSpell": {
        "spellId": {
-        "spellId": 25289
+        "spellId": 11551
        }
       }
      },
@@ -205,7 +205,6 @@
      }
     },
     {
-     "hide": true,
      "action": {
       "groupReference": {
        "groupName": "Stance Dance ON/OFF"
@@ -1163,7 +1162,7 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 25286,
+        "spellId": 11567,
         "tag": 1
        }
       }
@@ -1298,7 +1297,7 @@
            "lhs": {
             "auraRemainingTime": {
              "auraId": {
-              "spellId": 25289
+              "spellId": 11551
              }
             }
            },
@@ -1314,7 +1313,7 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 25289
+        "spellId": 11551
        }
       }
      }
@@ -2303,5 +2302,7 @@
  "settings": {
   "iterations": 10000,
   "fixedRngSeed": 20261120
+ }
+}ed": 20261120
  }
 }

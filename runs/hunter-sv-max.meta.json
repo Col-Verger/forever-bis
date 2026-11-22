@@ -1,0 +1,27 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 1022.87,
+ "margin": 0.65,
+ "hps": 0,
+ "threat": 1050.5,
+ "title": {
+  "ru": "SV (turret)",
+  "en": "SV (turret)"
+ },
+ "buildName": {
+  "ru": "Survival",
+  "en": "Survival"
+ },
+ "rotation": {
+  "ru": "Ротация симулятора: turret",
+  "en": "the sim's turret rotation"
+ },
+ "talents": "3-00510503113-52225303000021004",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simLink": "https://www.wowsims.com/forever/hunter/dps/#eNrEVH+IFOUbv3dmdubd5/R27r1V5/v663W/WNdyd8zOuqVXuXtSeRTJ5RpCBTnezu4O7s677LzrYX/UBUESGlogevhHdQZyVKAUlBCRRVQgmYUFhslVYFJwKQZd/8TMeufeaUQg9P6xM+/neZ7P53mefeYBgpGODLQNlVENjSL0CkJ0fCFWdZk+DRp+/52Y8WM7aHj8IDJ2a6DgS6d0UPHhsnHlbtDwR2/HjB86QMOnRpFxMUB+PacbL+ZAwXtP66Dh/cdQk+DDXxYa33eAgg+e1kHBH+9DIOO9VVDwsbcQaPjP12PG2Ti0gYbPfKkb++5LpPXJ83r3t6/GzN+3rz28Hw3teQ2NITiQ/2ToDfu9J78bmEDaHven8di5jRfQc+4U+uBobIParOeEtDLda5qZlJkx06lUujdjWVYmbaZN0zStlGmu+VRSTkvSpPR8OyyCKNUg0q3gqzyBQQWl17L8WVjFl2dh0wcG8QnUCbFpdQHAUKNSYXXbKznXPFLrfFgf+EyrnRB71HdY3nNrTp3ly1xQDGq3jE+ODiXocWkJlkn7mDSLURUUkHpTZDGNg57swCqR+tuaaMbvbyPL6VLQEx2w4DiKgoyvciLpkdnMCaUGLEy0Q9QKIIyvuHTmhWyk98M9pB/6SE9rao1qlXts0B7Z0YIO1IdtzwkTBjwpRUAeHBxINh/kCfrYvyUh3c1QCMtX8Dd/bJrzHr2W5hec5Oh6sIj5N+xGYvHNFVrIsvTeeQyt5cxlaOG+nsIquhK6plUdOsJgt+oUrmuo+Og4IivoshaXhxsV4faGLhGQ8Vdx8gx5fEvZYRXH9gUr2FW75LBgBHxnmHsFxots2PaF65V6mM+ZK9iI7QqfNTzhVpjHPSdwEWWH+WUufGZv5zsd5vqs7tiFXX30H4eLcJLNC7suZniKbqks+lnJEUxwVt3F/BoXbMQVZd4QrMJ91ysx22MDDcFDrj7aAyuSy7BEtM9VBSRdoc15z5c5F2H4JIqCttWu7GCuZ8jJw9LsjfyMyMsovFxX62EVzneEOiXb9Ziz06nvCioaFi73mHCrTh/LC15jI2W34gRhs9nc7rMR1ys0akEThivcdxivs3rD88Ie2l6hSRTIOfZwOewb2+4Ued1hI3YllOVeH30E1iXuggxJA1zGM/84rKb/h85ptQMWbG2qhBLQMa22Q/TBhi9CvgnUBfN7oCOymtC8sL1CIFHk9Tl591EtEQH5hNJm0fnjRMJ1IeoNx1o6f45IFDSIFO2KHxhv+JxaI+cPQYtx2Q1D3sobb62DhDsmZVnx1o3WRK2M9cDczpA76ZpwPykkclKScIQGJQJLrsDqDNJ1XNKxRCKXtOAWuRw8rOUt7SQBgUyalpDgonQATUmFZ+W28HTnpuTz0gtoCSyCLjz2EtKn96A7mrap7DYlcVCOhpfRYq6zCcdz/xs7FJzPsquK4TmbtX6TDJllk+9Kbf/JEblby/fQzflue3MOfuRUZuBWKa4Lfzcfyc0w5rah2sQV9FT7ZtstsC12veSI3QgdQk3zhWwS432bjNEzX0c3EAMx1I1MtBbl0CAaQjX01wB3muDA"
+}

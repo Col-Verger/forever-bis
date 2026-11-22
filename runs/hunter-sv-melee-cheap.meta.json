@@ -1,0 +1,27 @@
+{
+ "status": "ok",
+ "budget": "cheap",
+ "metric": "dps",
+ "value": 990.99,
+ "margin": 0.72,
+ "hps": 43.6,
+ "threat": 797.5,
+ "title": {
+  "ru": "SV melee",
+  "en": "SV melee"
+ },
+ "buildName": {
+  "ru": "Survival (melee)",
+  "en": "Survival (melee)"
+ },
+ "rotation": {
+  "ru": "Ротация симулятора: melee",
+  "en": "the sim's melee rotation"
+ },
+ "talents": "53200005001-005005-5302002300500221",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simLink": "https://www.wowsims.com/forever/hunter/dps/#eNrEVF9sFFUX75mdnb172m2nl4UOQ/i++y3ho27oOp11kZaHFuIfkIANq8E3O+3e7U66O3edmWUD8QETHtCggCSNEGI0kGgaNRFftDEBTcQ/iZGoAYwGsWpCSBMriMYmGjOzbKGgbyTeh52959z7+/3O+Z0ZpARU0GAYSlCF3QAvAejftxJFjehPokw+nElgjPywH7S9MZTJnwcBFXK0pF1dhzI5HSY/mElol9ahQs7VtGPBoWfPqKiQszXtp0UYI+/NJLRv21Emf0wARshkEWXy5huAMvlqIgA7ldBm2jFGzu8HbU8SY+TQftAO3Jdao05fULvPv9xh/Dqy9uhBGDr7HDz2y/ARwIn86aHXrHce/2b9JMT22T8e6/j6wYuwx56Fk692bFAaBU1JK3JZ0zAMI2cYvT3hI9eTyxqmYZjZcGuavR9J8hlJmpZOxXExxvUYRrtlck2kCCoo95imh0sQdYJKt0x+e+XhZtzwcBUumwYNl2wROzjzBfN8y/VtZ4y5ljPGrx/s7fPoEj2JarqdKFTqb9EVlFHKef0ttFUP+RiQKUGX68tQTbVj2wmIY4RcE1RSo/Ny6BTQJ/K+axe4yzbbo+OrPOZVOS8w22O16mqW526VOz7LhwpsjxVE3WGWU2CbWMnawVnFcqxQZdVyeT9zaw4TNZ9VLc9nfomzArcKbJdweHjJC2Ay+v14N+3B+AlQUCZPvzWEiVQrxs1AFSFXbexMd5AolUZaAqEYyRorJ6ETO+aUNsR8SQifeVXh0xeBVvJBd5gohmRFe6zkh0Qj1ug4K7qiEsZD9f2sbpXHme34glV4mfPVzAuwgsKEE56rWztZ3fZLQQVl4QUZy2Hra75g+ZLwM3oP/je9nERp7BNFRkmVdXVOSWDrlgCu4c80xDG2vUHUdKI7Sr4T8xuZnBS0TW+YD0H5NKUzTM4pndjxqMdZvlapCIdttOrj1wfk3O9b569HyLtCi6SNfxqQYCxudGuoVi434unL0g1hWdq1yfF8y/G9m2u3nYyu3WKG3vwzr4CQzwSN6zE9ihHyRZJeBnoItt/a27IQ42EDxyzbYXwHd3cyl1ujvh0Q2hWeYXlfVFm9ZJc5q+y80eZVHqvbTqFWDeZttCw8zoQbTJZjO2OrQ3tDoKB2bo2WAht9NsKLwuWhxw1HM/o27EvdizmaRbxCmspxpb4CO+eUdmzb3mAJKbB9TmnF+EM1zw/xJiGJt5mrAl1J9bxvOYWAoyjcBcIzeiwVxciU3GJ2LbhHw5c2lzEMc9ltHjeSvlvjZteC8Y5jDKO92Uxvn5m82UkavupmznxgYQl0jX5P+EGQafR9SSJRPZCCLP0fojQji05IKpFo9HIs2EWvBA9z+U110wAgQhuZEOCSNAGzUuGpSEu4koOzkQvSM7AUu3AxOfI8qHP7QEvc1cjODgzLqRci8XCzuzjY2by09MjhYH088L9iuM4OmD9LWoQNpN+WWv6V5Q/eWbzNf4/3/9cXxI9/mlt/pxj7wt9txwebiIPDUJ28Crtat1l2gT1iuWPc3wtwGBrpiwNpQg5s1XZ//mV8A9WAQTcYsBYGYSMMQRX+GgChKrEH"
+}

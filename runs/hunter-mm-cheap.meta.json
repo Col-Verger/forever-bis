@@ -1,0 +1,27 @@
+{
+ "status": "ok",
+ "budget": "cheap",
+ "metric": "dps",
+ "value": 1094.45,
+ "margin": 0.78,
+ "hps": 0,
+ "threat": 1119.2,
+ "title": {
+  "ru": "MM (без пета)",
+  "en": "MM (no pet)"
+ },
+ "buildName": {
+  "ru": "Marksmanship",
+  "en": "Marksmanship"
+ },
+ "rotation": {
+  "ru": "Ротация симулятора: turret",
+  "en": "the sim's turret rotation"
+ },
+ "talents": "5-0053452511522051-5",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simLink": "https://www.wowsims.com/forever/hunter/dps/#eNrEVF1oHFUUzp2Znb170iSTm2073v54u1KNSxI20662qXY3RW1QLLFbKahgp9m7u0N35y47dxvqixEEi/RXobShD2orlKCC9UX7IhStPyAWlVZQagkVqvQhtlQwgsjMNOkkrYhQ8D7szP3OOd93ztkzBwhGBjLRNlRBdTSG0BsI0X1tWDdUKkHDn11pgzi+tB+Zu+Og4b8OItDx0Yp5bR1o+Exg/PRKm3l5Hej4fNPclwcN7z1rgI7PNc1LraDj/TXzp3bQ8OGzBmj4kwMIVLy3Bhp+/z0Ecfzn2x3muSS0gI4/MMwDj6RWGZMXjO7v3+zI/L59zdGDaHjPW2gcwaHCmeF37I+e/3FwAsX3OD8f6/hh40X0sjOFPj7RsUEPqzilJLO9mUx21eqsle3vz1pWJtvfm/1c0c4qyqTySisshASNQ6xbw9dFCoMOWq9lebOwjq/OwhkPGCQnUCd0TOsLAIab1Spr2G6Z3/DoX+vBet9nWu+Ejqc9zgquU+cNVqgISTHo3So+PTacoieVxVglrePKLEZ10EDp7SeLaBKMdDvWiTLQEqJZb6CFLKNLwEi1w4KTKAEqvi6IYsRmMyeUmtCWaoWE5UMYX3PozAvZSB+Fh8gA9JGeaGrNWk24bMge3RFBBxsjtsuDhAFPKjFQh4YG0+GDPEef+a8kpDsMhaB8DZ//Y9Oc98SNNL8WJE/Xg0Uy/8BuphbdXiFClqMPz2OIljOXIcJ9M4UV9G7omtYNaA+CnRov3tTQ8YljiCynSyMuTzar0ukNXGKg4m+T5EXy7JYKZ1Vue5IV7Zpd5swfAY+PCLfIRImN2J503HIP8wRzJBu1HemxpiudKnOFy30XWeHMqwjpMXu72MmZ47EGt4u7+ui/DhcRJFeQdkPO8JScckUOsDKXTApW28W8upBs1JEV0ZSsKjzHLTPbZYNNKQKuPtoDy9NLsULiX+oaKIZGw3kvVISQQfgkSkB8q13dwRzXVNNHldkb+QWR11FwuanWw6pC7Ah0yrbjMr6TN3b5FY1IR7hMOjXexwpS1NloxalyP2w2m/s8Nuq4xWbdb8JIVXiciQZrNF036KHtFkMiX47bI5Wgb2w7L4kGZ6N2NZAVbh99CtamHoQsWQVwFc/847CS3gOd03o7LNgaqgQS0D6tt0Li8aYnA74J1AXze2AgspLQgrTdoi9REo05effReCoG6imtxaLzx4kE60I2mtxaMn+OSALiECvZVc833vI5RSPnD0HEuPSWIY/yJqN1kGDH9FtWMrrRQtTKWo/N7Qx5gK4O9pNGYqcVBceoXyKw9HKszyBdJxUDKyT2a9y/xa76D2tZpJ3EJ1BJaAkILiuH0JRSfEltCU53fkq9oLyKFsNC6MLjryFjeg+6P7RN5bZpqcNqIriMlfKdIZzM3zV+xD9f5FaUgnMuZ/2mmCrLpT9UWv6XI/N3lu+J2/Pd++4c/PhX2cE7pbg2+N18PD/DmN+G6hPX0Autm22nyLbYjTKXuxE6gkLzxVwa4wObzLFvvktsICZiqBtl0BqUR0NoGNXR3wMA8drbIw=="
+}

@@ -11,12 +11,12 @@
      "randomSuffix": 0
     },
     {
-     "id": 15411,
+     "id": 18404,
      "enchant": 0,
      "randomSuffix": 0
     },
     {
-     "id": 20057,
+     "id": 273946,
      "enchant": 0,
      "randomSuffix": 0
     },
@@ -51,7 +51,7 @@
      "randomSuffix": 0
     },
     {
-     "id": 226857,
+     "id": 273947,
      "enchant": 1887,
      "randomSuffix": 0
     },
@@ -81,12 +81,12 @@
      "randomSuffix": 0
     },
     {
-     "id": 272684,
+     "id": 272452,
      "enchant": 1900,
      "randomSuffix": 0
     },
     {
-     "id": 12651,
+     "id": 19107,
      "enchant": 0,
      "randomSuffix": 0
     }
@@ -150,7 +150,7 @@
      "action": {
       "castSpell": {
        "spellId": {
-        "spellId": 25289
+        "spellId": 11551
        }
       }
      },
@@ -688,7 +688,7 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 25286,
+        "spellId": 11567,
         "tag": 1
        }
       }
@@ -1118,7 +1118,7 @@
            "lhs": {
             "auraRemainingTime": {
              "auraId": {
-              "spellId": 25289
+              "spellId": 11551
              }
             }
            },
@@ -1134,7 +1134,7 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 25289
+        "spellId": 11551
        }
       }
      }

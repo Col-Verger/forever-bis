@@ -7,7 +7,7 @@
    "items": [
     {
      "id": 12640,
-     "enchant": 1506,
+     "enchant": 0,
      "randomSuffix": 0
     },
     {
@@ -16,43 +16,43 @@
      "randomSuffix": 0
     },
     {
-     "id": 20057,
+     "id": 273946,
      "enchant": 0,
      "randomSuffix": 0
     },
     {
      "id": 272414,
-     "enchant": 7667,
+     "enchant": 0,
      "randomSuffix": 0
     },
     {
      "id": 226862,
-     "enchant": 1891,
+     "enchant": 0,
      "randomSuffix": 0
     },
     {
      "id": 19578,
-     "enchant": 8214,
+     "enchant": 0,
      "randomSuffix": 0
     },
     {
-     "id": 271940,
-     "enchant": 8207,
+     "id": 273945,
+     "enchant": 0,
      "randomSuffix": 0
     },
     {
-     "id": 16482,
+     "id": 13142,
      "enchant": 0,
      "randomSuffix": 0
     },
     {
      "id": 22385,
-     "enchant": 1506,
+     "enchant": 0,
      "randomSuffix": 0
     },
     {
-     "id": 287033,
-     "enchant": 1887,
+     "id": 273951,
+     "enchant": 0,
      "randomSuffix": 0
     },
     {
@@ -61,7 +61,7 @@
      "randomSuffix": 0
     },
     {
-     "id": 272409,
+     "id": 15855,
      "enchant": 0,
      "randomSuffix": 0
     },
@@ -71,22 +71,22 @@
      "randomSuffix": 0
     },
     {
-     "id": 19120,
+     "id": 10779,
      "enchant": 0,
      "randomSuffix": 0
     },
     {
-     "id": 272596,
-     "enchant": 1900,
+     "id": 11684,
+     "enchant": 0,
      "randomSuffix": 0
     },
     {
      "id": 19321,
-     "enchant": 1886,
+     "enchant": 0,
      "randomSuffix": 0
     },
     {
-     "id": 19107,
+     "id": 272594,
      "enchant": 0,
      "randomSuffix": 0
     }
@@ -136,8 +136,7 @@
      "action": {
       "castSpell": {
        "spellId": {
-        "spellId": 25289,
-        "rank": 7
+        "spellId": 11551
        }
       }
      },
@@ -205,6 +204,22 @@
     }
    ],
    "priorityList": [
+    {
+     "hide": true,
+     "action": {
+      "groupReference": {
+       "groupName": "Execute Swap ON/OFF"
+      }
+     }
+    },
+    {
+     "hide": true,
+     "action": {
+      "groupReference": {
+       "groupName": "Recklessness ON/OFF"
+      }
+     }
+    },
     {
      "action": {
       "groupReference": {
@@ -515,7 +530,7 @@
             {
              "auraIsInactive": {
               "auraId": {
-               "spellId": 25288
+               "spellId": 11601
               },
               "includeReactionTime": true
              }
@@ -526,8 +541,7 @@
               "lhs": {
                "spellTimeToReady": {
                 "spellId": {
-                 "spellId": 25288,
-                 "rank": 6
+                 "spellId": 11601
                 }
                }
               },
@@ -609,7 +623,6 @@
      }
     },
     {
-     "hide": true,
      "action": {
       "groupReference": {
        "groupName": "Execute"
@@ -620,8 +633,7 @@
      "action": {
       "castSpell": {
        "spellId": {
-        "spellId": 25288,
-        "rank": 6
+        "spellId": 11601
        }
       }
      }
@@ -797,8 +809,7 @@
            "lhs": {
             "auraRemainingTime": {
              "auraId": {
-              "spellId": 25289,
-              "rank": 7
+              "spellId": 11551
              }
             }
            },
@@ -814,8 +825,7 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 25289,
-        "rank": 7
+        "spellId": 11551
        }
       }
      }
@@ -988,7 +998,7 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 25286,
+        "spellId": 11567,
         "tag": 1
        }
       }
@@ -1094,6 +1104,14 @@
     }
    ],
    "groups": [
+    {
+     "name": "Execute Swap ON/OFF",
+     "actions": [
+      {
+       "action": {}
+      }
+     ]
+    },
     {
      "name": "Recklessness ON/OFF",
      "actions": [
@@ -1312,8 +1330,19 @@
       {
        "action": {
         "condition": {
-         "isExecutePhase": {
-          "threshold": "E20"
+         "and": {
+          "vals": [
+           {
+            "actionGroupUsed": {
+             "name": "Execute Swap ON/OFF"
+            }
+           },
+           {
+            "isExecutePhase": {
+             "threshold": "E20"
+            }
+           }
+          ]
          }
         },
         "castSpell": {
@@ -1326,8 +1355,19 @@
       {
        "action": {
         "condition": {
-         "isExecutePhase": {
-          "threshold": "E20"
+         "and": {
+          "vals": [
+           {
+            "actionGroupUsed": {
+             "name": "Recklessness ON/OFF"
+            }
+           },
+           {
+            "isExecutePhase": {
+             "threshold": "E20"
+            }
+           }
+          ]
          }
         },
         "castSpell": {

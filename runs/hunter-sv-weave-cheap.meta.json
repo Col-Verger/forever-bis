@@ -1,0 +1,27 @@
+{
+ "status": "ok",
+ "budget": "cheap",
+ "metric": "dps",
+ "value": 1181.75,
+ "margin": 0.86,
+ "hps": 15.0,
+ "threat": 1209.3,
+ "title": {
+  "ru": "SV weave",
+  "en": "SV weave"
+ },
+ "buildName": {
+  "ru": "Survival (weave)",
+  "en": "Survival (weave)"
+ },
+ "rotation": {
+  "ru": "Ротация симулятора: weave",
+  "en": "the sim's weave rotation"
+ },
+ "talents": "-00530501114-500230230050220151",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simLink": "https://www.wowsims.com/forever/hunter/dps/#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"
+}

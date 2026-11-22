@@ -1,0 +1,27 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 1180.03,
+ "margin": 0.78,
+ "hps": 0,
+ "threat": 1209.2,
+ "title": {
+  "ru": "MM (без пета)",
+  "en": "MM (no pet)"
+ },
+ "buildName": {
+  "ru": "Marksmanship",
+  "en": "Marksmanship"
+ },
+ "rotation": {
+  "ru": "Ротация симулятора: turret",
+  "en": "the sim's turret rotation"
+ },
+ "talents": "5-0053452511522051-5",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simLink": "https://www.wowsims.com/forever/hunter/dps/#eNrEVG+IFGUYv3dmdubd53R37r1Vp9c/vW5Y13J37I1u6VXunlQeRXK5hlBBjrezu4O78y4773rYh7ogSEJLC0QPP1QayFGBUlBCBBZRgWQWFhgml4EJ0aUYdBHEzHh7e6cRgdD7YWfe3/M8v9/zPPvMAwQjHRloCyqjGhpF6DWE6P75WNVl+gxo+MP34saFdtDwhZeRsVMDBV86qYOKD5aNK/eAhj9+N278GAMNnxxFxkUf+eWsbryUAwXvPqWDhvceRSHBr2d144cYKPivfQgU/MkeBDLeXQUFH30HgYb/fDNunElAG2j49Fe6sef+5Ep94pze9d3r8fTvW1cf3IuGdr2BxhDsy3869Jb1wVPfD4wjbZfz06H42fXn0fPOJProSHydGtZzXEpketLpzMpVGTPT15cxzXSmryfzmaSckqQJ6YV2WABRqkGkS8FXeRKDCkqPaXpNWMWXm3DaAwaJcdQB8Sl1HsBQo1Jhdcst2dc8+tZ4sNb3mVI7IP6YZ7O869TsOsuXuaAY1C4ZnxgdStJj0iIsk/YxqYlRFRSQevrIQpoAPRXDKpH620I04/W3kaV0MejJGMw7hqIg46ucSHqkmTmh1ID5yXaImj6E8RWHTr+Q9fQBuJf0Qy/pbk2tUa1ylw1aI9ta0IH6sOXaQcKAJ6QIyIODA6nwQZ6kj/9XEtIVhkJQvoK//WPDrPfotTS/5CRH14JJ0v/AbiQX3lihhSxL75vD0FrObIYW7pkUltNboXNK1SEWBDtVuzCjoeIjhxBZRpe0uDzSqAinJ3CJgIy/TpBnyRObyjar2JYnWMGqWiWb+SPg2cPcLTBeZMOWJxy31M08zhzBRixHeKzhCqfCXO7avoso28wrc+ExayvfbjPHY3XbKuzopf86XISTbF5YdTHNU3RKZdHPSrZggrPqDubVuGAjjijzhmAV7jluiVkuG2gIHnD10m5YllqCJaJ9oSog6QoN5z1f5lwE4RMoCtpmq7KNOa4hpw5KzRv5GZFXUXCZUetmFc63BToly3GZvd2u7/ArGhYOd5lwqnYvywteYyNlp2L7Yc1s7vDYiOMWGjW/CcMV7tmM11m94bpBDy23EBL5crY1XA76xrbaRV632YhVCWS520sfhTXJuyFDVgJcxtP/OKygt0HHlBqDeZtDlUACYlNqO0Qfangi4BtHnTC3BzoiKwjNC8st+BJFXp+Vdy/VkhGQjyttJp07TiRYF6LesM3Fc+eIREGDSNGqeL7xus+pNXLuELQYl1w35K28idY6SLBj+kwz0brRQtTMmA/O7gy5i64K9pNCIickCUeoXyKw1DKsTiOdxyQdSyRySfNvkcv+w1za0k7iE8gktAQEF6V9aFIqPCe3BacrNymfk15Ei2ABdOKxV5A+tQvdGdoms1uU5H45GlxGi7mOEE7kbhk74J/Ps8uLwTmTNX+TDJllU+9Lbf/LEbmby/fwjfluf3sWfvhkZuBmKa4Jfjcezk0z5rag2vgV9HT7RsspsE1WvWSLnQgdQKH5fDaF8Z4Nxujpb6LriIEY6kJptBrl0CAaQjX09wAejd8O"
+}

@@ -1,0 +1,27 @@
+{
+ "status": "ok",
+ "budget": "cheap",
+ "metric": "dps",
+ "value": 979.34,
+ "margin": 0.51,
+ "hps": 0,
+ "threat": 690.7,
+ "title": {
+  "ru": "BM (пет)",
+  "en": "BM (pet)"
+ },
+ "buildName": {
+  "ru": "Beast Mastery",
+  "en": "Beast Mastery"
+ },
+ "rotation": {
+  "ru": "Ротация симулятора: turret с ястребом",
+  "en": "the sim's turret rotation with the hawk"
+ },
+ "talents": "5320001505101251-00530502014",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simLink": "https://www.wowsims.com/forever/hunter/dps/#eNrEVF1oHFUU3jszO3v3JNmd3Gzr9DaNtyvVdUnC7KSrTarupqgNiiV2lYIIZpqd3R2yO3fZmTXUpwg+FEltqlDakAe1FUJQwT7Zvgii9QfEoJIKSltChSp9iAkVXEFkZ5tkE+uDUOh5mHvPd+75vnPuzwDBSEEqGkEFVEYTCL2NED3fgmVFpC5I+IsbbRDA144j9WgAJPz3CQQynimoK3tBwhe94Oc32tTre0HGl6rqG2mQ8LF5BWS8UFWvtYCMj5fUKyGQ8Kl5BST82RQCER8rgYQ/+hBBAP/1XlhdiIAPZHzFVKcej/Ypi5eV2I/vhLU/Du+ZOYGGJ99F0whOZi4Ov2+cf+nnwTkUmLR+ORP+af9V9Jq1hD6ZDe+TG11cEDqTfbqmaYmklkxoCT2Z6NG0ZJ+W1HQtsftLQZoXhEVhNghbIEgD4I9J+CaPYpBB6tF1Zw2W8fIarDnAIDKH2iFck1sBhqvFIqsYdt68tSLR75CtNAJKPIRlIgz4qAwSCElnwEd20O2gREPQeg4FQcQ3OREU/5oyoVSFtmgLBPU6hPGKRVcnZD99Ah4hA9BLuiFSk9sh/Lxjsky1VOI2GzLGx5rQwcqoYZssU+Au4EXBD+LQ0GC8MZAX6Qv/l4TEGqlAMcgxCV/688CGefBWmd9ykqaPgU60/2BXo1tvr9BElqKPbmJobmcjQxP3egk76b3QUZMVCHnJVsnMrmvIePYMIl20s2nJM9Wia/V4S/wg4u8jhJNUxjUqLuM55hZMlrPyBXeA5U2XuZyVjjCnzF02brkFXnVZkTuWnWeGzQarLve0emk3dMU7sUACX8sSCIpEG9clU+Dc9dIXURACh4ziGLNsVYzPCGse+RWRt5DnrKt1syLnY55O3rBsZr5sVo6wimmMuha3mWuVzF6WcXmZjResollPW6vmAYeNW3a2WmaWw0aL3DEZr7BK1bYtO9/NDDvbIKrLmcZogTkF7rLDZo5XTDZuFD1ZbvfSZ6E/+jAkSR/AMl7dcNhF74P2mhyC1kMNFU8CQjW5BYJPVR3X45tDHbB5DxREdhGacQ07W5fI8cqGuntpIOoH8YLk0+nm0yTea3MrVVPfvvkYSRAC4M8ZRace/Ndtbs7cfI2agpHmSon3iBO6Hml+8g1UT+pPbuydPER3ez8Aifg/FQTsp/UmgMW7sLyKdJwTFCwQ/2+Buudfrg/6jqYNI3UCkTQiHsF14SRaErKvij7PYukl8bLwOtoG98AWPP0mUmqTSG17sBFdSo1I0VNi0HMmcun2BhxJb5s+XbevUjtzni2k9N8FVWSp+MeC766Ym76zfE/fnu/+DzbgZ79JDt4pxX7ve/BsepUxPYLKcyvolZaDhpVlzxmVvOkeReg0aoSvpuIYTx1QJ777IbiPqIihGNLQHpRGQ2gYldE/AwB45J19"
+}
