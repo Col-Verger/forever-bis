@@ -1,10 +1,130 @@
 {
  "builds": [
   {
-   "id": "druid-feralcat-cheap",
-   "status": "ok",
-   "value": 974.36,
-   "metric": "dps"
+   "id": "druid-balance",
+   "status": "validated",
+   "value": 740.5
+  },
+  {
+   "id": "druid-feralcat",
+   "status": "validated",
+   "value": 975.9
+  },
+  {
+   "id": "druid-feralbear",
+   "status": "validated",
+   "value": 429.1
+  },
+  {
+   "id": "druid-restoration",
+   "status": "disabled"
+  },
+  {
+   "id": "hunter-bm",
+   "status": "validated",
+   "value": 992.6
+  },
+  {
+   "id": "hunter-mm",
+   "status": "validated",
+   "value": 1119.1
+  },
+  {
+   "id": "hunter-sv",
+   "status": "validated",
+   "value": 965.9
+  },
+  {
+   "id": "hunter-sv-weave",
+   "status": "validated",
+   "value": 1252.3
+  },
+  {
+   "id": "hunter-sv-melee",
+   "status": "validated",
+   "value": 1012.6
+  },
+  {
+   "id": "mage-arcane",
+   "status": "validated",
+   "value": 838.7
+  },
+  {
+   "id": "mage-fire",
+   "status": "validated",
+   "value": 951.1
+  },
+  {
+   "id": "mage-ffb",
+   "status": "validated",
+   "value": 874.8
+  },
+  {
+   "id": "mage-frost",
+   "status": "validated",
+   "value": 880.5
+  },
+  {
+   "id": "paladin-retribution",
+   "status": "validated",
+   "value": 886.4
+  },
+  {
+   "id": "paladin-protection",
+   "status": "validated",
+   "value": 499.3
+  },
+  {
+   "id": "paladin-holy",
+   "status": "disabled"
+  },
+  {
+   "id": "priest-shadow",
+   "status": "validated",
+   "value": 777.4
+  },
+  {
+   "id": "priest-healer",
+   "status": "disabled"
+  },
+  {
+   "id": "rogue-combat",
+   "status": "validated",
+   "value": 833.8
+  },
+  {
+   "id": "shaman-elemental",
+   "status": "validated",
+   "value": 846.5
+  },
+  {
+   "id": "shaman-enhancement",
+   "status": "validated",
+   "value": 950.0
+  },
+  {
+   "id": "shaman-restoration",
+   "status": "disabled"
+  },
+  {
+   "id": "warlock-smruin",
+   "status": "validated",
+   "value": 765.4
+  },
+  {
+   "id": "warrior-fury",
+   "status": "validated",
+   "value": 929.7
+  },
+  {
+   "id": "warrior-arms",
+   "status": "validated",
+   "value": 867.5
+  },
+  {
+   "id": "warrior-protection",
+   "status": "validated",
+   "value": 179.2
   }
  ]
 }

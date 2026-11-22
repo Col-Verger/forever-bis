@@ -319,7 +319,7 @@
    "id": 273906,
    "name": "Manaflare Mantle",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -840,7 +840,7 @@
    "id": 273905,
    "name": "Manaflare Gloves",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -1132,7 +1132,7 @@
    "id": 273904,
    "name": "Manaflare Pants",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -1248,15 +1248,6 @@
    "src": "crafted: 11"
   },
   {
-   "id": 273907,
-   "name": "Manaflare Boots",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 11"
-  },
-  {
    "id": 226931,
    "name": "Sorcerer's Sandals",
    "q": 4,
@@ -1264,6 +1255,15 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 273907,
+   "name": "Manaflare Boots",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 11"
   },
   {
    "id": 13369,

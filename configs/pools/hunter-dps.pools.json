@@ -364,7 +364,7 @@
    "id": 273902,
    "name": "Wildstalker's Spaulders",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -894,7 +894,7 @@
    "id": 273901,
    "name": "Wildstalker's Gauntlets",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1240,7 +1240,7 @@
    "id": 273900,
    "name": "Wildstalker's Legguards",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1338,15 +1338,6 @@
    "src": "pvp"
   },
   {
-   "id": 273903,
-   "name": "Wildstalker's Greaves",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 8"
-  },
-  {
    "id": 226881,
    "name": "Beastmaster's Treads",
    "q": 4,
@@ -1354,6 +1345,15 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 273903,
+   "name": "Wildstalker's Greaves",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
   },
   {
    "id": 16401,

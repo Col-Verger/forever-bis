@@ -137,7 +137,7 @@ def enchant_mods(db):
 def stat_category(prefix):
     if prefix.endswith('-protection') or prefix == 'druid-feralbear':
         return 'tank'
-    if prefix == 'hunter-dps':
+    if prefix.startswith('hunter-'):
         return 'hunter'
     cls = prefix.split('-', 1)[0]
     if cls in ('mage', 'warlock', 'priest') or prefix in ('shaman-elemental', 'druid-balance'):

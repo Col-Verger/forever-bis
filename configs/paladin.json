@@ -44,7 +44,6 @@
       "repoFolder": "ui/specs/paladin/holy",
       "specLine": "holy_paladin",
       "use": "",
-      "baseGear": "gear_sets/default.gear.siml",
       "title": { "ru": "Холи", "en": "Holy" },
       "buildName": { "ru": "Холи", "en": "Holy" },
       "rotation": { "ru": "", "en": "" },

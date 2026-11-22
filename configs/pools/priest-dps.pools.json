@@ -337,7 +337,7 @@
    "id": 273922,
    "name": "Mantle of Conviction",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -346,7 +346,7 @@
    "id": 273926,
    "name": "Pauldrons of Conviction",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -903,7 +903,7 @@
    "id": 273921,
    "name": "Gloves of Conviction",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -912,7 +912,7 @@
    "id": 273925,
    "name": "Handguards of Conviction",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -1240,7 +1240,7 @@
    "id": 273920,
    "name": "Pants of Conviction",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -1249,7 +1249,7 @@
    "id": 273924,
    "name": "Leggings of Conviction",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -1383,24 +1383,6 @@
    "src": "crafted: 11"
   },
   {
-   "id": 273923,
-   "name": "Treads of Conviction",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 11"
-  },
-  {
-   "id": 273927,
-   "name": "Boots of Conviction",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 11"
-  },
-  {
    "id": 226952,
    "name": "Virtuous Sandals",
    "q": 4,
@@ -1417,6 +1399,24 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 273923,
+   "name": "Treads of Conviction",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 11"
+  },
+  {
+   "id": 273927,
+   "name": "Boots of Conviction",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 11"
   },
   {
    "id": 13369,

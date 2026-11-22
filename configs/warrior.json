@@ -89,7 +89,7 @@
       "metric": "dps",
       "talents": "05-05050005-150531120300001351",
       "apls": "apls/default.apl.json",
-      "baseGear": "gear_sets/prebis.gear.json",
+      "baseGear": "gear_sets/preraid.gear.json",
       "pool": "warrior-tank",
       "specOptions": { "protectionWarrior": { "options": { "classOptions": {
         "queueDelay": 250, "startingRage": 0, "useBattleShout": true,

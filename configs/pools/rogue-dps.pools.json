@@ -355,7 +355,7 @@
    "id": 273930,
    "name": "Grimstitch Spaulders",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -867,7 +867,7 @@
    "id": 273929,
    "name": "Grimstitch Gloves",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1204,7 +1204,7 @@
    "id": 273928,
    "name": "Grimstitch Pants",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1311,15 +1311,6 @@
    "src": "pvp"
   },
   {
-   "id": 273931,
-   "name": "Grimstitch Boots",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 8"
-  },
-  {
    "id": 226831,
    "name": "Darkmantle Footpads",
    "q": 4,
@@ -1327,6 +1318,15 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 273931,
+   "name": "Grimstitch Boots",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
   },
   {
    "id": 16392,

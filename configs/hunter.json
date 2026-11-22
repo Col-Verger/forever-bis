@@ -1,24 +1,79 @@
 {
   "class": "hunter",
-  "className": {"ru": "Хантер", "en": "Hunter"},
+  "className": {"ru": "Охотник", "en": "Hunter"},
 
-  "_comment": "Хантер: полный .siml-setup, транскрибированный с ui/specs/hunter/dps/defaults.siml (weave-билд) + use их Default APL. База — их prebis_weave.gear.siml. Плейстайлы turret/melee можно добавить отдельными билдами позже (каждый = ещё строка в builds).",
+  "_comment": "Охотник: пять готовых билдов из репозитория симулятора (ui/specs/hunter/dps/builds/*.siml) — BM, MM, SV, SV weave и SV melee. Каждый билд = свой .siml-пресет симулятора (таланты, питомец, расходники), свои настройки дистанции и своя база снаряжения; пул предметов задаётся отдельно. Текст пресета не перепечатывается: tools/run_sims.py собирает его из defaults.siml + файла билда при каждом прогоне.",
 
   "builds": [
     {
-      "id": "hunter-dps",
+      "id": "hunter-bm",
       "mode": "siml",
       "repoFolder": "ui/specs/hunter/dps",
-      "specLine": "hunter",
-      "baseGear": "gear_sets/prebis_weave.gear.siml",
-      "apls": "apls/default.apl.siml",
-      "title": { "ru": "Хантер (weave)", "en": "Hunter (weave)" },
-      "buildName": { "ru": "SV Weave (стандартный билд)", "en": "SV Weave (standard build)" },
-      "rotation": { "ru": "Стандартная ротация симулятора", "en": "the sim's default rotation" },
+      "presetBuild": "builds/bm.siml",
+      "baseGear": "gear_sets/prebis_turret.gear.siml",
+      "apls": "apls/turret_hawk.apl.siml",
+      "title": { "ru": "BM (пет)", "en": "BM (pet)" },
+      "buildName": { "ru": "Beast Mastery", "en": "Beast Mastery" },
+      "rotation": { "ru": "Ротация симулятора: turret с ястребом", "en": "the sim's turret rotation with the hawk" },
       "pool": "hunter-dps",
       "twoHandExpected": true,
-      "playerOverrides": {},
-      "template": "siml 1\nspec hunter\ntalents \"-00530501114-530200230050220151\"\nuse \"{{APL}}\"\n\nsettings:\n  race orc\n  profession1 engineering\n  profession2 blacksmithing\n  reaction_time 150ms 350ms\n  channel_clip_delay 100ms\n  distance_from_target 12\n  quiver_bonus ancient_sinew_wrapped_lamina\n  ammo thorium_headed_arrow\n  pet_uptime 1\n  pet_attack_speed faster_attack_ii\n\nconsumables:\n  flask flask_of_natural_aggression\n  food swiftstrike_steak\n  conjured demonic_rune\n  explosive ez_thro_dynamite_ii\n  mh_imbue elemental_sharpening_stone\n  extra goblin_sapper_charge, scroll_of_strength_iv, juju_might, dragonbreath_chili, ground_scorpok_assay\n  elixir elixir_of_the_mongoose, greater_mageblood_elixir, elixir_of_greater_intellect\n  resource_pot major_mana_potion\n  offensive_pot major_frenzy_potion\n\nbuffs:\n  greater_blessing_of_kings\n  greater_blessing_of_might 1\n  greater_blessing_of_wisdom 1\n\nraid_buffs:\n  arcane_intellect, prayer_of_spirit, mark_of_the_wild\n  strength_of_earth_totem 1\n  grace_of_air_totem 1\n  windfury_totem\n  battle_shout 1\n  leader_of_the_pack\n\ndebuffs:\n  judgement_of_light, judgement_of_wisdom, curse_of_elements, curse_of_recklessness, faerie_fire\n  expose_armor, sunder_armor, gift_of_arthas, insect_swarm\n\nsim:\n  iterations {{ITERS}}\n  fixed_rng_seed {{SEED}}\n\nencounter:\n  duration 180\n  duration_variation 5\n  execute_proportion_20 0.2\n  execute_proportion_35 0.35\n  targets(id=31146, name=\"Raid Target\", level=63, mob_type=dragonkin,\n      stats(attack_power=320, block_value=54, armor=3731, health=1428900),\n      min_base_damage=2601, damage_spread=0.5, swing_speed=2, parry_haste, can_crush)\n\ngear:\n{{GEAR}}"
+      "playerOverrides": {}
+    },
+    {
+      "id": "hunter-mm",
+      "mode": "siml",
+      "repoFolder": "ui/specs/hunter/dps",
+      "presetBuild": "builds/mm.siml",
+      "baseGear": "gear_sets/prebis_turret.gear.siml",
+      "apls": "apls/turret.apl.siml",
+      "title": { "ru": "MM (без пета)", "en": "MM (no pet)" },
+      "buildName": { "ru": "Marksmanship", "en": "Marksmanship" },
+      "rotation": { "ru": "Ротация симулятора: turret", "en": "the sim's turret rotation" },
+      "pool": "hunter-dps",
+      "twoHandExpected": true,
+      "playerOverrides": {}
+    },
+    {
+      "id": "hunter-sv",
+      "mode": "siml",
+      "repoFolder": "ui/specs/hunter/dps",
+      "presetBuild": "builds/sv.siml",
+      "baseGear": "gear_sets/prebis_turret.gear.siml",
+      "apls": "apls/turret.apl.siml",
+      "title": { "ru": "SV (turret)", "en": "SV (turret)" },
+      "buildName": { "ru": "Survival", "en": "Survival" },
+      "rotation": { "ru": "Ротация симулятора: turret", "en": "the sim's turret rotation" },
+      "pool": "hunter-dps",
+      "twoHandExpected": true,
+      "playerOverrides": {}
+    },
+    {
+      "id": "hunter-sv-weave",
+      "mode": "siml",
+      "repoFolder": "ui/specs/hunter/dps",
+      "presetBuild": "builds/sv_weave.siml",
+      "baseGear": "gear_sets/prebis_weave.gear.siml",
+      "apls": "apls/default.apl.siml",
+      "title": { "ru": "SV weave", "en": "SV weave" },
+      "buildName": { "ru": "Survival (weave)", "en": "Survival (weave)" },
+      "rotation": { "ru": "Ротация симулятора: weave", "en": "the sim's weave rotation" },
+      "pool": "hunter-dps",
+      "twoHandExpected": true,
+      "playerOverrides": {}
+    },
+    {
+      "id": "hunter-sv-melee",
+      "mode": "siml",
+      "repoFolder": "ui/specs/hunter/dps",
+      "presetBuild": "builds/sv_melee.siml",
+      "baseGear": "gear_sets/prebis_melee.gear.siml",
+      "apls": "apls/melee.apl.siml",
+      "title": { "ru": "SV melee", "en": "SV melee" },
+      "buildName": { "ru": "Survival (melee)", "en": "Survival (melee)" },
+      "rotation": { "ru": "Ротация симулятора: melee", "en": "the sim's melee rotation" },
+      "pool": "hunter-melee",
+      "twoHandExpected": false,
+      "playerOverrides": {}
     }
   ],
 
@@ -45,6 +100,32 @@
         "finger1":  { },
         "trinket1": { },
         "main_hand": { "weaponTypes": [1, 6, 8, 9], "handTypes": [4] },
+        "ranged":    { "rangedTypes": [1, 2, 3] }
+      }
+    },
+    "hunter-melee": {
+      "classId": 3,
+      "qualityMin": 2,
+      "ilvlMin": 50,
+      "maxPerSlot": 14,
+      "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
+      "excludeIds": [],
+      "includeIds": [],
+      "slots": {
+        "head":     { "armorType": 3 },
+        "neck":     { },
+        "shoulder": { "armorType": 3 },
+        "back":     { },
+        "chest":    { "armorType": 3 },
+        "wrist":    { "armorType": 3 },
+        "hands":    { "armorType": 3 },
+        "waist":    { "armorType": 3 },
+        "legs":     { "armorType": 3 },
+        "feet":     { "armorType": 3 },
+        "finger1":  { },
+        "trinket1": { },
+        "main_hand": { "weaponTypes": [1, 2, 3, 4, 9], "handTypes": [1, 2] },
+        "off_hand":  { "weaponTypes": [1, 2, 3, 4, 9], "handTypes": [1, 2, 3] },
         "ranged":    { "rangedTypes": [1, 2, 3] }
       }
     }

@@ -1020,7 +1020,7 @@
    "id": 273933,
    "name": "Spiritcaller Grips",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1029,7 +1029,7 @@
    "id": 273937,
    "name": "Spiritcaller Gauntlets",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1366,7 +1366,7 @@
    "id": 273932,
    "name": "Spiritcaller Leggings",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1482,24 +1482,6 @@
    "src": "pvp"
   },
   {
-   "id": 273935,
-   "name": "Spiritcaller Treads",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 8"
-  },
-  {
-   "id": 273939,
-   "name": "Spiritcaller Greaves",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 8"
-  },
-  {
    "id": 227007,
    "name": "Slippers of The Five Thunders",
    "q": 4,
@@ -1525,6 +1507,24 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 273935,
+   "name": "Spiritcaller Treads",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 273939,
+   "name": "Spiritcaller Greaves",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
   },
   {
    "id": 276541,

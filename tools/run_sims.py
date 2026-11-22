@@ -105,6 +105,136 @@ class Db:
         return False
 
 
+def siml_parts(text):
+    """Split a .siml into its header lines and named sections, keeping order."""
+    header, order, sections = [], [], {}
+    cur = None
+    for line in text.splitlines():
+        m = re.match(r'^([a-z_]+):\s*(?://.*)?$', line)
+        if not m:
+            m = re.match(r'^([a-z_]+):\s+(\S.*)$', line)  # a section written as one line
+        if m:
+            cur = m.group(1)
+            if cur not in sections:
+                sections[cur] = []
+                order.append(cur)
+            if m.lastindex and m.lastindex > 1:
+                sections[cur].append('  ' + m.group(2).strip())
+            continue
+        if cur is None:
+            header.append(line)
+        else:
+            sections[cur].append(line)
+    return header, order, sections
+
+
+def section_entries(lines):
+    """Group a section's lines into entries: one key line plus its continuation lines."""
+    entries = []
+    for line in lines:
+        if not line.strip() or line.strip().startswith('//'):
+            continue
+        key = line.strip().split()[0] if line.strip() and not line.strip().startswith('//') else ''
+        deeper = entries and len(line) - len(line.lstrip()) > 2
+        if entries and (deeper or key == ''):
+            entries[-1][1].append(line)
+        else:
+            entries.append((key, [line]))
+    return entries
+
+
+def merge_section(base_lines, build_lines):
+    """The build's entries replace the base's entries with the same key, in place."""
+    out = section_entries(base_lines)
+    index = {k: i for i, (k, _) in enumerate(out) if k}
+    for key, lines in section_entries(build_lines):
+        if key and key in index:
+            out[index[key]] = (key, lines)
+        else:
+            out.append((key, lines))
+    return [line for _, lines in out for line in lines]
+
+
+ENCOUNTER_SIML = """encounter:
+  duration 180
+  duration_variation 5
+  execute_proportion_20 0.2
+  execute_proportion_35 0.35
+  targets(id=31146, name="Raid Target", level=63, mob_type=dragonkin,
+      stats(attack_power=320, block_value=54, armor=3731, health=1428900),
+      min_base_damage=2601, damage_spread=0.5, swing_speed=2, parry_haste, can_crush)"""
+
+
+def compose_preset(forever, cfg):
+    """The repo's own preset, made runnable on the CLI.
+
+    A preset build file is only a layer: the spec's defaults.siml carries race,
+    professions, buffs, debuffs, consumables and the encounter, and the build file
+    adds its talents, pet, distance and consumables. The UI merges the two; here
+    they are merged the same way (a build key replaces the defaults key), the
+    preset's own gear and APL includes are dropped, and our APL, iterations,
+    encounter and gear are added. Nothing is retyped, so a repo change reaches
+    the next run as is.
+    """
+    folder = os.path.join(forever, cfg['repoFolder'])
+    with open(os.path.join(folder, cfg.get('defaults') or 'defaults.siml'), encoding='utf-8') as f:
+        base_h, base_order, base_s = siml_parts(f.read())
+    with open(os.path.join(folder, cfg['presetBuild']), encoding='utf-8') as f:
+        build_h, build_order, build_s = siml_parts(f.read())
+
+    def header_lines(lines):
+        out = []
+        for line in lines:
+            s = line.strip()
+            if not s or s.startswith('//'):
+                continue
+            if s.startswith('use "'):
+                continue  # the preset's gear/APL includes are replaced below
+            if re.match(r'^(siml 1|spec\s+\S+)$', s):
+                continue  # written once, by this function
+            out.append(line)
+        return out
+
+    talents = next((l.strip() for l in header_lines(build_h) if l.strip().startswith('talents')), '')
+    others = [l for l in header_lines(base_h) + header_lines(build_h)
+              if not l.strip().startswith('talents')]
+    if not talents:
+        talents = next((l.strip() for l in header_lines(base_h) if l.strip().startswith('talents')), '')
+
+    for k in ('sim', 'encounter', 'simple', 'gear'):
+        base_s.pop(k, None)
+        if k in base_order:
+            base_order.remove(k)
+    for k in ('sim', 'encounter', 'gear'):
+        build_s.pop(k, None)
+
+    sections = {k: base_s.get(k, []) for k in base_order}
+    for k in build_order:
+        if k in ('sim', 'encounter', 'gear'):
+            continue
+        sections[k] = merge_section(sections.get(k, []), build_s.get(k, []))
+        if k not in base_order:
+            base_order.append(k)
+
+    spec = re.search(r'^spec\s+(\S+)$', '\n'.join(base_h), re.M)
+    head = ['siml 1', f'spec {spec.group(1) if spec else cfg.get("specLine", "")}']
+    if talents:
+        head.append(talents)
+    head += others
+    head.append('use "{{APL}}"')
+
+    body = []
+    for k in base_order:
+        body.append(f'{k}:')
+        body += sections[k]
+        body.append('')
+
+    return ('\n'.join(head) + '\n\n' + '\n'.join(body) + '\n'
+            'sim:\n  iterations {{ITERS}}\n  fixed_rng_seed {{SEED}}\n\n'
+            + ENCOUNTER_SIML + '\n\n'
+            'gear:\n{{GEAR}}\n')
+
+
 def parse_gear_siml(path, db):
     """A .gear.siml (or the gear section of an .siml): slot rows as name refs or raw JSON."""
     gear = {}
@@ -206,6 +336,9 @@ class Build:
                 self.debuffs = cfg.get('debuffs') or tpl.get('debuffs') or {}
                 self.spec_options = cfg.get('specOptions') or tpl.get('specOptions') or {}
         else:
+            if cfg.get('presetBuild'):
+                cfg = dict(cfg, template=compose_preset(forever, cfg))
+                self.cfg = cfg
             self.base_gear = parse_gear_siml(os.path.join(forever, cfg['repoFolder'], cfg['baseGear']), db)
             self.base_gear = {s: self.base_gear.get(s, [0, 0, 0]) for s in SLOTS}
             self.apl = None

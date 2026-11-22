@@ -33,7 +33,7 @@
       "id": "shaman-enhancement",
       "mode": "protojson",
       "repoFolder": "ui/specs/shaman/enhancement",
-      "buildJson": "builds/testing.build.json",
+      "buildJson": "builds/default.build.json",
       "title": { "ru": "Энх", "en": "Enhancement" },
       "buildName": { "ru": "Enhancement (тестовый билд)", "en": "Enhancement (the sim testing build)" },
       "rotation": { "ru": "Стандартная ротация билда (с подменой оружия)", "en": "the build's rotation (with weapon swap)" },

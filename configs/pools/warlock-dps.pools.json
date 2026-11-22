@@ -319,7 +319,7 @@
    "id": 273942,
    "name": "Demonheart Spaulders",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -849,7 +849,7 @@
    "id": 273941,
    "name": "Demonheart Gloves",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -1150,7 +1150,7 @@
    "id": 273940,
    "name": "Demonheart Leggings",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 11"
@@ -1275,15 +1275,6 @@
    "src": "crafted: 11"
   },
   {
-   "id": 273943,
-   "name": "Demonheart Boots",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 11"
-  },
-  {
    "id": 226908,
    "name": "Deathmist Sandals",
    "q": 4,
@@ -1291,6 +1282,15 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 273943,
+   "name": "Demonheart Boots",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 11"
   },
   {
    "id": 13369,

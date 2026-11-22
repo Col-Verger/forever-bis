@@ -382,7 +382,7 @@
    "id": 273910,
    "name": "Justice Spaulders",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 2"
@@ -391,7 +391,7 @@
    "id": 273914,
    "name": "Justice Epaulets",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 2"
@@ -930,7 +930,7 @@
    "id": 273909,
    "name": "Justice Gauntlets",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 2"
@@ -939,7 +939,7 @@
    "id": 273913,
    "name": "Justice Gloves",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 2"
@@ -948,7 +948,7 @@
    "id": 273917,
    "name": "Justice Handguards",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 2"
@@ -1264,10 +1264,19 @@
    "src": "crafted: 2"
   },
   {
+   "id": 22385,
+   "name": "Titanic Leggings",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 2"
+  },
+  {
    "id": 273908,
    "name": "Justice Leggings",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 2"
@@ -1276,16 +1285,7 @@
    "id": 273912,
    "name": "Justice Legplates",
    "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 2"
-  },
-  {
-   "id": 273916,
-   "name": "Justice Legguards",
-   "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 2"
@@ -1401,33 +1401,6 @@
    "src": "crafted: 2"
   },
   {
-   "id": 273911,
-   "name": "Justice Greaves",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 2"
-  },
-  {
-   "id": 273915,
-   "name": "Justice Treads",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 2"
-  },
-  {
-   "id": 273919,
-   "name": "Justice Sabatons",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 2"
-  },
-  {
    "id": 226974,
    "name": "Soulforge Warboots",
    "q": 4,
@@ -1453,6 +1426,33 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 273911,
+   "name": "Justice Greaves",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 2"
+  },
+  {
+   "id": 273915,
+   "name": "Justice Treads",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 2"
+  },
+  {
+   "id": 273919,
+   "name": "Justice Sabatons",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 2"
   },
   {
    "id": 16409,

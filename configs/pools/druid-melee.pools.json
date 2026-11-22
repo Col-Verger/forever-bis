@@ -1011,7 +1011,7 @@
    "id": 273885,
    "name": "Grovekeeper Grips",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1020,7 +1020,7 @@
    "id": 273889,
    "name": "Grovekeeper Mitts",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1029,7 +1029,7 @@
    "id": 273893,
    "name": "Grovekeeper Handguards",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1038,7 +1038,7 @@
    "id": 273897,
    "name": "Grovekeeper Gauntlets",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1384,7 +1384,7 @@
    "id": 273884,
    "name": "Grovekeeper Trousers",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1393,7 +1393,7 @@
    "id": 273888,
    "name": "Grovekeeper Kilt",
    "q": 4,
-   "ilvl": 61,
+   "ilvl": 60,
    "twoHand": false,
    "tier": "max",
    "src": "crafted: 8"
@@ -1527,42 +1527,6 @@
    "src": "pvp"
   },
   {
-   "id": 273887,
-   "name": "Grovekeeper Stompers",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 8"
-  },
-  {
-   "id": 273891,
-   "name": "Grovekeeper Sandals",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 8"
-  },
-  {
-   "id": 273895,
-   "name": "Grovekeeper Boots",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 8"
-  },
-  {
-   "id": 273899,
-   "name": "Grovekeeper Treads",
-   "q": 4,
-   "ilvl": 61,
-   "twoHand": false,
-   "tier": "max",
-   "src": "crafted: 8"
-  },
-  {
    "id": 226774,
    "name": "Feralheart Galoshes",
    "q": 4,
@@ -1597,6 +1561,42 @@
    "twoHand": false,
    "tier": "cheap",
    "src": "vendor: Mokvar | vendor: Deliana"
+  },
+  {
+   "id": 273887,
+   "name": "Grovekeeper Stompers",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 273891,
+   "name": "Grovekeeper Sandals",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 273895,
+   "name": "Grovekeeper Boots",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
+  },
+  {
+   "id": 273899,
+   "name": "Grovekeeper Treads",
+   "q": 4,
+   "ilvl": 60,
+   "twoHand": false,
+   "tier": "max",
+   "src": "crafted: 8"
   },
   {
    "id": 18424,
