@@ -19,9 +19,9 @@ on:
       only_class:
         description: 'Only this class (empty = all)'
         default: ''
-      budgets:
-        description: 'Budgets to sim (max,cheap)'
-        default: 'max,cheap'
+      budget:
+        description: 'Only this budget (max or cheap; empty = both)'
+        default: ''
       skip_sims:
         description: 'Only rebuild data.js from existing runs (no sims)'
         type: boolean
@@ -42,14 +42,16 @@ concurrency:
 jobs:
   resim:
     if: ${{ !inputs.skip_sims }}
+    name: resim (${{ matrix.class }}, ${{ matrix.budget }})
     runs-on: ubuntu-latest
     timeout-minutes: 300
     strategy:
       fail-fast: false
       matrix:
-        # A manual "only_class" run narrows the matrix to that one class; the daily
-        # run still covers every class.
+        # One job per class and budget: a heavy class is split in half, so a run
+        # cannot eat the whole five-hour limit and take the daily refresh with it.
         class: ${{ fromJSON(inputs.only_class && format('["{0}"]', inputs.only_class) || '["mage","paladin","druid","hunter","priest","rogue","shaman","warlock","warrior"]') }}
+        budget: ${{ fromJSON(inputs.budget && format('["{0}"]', inputs.budget) || '["max","cheap"]') }}
     steps:
       - uses: actions/checkout@v4
 
@@ -109,12 +111,12 @@ jobs:
           --statdump ./statdump
           --search-iterations ${{ inputs.search_iterations || '2500' }}
           --final-iterations ${{ inputs.final_iterations || '10000' }}
-          --budgets ${{ inputs.budgets || 'max,cheap' }}
+          --budgets ${{ matrix.budget }}
 
       - name: Upload the runs
         uses: actions/upload-artifact@v4
         with:
-          name: runs-${{ matrix.class }}
+          name: runs-${{ matrix.class }}-${{ matrix.budget }}
           path: runs/
           retention-days: 5
 
