@@ -408,3 +408,4 @@ a.brand:hover .tag{border-color:var(--acc)}
 .planprog{flex:0 1 auto;min-width:0}
 .pbar{flex:0 0 220px;max-width:220px}
 @media(max-width:720px){.pbar{flex:1 1 auto;max-width:none}}
+.planactions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 6px}

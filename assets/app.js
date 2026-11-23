@@ -1050,11 +1050,11 @@ function renderPlan() {
       <div class="planprog"><b id="planprogress">${esc(T('plan_progress').replace('{d}', String(doneN)).replace('{t}', String(total)))}</b>
         <div class="pbar"><i id="planbar" style="width:${total ? Math.round(doneN / total * 100) : 0}%"></i></div><span class="pct" id="planpct">${total ? Math.round(doneN / total * 100) : 0}%</span></div>
       <span class="small">${esc(T('plan_budget').replace('{b}', budgetLabel))}</span>
-      <span class="planbtns">
-        ${simBtn}
-        <button class="btn" type="button" data-plancopy="1">${esc(T('plan_copy'))}</button>
-        <button class="btn" type="button" data-planreset="1">${esc(T('plan_reset'))}</button>
-      </span>
+    </div>
+    <div class="planactions">
+      ${simBtn}
+      <button class="btn" type="button" data-plancopy="1">${esc(T('plan_copy'))}</button>
+      <button class="btn" type="button" data-planreset="1">${esc(T('plan_reset'))}</button>
     </div>
     <p class="small planlocal">${esc(T('plan_local'))}</p>
     <div class="planfilter">
