@@ -18,7 +18,7 @@ body[data-class="warlock"]{--acc:#9482C9;--acc-soft:rgba(148,130,201,.15)}
 body[data-class="druid"]{--acc:#FF7D0A;--acc-soft:rgba(255,125,10,.14)}
 
 *{box-sizing:border-box}
-html{scroll-padding-top:calc(var(--barh) + 76px);scrollbar-gutter:stable}
+html{scroll-padding-top:calc(var(--barh) + 76px);overflow-y:scroll;scrollbar-gutter:stable}
 body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.55 Inter,system-ui,sans-serif}
 .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
 a{color:var(--acc);text-decoration:none} a:hover{text-decoration:underline}
