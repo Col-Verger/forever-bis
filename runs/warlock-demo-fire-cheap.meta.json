@@ -1,0 +1,29 @@
+{
+ "status": "ok",
+ "budget": "cheap",
+ "metric": "dps",
+ "value": 898.98,
+ "margin": 0.55,
+ "hps": 0,
+ "threat": 705.6,
+ "title": {
+  "ru": "Демо (Fire Brand)",
+  "en": "Demo (Fire Brand)"
+ },
+ "buildName": {
+  "ru": "Демонолог (Fire Brand) (билд симулятора)",
+  "en": "Demo (Fire Brand) (the sim's build)"
+ },
+ "rotation": {
+  "ru": "Ротация симулятора для этого билда",
+  "en": "the build's rotation"
+ },
+ "talents": "011-0305003201220301351-0050055003",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simmedAt": "2026-11-23T19:01Z",
+ "simCommit": "1380e5b",
+ "simLink": "https://www.wowsims.com/forever/warlock/dps/#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"
+}

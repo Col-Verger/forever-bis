@@ -1,0 +1,29 @@
+{
+ "status": "ok",
+ "budget": "cheap",
+ "metric": "dps",
+ "value": 899.44,
+ "margin": 0.85,
+ "hps": 0,
+ "threat": 741.4,
+ "title": {
+  "ru": "Демо (Shadow Brand)",
+  "en": "Demo (Shadow Brand)"
+ },
+ "buildName": {
+  "ru": "Демонолог (Shadow Brand) (билд симулятора)",
+  "en": "Demo (Shadow Brand) (the sim's build)"
+ },
+ "rotation": {
+  "ru": "Ротация симулятора для этого билда",
+  "en": "the build's rotation"
+ },
+ "talents": "011-0005003231220301351-0550005003",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simmedAt": "2026-11-23T19:26Z",
+ "simCommit": "1380e5b",
+ "simLink": "https://www.wowsims.com/forever/warlock/dps/#eNrEVl1sFNcV3jMzO3v3GHvWx64Zbko93iT8jLE9u8uSOIh6MSTYQFM3oD50Q1WD12aCvYu8JrS81CkER0CNi12CTaoQjNTFLWBZNAWqVkpVBLGKRElbVaRtUkd5aNKqyEip6rxUMzv2rrNe47ZInZe98+2935zv3O/ce5AY+EAFDXbDXjgDkAIgF/8rZ7LPyw+gh316AdR7JehhBy+BOhRBiX00AOhhp2/71J+Xoof962ix+uN69LCjg6D+vQg97L2/FVqIyHqjKLPJVutFZhefV497UGInb/tQZC/tRIkN9wGKrK8DZXasQx20yO+ftKDJdv/vwHfTXPGPduOTnU29Z+EIdMOLd+U3PKPsYuGrJadKjqtX+FV+f+kfvnCm5o2aszXDNedqXjZ+/cyVTQfNQ+Zhs8/8nnnC7DcHzO+bF7t+1QPXe+BGD9zsgVu98Go/DPbD5ZTyk5TyZkr5aUq5klKuppQbKeXtlDKeUi7dUn5z2Xfnsu+dy75/fuA7fbr4B6eLT8DiHxa+XHm4sqfylcpbjZd2jO74ZOfHB945AkPg/lMvXG8aAfpwWHlvWOk1/zKsfDysjDZ8GBiF4Rfeh0PmPbiaUuolBipcE/xGIFBlGEbYMELBUCAYNEJGIBQOVBnhsAPfFKTbQsGEMLIYw+jhbhTZd6N+fUxYzkRaMiaUMSA2JKRxzkZmRiijVGVU12IRipPg8nvQjWJVIImlDs2pqN+LHnRXGdWBJElceMpFy/hjE1CB5dsa423tsZov7WvvMrXtzZ1tsS5tw77OZEzbmmgzd9Em/jQ+QWH06UVMJnECXBYlQghLdWJu8ozLEgo+dxoNY4H1qV9KNjYCXkzDPqDl/HFU9TLmJmGzixdNyQXo3ZhIdGhd5q493Isie1ciwSdQJV+Jj0zJKpZtizV3mvE2ranZjGutiU6tvrM53sIRJXbwGNiTDV5thwZZoQUmYAku3mZawqYlbUxsdwTV8Cp7hXv2ChXLZuUgs+AA/ybu5q24lmpxmf6YtRlTchmWru9I7It3aYlWzZKR1NpjrV0OHSr+QiwIZkShpX4WUDYll2CxGdfC39I6m+NtMYsotH0CCtC7IZFob0nsjyfpNeCDgMeBjgGWT8mfR97Ysbcz8WKsRdu2u7klsV+rT7R3aVviif1x9I5LMkqs+4MmLBgDlh6qgBv4elTuyotQYt85aqXNrQJW66uYSIXXADMwz+8yXORHZJPg4OkfquDl+YTYU85F7XQ/qlcw93wWthwhO7tazpdiiV7M3OQdEhxwZsLhY0AhHsAVtAyLdYWJJOx0cdvwIeNxG0r7y4bWGEk7jPNR8vLpipoZno+qoh5/cAUs5Y9gGZWix+9G8a7oQq9VYUeYwKSPwEWruI5+0tJ/pecwV67DNlsV4dX/LOf1WS1/AqtpVbqCgm7bKlkvb0VtUjGLNMzTf9BX+JdxEz2NAarBUk6ZFTM8dmB3mAuL+KJ0qGkFuZzpQGkzb8A6WpcVwKkoku5z8stOeByM+9V5PXAqSmeBvw54EqgfcAdFM3y2qa7Jzls9RXLCq+ar8igq9VNu8Bgk4z+NMq/ggTkEDzxY8ECUfgQ8Bfg60GuArdSS4csSPBDFLdT4PwueyeWcygcWonwc+A3AXwD9DJxw2Ew4lvlt38z99Y28PmsD1/hX/zcbkM0yMA/LAsQI+puQ/+hfy2vRoOp5Kiznm29Fp2vM2phHqeKBBTFt+tz5c/vJ8Yx+Xco++LfyzRjhX8RKWolcV5lIBS9kbo/08RYIJ2ffKZ+9dawj03eoHxbEFjIWwnY1pdAW3oh1fB3qtAKX6Is/yyajhMKTCyBjFya3Pjyh7I9n4CGyjZ8BauDP4Dpau3CmnE5k+s4xeRt+nZ5H6zbMxxYMJnNCwZW03DaNSMLXXOlWL7jGMPLfdMHPZbVV5LjsXSn41NwNC/nHhHImUfGYUMQEcu5ZFMJJnllbOV/bQYXjUlYPEdwzR23SV2l7ng5SyukgZ6HeOVHmoMFv52sSKUa7cA1fjSX+YlTGwGp+uj991sqpCrhUfyTT/Diwk9zqcBIL/QXonQSn+Zjv0HlJdNnP6siQWLK/ubM9sWtPVUusI1GVtPM0KgpDwiJEZEzUhAg0aP7bgtde0t0aKU4vLo0sGRq0nrfrKlrt5/d1wfOC6tHq9Hvg+r88XZGHy7dlbr5lF2bh526F19fao+fORdY7YOQbsHfkPhwoeK7ZbHEO9VcABp3MvF+nM9b3rNp957fe+kINnoQINEAT9AH8ewDFbLXO"
+}

@@ -1,39 +1,33 @@
 {
  "builds": [
   {
-   "id": "warrior-fury-max",
+   "id": "warlock-affwrack-cheap",
    "status": "ok",
-   "value": 994.45,
+   "value": 931.57,
    "metric": "dps"
   },
   {
-   "id": "warrior-fury-cheap",
+   "id": "warlock-demo-fire-cheap",
    "status": "ok",
-   "value": 846.82,
+   "value": 898.98,
    "metric": "dps"
   },
   {
-   "id": "warrior-arms-max",
+   "id": "warlock-demo-shadow-cheap",
    "status": "ok",
-   "value": 886.08,
+   "value": 899.44,
    "metric": "dps"
   },
   {
-   "id": "warrior-arms-cheap",
+   "id": "warlock-destro-cheap",
    "status": "ok",
-   "value": 827.84,
+   "value": 872.75,
    "metric": "dps"
   },
   {
-   "id": "warrior-protection-max",
+   "id": "warlock-smruin-cheap",
    "status": "ok",
-   "value": 307.17,
-   "metric": "dps"
-  },
-  {
-   "id": "warrior-protection-cheap",
-   "status": "ok",
-   "value": 272.85,
+   "value": 790.47,
    "metric": "dps"
   }
  ]

@@ -17,7 +17,7 @@
      "randomSuffix": 0
     },
     {
-     "id": 19050,
+     "id": 273942,
      "enchant": 0,
      "randomSuffix": 0
     },
@@ -47,17 +47,17 @@
      "randomSuffix": 0
     },
     {
-     "id": 13170,
+     "id": 273940,
      "enchant": 8492,
      "randomSuffix": 0
     },
     {
-     "id": 11822,
+     "id": 273943,
      "enchant": 911,
      "randomSuffix": 0
     },
     {
-     "id": 272406,
+     "id": 275982,
      "enchant": 0,
      "randomSuffix": 0
     },
@@ -95,7 +95,7 @@
   },
   "consumables": {
    "flaskId": 13512,
-   "foodId": 13931,
+   "foodId": 13935,
    "conjuredId": 12662,
    "mhImbueId": 20750,
    "potions": [
@@ -175,7 +175,9 @@
     250335,
     13454,
     250337,
-    250347
+    250347,
+    9264,
+    6373
    ],
    "mhWeaponImbueId": 13603,
    "resourcePotId": 13444
@@ -371,7 +373,7 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 25307
+        "spellId": 11661
        }
       }
      }
@@ -437,7 +439,7 @@
         "lhs": {
          "spellExpectedDpet": {
           "spellId": {
-           "spellId": 25311
+           "spellId": 11672
           }
          }
         },
@@ -450,13 +452,13 @@
       },
       "strictMultidot": {
        "spellId": {
-        "spellId": 25311
+        "spellId": 11672
        },
        "maxDots": 10,
        "maxOverlap": {
         "spellCastTime": {
          "spellId": {
-          "spellId": 25311
+          "spellId": 11672
          }
         }
        }
@@ -505,7 +507,7 @@
         "lhs": {
          "spellExpectedDpet": {
           "spellId": {
-           "spellId": 25309
+           "spellId": 11668
           }
          }
         },
@@ -518,13 +520,13 @@
       },
       "strictMultidot": {
        "spellId": {
-        "spellId": 25309
+        "spellId": 11668
        },
        "maxDots": 10,
        "maxOverlap": {
         "spellCastTime": {
          "spellId": {
-          "spellId": 25309
+          "spellId": 11668
          }
         }
        }
@@ -576,7 +578,7 @@
      "action": {
       "castSpell": {
        "spellId": {
-        "spellId": 25307
+        "spellId": 11661
        }
       }
      }
@@ -686,7 +688,7 @@
         {
          "spellExpectedDpet": {
           "spellId": {
-           "spellId": 25307
+           "spellId": 11661
           }
          }
         },

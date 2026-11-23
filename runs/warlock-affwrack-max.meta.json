@@ -1,0 +1,29 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 965.37,
+ "margin": 0.66,
+ "hps": 0,
+ "threat": 779.8,
+ "title": {
+  "ru": "Аффли (Wrack)",
+  "en": "Affliction (Wrack)"
+ },
+ "buildName": {
+  "ru": "Аффликт (Wrack) (билд симулятора)",
+  "en": "Affliction (Wrack) (the sim's build)"
+ },
+ "rotation": {
+  "ru": "Ротация симулятора для этого билда",
+  "en": "the build's rotation"
+ },
+ "talents": "25500020135201351-0050203001-05",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simmedAt": "2026-11-23T18:44Z",
+ "simCommit": "1380e5b",
+ "simLink": "https://www.wowsims.com/forever/warlock/dps/#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"
+}

@@ -2,26 +2,28 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 777.48,
+ "value": 790.47,
  "margin": 0.84,
  "hps": 0,
- "threat": 618.0,
+ "threat": 624.7,
  "title": {
-  "ru": "СМ/Рuin",
+  "ru": "СМ/Ruin",
   "en": "SM/Ruin"
  },
  "buildName": {
-  "ru": "SM/Ruin (билд сима)",
+  "ru": "SM/Ruin (билд симулятора)",
   "en": "SM/Ruin (the sim's build)"
  },
  "rotation": {
-  "ru": "APL из билд-файла репозитория",
-  "en": "the build file's APL"
+  "ru": "Ротация симулятора для этого билда",
+  "en": "the build's rotation"
  },
- "talents": "",
+ "talents": "2550002013520105--0550205003",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simLink": "https://www.wowsims.com/forever/warlock/dps/#eNrEUl1MHFUU3jMzO3Pn7LIze0Edb6wOq7RkKWVYukYbExZE22rSkIY3bCK0pR352QbQpvUFQwtNSxbsFluWmBSWxAUtEIKVNvGBpJvSpiRIqzEQ0lpjTCAmRJIa8UGzswsFu/pk4nk69zvf992Z71ykBFTQQIejcAwuA8QAqI19KxNRldmHKJE/roC2nIkSaR0BLRJAgSxeAJRI74yqfZ2FEvn9nFv7ohQlcq4HtF9cKJGfOyGB8CRUiSL5tSZxEMnwO1qnhAK53QfIkz+rUCBXZ1TkSVc9SuRGJ2g9CfeVTxLje0c9d0CdMnOX6oxH1eWhfjgLLfDBnNgnjZLhjIuZlzI7tQl2ja1s+f75ywV9Bf0F0YKBgtPGnTcndreap8w2s8v82Dxvhs0LZrc53HyjHeLtcLMdptphOgQXw9AThvGY8mVMuRpTvoopEzHlWky5GVNuxZTbMWVkWvlmXJ0dV++Oq7/9qPb2uj/tdZ+HZz7LOJ3XlteedyZveu/IgdEDj6qXTt49CxGwL4QgXj4Erp+iyv2oEjJ/iCpLUWUUou89gFNmqUBAg+vccz6/3zAMn1FY5PcZhYY/P9/w+w2f4TeMoilOmOEcD7nPRSowbpeNupgTJY8d+Tnetgg2OgwE2CDgJWDdgDvodnSNgQN5Mi9QTrVrgMyrEYE6r4O8jjIRBeR8TbiX7kbXnLiJ7/Qgkn6wWxhu8+YQO+XesrEtYxwjQMlQasScc9JjS9S8TxPBIrpWRQfKZcFgvd5sHqx9CA6UXw8G6w4Fjzc00RdZtsUV03FZ0po+xTJRHgMRBdLdAYnPJfNxoDvYdvRQHZVV0YlYciTYcEJvNusPY4bHscZfDiX5yyGg21jOE9xZcCNPJitVZCTC2a2evsZ2ocerEzuVF8WE+n4cmHtVdKGzrPyNCn1fsEEvC1bMQmZypiKTI1yK+KR6MvzP6snwBvVkOI164V/uXth490IcaBErxFy6Fd1ehfCUq7YxCe3IFxk5FpRcnQW9bDRZ8Q5WUmRkPVOZSSlY431ZG3ZB11S+Exvzo7XURIdHRsmXeiKPD5OV6GW51nr5dOv929vK9r5A7JQsikltmp/27dx8pi+tctmYymk+Dmtta8d629YBH/E2q3YGIrzreFVjXfBgbX5TfeP7ZsMoz0U4RIIi4XVuj+6Z4WSL21ITcCdVWYFnIz2JulWcXWPVd8W+QU6T9GLvMtj+l2oO/Ld+b6f323plEz4w7S951er2DwRKUmDgXTg2tAInHfurzEN6RVXjkcPNZwB6Usk8KPYS0rVPa5m9J5dm6PAKBGAPlEMXwF8DAK2bUu8="
+ "simmedAt": "2026-11-23T20:12Z",
+ "simCommit": "1380e5b",
+ "simLink": "https://www.wowsims.com/forever/warlock/dps/#eNrEUl1MHFUU3jMzO3Pn7LIzeyE63lgdtqElSynD4qptTFgQLdWkIQ1vYxOhLe3IzzaANq0vGFpoWrpgAQtLTFqWxIFYIAQrbeIDSZtSI8lKG2MwxlrTmNAYiU1qxAfNDosFu76Z9Lzcc777fefkfuciJaCCBjochiNwAcAGoC6WlImoyux9lMifl0BbzkaJtE+AFo+gQJb6ACUylFS1L3JQIn+c8WuflqNEzgyC9osPJfJzN6QQnsRMFMlvdalCJONvad0SCuSjpIo8+asGBXLZSXsaUSLXukEbTHXv6gbkye3DgSSoc1b+rw3Gw9qq2DCchjZ4b1G8KE2S8azz2QPZ3doMu8IebPr2uQtFF4uGixJFI0Unja9en9nVbp2wOqwe60PrnNVr9Vn91njrtU643gk3OmGuE+ZjcL4XBnth2lY+s5XLtvK5rczYyhVbuWErN23lS1uZmFe+nlYXptVb0+rvP6lDQ/6Ph/zn4OlPsk4WdBR0FpwqmN89sW9y38Pa+8dvnYY4uL+PwfWqMaD3EsoPCSVm/ZhQ7ieUycp7xZOQeOcOnLDKBQIaXOWeDYXDhmGEjOKScMgoNsKFhUY4bISMsGGUzHFCkvPc5YZFKjBup4v6mBelgBv5Rd61BC46DgTYKOAAsH7A7XQb+qbAgzz5TqCc6tYAWVAjAvVeBfkflIkoIBdqwd10F/oWxQ18bwCRDIPbwXBrMI+4KfeGi22a4hgBSsbSV8y7KD1qiVrwKSI4RN+K6EG5Ihpt1Fut/fV3wYPyq9Fow4Ho0aYWupnlOlwxE5ettqY5jKI8BSIKpL8LHPSsSbezbRigOiorohex7FC06ZjeajUexKyAZ42+HAOWPulWlvcYdwH8yJNZU0VG4pzbyekO9hLmBp8nbkqWxBQ2YDL/iuhDb0XVa9X6nmiTXhGtXpUOrJMOmPQVthMDQZ24qbwkpgbP9kJGbfbqnYpMjnNp4uOD+/57cN+6wX0mLWHFmE+3oD+oEJ5ytS4moRv5EiPPgVZ35kAvGi2Og6MmlZm0ZuZaOmpqfChn3Q7omih0bL1xtJ5a6AnIKIXSX+NRMWtikOU7a+UzrfVff2rDi2czvThUsrGmm1c4HdOKsyamvW7vgrW0ows+4F1OvBCJ876jNc0N0f31hS2Nze9aTZM8F+cQCYqE17lKPZDkZIfbVhfxr6pyIs/EB1NxszS3zolvSkOjnCbppcFlcD2RaI38v/3ezNxvy6UN+Mh8uGyHk+0diZSlwcjbcGTsARz37K2xDujVNc2HDraeAhhMO3OnNEhIzx6tbeG2XJ6lw8sQgUqogh6AvwcAuu5OCg=="
 }
