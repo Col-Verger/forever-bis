@@ -394,3 +394,14 @@ a.brand:hover .tag{border-color:var(--acc)}
 .pct{font-size:11px;color:var(--mut2);min-width:34px;text-align:right;font-variant-numeric:tabular-nums}
 .planprog{flex:1 1 460px}
 .pbar{min-width:160px}
+/* Gearing plan filters */
+.planfilter{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 14px}
+.pchips{display:flex;gap:6px;flex-wrap:wrap}
+.pchips button{border:1px solid var(--line2);background:var(--bg3);color:var(--mut);border-radius:999px;padding:5px 11px;font:600 12px Inter;cursor:pointer}
+.pchips button:hover{border-color:var(--acc);color:var(--fg)}
+.pchips button.on{background:var(--acc);border-color:var(--acc);color:#10131a}
+.pcheck{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--mut);cursor:pointer;white-space:nowrap}
+.pcheck input{accent-color:var(--acc)}
+.psearch{background:var(--bg3);border:1px solid var(--line2);border-radius:8px;color:var(--fg);padding:7px 10px;font:13px Inter;min-width:180px}
+.psearch:focus{outline:none;border-color:var(--acc)}
+.prow[hidden],.pgroup[hidden]{display:none}

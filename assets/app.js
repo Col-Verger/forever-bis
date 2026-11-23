@@ -83,6 +83,9 @@ const STR = {
   plan_world: { ru: 'Мировой дроп и аукцион', en: 'World drops & auction' },
   plan_other: { ru: 'Прочее', en: 'Other' },
   plan_empty: { ru: 'Для этого сета пока нет данных — план появится вместе с прогоном.', en: 'No data for this set yet — the plan appears with a sim run.' },
+  plan_only_left: { ru: 'Только не собранное', en: 'Only what is left' },
+  plan_search_ph: { ru: 'Предмет или источник', en: 'Item or source' },
+  plan_nothing: { ru: 'Под фильтр ничего не подходит — ослабь его или сбрось.', en: 'Nothing matches the filter — loosen or clear it.' },
   plan_open_sim: { ru: 'Открыть сет в WoWSims ↗', en: 'Open the set in WoWSims ↗' },
   chip_no_data: { ru: 'Симы не прогнаны', en: 'No sim runs yet' },
   chip_ok: { ru: 'Симы', en: 'Simmed' },
@@ -200,7 +203,9 @@ const state = {
   lang: localStorage.getItem('bislang') || 'ru',
   cls: G.classes[0].id, spec: G.classes[0].specs[0].id,
   budget: 'max', topn: 4, q: '', srcs: new Set(SOURCE_KINDS), tab: 'gear',
-  pick: {}, pickLid: '', matrixView: 'table'
+  pick: {}, pickLid: '', matrixView: 'table',
+  planKinds: new Set(['dungeon', 'quest', 'rep', 'craft', 'vendor', 'pvp', 'world', 'other', 'ench']),
+  planHideDone: false, planQ: ''
 };
 const fromHash = () => {
   const p = new URLSearchParams(location.hash.slice(1));
@@ -981,7 +986,8 @@ function planGroupFor(it) {
 
 function planRow(key, checked, it, spec, slot) {
   const src = SRC(it)[0] || T('no_source');
-  return `<label class="prow${checked ? ' done' : ''}">
+  const q = norm([itemName(spec), slotLabel(slot), src, it.name, it.name_ru || ''].join(' '));
+  return `<label class="prow${checked ? ' done' : ''}" data-q="${esc(q)}">
     <input type="checkbox" data-plan="${esc(key)}"${checked ? ' checked' : ''}>
     <img class="icon xs${it.q >= 3 ? ' q' + it.q : ''}" src="${ICON(it.icon)}" alt="" loading="lazy">
     <span class="pmeta">
@@ -1003,7 +1009,7 @@ function renderPlan() {
   const st = planLoad(lid);
   const groups = new Map();
   const push = (key, label, order, html) => {
-    if (!groups.has(key)) groups.set(key, { key, label, order, rows: [] });
+    if (!groups.has(key)) groups.set(key, { key, label, order, kind: key.startsWith('z:') ? 'dungeon' : key, rows: [] });
     groups.get(key).rows.push(html);
   };
   let items = 0;
@@ -1023,7 +1029,8 @@ function renderPlan() {
     if (!spec || !spec[1] || !spec[3]) continue;
     ench++;
     const key = 'e:' + s;
-    push('ench', T('plan_ench'), 90, `<label class="prow${st[key] ? ' done' : ''}">
+    const q = norm([spec[3], slotLabel(s), T('plan_ench_hint')].join(' '));
+    push('ench', T('plan_ench'), 90, `<label class="prow${st[key] ? ' done' : ''}" data-q="${esc(q)}">
       <input type="checkbox" data-plan="${esc(key)}"${st[key] ? ' checked' : ''}>
       <span class="pmeta"><span class="n" style="color:var(--fg)">${esc(spec[3])}</span>
       <span class="pslot">${esc(slotLabel(s))}</span><span class="psrc">${esc(T('plan_ench_hint'))}</span></span>
@@ -1050,9 +1057,44 @@ function renderPlan() {
       </span>
     </div>
     <p class="small planlocal">${esc(T('plan_local'))}</p>
-    <div class="plan">${list.map(g => `<section class="pgroup" data-pgroup="${esc(g.key)}" data-title="${esc(g.label)}">
-      <h3>${esc(g.label)}<span class="pcount">0/${g.rows.length}</span></h3>${g.rows.join('')}</section>`).join('')}</div>`;
+    <div class="planfilter">
+      <div class="pchips">${PLAN_KINDS.map(([k, key]) => `<button type="button" data-plan-kind="${k}" class="${state.planKinds.has(k) ? 'on' : ''}">${esc(T(key))}</button>`).join('')}</div>
+      <label class="pcheck"><input type="checkbox" data-plan-hidedone${state.planHideDone ? ' checked' : ''}> ${esc(T('plan_only_left'))}</label>
+      <input type="search" class="psearch" id="planq" value="${esc(state.planQ)}" placeholder="${esc(T('plan_search_ph'))}" aria-label="${esc(T('plan_search_ph'))}">
+    </div>
+    <div class="plan">${list.map(g => `<section class="pgroup" data-pgroup="${esc(g.key)}" data-kind="${esc(g.kind)}" data-title="${esc(g.label)}">
+      <h3>${esc(g.label)}<span class="pcount">0/${g.rows.length}</span></h3>${g.rows.join('')}</section>`).join('')}</div>
+    <div class="empty-note" id="planempty" hidden>${esc(T('plan_nothing'))}</div>`;
   updatePlanProgress();
+  applyPlanFilter();
+}
+
+const PLAN_KINDS = [['dungeon', 'plan_dungeons'], ['quest', 'plan_quests'], ['rep', 'plan_rep'],
+  ['craft', 'plan_craft'], ['vendor', 'plan_vendors'], ['pvp', 'plan_pvp'], ['world', 'plan_world'],
+  ['other', 'plan_other'], ['ench', 'plan_ench']];
+
+// Hide groups and rows that the chips, "only what's left" and the search exclude.
+function applyPlanFilter() {
+  const box = $('plan');
+  if (!box) return;
+  const tokens = norm(state.planQ).split(' ').filter(Boolean);
+  let shown = 0;
+  box.querySelectorAll('[data-pgroup]').forEach(g => {
+    const kindOn = state.planKinds.has(g.dataset.kind);
+    let any = false;
+    g.querySelectorAll('label.prow').forEach(r => {
+      const cb = r.querySelector('input[data-plan]');
+      const done = cb && cb.checked;
+      const matchQ = !tokens.length || tokens.every(t => (r.dataset.q || '').includes(t));
+      const show = kindOn && matchQ && !(state.planHideDone && done);
+      r.hidden = !show;
+      if (show) any = true;
+    });
+    g.hidden = !any;
+    if (any) shown++;
+  });
+  const empty = $('planempty');
+  if (empty) empty.hidden = shown > 0;
 }
 
 function updatePlanProgress() {
@@ -1253,6 +1295,14 @@ function render() {
 document.addEventListener('click', e => {
   const t = e.target;
   if (!t.closest('#srcpick')) $('srcpick').open = false;
+  const pk = t.closest('[data-plan-kind]');
+  if (pk) {
+    const k = pk.dataset.planKind;
+    if (state.planKinds.has(k)) state.planKinds.delete(k); else state.planKinds.add(k);
+    pk.classList.toggle('on', state.planKinds.has(k));
+    applyPlanFilter();
+    return;
+  }
   if (t.closest('[data-planreset]')) {
     const lid = loadoutKey(curSpec());
     try { localStorage.removeItem(planKey(lid)); } catch { /* private mode */ }
@@ -1370,6 +1420,12 @@ document.addEventListener('change', e => {
     if (e.target.checked) st[ds.plan] = 1; else delete st[ds.plan];
     planSave(lid, st);
     updatePlanProgress();
+    applyPlanFilter();
+    return;
+  }
+  if ('planHidedone' in ds) {
+    state.planHideDone = e.target.checked;
+    applyPlanFilter();
     return;
   }
   const s = ds.src;
@@ -1380,6 +1436,9 @@ document.addEventListener('change', e => {
 });
 $('q').addEventListener('input', e => { state.q = e.target.value; if (state.tab === 'gear') renderCards(); });
 $('q').addEventListener('keydown', e => { if (e.key === 'Escape' && state.q) { state.q = ''; e.target.value = ''; if (state.tab === 'gear') renderCards(); } });
+document.addEventListener('input', e => {
+  if (e.target.id === 'planq') { state.planQ = e.target.value; applyPlanFilter(); }
+});
 const totop = $('totop');
 if (totop) {
   // Always available: it is small, sits in the corner, and needs no scroll wiring.
