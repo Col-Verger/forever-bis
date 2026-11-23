@@ -956,7 +956,7 @@ function planGroupFor(it) {
   const src = SRC(it)[0] || '';
   const kinds = it.kinds || [];
   if (kinds.includes('dungeon')) {
-    const m = src.match(/\(([^)]+)\)\s*$/);
+    const m = /^(?:Дроп|Drop):/.test(src) ? src.match(/\(([^)]+)\)\s*$/) : null;
     return { key: 'z:' + (m ? m[1] : '?'), label: m ? m[1] : T('plan_dungeons'), order: 10 };
   }
   if (kinds.includes('quest')) return { key: 'quest', label: T('plan_quests'), order: 20 };
@@ -1073,7 +1073,8 @@ function planText() {
       const cb = r.querySelector('input[data-plan]');
       const n = r.querySelector('.n');
       const src = r.querySelector('.psrc');
-      out.push(`  ${cb && cb.checked ? '[x]' : '[ ]'} ${n ? n.textContent.trim() : ''}${src ? ' — ' + src.textContent.trim() : ''}`);
+      const slot = r.querySelector('.pslot');
+      out.push(`  ${cb && cb.checked ? '[x]' : '[ ]'} ${slot ? slot.textContent.trim() + ': ' : ''}${n ? n.textContent.trim() : ''}${src ? ' — ' + src.textContent.trim() : ''}`);
     });
   });
   return out.join('\n');
