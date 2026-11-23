@@ -102,6 +102,8 @@ const STR = {
   fresh_sum: { ru: 'Обновлено в этот прогон: {n} из {m} классов', en: 'Refreshed in this run: {n} of {m} classes' },
   delta_vs_bis: { ru: 'Статы против BiS', en: 'Stats vs BiS' },
   delta_note: { ru: 'Бонусы комплектов и эффекты не учтены', en: 'Set bonuses and effects are not included' },
+  delta_why_title: { ru: 'Что значит эта строка', en: 'What this line means' },
+  delta_why_body: { ru: 'Плюс значит, что у этого варианта такого стата больше, чем у BiS-предмета в этом слоте, минус, меньше. Считаются статы предмета и энчанта. Бонусы комплектов и эффекты не входят.', en: 'A plus means this option has more of that stat than the BiS item in this slot, a minus less. Item and enchant stats only. Set bonuses and effects are not included.' },
   ref_commit_line: { ru: 'Симулятор', en: 'Simulator' },
   ref_auto: { ru: 'Как числа попадают на сайт', en: 'How numbers get here' },
   ref_auto_body: { ru: 'Сайт не считает симы сам: каждое утро свежая версия WoWSims Forever прогоняет каждый спек, и страница пересобирается с новыми числами. Всё происходит автоматически. Хил-спеки симулятор пока не поддерживает — их сеты взяты из гайдов Wowhead и помечены бейджем; когда поддержка появится, сет заменится симмированными числами сам.', en: 'The site does not run sims itself: every morning a fresh WoWSims Forever build sims every spec and the page is rebuilt with the new numbers. All of it is automatic. Healer specs are not supported by the sim yet — their sets come from Wowhead guides and carry a badge; when support lands, the set is replaced with simmed numbers on its own.' },
@@ -732,7 +734,7 @@ function rowHTML(r, x, gid, picked, bisSpec, metric) {
   const sig = r.best ? 'best' : sigOf(r.move);
   const sd = r.best ? '' : specs.map(([s, spec]) => slotDeltaText(bisSpec && bisSpec[s], spec, s, metric)).filter(Boolean).join(' · ');
   return `<tr class="${k}${picked ? ' picked' : ''}" data-pick="1" data-g="${esc(gid)}" data-sig="${esc(sig)}" data-d="${r.best ? 0 : r.d}">
-    <td class="c-item" title="${esc(sd ? T('delta_vs_bis') + ': ' + sd : '')}"><span class="pickmark" aria-hidden="true"></span><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span>${sd ? `<span class="sdelta" title="${esc(T('delta_vs_bis') + ': ' + sd + '. ' + T('delta_note'))}">${esc(sd)}</span>` : ''}</td>
+    <td class="c-item"><span class="pickmark" aria-hidden="true"></span><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span>${sd ? `<span class="sdelta" data-why="${esc(sd)}">${esc(sd)}</span>` : ''}</td>
     <td class="c-where" title="${esc(sourceLine)}">${esc(srcs.map(it => SRC(it)[0] || T('no_source')).join(' + '))}</td>
     <td class="c-d" title="${r.best ? '' : fmt(r.d)}">${d}</td>
     <td class="c-chart" title="${r.best ? esc(T('best')) : esc(fmt(r.d) + ' ±' + r.m.toFixed(1))}">${gapChart(r, x)}</td></tr>`;
@@ -1233,9 +1235,15 @@ function tipHTML(id, sfx) {
 }
 const tip = $('tip');
 document.addEventListener('mousemove', e => {
-  const t = e.target.closest('[data-tip]');
+  const t = e.target.closest('[data-tip],[data-why]');
   if (!t || !matchMedia('(hover: hover)').matches || innerWidth < 720) { tip.hidden = true; return; }
-  tip.innerHTML = tipHTML(+t.dataset.tip, +t.dataset.sfx);
+  if (t.dataset.why) {
+    tip.innerHTML = `<div class="t">${esc(T('delta_why_title'))}</div>
+      <div class="w">${esc(t.dataset.why)}</div>
+      <div class="m">${esc(T('delta_why_body'))}</div>`;
+  } else {
+    tip.innerHTML = tipHTML(+t.dataset.tip, +t.dataset.sfx);
+  }
   tip.hidden = false;
   const w = tip.offsetWidth, h = tip.offsetHeight;
   let x = e.clientX + 16, y = e.clientY + 16;
