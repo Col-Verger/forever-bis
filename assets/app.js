@@ -171,7 +171,7 @@ const state = {
   lang: localStorage.getItem('bislang') || 'ru',
   cls: G.classes[0].id, spec: G.classes[0].specs[0].id,
   budget: 'max', topn: 4, q: '', srcs: new Set(SOURCE_KINDS), tab: 'gear',
-  pick: {}, pickLid: '', matrixView: 'slider'
+  pick: {}, pickLid: '', matrixView: 'table'
 };
 const fromHash = () => {
   const p = new URLSearchParams(location.hash.slice(1));

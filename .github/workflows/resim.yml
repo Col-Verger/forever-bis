@@ -111,8 +111,10 @@ jobs:
 
   publish:
     needs: [resim]
-    # Only publish from real sims (or a manual skip_sims rebuild): never from a failed matrix.
-    if: ${{ always() && (inputs.skip_sims || needs.resim.result == 'success') }}
+    # Publish whatever refreshed. A class that timed out or broke keeps its previous
+    # runs (every set carries its own sim date), so a partial refresh updates the site
+    # instead of freezing it; a cancelled run deploys nothing.
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -122,8 +124,15 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Sync with the latest commit
+        run: |
+          git config user.name "resim-bot"
+          git config user.email "actions@github.com"
+          git pull --rebase origin ${{ github.ref_name }}
+
       - name: Collect the runs from every class
         if: ${{ !inputs.skip_sims }}
+        continue-on-error: true
         uses: actions/download-artifact@v4
         with:
           path: runs/
@@ -159,11 +168,8 @@ jobs:
 
       - name: Commit the runs and the data
         run: |
-          git config user.name "resim-bot"
-          git config user.email "actions@github.com"
           git add data.js index.html runs configs/pools tools/icons.json tools/ru_names.json tools/ru_geo.json
           git commit -m "Re-sim: ${{ env.SIM_HASH || 'manual' }} $(date -u +%F)" || echo "nothing changed"
-          git pull --rebase origin ${{ github.ref_name }}
           git push
 
       - name: Setup Pages
