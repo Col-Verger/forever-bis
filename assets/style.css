@@ -392,3 +392,5 @@ a.brand:hover .tag{border-color:var(--acc)}
 .pbar{background:#0b0e14;border-color:var(--line2);height:10px}
 .pbar i{background:linear-gradient(90deg,var(--good),#8be08f)}
 .pct{font-size:11px;color:var(--mut2);min-width:34px;text-align:right;font-variant-numeric:tabular-nums}
+.planprog{flex:1 1 460px}
+.pbar{min-width:160px}
