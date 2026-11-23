@@ -102,8 +102,13 @@ const STR = {
   fresh_sum: { ru: 'Обновлено в этот прогон: {n} из {m} классов', en: 'Refreshed in this run: {n} of {m} classes' },
   delta_vs_bis: { ru: 'Статы против BiS', en: 'Stats vs BiS' },
   delta_note: { ru: 'Бонусы комплектов и эффекты не учтены', en: 'Set bonuses and effects are not included' },
-  delta_why_title: { ru: 'Что значит эта строка', en: 'What this line means' },
+  delta_why_title: { ru: 'Сравнение с BiS', en: 'Compared with BiS' },
   delta_why_body: { ru: 'Плюс значит, что у этого варианта такого стата больше, чем у BiS-предмета в этом слоте, минус, меньше. Считаются статы предмета и энчанта. Бонусы комплектов и эффекты не входят.', en: 'A plus means this option has more of that stat than the BiS item in this slot, a minus less. Item and enchant stats only. Set bonuses and effects are not included.' },
+  chart_why_title: { ru: 'Как читать полосу', en: 'Reading the bar' },
+  chart_why_best: { ru: 'Лучший предмет в слоте: полоса стоит на нуле.', en: 'The best item in the slot: the bar sits at zero.' },
+  chart_why_same: { ru: 'Разница с лучшим в пределах погрешности сима.', en: 'The gap to the best is inside the sim margin.' },
+  chart_why_row: { ru: '{d} ±{m}: на столько предмет проигрывает лучшему.', en: '{d} ±{m}: how far this item is behind the best.' },
+  chart_why_body: { ru: 'Полоса показывает, насколько предмет проигрывает лучшему, ус, погрешность сима (±). Всё внутри заливки вокруг лучшей линии, то же значение.', en: 'The bar shows how far an item is behind the best, the whisker is the sim margin (±). Anything inside the shading around the best line is the same value.' },
   ref_commit_line: { ru: 'Симулятор', en: 'Simulator' },
   ref_auto: { ru: 'Как числа попадают на сайт', en: 'How numbers get here' },
   ref_auto_body: { ru: 'Сайт не считает симы сам: каждое утро свежая версия WoWSims Forever прогоняет каждый спек, и страница пересобирается с новыми числами. Всё происходит автоматически. Хил-спеки симулятор пока не поддерживает — их сеты взяты из гайдов Wowhead и помечены бейджем; когда поддержка появится, сет заменится симмированными числами сам.', en: 'The site does not run sims itself: every morning a fresh WoWSims Forever build sims every spec and the page is rebuilt with the new numbers. All of it is automatic. Healer specs are not supported by the sim yet — their sets come from Wowhead guides and carry a badge; when support lands, the set is replaced with simmed numbers on its own.' },
@@ -629,7 +634,7 @@ function renderDoll() {
     return `<div class="slot" data-go="${s}" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}">
       <img class="icon${q}" src="${ICON(it.icon, 'large')}" alt="" loading="lazy"><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span>
       <span class="nm" style="${qc(it)}">${esc(itemName(spec))}</span>
-      ${enHTML}</span></div>`;
+      ${enHTML}${itemStats(it) ? `<span class="st">${esc(itemStats(it))}</span>` : ''}</span></div>`;
   };
   const center = () => {
     if (!L) {
@@ -724,7 +729,23 @@ function itemHTML(spec, withEnchant) {
     : '';
   return `<span class="it" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}"><img class="icon xs${q}" loading="lazy" src="${ICON(it.icon)}" alt=""><a class="n" style="${qc(it)}" title="${esc(itemName(spec))}" href="${WH(spec[0])}" target="_blank" rel="noopener">${esc(itemName(spec))}</a>${en}</span>`;
 }
-function rowHTML(r, x, gid, picked, bisSpec, metric) {
+// The item's own stats, in one quiet line. This is what the card shows; the
+// comparison against the BiS pick is what the hover explains.
+function itemStats(it) {
+  const out = [];
+  if (!it) return '';
+  for (const k of MOD_ORDER) {
+    const pair = (it.mods || []).find(([key]) => key === k);
+    if (!pair || !pair[1]) continue;
+    const label = MOD_LABEL[k];
+    if (!label) continue;
+    out.push(`${pair[1] > 0 ? '+' : ''}${Math.round(pair[1])} ${label[lang() === 'ru' ? 0 : 1]}`);
+    if (out.length === 5) break;
+  }
+  return out.join(' · ');
+}
+
+function rowHTML(r, x, gid, picked, bisMap, metric) {
   const specs = Object.entries(r.move).sort((a, b) => SLOT_ORDER.indexOf(a[0]) - SLOT_ORDER.indexOf(b[0]));
   const k = kindOf(r);
   const its = specs.map(([, spec]) => item(spec[0])).filter(Boolean);
@@ -732,12 +753,14 @@ function rowHTML(r, x, gid, picked, bisSpec, metric) {
   const sourceLine = srcs.map(it => SRC(it).join(' | ') || T('no_source')).join(' + ');
   const d = r.best ? `<b>${esc(T('best'))}</b>` : `<b>${fmt(r.d)}</b> <small>±${r.m.toFixed(1)}</small>`;
   const sig = r.best ? 'best' : sigOf(r.move);
-  const sd = r.best ? '' : specs.map(([s, spec]) => slotDeltaText(bisSpec && bisSpec[s], spec, s, metric)).filter(Boolean).join(' · ');
+  const st = specs.map(([, spec]) => itemStats(item(spec[0]))).filter(Boolean).join(' · ');
+  const delta = r.best ? '' : specs.map(([s, spec]) => slotDeltaText(bisMap && bisMap[s], spec, s, metric)).filter(Boolean).join(' · ');
+  const why = r.best ? T('chart_why_best') : (delta || T('chart_why_same'));
   return `<tr class="${k}${picked ? ' picked' : ''}" data-pick="1" data-g="${esc(gid)}" data-sig="${esc(sig)}" data-d="${r.best ? 0 : r.d}">
-    <td class="c-item"><span class="pickmark" aria-hidden="true"></span><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span>${sd ? `<span class="sdelta" data-why="${esc(sd)}">${esc(sd)}</span>` : ''}</td>
+    <td class="c-item"><span class="pickmark" aria-hidden="true"></span><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span>${st ? `<span class="sdelta" data-why="${esc(why)}">${esc(st)}</span>` : ''}</td>
     <td class="c-where" title="${esc(sourceLine)}">${esc(srcs.map(it => SRC(it)[0] || T('no_source')).join(' + '))}</td>
     <td class="c-d" title="${r.best ? '' : fmt(r.d)}">${d}</td>
-    <td class="c-chart" title="${r.best ? esc(T('best')) : esc(fmt(r.d) + ' ±' + r.m.toFixed(1))}">${gapChart(r, x)}</td></tr>`;
+    <td class="c-chart" data-chart="1" data-d="${r.best ? 0 : r.d}" data-m="${r.m}" data-best="${r.best ? 1 : 0}">${gapChart(r, x)}</td></tr>`;
 }
 function groupHTML(g, L) {
   const hasBest = g.best && Object.keys(g.best).length > 0;
@@ -751,7 +774,7 @@ function groupHTML(g, L) {
   const body = shown.length ? shown.map(r => {
     const sig = r.best ? 'best' : sigOf(r.move);
     const picked = cur ? cur.sig === sig : !!r.best;
-    return rowHTML(r, x, g.id, picked, g.best && g.best[g.id], L.metric);
+    return rowHTML(r, x, g.id, picked, g.best, L.metric);
   }).join('') : `<tr><td colspan="4" class="empty">${esc(T('empty_slot'))}</td></tr>`;
   const hiddenBest = hasBest && shown.length && !rowPasses(Object.entries(g.best)) ? `<tr><td colspan="4" class="empty">${esc(T('hidden_best'))}</td></tr>` : '';
   return `<tbody class="grp" id="card-${g.id}" style="${bandVars(x, shown)}">${head}${body}${hiddenBest}</tbody>`;
@@ -995,6 +1018,7 @@ function planRow(key, checked, it, spec, slot) {
     <img class="icon xs${it.q >= 3 ? ' q' + it.q : ''}" src="${ICON(it.icon)}" alt="" loading="lazy">
     <span class="pmeta">
       <span class="n" style="${qc(it)}" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}">${esc(itemName(spec))}</span>
+      ${itemStats(it) ? `<span class="pstat">${esc(itemStats(it))}</span>` : ''}
       <span class="pslot">${esc(slotLabel(slot))}</span>
       <span class="psrc">${esc(src)}</span>
     </span>
@@ -1235,9 +1259,15 @@ function tipHTML(id, sfx) {
 }
 const tip = $('tip');
 document.addEventListener('mousemove', e => {
-  const t = e.target.closest('[data-tip],[data-why]');
+  const t = e.target.closest('[data-tip],[data-why],[data-chart]');
   if (!t || !matchMedia('(hover: hover)').matches || innerWidth < 720) { tip.hidden = true; return; }
-  if (t.dataset.why) {
+  if (t.dataset.chart) {
+    const best = t.dataset.best === '1';
+    const m = Number(t.dataset.m || 0);
+    tip.innerHTML = `<div class="t">${esc(T('chart_why_title'))}</div>
+      <div class="w">${esc(best ? T('chart_why_best') : T('chart_why_row').replace('{d}', fmt(Number(t.dataset.d || 0))).replace('{m}', m.toFixed(1)))}</div>
+      <div class="m">${esc(T('chart_why_body'))}</div>`;
+  } else if (t.dataset.why) {
     tip.innerHTML = `<div class="t">${esc(T('delta_why_title'))}</div>
       <div class="w">${esc(t.dataset.why)}</div>
       <div class="m">${esc(T('delta_why_body'))}</div>`;
