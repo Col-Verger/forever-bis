@@ -3,7 +3,7 @@
   --bg:#121318; --bg2:#171921; --bg3:#1d2029; --line:#2a2e3a; --line2:#343a49;
   --fg:#e7e9ee; --mut:#9aa1b2; --mut2:#6b7284;
   --q0:#9d9d9d; --q1:#ffffff; --q2:#1eff00; --q3:#0070dd; --q4:#a335ee; --q5:#ff8000;
-  --acc:#69CCF0; --acc-soft:rgba(105,204,240,.13); --good:#3fb96f; --bad:#e3576b; --warn:#e0a63a;
+  --acc:#69CCF0; --acc-soft:rgba(105,204,240,.13); --good:#3fb96f; --bad:#cf5f70; --warn:#dfa64b;
   --barh:0px; --rad:10px;
 }
 /* Class themes: the WoW class colors drive the accent. */
@@ -43,7 +43,7 @@ small{color:var(--mut)}
 .statuschip.stale{border-color:var(--warn);color:var(--warn)}
 .statuschip.stale::before{background:var(--warn)}
 .statuschip.none{border-color:var(--bad);color:var(--bad)}
-.statuschip.none::before{background:var(--bad);animation:pulse 1.6s infinite}
+.statuschip.none::before{background:var(--bad)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .top .wrap{text-align:center}
 .top h1{margin:12px 0 4px;font-size:30px;line-height:1.05;letter-spacing:.4px}
@@ -175,15 +175,15 @@ table.bt col.w-item{width:auto}
 table.bt col.w-where{width:24%}
 table.bt col.w-d{width:76px}
 table.bt col.w-chart{width:206px}
-table.bt thead th{position:sticky;top:var(--barh);background:var(--bg2);z-index:30;font-size:9.5px;text-transform:uppercase;letter-spacing:1.1px;color:var(--mut2);text-align:left;padding:8px 12px;border-bottom:1px solid var(--line2);white-space:nowrap}
+table.bt thead th{position:sticky;top:var(--barh);background:var(--bg2);z-index:30;font-size:10.5px;letter-spacing:.2px;color:var(--mut2);text-align:left;padding:8px 12px;border-bottom:1px solid var(--line2);white-space:nowrap}
 table.bt thead th.c-d{text-align:right}
 table.bt td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
 tbody.grp{--z:50%;--b0:47%;--b1:53%}
 tbody.grp:hover tr td{background:color-mix(in srgb, var(--bg2) 70%, transparent)}
-tr.gh th{background:var(--bg3);font-size:13px;padding:10px 12px;border-bottom:1px solid var(--line2);position:sticky;top:var(--barh);z-index:31;cursor:default;border-top:6px solid var(--bg)}
+tr.gh th{background:var(--bg3);font-size:13px;padding:8px 12px;border-bottom:1px solid var(--line2);position:sticky;top:var(--barh);z-index:31;cursor:default;border-top:8px solid var(--bg)}
 thead + tbody.grp tr.gh th{border-top:none}
-tr.gh th::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--acc)}
-tr.gh .ghn{font-family:'Oswald',Inter;font-weight:600;font-size:16px;letter-spacing:.6px;text-transform:uppercase;color:var(--fg)}
+tr.gh th::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--line2)}
+tr.gh .ghn{font-family:'Oswald',Inter;font-weight:600;font-size:14px;letter-spacing:.2px;color:var(--fg)}
 tr.gh .ghnote{font-weight:400;color:var(--mut);font-size:11.5px;margin-left:10px}
 tbody.grp tr{background:linear-gradient(90deg,transparent calc(var(--b0) - .5px),rgba(255,255,255,.05) calc(var(--b0) - .5px),rgba(255,255,255,.05) calc(var(--b1) + .5px),transparent calc(var(--b1) + .5px))}
 tbody.grp tr.best td{background:color-mix(in srgb, var(--acc-soft) 60%, transparent)}
