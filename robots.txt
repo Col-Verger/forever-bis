@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://col-verger.github.io/forever-bis/sitemap.xml

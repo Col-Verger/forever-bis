@@ -47,6 +47,7 @@ assets/database/db.json             │ resim.yml (ежедневно, 04:00 UTC
       └──────────►│ 2. tools/make_pools.py  → configs/pools/*.json       │
                    │ 3. tools/run_sims.py    → runs/*.json                │
                    │ 4. tools/build_data.py  → data.js (+ аудит)          │
+                   │ 5. tools/make_pages.py  → spec/, sitemap.xml         │
                    └───────────────┬──────────────────────────────────────┘
                                    ▼
                      index.html + assets/app.js (GitHub Pages)
@@ -116,12 +117,43 @@ python tools/run_sims.py --forever forever --wowsimcli wowsimcli.exe --configs c
 python tools/build_data.py --forever forever --runs runs --configs configs --out data.js `
   --commit $(git -C forever rev-parse --short HEAD) --repo "Col-Verger/forever-bis"
 
-# 4. открыть сайт
+# 4. статические страницы спеков и sitemap.xml для поисковиков
+python tools/make_pages.py --data data.js --out .
+
+# 5. открыть сайт
 python -m http.server 8000   # → http://localhost:8000
 ```
 
 Первый полный прогон — самый долгий. Ускорить: `--only mage-arcane`, `--search-iterations 1500`,
 `--jobs 3`. Проверка форматов без симов: `--dry-run`; одиночный базовый сим: `--validate`.
+
+## Видимость в поиске (SEO)
+
+Основная страница — одностраничное приложение с хеш-маршрутами (`#tab=gear&cls=…`).
+Поисковики считают хеш частью одного URL, поэтому одного приложения мало: у каждого спека
+есть **настоящая страница** `spec/<класс>/<спек>/` — статический HTML с заголовком,
+описанием, полным BiS-сетом, статами и источниками. Их собирает `tools/make_pages.py`
+из `data.js` на каждом прогоне; ссылки на них — в `spec/` и в подвале главной.
+
+- `robots.txt` — разрешает индексацию и указывает на `sitemap.xml`;
+- `sitemap.xml` — главная, список спеков и все страницы спеков с датой прогона;
+- на каждой странице: `title`, `description`, `canonical`, Open Graph, JSON-LD (`WebPage`),
+  `lang="ru"`, ссылки на интерактивную версию и WoWSims;
+- `404.html` — для несуществующих путей (GitHub Pages отдаёт его сам).
+
+**Домен.** Бесплатный адрес GitHub Pages — только `*.github.io`; `*.github.com` — это сам
+GitHub, там хостить нельзя, а произвольный поддомен вида `bis.col-verger.github.io` GitHub
+не выдаёт. Варианты: оставить `https://col-verger.github.io/forever-bis/`, сделать
+пользовательский сайт `col-verger.github.io` (репозиторий с таким именем) или подключить
+**свой домен**: файл `CNAME` в корне, DNS `CNAME` на `col-verger.github.io` (для апекса —
+A-записи GitHub), затем Settings → Pages → Custom domain и «Enforce HTTPS». Сертификат
+Let's Encrypt GitHub выдаёт сам.
+
+**Что ещё нужно для реальной видимости.** Индексация — не то же самое, что позиции:
+после выкладки стоит добавить сайт в Google Search Console и Яндекс.Вебмастер (подтверждение
+мета-тегом или DNS), отправить `sitemap.xml`, а ссылки на сайт — в профильные Discord/Reddit
+и комментарии гайдов. Свежесть (ежедневные прогоны) и уникальные проверяемые числа — наши
+главные аргументы; без внешних ссылок новый сайт в выдачу почти не попадает.
 
 ## Аудит данных
 
@@ -224,6 +256,9 @@ configs/pools/                  материализованные пулы (mak
 tools/run_sims.py               драйвер: per-slot поиск через wowsimcli → runs/*.json
 tools/make_pools.py             генератор пулов из assets/database/db.json
 tools/build_data.py             склейка runs + db.json → data.js, RU-имена, аудит
+tools/make_pages.py             статические страницы спеков + sitemap.xml (SEO)
+spec/                           ГЕНЕРИРУЕТСЯ make_pages.py — страницы спеков для поиска
+sitemap.xml, robots.txt, 404.html  индексация и обработка несуществующих путей
 tools/audit_data.py             проверка дефектов данных (пустые слоты, дубли, нули)
 tools/linkhash/                 IndividualSimSettings → ссылка-шар «открыть сет в WoWSims» (Go)
 tools/make_links.py             проставляет такие ссылки в runs/*.meta.json

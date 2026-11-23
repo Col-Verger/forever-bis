@@ -380,3 +380,4 @@ tr:hover .sdelta,tr:focus-within .sdelta{display:block}
 .planwrap{margin:22px 0}
 .planwrap h2{font-size:22px;margin:0 0 6px;color:var(--acc);letter-spacing:.4px}
 .planwrap .sub{color:var(--mut);margin:0 0 8px;line-height:1.6}
+.seealso{margin:6px 0 26px;font-size:13px}
