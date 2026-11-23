@@ -46,7 +46,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        class: [mage, paladin, druid, hunter, priest, rogue, shaman, warlock, warrior]
+        # A manual "only_class" run narrows the matrix to that one class; the daily
+        # run still covers every class.
+        class: ${{ fromJSON(inputs.only_class && format('["{0}"]', inputs.only_class) || '["mage","paladin","druid","hunter","priest","rogue","shaman","warlock","warrior"]') }}
     steps:
       - uses: actions/checkout@v4
 
