@@ -86,6 +86,7 @@ const STR = {
   plan_only_left: { ru: 'Только не собранное', en: 'Only what is left' },
   plan_search_ph: { ru: 'Предмет или источник', en: 'Item or source' },
   plan_nothing: { ru: 'Под фильтр ничего не подходит — ослабь его или сбрось.', en: 'Nothing matches the filter — loosen or clear it.' },
+  plan_fallback: { ru: 'альтернатива из другого источника', en: 'alternative from another source' },
   plan_open_sim: { ru: 'Открыть сет в WoWSims ↗', en: 'Open the set in WoWSims ↗' },
   chip_no_data: { ru: 'Симы не прогнаны', en: 'No sim runs yet' },
   chip_ok: { ru: 'Симы', en: 'Simmed' },
@@ -1021,7 +1022,7 @@ function planGroupFor(it) {
 function planRow(key, checked, it, spec, slot) {
   const src = SRC(it)[0] || T('no_source');
   const q = norm([itemName(spec), slotLabel(slot), src, it.name, it.name_ru || ''].join(' '));
-  return `<label class="prow${checked ? ' done' : ''}" data-q="${esc(q)}">
+  return `<label class="prow${checked ? ' done' : ''}" data-q="${esc(q)}" data-slot="${esc(slot)}" data-bis="1">
     <input type="checkbox" data-plan="${esc(key)}"${checked ? ' checked' : ''}>
     <img class="icon xs${it.q >= 3 ? ' q' + it.q : ''}" src="${ICON(it.icon)}" alt="" loading="lazy">
     <span class="pmeta">
@@ -1029,6 +1030,7 @@ function planRow(key, checked, it, spec, slot) {
       ${itemStats(it) ? `<span class="pstat">${esc(itemStats(it))}</span>` : ''}
       <span class="pslot">${esc(slotLabel(slot))}</span>
       <span class="psrc">${esc(src)}</span>
+      <span class="pfb">${esc(T('plan_fallback'))}</span>
     </span>
     <a class="pext" href="${WH(spec[0])}" target="_blank" rel="noopener" aria-label="Wowhead">↗</a>
   </label>`;
@@ -1109,22 +1111,46 @@ const PLAN_KINDS = [['dungeon', 'plan_dungeons'], ['quest', 'plan_quests'], ['re
   ['other', 'plan_other'], ['ench', 'plan_ench']];
 
 // Hide groups and rows that the chips, "only what's left" and the search exclude.
+// A slot left with no row is filled by its BiS item as an alternative, so a
+// source filter never leaves a hole (a ring disappearing entirely).
 function applyPlanFilter() {
   const box = $('plan');
   if (!box) return;
   const tokens = norm(state.planQ).split(' ').filter(Boolean);
+  const rows = [...box.querySelectorAll('label.prow')];
+  rows.forEach(r => {
+    const g = r.closest('[data-pgroup]');
+    const kindOn = !!g && state.planKinds.has(g.dataset.kind);
+    const cb = r.querySelector('input[data-plan]');
+    const done = cb && cb.checked;
+    const qOk = !tokens.length || tokens.every(t => (r.dataset.q || '').includes(t));
+    const doneOk = !(state.planHideDone && done);
+    r.dataset.kindOk = kindOn ? '1' : '0';
+    r.dataset.qOk = qOk ? '1' : '0';
+    r.dataset.doneOk = doneOk ? '1' : '0';
+    r.hidden = !(kindOn && qOk && doneOk);
+    r.classList.remove('fallback');
+  });
+  if (state.planKinds.size) {
+    const slots = new Map();
+    rows.forEach(r => {
+      const s = r.dataset.slot;
+      if (!s) return;
+      if (!slots.has(s)) slots.set(s, []);
+      slots.get(s).push(r);
+    });
+    slots.forEach(list => {
+      if (list.some(r => !r.hidden)) return;
+      const bis = list.find(r => r.dataset.bis === '1');
+      if (bis && bis.dataset.kindOk === '0' && bis.dataset.qOk === '1' && bis.dataset.doneOk === '1') {
+        bis.hidden = false;
+        bis.classList.add('fallback');
+      }
+    });
+  }
   let shown = 0;
   box.querySelectorAll('[data-pgroup]').forEach(g => {
-    const kindOn = state.planKinds.has(g.dataset.kind);
-    let any = false;
-    g.querySelectorAll('label.prow').forEach(r => {
-      const cb = r.querySelector('input[data-plan]');
-      const done = cb && cb.checked;
-      const matchQ = !tokens.length || tokens.every(t => (r.dataset.q || '').includes(t));
-      const show = kindOn && matchQ && !(state.planHideDone && done);
-      r.hidden = !show;
-      if (show) any = true;
-    });
+    const any = [...g.querySelectorAll('label.prow')].some(r => !r.hidden);
     g.hidden = !any;
     if (any) shown++;
   });
