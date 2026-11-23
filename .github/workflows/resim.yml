@@ -91,6 +91,12 @@ jobs:
       - name: Materialize candidate pools
         run: python tools/make_pools.py --forever forever --configs configs
 
+      # Every artifact must hold only this class's runs: the publish merges all nine
+      # into one folder, and a full copy in each artifact would let a stale class
+      # overwrite a freshly simulated one.
+      - name: Start from an empty runs folder
+        run: rm -rf runs && mkdir runs
+
       - name: Run the per-slot searches (${{ matrix.class }})
         run: >
           python tools/run_sims.py --forever forever --wowsimcli wowsimcli
