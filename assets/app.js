@@ -729,18 +729,23 @@ function itemHTML(spec, withEnchant) {
     : '';
   return `<span class="it" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}"><img class="icon xs${q}" loading="lazy" src="${ICON(it.icon)}" alt=""><a class="n" style="${qc(it)}" title="${esc(itemName(spec))}" href="${WH(spec[0])}" target="_blank" rel="noopener">${esc(itemName(spec))}</a>${en}</span>`;
 }
+const STAT_PRIORITY = ['agi', 'str', 'int', 'sp', 'heal', 'ap', 'rap', 'hit', 'crit', 'haste', 'exp',
+  'def', 'dodge', 'parry', 'block', 'bv', 'sta', 'spirit', 'mp5', 'hp', 'mana', 'armor'];
+
 // The item's own stats, in one quiet line. This is what the card shows; the
 // comparison against the BiS pick is what the hover explains.
 function itemStats(it, max = 5) {
   const out = [];
   if (!it) return '';
-  for (const k of MOD_ORDER) {
-    const pair = (it.mods || []).find(([key]) => key === k);
-    if (!pair || !pair[1]) continue;
+  const mods = new Map(it.mods || []);
+  for (const k of [...STAT_PRIORITY, ...MOD_ORDER]) {
+    if (out.length >= max) break;
+    const v = mods.get(k);
+    if (!v) continue;
     const label = MOD_LABEL[k];
     if (!label) continue;
-    out.push(`${pair[1] > 0 ? '+' : ''}${Math.round(pair[1])} ${label[lang() === 'ru' ? 0 : 1]}`);
-    if (out.length >= max) break;
+    out.push(`${v > 0 ? '+' : ''}${Math.round(v)} ${label[lang() === 'ru' ? 0 : 1]}`);
+    mods.delete(k);
   }
   return out.join(' · ');
 }
