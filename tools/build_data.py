@@ -577,6 +577,14 @@ def main():
                             used_items.add(sp[0])
                             if sp[2]:
                                 used_suffixes.setdefault(sp[0], set()).add(sp[2])
+        # Best numbers first: spec tabs and the class matrix follow the sim's own
+        # ranking (max budget, then cheap). Specs without a run go last.
+        def spec_rank(s):
+            v = values.get((s['prefix'], 'max'))
+            if v is None:
+                v = values.get((s['prefix'], 'cheap'))
+            return (-(v if v is not None else -1), 1 if s.get('status') in ('pending', 'failed') else 0, s['id'])
+        cls_specs.sort(key=spec_rank)
         classes_cfg.append({'id': cls_id, 'name': cls_name, 'specs': cls_specs})
 
     # The "vs other budget" fact: honest both ways.

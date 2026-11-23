@@ -831,10 +831,19 @@ function renderOverview(L) {
 function matrixIds() {
   const C = curClass();
   const prefixes = new Set(C.specs.map(s => s.prefix));
+  const order = new Map(C.specs.map((s, i) => [s.prefix, i]));
   return Object.keys(G.loadouts).filter(id => {
     const sp = specOfPrefix(id);
     return sp && prefixes.has(sp.prefix);
-  }).sort((a, b) => a.localeCompare(b));
+  }).sort((a, b) => {
+    const sa = specOfPrefix(a), sb = specOfPrefix(b);
+    const oa = order.has(sa.prefix) ? order.get(sa.prefix) : 99;
+    const ob = order.has(sb.prefix) ? order.get(sb.prefix) : 99;
+    if (oa !== ob) return oa - ob;                       // specs in sim order (best first)
+    const ba = /-cheap$/.test(a) ? 1 : 0;                // then max before cheap
+    const bb = /-cheap$/.test(b) ? 1 : 0;
+    return ba - bb || a.localeCompare(b);
+  });
 }
 
 const matrixBar = slider => `<div class="slbar">
