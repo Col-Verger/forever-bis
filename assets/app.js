@@ -75,6 +75,7 @@ const STR = {
   fresh_last: { ru: 'Последний прогон', en: 'Last simmed' },
   fresh_sets: { ru: 'Сетов', en: 'Sets' },
   fresh_wait: { ru: 'Ждут прогона', en: 'Waiting' },
+  fresh_sum: { ru: 'Обновлено в этот прогон: {n} из {m} классов', en: 'Refreshed in this run: {n} of {m} classes' },
   delta_vs_bis: { ru: 'Статы против BiS', en: 'Stats vs BiS' },
   ref_commit_line: { ru: 'Симулятор', en: 'Simulator' },
   ref_auto: { ru: 'Как числа попадают на сайт', en: 'How numbers get here' },
@@ -974,8 +975,15 @@ function renderRefresh() {
     const wait = f.waiting + f.failed;
     return `<tr><td>${esc(L2(c.name))}</td><td>${esc(date)}</td><td>${f.sets}</td><td${wait ? ' class="warn"' : ''}>${wait}</td></tr>`;
   }).join('');
+  const freshN = G.classes.filter(c => {
+    const f = classFreshness(c);
+    return f.last && f.sets && f.last.slice(0, 10) === String(m.simmed || '').slice(0, 10);
+  }).length;
+  const freshSum = m.hasData
+    ? `<div class="freshsum">${esc(T('fresh_sum').replace('{n}', freshN).replace('{m}', G.classes.length))}</div>`
+    : '';
   const fresh = `<h3>${esc(T('fresh_title'))}</h3>
-    <div class="panel"><span>${esc(T('fresh_note'))}</span>
+    <div class="panel">${freshSum}<span>${esc(T('fresh_note'))}</span>
       <table class="fresh"><thead><tr><th>${esc(T('cls'))}</th><th>${esc(T('fresh_last'))}</th><th>${esc(T('fresh_sets'))}</th><th>${esc(T('fresh_wait'))}</th></tr></thead>
       <tbody>${freshRows}</tbody></table></div>`;
   $('refresh').innerHTML = `
