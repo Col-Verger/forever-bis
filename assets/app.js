@@ -1024,8 +1024,9 @@ function renderPlan() {
   const budgetLabel = state.budget === 'cheap' ? T('budget_cheap') : T('budget_max');
   const simBtn = L.simLink
     ? `<a class="btn primary" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T('plan_open_sim'))}</a>` : '';
+  const wh = L.source === 'wowhead' ? ` <span class="status-badge wow">${esc(T('wowhead_badge'))}</span>` : '';
   $('plan').innerHTML = `
-    <h2>${esc(T('plan_title'))}</h2>
+    <h2>${esc(T('plan_title'))}${wh}</h2>
     <p class="sub">${esc(T('plan_sub'))}</p>
     <div class="planhead">
       <b id="planprogress">${esc(T('plan_progress').replace('{d}', String(doneN)).replace('{t}', String(total)))}</b>
