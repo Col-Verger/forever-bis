@@ -33,6 +33,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write
 
 concurrency:
   group: resim
@@ -194,3 +195,24 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+
+  report:
+    # Without anyone watching, a failed run still leaves a trace: one open issue
+    # that collects every failure, instead of a silent red run in the Actions tab.
+    needs: [resim, publish]
+    if: ${{ failure() && !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Open or update the failure issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          body="Прогон $(date -u +%F) завершился с ошибкой. Ссылка: $run"
+          num=$(gh issue list --repo "${{ github.repository }}" --state open --search 'Прогон не удался in:title' --json number --jq '.[0].number // empty')
+          if [ -n "$num" ]; then
+            gh issue comment "$num" --repo "${{ github.repository }}" --body "$body"
+          else
+            gh issue create --repo "${{ github.repository }}" --title "Прогон не удался" --body "$body"
+          fi
