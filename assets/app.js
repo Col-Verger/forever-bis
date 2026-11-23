@@ -634,7 +634,7 @@ function renderDoll() {
     return `<div class="slot" data-go="${s}" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}">
       <img class="icon${q}" src="${ICON(it.icon, 'large')}" alt="" loading="lazy"><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span>
       <span class="nm" style="${qc(it)}">${esc(itemName(spec))}</span>
-      ${enHTML}${itemStats(it, 3) ? `<span class="st">${esc(itemStats(it, 3))}</span>` : ''}</span></div>`;
+      ${enHTML}${itemStats(it, 6) ? `<span class="st">${esc(itemStats(it, 6))}</span>` : ''}</span></div>`;
   };
   const center = () => {
     if (!L) {
@@ -732,19 +732,22 @@ function itemHTML(spec, withEnchant) {
 const STAT_PRIORITY = ['agi', 'str', 'int', 'sp', 'heal', 'ap', 'rap', 'hit', 'crit', 'haste', 'exp',
   'def', 'dodge', 'parry', 'block', 'bv', 'sta', 'spirit', 'mp5', 'hp', 'mana', 'armor'];
 
-// The item's own stats, in one quiet line. This is what the card shows; the
-// comparison against the BiS pick is what the hover explains.
-function itemStats(it, max = 5) {
+// The item's own stats, in one quiet line. Primary stats lead, then the
+// secondary ones (hit, crit, haste, defense and so on). This is what the card
+// shows; the comparison against the BiS pick is what the hover explains.
+function itemStats(it, max = 6) {
   const out = [];
   if (!it) return '';
   const mods = new Map(it.mods || []);
   for (const k of [...STAT_PRIORITY, ...MOD_ORDER]) {
     if (out.length >= max) break;
-    const v = mods.get(k);
-    if (!v) continue;
+    const raw = mods.get(k);
+    if (!raw) continue;
     const label = MOD_LABEL[k];
     if (!label) continue;
-    out.push(`${v > 0 ? '+' : ''}${Math.round(v)} ${label[lang() === 'ru' ? 0 : 1]}`);
+    const pct = PCT_KEYS.has(k);
+    const v = pct ? Math.round(raw * 10) / 10 : Math.round(raw);
+    out.push(`${v > 0 ? '+' : ''}${v}${pct ? '%' : ''} ${label[lang() === 'ru' ? 0 : 1]}`);
     mods.delete(k);
   }
   return out.join(' · ');

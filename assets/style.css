@@ -413,5 +413,5 @@ a.brand:hover .tag{border-color:var(--acc)}
 .planactions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 6px}
 
 table,.dps b,.statsgrid b,.facts dd,.fresh td,.matrix td,.prow,.planprog,.pct{font-variant-numeric:tabular-nums}
-.slot .st{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:10px;line-height:1.35;color:var(--mut2);margin-top:2px}
+.slot .st{display:block;font-size:10px;line-height:1.35;color:var(--mut2);margin-top:2px}
 .prow .pstat{font-size:11px;line-height:1.4;color:var(--mut)}
