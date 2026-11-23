@@ -75,7 +75,7 @@ header.top .wrap{display:flex;gap:14px;align-items:center;padding:12px 18px;flex
 .tag{font-size:11px;color:var(--mut2);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
 main{padding:26px 0 10px}
 h1{font:600 30px/1.2 Oswald,Inter,sans-serif;margin:0 0 8px}
-h2{font:600 20px/1.3 Oswald,Inter,sans-serif;margin:26px 0 4px;color:var(--acc)}
+h2{font:600 20px/1.3 Oswald,Inter,sans-serif;margin:26px 0 4px;color:var(--fg)}
 .lede{color:var(--mut);margin:0 0 16px;max-width:70ch}
 .crumb{font-size:12.5px;color:var(--mut2);margin:0 0 12px}
 .stats{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 20px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg2)}
@@ -83,8 +83,8 @@ h2{font:600 20px/1.3 Oswald,Inter,sans-serif;margin:26px 0 4px;color:var(--acc)}
 .stats b{color:var(--fg)}
 table{border-collapse:collapse;width:100%;font-size:13.5px}
 th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-th{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--mut2);background:var(--bg3)}
-td.slot{color:var(--mut2);font-size:11px;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+th{font-size:11px;letter-spacing:.2px;color:var(--mut2);background:var(--bg3)}
+td.slot{color:var(--mut2);font-size:11px;letter-spacing:.2px;white-space:nowrap}
 td .en{display:block;color:var(--mut2);font-size:11.5px}
 td .src{display:block;color:var(--mut);font-size:12px}
 .btn{display:inline-block;margin:18px 8px 0 0;padding:9px 14px;border:1px solid var(--line);border-radius:9px;background:var(--bg3);color:var(--fg);font-weight:600}
