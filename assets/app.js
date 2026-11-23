@@ -678,7 +678,7 @@ function rowHTML(r, x, gid, picked) {
   const sig = r.best ? 'best' : sigOf(r.move);
   return `<tr class="${k}${picked ? ' picked' : ''}" data-pick="1" data-g="${esc(gid)}" data-sig="${esc(sig)}" data-d="${r.best ? 0 : r.d}">
     <td class="c-item"><span class="pickmark" aria-hidden="true"></span><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span></td>
-    <td class="c-where" title="${esc(sourceLine)}">${esc(srcs.map(it => (it.sources || [])[0] || T('no_source')).join(' + '))}</td>
+    <td class="c-where" title="${esc(sourceLine)}">${esc(srcs.map(it => SRC(it)[0] || T('no_source')).join(' + '))}</td>
     <td class="c-d" title="${r.best ? '' : fmt(r.d)}">${d}</td>
     <td class="c-chart">${gapChart(r, x)}</td></tr>`;
 }
