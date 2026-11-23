@@ -1152,6 +1152,8 @@ function applyPlanFilter() {
   box.querySelectorAll('[data-pgroup]').forEach(g => {
     const any = [...g.querySelectorAll('label.prow')].some(r => !r.hidden);
     g.hidden = !any;
+    // Groups from the selected sources lead; alternatives from other sources follow.
+    g.style.order = state.planKinds.has(g.dataset.kind) ? '0' : '1';
     if (any) shown++;
   });
   const empty = $('planempty');
