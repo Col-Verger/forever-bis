@@ -70,6 +70,12 @@ const STR = {
   ref_last_update: { ru: 'Последнее обновление', en: 'Last update' },
   ref_owner_only: { ru: 'Данные обновляются автоматически — каждый день. Числа на странице всегда последние; от посетителя ничего не требуется.', en: 'The data refreshes automatically — every day. The numbers on the page are always the latest; visitors never need to do anything.' },
   ref_ok_line: { ru: 'Прогон', en: 'Last run' },
+  fresh_title: { ru: 'Обновление по классам', en: 'Refresh by class' },
+  fresh_note: { ru: 'Дата — когда сеты этого класса реально посчитаны симулятором. Если класс отстал или что-то не просчиталось, это видно здесь, а не маскируется общей датой.', en: 'The date is when this class’s sets were actually simmed. A class that lags behind, or a set that failed, shows here instead of hiding behind the site-wide date.' },
+  fresh_last: { ru: 'Последний прогон', en: 'Last simmed' },
+  fresh_sets: { ru: 'Сетов', en: 'Sets' },
+  fresh_wait: { ru: 'Ждут прогона', en: 'Waiting' },
+  delta_vs_bis: { ru: 'Статы против BiS', en: 'Stats vs BiS' },
   ref_commit_line: { ru: 'Симулятор', en: 'Simulator' },
   ref_auto: { ru: 'Как числа попадают на сайт', en: 'How numbers get here' },
   ref_auto_body: { ru: 'Сайт не считает симы сам: каждое утро свежая версия WoWSims Forever прогоняет каждый спек, и страница пересобирается с новыми числами. Всё происходит автоматически. Хил-спеки симулятор пока не поддерживает — их сеты взяты из гайдов Wowhead и помечены бейджем; когда поддержка появится, сет заменится симмированными числами сам.', en: 'The site does not run sims itself: every morning a fresh WoWSims Forever build sims every spec and the page is rebuilt with the new numbers. All of it is automatic. Healer specs are not supported by the sim yet — their sets come from Wowhead guides and carry a badge; when support lands, the set is replaced with simmed numbers on its own.' },
@@ -114,6 +120,7 @@ const STR = {
   open_current: { ru: 'Открыть текущий сет в WoWSims ↗', en: 'Open the current set in WoWSims ↗' },
   view_slider: { ru: 'Слайдер', en: 'Slider' },
   view_table: { ru: 'Таблица', en: 'Table' },
+  scroll_hint: { ru: 'Прокрутите таблицу вбок, чтобы увидеть все сеты.', en: 'Scroll the table sideways to see every set.' },
   set_counter: { ru: '{i} из {n}', en: '{i} of {n}' },
   prev_set: { ru: 'Предыдущий сет', en: 'Previous set' },
   next_set: { ru: 'Следующий сет', en: 'Next set' },
@@ -428,26 +435,27 @@ const SLOT_TYPE = {
   finger1: 11, finger2: 11, trinket1: 12, trinket2: 12, main_hand: 13, off_hand: 13, ranged: 14,
 };
 
+function accumulate(acc, spec, sign, slot) {
+  if (!spec || !spec[0]) return;
+  const it = item(spec[0]);
+  if (!it) return;
+  for (const [k, v] of it.mods || []) acc.set(k, (acc.get(k) || 0) + sign * v);
+  const sfx = spec[2] && it.suffixStats && it.suffixStats[spec[2]];
+  if (sfx) for (const [name, v] of sfx) {
+    const k = SUFFIX_KEY[name];
+    if (k) acc.set(k, (acc.get(k) || 0) + sign * v);
+  }
+  const em = spec[1] && G.enchants && G.enchants[String(spec[1])];
+  if (em) {
+    const keys = Object.keys(em);
+    const md = em[SLOT_TYPE[slot]] || (keys.length === 1 ? em[keys[0]] : null);
+    if (md) for (const [k, v] of md) acc.set(k, (acc.get(k) || 0) + sign * v);
+  }
+}
+
 function gearDelta(bis, gear, metric) {
   const acc = new Map();
-  const add = (spec, sign, slot) => {
-    if (!spec || !spec[0]) return;
-    const it = item(spec[0]);
-    if (!it) return;
-    for (const [k, v] of it.mods || []) acc.set(k, (acc.get(k) || 0) + sign * v);
-    const sfx = spec[2] && it.suffixStats && it.suffixStats[spec[2]];
-    if (sfx) for (const [name, v] of sfx) {
-      const k = SUFFIX_KEY[name];
-      if (k) acc.set(k, (acc.get(k) || 0) + sign * v);
-    }
-    const em = spec[1] && G.enchants && G.enchants[String(spec[1])];
-    if (em) {
-      const keys = Object.keys(em);
-      const md = em[SLOT_TYPE[slot]] || (keys.length === 1 ? em[keys[0]] : null);
-      if (md) for (const [k, v] of md) acc.set(k, (acc.get(k) || 0) + sign * v);
-    }
-  };
-  for (const s of SLOT_ORDER) { add(bis[s], -1, s); add(gear[s], 1, s); }
+  for (const s of SLOT_ORDER) { accumulate(acc, bis[s], -1, s); accumulate(acc, gear[s], 1, s); }
   const rows = [];
   for (const k of MOD_ORDER) {
     if (k === 'heal' && metric !== 'hps') continue;  // healing power cannot move a DPS number
@@ -459,6 +467,24 @@ function gearDelta(bis, gear, metric) {
     rows.push({ ru: label[0], en: label[1], v: pct ? Math.round(v * 10) / 10 : Math.round(v), pct });
   }
   return rows;
+}
+
+// What one swapped slot changes in item stats, as a short line ("+13 Меткость · −8 Ловкость").
+// Enchants and suffixes count, set bonuses and procs do not — the same rule as the stats delta.
+function slotDeltaText(bisSpec, candSpec, slot, metric) {
+  const acc = new Map();
+  accumulate(acc, bisSpec, -1, slot);
+  accumulate(acc, candSpec, 1, slot);
+  const out = [];
+  for (const k of MOD_ORDER) {
+    if (k === 'heal' && metric !== 'hps') continue;
+    const v = acc.get(k) || 0;
+    const label = MOD_LABEL[k];
+    if (!v || !label || Math.abs(v) < 0.5) continue;
+    out.push(`${v > 0 ? '+' : '−'}${Math.abs(Math.round(v))} ${label[lang() === 'ru' ? 0 : 1]}`);
+    if (out.length === 5) break;
+  }
+  return out.join(' · ');
 }
 const fmtDelta = d => `${d.v > 0 ? '+' : '−'}${Math.abs(d.v)}${d.pct ? '%' : ''}`;
 
@@ -668,7 +694,7 @@ function itemHTML(spec, withEnchant) {
     : '';
   return `<span class="it" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}"><img class="icon xs${q}" loading="lazy" src="${ICON(it.icon)}" alt=""><a class="n" style="${qc(it)}" title="${esc(itemName(spec))}" href="${WH(spec[0])}" target="_blank" rel="noopener">${esc(itemName(spec))}</a>${en}</span>`;
 }
-function rowHTML(r, x, gid, picked) {
+function rowHTML(r, x, gid, picked, bisSpec, metric) {
   const specs = Object.entries(r.move).sort((a, b) => SLOT_ORDER.indexOf(a[0]) - SLOT_ORDER.indexOf(b[0]));
   const k = kindOf(r);
   const its = specs.map(([, spec]) => item(spec[0])).filter(Boolean);
@@ -676,8 +702,9 @@ function rowHTML(r, x, gid, picked) {
   const sourceLine = srcs.map(it => SRC(it).join(' | ') || T('no_source')).join(' + ');
   const d = r.best ? `<b>${esc(T('best'))}</b>` : `<b>${fmt(r.d)}</b> <small>±${r.m.toFixed(1)}</small>`;
   const sig = r.best ? 'best' : sigOf(r.move);
+  const sd = r.best ? '' : specs.map(([s, spec]) => slotDeltaText(bisSpec && bisSpec[s], spec, s, metric)).filter(Boolean).join(' · ');
   return `<tr class="${k}${picked ? ' picked' : ''}" data-pick="1" data-g="${esc(gid)}" data-sig="${esc(sig)}" data-d="${r.best ? 0 : r.d}">
-    <td class="c-item"><span class="pickmark" aria-hidden="true"></span><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span></td>
+    <td class="c-item" title="${esc(sd ? T('delta_vs_bis') + ': ' + sd : '')}"><span class="pickmark" aria-hidden="true"></span><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span>${sd ? `<span class="sdelta">${esc(sd)}</span>` : ''}</td>
     <td class="c-where" title="${esc(sourceLine)}">${esc(srcs.map(it => SRC(it)[0] || T('no_source')).join(' + '))}</td>
     <td class="c-d" title="${r.best ? '' : fmt(r.d)}">${d}</td>
     <td class="c-chart">${gapChart(r, x)}</td></tr>`;
@@ -694,7 +721,7 @@ function groupHTML(g, L) {
   const body = shown.length ? shown.map(r => {
     const sig = r.best ? 'best' : sigOf(r.move);
     const picked = cur ? cur.sig === sig : !!r.best;
-    return rowHTML(r, x, g.id, picked);
+    return rowHTML(r, x, g.id, picked, g.best && g.best[g.id], L.metric);
   }).join('') : `<tr><td colspan="4" class="empty">${esc(T('empty_slot'))}</td></tr>`;
   const hiddenBest = hasBest && shown.length && !rowPasses(Object.entries(g.best)) ? `<tr><td colspan="4" class="empty">${esc(T('hidden_best'))}</td></tr>` : '';
   return `<tbody class="grp" id="card-${g.id}" style="${bandVars(x, shown)}">${head}${body}${hiddenBest}</tbody>`;
@@ -820,6 +847,7 @@ function renderMatrixTable(ids) {
       c[0] ? `<td class="${!same && c[0] !== common ? 'odd' : ''}">${itemHTML(c, true)}</td>` : '<td>—</td>').join('')}</tr>`;
   }).join('');
   $('matrix').innerHTML = matrixBar(false) +
+    `<div class="mhint">${esc(T('scroll_hint'))}</div>` +
     `<div class="matrix-table"><table><thead><tr><th class="sl">${esc(lang() === 'ru' ? 'Слот' : 'Slot')}</th>${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
@@ -910,6 +938,26 @@ function renderChip() {
   chip.textContent = st.text;
   chip.title = G.meta.simCommit ? `WoWSims Forever commit ${G.meta.simCommit}` : '';
 }
+// Per class: when its sets were actually simmed, and how many are still waiting.
+// Dates come from each run's own meta, so a class that lagged behind shows its
+// older date instead of borrowing the site's headline date.
+function classFreshness(c) {
+  let last = '', sets = 0, waiting = 0, failed = 0;
+  for (const sp of c.specs) {
+    if (sp.status === 'no-preset') continue;
+    if (sp.status === 'failed') failed++;
+    let any = false;
+    for (const b of ['max', 'cheap']) {
+      const l = G.loadouts[`${sp.prefix}-${b}`];
+      if (!l) continue;
+      any = true;
+      sets++;
+      if (l.simmedAt && l.simmedAt > last) last = l.simmedAt;
+    }
+    if (!any) waiting++;
+  }
+  return { last, sets, waiting, failed };
+}
 function renderRefresh() {
   const m = G.meta;
   const st = chipState();
@@ -920,10 +968,21 @@ function renderRefresh() {
       <span>${esc(T('ref_owner_only'))}</span></div>`;
   const auto = `<div class="panel"><b>${esc(T('ref_auto'))}</b><span>${esc(T('ref_auto_body'))}</span></div>`;
   const newbie = `<div class="panel"><b>${esc(T('ref_new_title'))}</b><span>${esc(T('ref_new_body'))}</span></div>`;
+  const freshRows = G.classes.map(c => {
+    const f = classFreshness(c);
+    const date = f.last ? fmtStamp(f.last).split(' · ')[0] : '—';
+    const wait = f.waiting + f.failed;
+    return `<tr><td>${esc(L2(c.name))}</td><td>${esc(date)}</td><td>${f.sets}</td><td${wait ? ' class="warn"' : ''}>${wait}</td></tr>`;
+  }).join('');
+  const fresh = `<h3>${esc(T('fresh_title'))}</h3>
+    <div class="panel"><span>${esc(T('fresh_note'))}</span>
+      <table class="fresh"><thead><tr><th>${esc(T('cls'))}</th><th>${esc(T('fresh_last'))}</th><th>${esc(T('fresh_sets'))}</th><th>${esc(T('fresh_wait'))}</th></tr></thead>
+      <tbody>${freshRows}</tbody></table></div>`;
   $('refresh').innerHTML = `
     <h2>${esc(T('ref_status'))}</h2>
     <div class="panels">${status}${auto}</div>
-    <div class="panels">${newbie}</div>`;
+    <div class="panels">${newbie}</div>
+    ${fresh}`;
 }
 
 // ---------- tooltip ----------

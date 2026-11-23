@@ -343,3 +343,17 @@ details.localrun[open] summary{border-bottom:1px solid var(--line)}
   .brandrow{flex-direction:column;gap:8px;align-items:flex-start}
   .brand-right{align-self:stretch;display:flex;justify-content:space-between}
 }
+
+/* Per-slot stat change of a candidate: quiet until the row is pointed at, so the table stays short. */
+.sdelta{display:none;margin-top:4px;font-size:11px;color:var(--mut2);line-height:1.35}
+tr:hover .sdelta,tr:focus-within .sdelta{display:block}
+.mhint{display:none;font-size:12px;color:var(--mut2);margin:2px 0 8px}
+/* Class matrix: keep the slot column in view while the sets scroll sideways. */
+.matrix thead th.sl{position:sticky;left:0;z-index:3}
+.matrix tbody td.sl{position:sticky;left:0;z-index:2}
+/* "Refresh by class" table */
+.fresh{margin-top:10px;border-collapse:collapse;width:100%;max-width:640px}
+.fresh th,.fresh td{padding:7px 10px;border-bottom:1px solid var(--line);font-size:13px;text-align:left}
+.fresh th{color:var(--mut2);font-size:11px;text-transform:uppercase;letter-spacing:.6px}
+.fresh td.warn{color:var(--warn);font-weight:600}
+@media (max-width:820px){ .mhint{display:block} }
