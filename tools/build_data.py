@@ -77,7 +77,7 @@ STAT_LABELS = {
 SCHOOL_STATS = ['FireDamage', 'FrostDamage', 'ShadowDamage', 'NatureDamage', 'ArcaneDamage', 'HolyDamage']
 SCHOOL_BY_PREFIX = {
     'mage-fire': 'FireDamage', 'mage-ffb': 'FrostDamage', 'mage-frost': 'FrostDamage',
-    'mage-arcane': 'ArcaneDamage',
+    'mage-arcane': 'ArcaneDamage', 'mage-arcanefire': 'ArcaneDamage',
     'warlock-smruin': 'ShadowDamage', 'warlock-affwrack': 'ShadowDamage',
     'warlock-demo-shadow': 'ShadowDamage', 'warlock-demo-fire': 'FireDamage', 'warlock-destro': 'FireDamage',
     'priest-shadow': 'ShadowDamage', 'priest-smite': 'HolyDamage',

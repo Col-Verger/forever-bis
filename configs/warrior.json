@@ -1,184 +1,538 @@
 {
   "class": "warrior",
-  "className": {"ru": "Воин", "en": "Warrior"},
-
+  "className": {
+    "ru": "Воин",
+    "en": "Warrior"
+  },
   "_comment": "Воин: Фури (DW) и Армс (двуручка) — таленты/APL/сеты из presets.ts репозитория; буфы и расходники — из warrior/shared/presets. Прот — танковый сет с хил-моделью из его presets.ts.",
-
   "playerTemplate": {
     "classEnum": "ClassWarrior",
     "race": "RaceOrc",
-    "professions": ["Engineering", "Blacksmithing"],
+    "professions": [
+      "Engineering",
+      "Blacksmithing"
+    ],
     "distanceFromTarget": 25,
     "reactionTimeMs": 100
   },
-
   "encounter": {
-    "duration": 180, "durationVariation": 5,
-    "executeProportion20": 0.2, "executeProportion35": 0.35,
+    "duration": 180,
+    "durationVariation": 5,
+    "executeProportion20": 0.2,
+    "executeProportion35": 0.35,
     "target": {
-      "id": 31146, "name": "Raid Target", "level": 63,
+      "id": 31146,
+      "name": "Raid Target",
+      "level": 63,
       "mobType": "MobTypeMechanical",
-      "stats": { "attackPower": 320, "blockValue": 54, "armor": 3731, "health": 1428900 },
-      "minBaseDamage": 2601, "damageSpread": 0.5, "swingSpeed": 2,
-      "parryHaste": true, "canCrush": true
+      "stats": {
+        "attackPower": 320,
+        "blockValue": 54,
+        "armor": 3731,
+        "health": 1428900
+      },
+      "minBaseDamage": 2601,
+      "damageSpread": 0.5,
+      "swingSpeed": 2,
+      "parryHaste": true,
+      "canCrush": true
     }
   },
-
   "builds": [
     {
       "id": "warrior-fury",
       "mode": "protojson",
       "repoFolder": "ui/specs/warrior/dps",
-      "title": { "ru": "Фури (DW)", "en": "Fury (DW)" },
-      "buildName": { "ru": "Fury (стандартный билд)", "en": "Fury (standard build)" },
-      "rotation": { "ru": "Стандартная ротация фури", "en": "the sim's Fury rotation" },
+      "title": {
+        "ru": "Фури (DW)",
+        "en": "Fury (DW)"
+      },
+      "buildName": {
+        "ru": "Fury (стандартный билд)",
+        "en": "Fury (standard build)"
+      },
+      "rotation": {
+        "ru": "Стандартная ротация фури",
+        "en": "the sim's Fury rotation"
+      },
       "metric": "dps",
       "talents": "30303213002-050530045122100231",
       "apls": "apls/fury.apl.json",
       "baseGear": "gear_sets/prebis_fury.gear.json",
       "pool": "warrior-dps",
-      "specOptions": { "dpsWarrior": { "options": { "classOptions": {
-        "queueDelay": 250, "startingRage": 50, "useBattleShout": true,
-        "defaultStance": "WarriorStanceBerserker", "hasBsT2": false, "stanceSnapshot": true } } } },
-      "consumables": {
-        "food": "Smoked Desert Dumplings", "explosive": "SAF-T Clever Dynamite",
-        "resourcePot": "Mighty Rage Potion", "mhImbue": "Dense Weightstone",
-        "elixirs": ["Elixir of Ferocity", "Elixir of the Mongoose"],
-        "extras": ["Goblin Sapper Charge"]
+      "specOptions": {
+        "dpsWarrior": {
+          "options": {
+            "classOptions": {
+              "queueDelay": 250,
+              "startingRage": 50,
+              "useBattleShout": true,
+              "defaultStance": "WarriorStanceBerserker",
+              "hasBsT2": false,
+              "stanceSnapshot": true
+            }
+          }
+        }
       },
-      "raidBuffs": { "powerWordFortitude": true, "markOfTheWild": true, "strengthOfEarthTotem": 1, "windfuryTotem": true, "graceOfAirTotem": 1, "leaderOfThePack": true },
-      "partyBuffs": { },
-      "individualBuffs": { "greaterBlessingOfKings": true, "greaterBlessingOfMight": 1 },
-      "debuffs": { "giftOfArthas": true, "exposeArmor": true, "faerieFire": true, "sunderArmor": true, "curseOfRecklessness": true },
+      "consumables": {
+        "food": "Smoked Desert Dumplings",
+        "explosive": "SAF-T Clever Dynamite",
+        "resourcePot": "Mighty Rage Potion",
+        "mhImbue": "Dense Weightstone",
+        "elixirs": [
+          "Elixir of Ferocity",
+          "Elixir of the Mongoose"
+        ],
+        "extras": [
+          "Goblin Sapper Charge"
+        ]
+      },
+      "raidBuffs": {
+        "powerWordFortitude": true,
+        "markOfTheWild": true,
+        "strengthOfEarthTotem": 1,
+        "windfuryTotem": true,
+        "graceOfAirTotem": 1,
+        "leaderOfThePack": true
+      },
+      "partyBuffs": {},
+      "individualBuffs": {
+        "greaterBlessingOfKings": true,
+        "greaterBlessingOfMight": 1
+      },
+      "debuffs": {
+        "giftOfArthas": true,
+        "exposeArmor": true,
+        "faerieFire": true,
+        "sunderArmor": true,
+        "curseOfRecklessness": true
+      },
       "playerOverrides": {}
+    },
+    {
+      "id": "warrior-fury-2h",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/warrior/dps",
+      "title": {
+        "ru": "Фури (двуручка)",
+        "en": "Fury (2H)"
+      },
+      "buildName": {
+        "ru": "Fury 2H (стандартный билд)",
+        "en": "Fury 2H (standard build)"
+      },
+      "rotation": {
+        "ru": "Ротация фури с двуручным оружием",
+        "en": "the sim's Fury 2H rotation"
+      },
+      "metric": "dps",
+      "talents": "30303213032-050500350122110231",
+      "apls": "apls/fury_2h.apl.json",
+      "baseGear": "gear_sets/prebis_fury_2h.gear.json",
+      "pool": "warrior-2h",
+      "specOptions": {
+        "dpsWarrior": {
+          "options": {
+            "classOptions": {
+              "queueDelay": 250,
+              "startingRage": 50,
+              "useBattleShout": true,
+              "defaultStance": "WarriorStanceBerserker",
+              "hasBsT2": false,
+              "stanceSnapshot": true
+            }
+          }
+        }
+      },
+      "consumables": {
+        "food": "Smoked Desert Dumplings",
+        "explosive": "SAF-T Clever Dynamite",
+        "resourcePot": "Mighty Rage Potion",
+        "mhImbue": "Elemental Sharpening Stone",
+        "elixirs": [
+          "Elixir of Ferocity",
+          "Elixir of the Mongoose"
+        ],
+        "extras": [
+          "Goblin Sapper Charge"
+        ]
+      },
+      "raidBuffs": {
+        "powerWordFortitude": true,
+        "markOfTheWild": true,
+        "strengthOfEarthTotem": 1,
+        "windfuryTotem": true,
+        "graceOfAirTotem": 1,
+        "leaderOfThePack": true
+      },
+      "partyBuffs": {},
+      "individualBuffs": {
+        "greaterBlessingOfKings": true,
+        "greaterBlessingOfMight": 1
+      },
+      "debuffs": {
+        "giftOfArthas": true,
+        "exposeArmor": true,
+        "faerieFire": true,
+        "sunderArmor": true,
+        "curseOfRecklessness": true
+      },
+      "playerOverrides": {},
+      "twoHandExpected": true
     },
     {
       "id": "warrior-arms",
       "mode": "protojson",
       "repoFolder": "ui/specs/warrior/dps",
-      "title": { "ru": "Армс (двуручка)", "en": "Arms (two-hander)" },
-      "buildName": { "ru": "Arms (стандартный билд)", "en": "Arms (standard build)" },
-      "rotation": { "ru": "Стандартная ротация армса", "en": "the sim's Arms rotation" },
+      "title": {
+        "ru": "Армс (двуручка)",
+        "en": "Arms (two-hander)"
+      },
+      "buildName": {
+        "ru": "Arms (стандартный билд)",
+        "en": "Arms (standard build)"
+      },
+      "rotation": {
+        "ru": "Стандартная ротация армса",
+        "en": "the sim's Arms rotation"
+      },
       "metric": "dps",
       "talents": "30303213132215201-55050000002-2",
       "apls": "apls/arms.apl.json",
       "baseGear": "gear_sets/prebis_arms.gear.json",
       "pool": "warrior-2h",
-      "specOptions": { "dpsWarrior": { "options": { "classOptions": {
-        "queueDelay": 250, "startingRage": 50, "useBattleShout": true,
-        "defaultStance": "WarriorStanceBerserker", "hasBsT2": false, "stanceSnapshot": true } } } },
-      "consumables": {
-        "food": "Smoked Desert Dumplings", "explosive": "SAF-T Clever Dynamite",
-        "resourcePot": "Mighty Rage Potion", "mhImbue": "Dense Weightstone",
-        "elixirs": ["Elixir of Ferocity", "Elixir of the Mongoose"],
-        "extras": ["Goblin Sapper Charge"]
+      "specOptions": {
+        "dpsWarrior": {
+          "options": {
+            "classOptions": {
+              "queueDelay": 250,
+              "startingRage": 50,
+              "useBattleShout": true,
+              "defaultStance": "WarriorStanceBerserker",
+              "hasBsT2": false,
+              "stanceSnapshot": true
+            }
+          }
+        }
       },
-      "raidBuffs": { "powerWordFortitude": true, "markOfTheWild": true, "strengthOfEarthTotem": 1, "windfuryTotem": true, "graceOfAirTotem": 1, "leaderOfThePack": true },
-      "partyBuffs": { },
-      "individualBuffs": { "greaterBlessingOfKings": true, "greaterBlessingOfMight": 1 },
-      "debuffs": { "giftOfArthas": true, "exposeArmor": true, "faerieFire": true, "sunderArmor": true, "curseOfRecklessness": true },
+      "consumables": {
+        "food": "Smoked Desert Dumplings",
+        "explosive": "SAF-T Clever Dynamite",
+        "resourcePot": "Mighty Rage Potion",
+        "mhImbue": "Dense Weightstone",
+        "elixirs": [
+          "Elixir of Ferocity",
+          "Elixir of the Mongoose"
+        ],
+        "extras": [
+          "Goblin Sapper Charge"
+        ]
+      },
+      "raidBuffs": {
+        "powerWordFortitude": true,
+        "markOfTheWild": true,
+        "strengthOfEarthTotem": 1,
+        "windfuryTotem": true,
+        "graceOfAirTotem": 1,
+        "leaderOfThePack": true
+      },
+      "partyBuffs": {},
+      "individualBuffs": {
+        "greaterBlessingOfKings": true,
+        "greaterBlessingOfMight": 1
+      },
+      "debuffs": {
+        "giftOfArthas": true,
+        "exposeArmor": true,
+        "faerieFire": true,
+        "sunderArmor": true,
+        "curseOfRecklessness": true
+      },
       "playerOverrides": {}
     },
     {
       "id": "warrior-protection",
       "mode": "protojson",
       "repoFolder": "ui/specs/warrior/protection",
-      "title": { "ru": "Прот (танк)", "en": "Protection (tank)" },
-      "buildName": { "ru": "Прот (стандартный билд)", "en": "Protection (standard build)" },
-      "rotation": { "ru": "Стандартная ротация (Generic)", "en": "the sim's Generic rotation" },
+      "title": {
+        "ru": "Прот (танк)",
+        "en": "Protection (tank)"
+      },
+      "buildName": {
+        "ru": "Прот (стандартный билд)",
+        "en": "Protection (standard build)"
+      },
+      "rotation": {
+        "ru": "Стандартная ротация (Generic)",
+        "en": "the sim's Generic rotation"
+      },
       "metric": "dps",
       "talents": "05-05050005-150531120300001351",
       "apls": "apls/default.apl.json",
       "baseGear": "gear_sets/prebis_balanced.gear.json",
       "pool": "warrior-tank",
-      "specOptions": { "protectionWarrior": { "options": { "classOptions": {
-        "queueDelay": 250, "startingRage": 0, "useBattleShout": true,
-        "defaultStance": "WarriorStanceDefensive", "hasBsT2": false, "stanceSnapshot": true } } } },
-      "consumables": {
-        "food": "Smoked Desert Dumplings", "explosive": "SAF-T Clever Dynamite",
-        "offensivePot": "Major Frenzy Potion",
-        "elixirs": ["Elixir of Ferocity", "Elixir of the Mongoose", "Winterfall Firewater"],
-        "extras": ["Goblin Sapper Charge"]
+      "specOptions": {
+        "protectionWarrior": {
+          "options": {
+            "classOptions": {
+              "queueDelay": 250,
+              "startingRage": 0,
+              "useBattleShout": true,
+              "defaultStance": "WarriorStanceDefensive",
+              "hasBsT2": false,
+              "stanceSnapshot": true
+            }
+          }
+        }
       },
-      "raidBuffs": { "powerWordFortitude": true, "markOfTheWild": true, "strengthOfEarthTotem": 1, "windfuryTotem": true, "graceOfAirTotem": 1, "leaderOfThePack": true },
-      "partyBuffs": { },
-      "individualBuffs": { "greaterBlessingOfKings": true, "greaterBlessingOfMight": 1 },
-      "debuffs": { "giftOfArthas": true, "exposeArmor": true, "faerieFire": true, "sunderArmor": true, "curseOfRecklessness": true },
-      "encounterOverrides": { "minBaseDamage": 6000 },
+      "consumables": {
+        "food": "Smoked Desert Dumplings",
+        "explosive": "SAF-T Clever Dynamite",
+        "offensivePot": "Major Frenzy Potion",
+        "elixirs": [
+          "Elixir of Ferocity",
+          "Elixir of the Mongoose",
+          "Winterfall Firewater"
+        ],
+        "extras": [
+          "Goblin Sapper Charge"
+        ]
+      },
+      "raidBuffs": {
+        "powerWordFortitude": true,
+        "markOfTheWild": true,
+        "strengthOfEarthTotem": 1,
+        "windfuryTotem": true,
+        "graceOfAirTotem": 1,
+        "leaderOfThePack": true
+      },
+      "partyBuffs": {},
+      "individualBuffs": {
+        "greaterBlessingOfKings": true,
+        "greaterBlessingOfMight": 1
+      },
+      "debuffs": {
+        "giftOfArthas": true,
+        "exposeArmor": true,
+        "faerieFire": true,
+        "sunderArmor": true,
+        "curseOfRecklessness": true
+      },
+      "encounterOverrides": {
+        "minBaseDamage": 6000
+      },
       "playerOverrides": {
-        "distanceFromTarget": 0, "inFrontOfTarget": true,
-        "healingModel": { "hps": 770, "cadenceSeconds": 0.3, "cadenceVariation": 0.64, "absorbFrac": 0.015, "burstWindow": 6, "inspirationUptime": 0.25 }
+        "distanceFromTarget": 0,
+        "inFrontOfTarget": true,
+        "healingModel": {
+          "hps": 770,
+          "cadenceSeconds": 0.3,
+          "cadenceVariation": 0.64,
+          "absorbFrac": 0.015,
+          "burstWindow": 6,
+          "inspirationUptime": 0.25
+        }
       }
     }
   ],
-
   "pools": {
     "warrior-dps": {
       "classId": 1,
-      "qualityMin": 2, "ilvlMin": 50, "maxPerSlot": 14,
+      "qualityMin": 2,
+      "ilvlMin": 50,
+      "maxPerSlot": 14,
       "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
-      "excludeIds": [], "includeIds": [],
+      "excludeIds": [],
+      "includeIds": [],
       "slots": {
-        "head":     { "armorType": 4 },
-        "neck":     { },
-        "shoulder": { "armorType": 4 },
-        "back":     { },
-        "chest":    { "armorType": 4 },
-        "wrist":    { "armorType": 4 },
-        "hands":    { "armorType": 4 },
-        "waist":    { "armorType": 4 },
-        "legs":     { "armorType": 4 },
-        "feet":     { "armorType": 4 },
-        "finger1":  { },
-        "trinket1": { },
-        "main_hand": { "weaponTypes": [1, 4, 9, 3, 2], "handTypes": [1, 2] },
-        "off_hand":  { "weaponTypes": [1, 4, 9, 3, 2], "handTypes": [1, 2, 3] },
-        "ranged":    { "rangedTypes": [1, 2, 3, 4] }
+        "head": {
+          "armorType": 4
+        },
+        "neck": {},
+        "shoulder": {
+          "armorType": 4
+        },
+        "back": {},
+        "chest": {
+          "armorType": 4
+        },
+        "wrist": {
+          "armorType": 4
+        },
+        "hands": {
+          "armorType": 4
+        },
+        "waist": {
+          "armorType": 4
+        },
+        "legs": {
+          "armorType": 4
+        },
+        "feet": {
+          "armorType": 4
+        },
+        "finger1": {},
+        "trinket1": {},
+        "main_hand": {
+          "weaponTypes": [
+            1,
+            4,
+            9,
+            3,
+            2
+          ],
+          "handTypes": [
+            1,
+            2
+          ]
+        },
+        "off_hand": {
+          "weaponTypes": [
+            1,
+            4,
+            9,
+            3,
+            2
+          ],
+          "handTypes": [
+            1,
+            2,
+            3
+          ]
+        },
+        "ranged": {
+          "rangedTypes": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
       }
     },
     "warrior-2h": {
       "classId": 1,
-      "qualityMin": 2, "ilvlMin": 50, "maxPerSlot": 14,
+      "qualityMin": 2,
+      "ilvlMin": 50,
+      "maxPerSlot": 14,
       "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
-      "excludeIds": [], "includeIds": [],
+      "excludeIds": [],
+      "includeIds": [],
       "slots": {
-        "head":     { "armorType": 4 },
-        "neck":     { },
-        "shoulder": { "armorType": 4 },
-        "back":     { },
-        "chest":    { "armorType": 4 },
-        "wrist":    { "armorType": 4 },
-        "hands":    { "armorType": 4 },
-        "waist":    { "armorType": 4 },
-        "legs":     { "armorType": 4 },
-        "feet":     { "armorType": 4 },
-        "finger1":  { },
-        "trinket1": { },
-        "main_hand": { "weaponTypes": [1, 4, 9, 6], "handTypes": [4] },
-        "ranged":    { "rangedTypes": [1, 2, 3, 4] }
+        "head": {
+          "armorType": 4
+        },
+        "neck": {},
+        "shoulder": {
+          "armorType": 4
+        },
+        "back": {},
+        "chest": {
+          "armorType": 4
+        },
+        "wrist": {
+          "armorType": 4
+        },
+        "hands": {
+          "armorType": 4
+        },
+        "waist": {
+          "armorType": 4
+        },
+        "legs": {
+          "armorType": 4
+        },
+        "feet": {
+          "armorType": 4
+        },
+        "finger1": {},
+        "trinket1": {},
+        "main_hand": {
+          "weaponTypes": [
+            1,
+            4,
+            9,
+            6
+          ],
+          "handTypes": [
+            4
+          ]
+        },
+        "ranged": {
+          "rangedTypes": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
       }
     },
     "warrior-tank": {
       "classId": 1,
-      "qualityMin": 2, "ilvlMin": 50, "maxPerSlot": 14,
+      "qualityMin": 2,
+      "ilvlMin": 50,
+      "maxPerSlot": 14,
       "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
-      "excludeIds": [], "includeIds": [],
+      "excludeIds": [],
+      "includeIds": [],
       "slots": {
-        "head":     { "armorType": 4 },
-        "neck":     { },
-        "shoulder": { "armorType": 4 },
-        "back":     { },
-        "chest":    { "armorType": 4 },
-        "wrist":    { "armorType": 4 },
-        "hands":    { "armorType": 4 },
-        "waist":    { "armorType": 4 },
-        "legs":     { "armorType": 4 },
-        "feet":     { "armorType": 4 },
-        "finger1":  { },
-        "trinket1": { },
-        "main_hand": { "weaponTypes": [1, 4, 9, 2], "handTypes": [1, 2] },
-        "off_hand":  { "weaponTypes": [7], "handTypes": [3] },
-        "ranged":    { "rangedTypes": [1, 2, 3, 4] }
+        "head": {
+          "armorType": 4
+        },
+        "neck": {},
+        "shoulder": {
+          "armorType": 4
+        },
+        "back": {},
+        "chest": {
+          "armorType": 4
+        },
+        "wrist": {
+          "armorType": 4
+        },
+        "hands": {
+          "armorType": 4
+        },
+        "waist": {
+          "armorType": 4
+        },
+        "legs": {
+          "armorType": 4
+        },
+        "feet": {
+          "armorType": 4
+        },
+        "finger1": {},
+        "trinket1": {},
+        "main_hand": {
+          "weaponTypes": [
+            1,
+            4,
+            9,
+            2
+          ],
+          "handTypes": [
+            1,
+            2
+          ]
+        },
+        "off_hand": {
+          "weaponTypes": [
+            7
+          ],
+          "handTypes": [
+            3
+          ]
+        },
+        "ranged": {
+          "rangedTypes": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
       }
     }
   }
