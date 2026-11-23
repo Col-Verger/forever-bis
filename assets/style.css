@@ -405,3 +405,6 @@ a.brand:hover .tag{border-color:var(--acc)}
 .psearch{background:var(--bg3);border:1px solid var(--line2);border-radius:8px;color:var(--fg);padding:7px 10px;font:13px Inter;min-width:180px}
 .psearch:focus{outline:none;border-color:var(--acc)}
 .prow[hidden],.pgroup[hidden]{display:none}
+.planprog{flex:0 1 auto;min-width:0}
+.pbar{flex:0 0 220px;max-width:220px}
+@media(max-width:720px){.pbar{flex:1 1 auto;max-width:none}}
