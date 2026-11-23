@@ -398,9 +398,10 @@ a.brand:hover .tag{border-color:var(--acc)}
 /* Gearing plan filters */
 .planfilter{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 14px}
 .pchips{display:flex;gap:6px;flex-wrap:wrap}
-.pchips button{border:1px solid var(--line2);background:var(--bg3);color:var(--mut);border-radius:999px;padding:6px 12px;font:500 12px Inter;cursor:pointer}
+.pchips button{border:1px solid var(--line2);background:transparent;color:var(--mut);border-radius:999px;padding:6px 12px;font:500 12px Inter;cursor:pointer}
 .pchips button:hover{border-color:var(--acc);color:var(--fg)}
-.pchips button.on{background:var(--acc);border-color:var(--acc);color:#10131a}
+.pchips button.on{background:var(--bg3);border-color:var(--line2);color:var(--fg)}
+.pchips button.on::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--acc);margin-right:6px;vertical-align:1px}
 .pcheck{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--mut);cursor:pointer;white-space:nowrap}
 .pcheck input{accent-color:var(--acc)}
 .psearch{background:var(--bg3);border:1px solid var(--line2);border-radius:8px;color:var(--fg);padding:7px 10px;font:13px Inter;min-width:180px}
