@@ -634,7 +634,7 @@ function renderDoll() {
     return `<div class="slot" data-go="${s}" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}">
       <img class="icon${q}" src="${ICON(it.icon, 'large')}" alt="" loading="lazy"><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span>
       <span class="nm" style="${qc(it)}">${esc(itemName(spec))}</span>
-      ${enHTML}${itemStats(it) ? `<span class="st">${esc(itemStats(it))}</span>` : ''}</span></div>`;
+      ${enHTML}${itemStats(it, 3) ? `<span class="st">${esc(itemStats(it, 3))}</span>` : ''}</span></div>`;
   };
   const center = () => {
     if (!L) {
@@ -731,7 +731,7 @@ function itemHTML(spec, withEnchant) {
 }
 // The item's own stats, in one quiet line. This is what the card shows; the
 // comparison against the BiS pick is what the hover explains.
-function itemStats(it) {
+function itemStats(it, max = 5) {
   const out = [];
   if (!it) return '';
   for (const k of MOD_ORDER) {
@@ -740,7 +740,7 @@ function itemStats(it) {
     const label = MOD_LABEL[k];
     if (!label) continue;
     out.push(`${pair[1] > 0 ? '+' : ''}${Math.round(pair[1])} ${label[lang() === 'ru' ? 0 : 1]}`);
-    if (out.length === 5) break;
+    if (out.length >= max) break;
   }
   return out.join(' · ');
 }
