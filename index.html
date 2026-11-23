@@ -33,6 +33,7 @@
     <div class="stamp" id="stamp" hidden></div>
     <nav class="tabs" role="tablist">
       <button role="tab" data-tab="gear" aria-selected="true" data-i18n="tab_gear">Экипировка по слотам</button>
+      <button role="tab" data-tab="plan" aria-selected="false" data-i18n="tab_plan">План одевания</button>
       <button role="tab" data-tab="all" aria-selected="false" data-i18n="tab_all">Все сеты</button>
       <button role="tab" data-tab="howto" aria-selected="false" data-i18n="tab_howto">Как одеваться</button>
       <button role="tab" data-tab="method" aria-selected="false" data-i18n="tab_method">Методика</button>
@@ -46,8 +47,8 @@
     <div class="group"><span data-i18n="cls">Класс</span><div class="seg" id="cls"></div></div>
     <div class="group"><span data-i18n="spec">Спек</span><div class="seg" id="spec"></div></div>
     <div class="group" id="budgetgroup" hidden><span data-i18n="budget">Бюджет</span><div class="seg" id="budget"></div></div>
-    <div class="group"><span data-i18n="topn">Опций на слот</span><div class="seg" id="topn"></div></div>
-    <div class="group grow"><span data-i18n="filter">Фильтр</span>
+    <div class="group" id="topngroup"><span data-i18n="topn">Опций на слот</span><div class="seg" id="topn"></div></div>
+    <div class="group grow" id="filtergroup"><span data-i18n="filter">Фильтр</span>
       <div class="filter">
         <div class="qbox"><input type="search" class="search" id="q" list="qlist" data-i18n-ph="search_ph" placeholder="Название предмета, босс или зона" aria-label="Search items"><button type="button" class="qclear" id="qclear" data-qclear="1" hidden aria-label="Сбросить фильтр">×</button></div>
         <datalist id="qlist"></datalist>
@@ -68,6 +69,7 @@
     <div class="key" id="key"></div>
     <div class="cards" id="cards"></div>
   </section>
+  <section data-panel="plan" hidden><div id="plan" class="planwrap"></div></section>
   <section data-panel="all" hidden>
     <p class="sub" data-i18n="matrix_sub">Все сеты бок о бок. Ряды без подсветки одинаковы во всех сетах; подсвеченная ячейка отличается от самого частого выбора.</p>
     <div class="matrix" id="matrix"></div>

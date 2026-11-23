@@ -63,6 +63,27 @@ const STR = {
   tab_method: { ru: 'Методика', en: 'Method' },
   slot_importance: { ru: 'Сколько важен каждый слот', en: 'How much each slot matters' },
   tab_refresh: { ru: 'Данные и обновление', en: 'Data & refresh' },
+  tab_plan: { ru: 'План одевания', en: 'Gearing plan' },
+  plan_title: { ru: 'План одевания', en: 'Gearing plan' },
+  plan_sub: { ru: 'Весь BiS-сет по источникам: отметь, что уже есть, и видно, сколько осталось. Бюджет и спек переключаются сверху.', en: 'The whole BiS set grouped by where it comes from: tick what you already have and see what is left. Switch budget and spec above.' },
+  plan_progress: { ru: 'Собрано {d} из {t}', en: '{d} of {t} collected' },
+  plan_budget: { ru: 'План для бюджета «{b}»', en: 'Plan for the “{b}” budget' },
+  plan_copy: { ru: 'Скопировать список', en: 'Copy list' },
+  plan_copied: { ru: 'Скопировано', en: 'Copied' },
+  plan_reset: { ru: 'Сбросить отметки', en: 'Clear ticks' },
+  plan_local: { ru: 'Отметки хранятся только в этом браузере и никуда не отправляются.', en: 'Ticks live in this browser only and are never sent anywhere.' },
+  plan_ench: { ru: 'Энчанты', en: 'Enchants' },
+  plan_ench_hint: { ru: 'Энчант из BiS-сета', en: 'The enchant from the BiS set' },
+  plan_dungeons: { ru: 'Подземелья', en: 'Dungeons' },
+  plan_quests: { ru: 'Квесты', en: 'Quests' },
+  plan_rep: { ru: 'Репутация', en: 'Reputation' },
+  plan_craft: { ru: 'Крафт', en: 'Crafted' },
+  plan_vendors: { ru: 'Продавцы', en: 'Vendors' },
+  plan_pvp: { ru: 'PvP', en: 'PvP' },
+  plan_world: { ru: 'Мировой дроп и аукцион', en: 'World drops & auction' },
+  plan_other: { ru: 'Прочее', en: 'Other' },
+  plan_empty: { ru: 'Для этого сета пока нет данных — план появится вместе с прогоном.', en: 'No data for this set yet — the plan appears with a sim run.' },
+  plan_open_sim: { ru: 'Открыть сет в WoWSims ↗', en: 'Open the set in WoWSims ↗' },
   chip_no_data: { ru: 'Симы не прогнаны', en: 'No sim runs yet' },
   chip_ok: { ru: 'Симы', en: 'Simmed' },
   chip_stale: { ru: 'данные старше N дней', en: 'data older than N days' },
@@ -189,7 +210,7 @@ const fromHash = () => {
   if (C && C.specs.some(s => s.id === p.get('spec'))) state.spec = p.get('spec');
   else if (C) state.spec = C.specs[0].id;
   if (['max', 'cheap'].includes(p.get('budget'))) state.budget = p.get('budget');
-  if (['gear', 'all', 'howto', 'method', 'refresh'].includes(p.get('tab'))) state.tab = p.get('tab');
+  if (['gear', 'all', 'howto', 'method', 'refresh', 'plan'].includes(p.get('tab'))) state.tab = p.get('tab');
   if (['3', '4', '6'].includes(p.get('topn'))) state.topn = +p.get('topn');
 };
 const toHash = () => history.replaceState(null, '', `#tab=${state.tab}&lang=${state.lang}&cls=${state.cls}&spec=${state.spec}${budgetOf(curSpec()) ? `&budget=${state.budget}` : ''}&topn=${state.topn}`);
@@ -922,6 +943,142 @@ function renderHowto() {
 }
 
 // ---------- data status & refresh ----------
+// ---------- gearing plan ----------
+// The BiS set as a checklist grouped by where the items come from. Ticks live in
+// localStorage only: the page stays static, and nobody's progress leaves the browser.
+const planKey = lid => `bisplan:${lid}`;
+const planLoad = lid => {
+  try { return JSON.parse(localStorage.getItem(planKey(lid)) || '{}'); } catch { return {}; }
+};
+const planSave = (lid, o) => { try { localStorage.setItem(planKey(lid), JSON.stringify(o)); } catch { /* private mode */ } };
+
+function planGroupFor(it) {
+  const src = SRC(it)[0] || '';
+  const kinds = it.kinds || [];
+  if (kinds.includes('dungeon')) {
+    const m = src.match(/\(([^)]+)\)\s*$/);
+    return { key: 'z:' + (m ? m[1] : '?'), label: m ? m[1] : T('plan_dungeons'), order: 10 };
+  }
+  if (kinds.includes('quest')) return { key: 'quest', label: T('plan_quests'), order: 20 };
+  if (kinds.includes('rep')) return { key: 'rep', label: T('plan_rep'), order: 30 };
+  if (kinds.includes('craft')) return { key: 'craft', label: T('plan_craft'), order: 40 };
+  if (kinds.includes('vendor')) return { key: 'vendor', label: T('plan_vendors'), order: 50 };
+  if (kinds.includes('bg')) return { key: 'pvp', label: T('plan_pvp'), order: 60 };
+  if (kinds.includes('world')) return { key: 'world', label: T('plan_world'), order: 70 };
+  return { key: 'other', label: T('plan_other'), order: 80 };
+}
+
+function planRow(key, checked, it, spec, slot) {
+  const src = SRC(it)[0] || T('no_source');
+  return `<label class="prow${checked ? ' done' : ''}">
+    <input type="checkbox" data-plan="${esc(key)}"${checked ? ' checked' : ''}>
+    <img class="icon xs${it.q >= 3 ? ' q' + it.q : ''}" src="${ICON(it.icon)}" alt="" loading="lazy">
+    <span class="pmeta">
+      <span class="n" style="${qc(it)}" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}">${esc(itemName(spec))}</span>
+      <span class="pslot">${esc(slotLabel(slot))}</span>
+      <span class="psrc">${esc(src)}</span>
+    </span>
+    <a class="pext" href="${WH(spec[0])}" target="_blank" rel="noopener" aria-label="Wowhead">↗</a>
+  </label>`;
+}
+
+function renderPlan() {
+  const sp = curSpec(), L = loadout(sp);
+  if (!L) {
+    $('plan').innerHTML = `<h2>${esc(T('plan_title'))}</h2><div class="empty-note">${esc(T('plan_empty'))}</div>`;
+    return;
+  }
+  const lid = loadoutKey(sp);
+  const st = planLoad(lid);
+  const groups = new Map();
+  const push = (key, label, order, html) => {
+    if (!groups.has(key)) groups.set(key, { key, label, order, rows: [] });
+    groups.get(key).rows.push(html);
+  };
+  let items = 0;
+  for (const s of SLOT_ORDER) {
+    const spec = L.gear[s];
+    if (!spec || !spec[0]) continue;
+    const it = item(spec[0]);
+    if (!it) continue;
+    items++;
+    const g = planGroupFor(it);
+    const key = String(spec[0]);
+    push(g.key, g.label, g.order, planRow(key, !!st[key], it, spec, s));
+  }
+  let ench = 0;
+  for (const s of SLOT_ORDER) {
+    const spec = L.gear[s];
+    if (!spec || !spec[1] || !spec[3]) continue;
+    ench++;
+    const key = 'e:' + s;
+    push('ench', T('plan_ench'), 90, `<label class="prow${st[key] ? ' done' : ''}">
+      <input type="checkbox" data-plan="${esc(key)}"${st[key] ? ' checked' : ''}>
+      <span class="pmeta"><span class="n" style="color:var(--fg)">${esc(spec[3])}</span>
+      <span class="pslot">${esc(slotLabel(s))}</span><span class="psrc">${esc(T('plan_ench_hint'))}</span></span>
+    </label>`);
+  }
+  const list = [...groups.values()].sort((a, b) => a.order - b.order || a.label.localeCompare(b.label, 'ru'));
+  const total = items + ench;
+  const doneN = Object.keys(st).length;
+  const budgetLabel = state.budget === 'cheap' ? T('budget_cheap') : T('budget_max');
+  const simBtn = L.simLink
+    ? `<a class="btn primary" href="${esc(L.simLink)}" target="_blank" rel="noopener">${esc(T('plan_open_sim'))}</a>` : '';
+  $('plan').innerHTML = `
+    <h2>${esc(T('plan_title'))}</h2>
+    <p class="sub">${esc(T('plan_sub'))}</p>
+    <div class="planhead">
+      <b id="planprogress">${esc(T('plan_progress').replace('{d}', String(doneN)).replace('{t}', String(total)))}</b>
+      <span class="small">${esc(T('plan_budget').replace('{b}', budgetLabel))}</span>
+      <span class="planbtns">
+        ${simBtn}
+        <button class="btn" type="button" data-plancopy="1">${esc(T('plan_copy'))}</button>
+        <button class="btn" type="button" data-planreset="1">${esc(T('plan_reset'))}</button>
+      </span>
+    </div>
+    <div class="pbar"><i id="planbar" style="width:${total ? Math.round(doneN / total * 100) : 0}%"></i></div>
+    <p class="small">${esc(T('plan_local'))}</p>
+    <div class="plan">${list.map(g => `<section class="pgroup" data-pgroup="${esc(g.key)}" data-title="${esc(g.label)}">
+      <h3>${esc(g.label)}<span class="pcount">0/${g.rows.length}</span></h3>${g.rows.join('')}</section>`).join('')}</div>`;
+  updatePlanProgress();
+}
+
+function updatePlanProgress() {
+  const boxes = [...document.querySelectorAll('#plan input[data-plan]')];
+  const done = boxes.filter(b => b.checked).length;
+  const total = boxes.length;
+  const bar = $('planbar');
+  if (bar) bar.style.width = (total ? Math.round(done / total * 100) : 0) + '%';
+  const txt = $('planprogress');
+  if (txt) txt.textContent = T('plan_progress').replace('{d}', String(done)).replace('{t}', String(total));
+  document.querySelectorAll('#plan [data-pgroup]').forEach(g => {
+    const gb = [...g.querySelectorAll('input[data-plan]')];
+    const c = g.querySelector('.pcount');
+    if (c) c.textContent = `${gb.filter(b => b.checked).length}/${gb.length}`;
+    g.querySelectorAll('label.prow').forEach(r => {
+      const cb = r.querySelector('input[data-plan]');
+      if (cb) r.classList.toggle('done', cb.checked);
+    });
+  });
+}
+
+function planText() {
+  const sp = curSpec(), L = loadout(sp);
+  const budget = state.budget === 'cheap' ? T('budget_cheap') : T('budget_max');
+  const out = [`Pre-raid BiS · ${L2(sp.name)} · ${budget}`];
+  document.querySelectorAll('#plan [data-pgroup]').forEach(g => {
+    out.push('', g.dataset.title || '');
+    g.querySelectorAll('label.prow').forEach(r => {
+      const cb = r.querySelector('input[data-plan]');
+      const n = r.querySelector('.n');
+      const src = r.querySelector('.psrc');
+      out.push(`  ${cb && cb.checked ? '[x]' : '[ ]'} ${n ? n.textContent.trim() : ''}${src ? ' — ' + src.textContent.trim() : ''}`);
+    });
+  });
+  return out.join('\n');
+}
+
+
 function chipState() {
   const m = G.meta;
   if (!m.hasData) return { cls: 'none', text: T('chip_no_data') };
@@ -1032,7 +1189,10 @@ document.addEventListener('mousemove', e => {
 function renderControls() {
   document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === state.tab));
   document.querySelectorAll('section[data-panel]').forEach(s => { s.hidden = s.dataset.panel !== state.tab; });
-  $('bar').hidden = state.tab !== 'gear';
+  $('bar').hidden = !['gear', 'plan'].includes(state.tab);
+  // The plan is per spec and budget, not per option count or search: keep those out of its way.
+  if ($('topngroup')) $('topngroup').style.display = state.tab === 'gear' ? '' : 'none';
+  if ($('filtergroup')) $('filtergroup').style.display = state.tab === 'gear' ? '' : 'none';
   const pressed = (sel, key, v) => document.querySelectorAll(sel).forEach(b => b.setAttribute('aria-pressed', String(b.dataset[key]) === String(v)));
   pressed('[data-cls]', 'cls', state.cls);
   pressed('[data-spec]', 'spec', state.spec);
@@ -1067,6 +1227,7 @@ function render() {
   const top = $('totop');
   if (top) { top.title = T('to_top'); top.setAttribute('aria-label', T('to_top')); }
   if (state.tab === 'gear') { renderDoll(); renderCards(); }
+  if (state.tab === 'plan') renderPlan();
   if (state.tab === 'all') renderMatrix();
   if (state.tab === 'howto') renderHowto();
   if (state.tab === 'refresh') renderRefresh();
@@ -1076,6 +1237,34 @@ function render() {
 document.addEventListener('click', e => {
   const t = e.target;
   if (!t.closest('#srcpick')) $('srcpick').open = false;
+  if (t.closest('[data-planreset]')) {
+    const lid = loadoutKey(curSpec());
+    try { localStorage.removeItem(planKey(lid)); } catch { /* private mode */ }
+    renderPlan();
+    return;
+  }
+  const cp = t.closest('[data-plancopy]');
+  if (cp) {
+    const text = planText();
+    const flash = () => {
+      const old = cp.textContent;
+      cp.textContent = T('plan_copied');
+      setTimeout(() => { cp.textContent = old; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(flash, () => {});
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); flash(); } catch (err) { /* nothing else to do */ }
+      ta.remove();
+    }
+    return;
+  }
   const chip = t.closest('#statuschip');
   if (chip) { state.tab = 'refresh'; render(); return; }
   if (t.closest('[data-qclear]')) {
@@ -1158,7 +1347,16 @@ document.addEventListener('click', e => {
   render();
 });
 document.addEventListener('change', e => {
-  const s = e.target.dataset && e.target.dataset.src;
+  const ds = e.target.dataset || {};
+  if (ds.plan) {
+    const lid = loadoutKey(curSpec());
+    const st = planLoad(lid);
+    if (e.target.checked) st[ds.plan] = 1; else delete st[ds.plan];
+    planSave(lid, st);
+    updatePlanProgress();
+    return;
+  }
+  const s = ds.src;
   if (!s) return;
   e.target.checked ? state.srcs.add(s) : state.srcs.delete(s);
   renderSources(); if (state.tab === 'gear') renderCards();
