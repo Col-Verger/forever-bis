@@ -880,6 +880,8 @@ function renderMatrixTable(ids) {
   $('matrix').innerHTML = matrixBar(false) +
     `<div class="mhint">${esc(T('scroll_hint'))}</div>` +
     `<div class="matrix-table"><table><thead><tr><th class="sl">${esc(lang() === 'ru' ? 'Слот' : 'Slot')}</th>${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  const box = $('matrix'), hint = box.querySelector('.mhint');
+  if (hint) hint.classList.toggle('on', box.scrollWidth > box.clientWidth + 4);
 }
 
 function renderMatrixSlider(ids) {
@@ -1038,7 +1040,8 @@ function renderPlan() {
     <h2>${esc(T('plan_title'))}${wh}</h2>
     <p class="sub">${esc(T('plan_sub'))}</p>
     <div class="planhead">
-      <b id="planprogress">${esc(T('plan_progress').replace('{d}', String(doneN)).replace('{t}', String(total)))}</b>
+      <div class="planprog"><b id="planprogress">${esc(T('plan_progress').replace('{d}', String(doneN)).replace('{t}', String(total)))}</b>
+        <div class="pbar"><i id="planbar" style="width:${total ? Math.round(doneN / total * 100) : 0}%"></i></div></div>
       <span class="small">${esc(T('plan_budget').replace('{b}', budgetLabel))}</span>
       <span class="planbtns">
         ${simBtn}
@@ -1046,8 +1049,7 @@ function renderPlan() {
         <button class="btn" type="button" data-planreset="1">${esc(T('plan_reset'))}</button>
       </span>
     </div>
-    <div class="pbar"><i id="planbar" style="width:${total ? Math.round(doneN / total * 100) : 0}%"></i></div>
-    <p class="small">${esc(T('plan_local'))}</p>
+    <p class="small planlocal">${esc(T('plan_local'))}</p>
     <div class="plan">${list.map(g => `<section class="pgroup" data-pgroup="${esc(g.key)}" data-title="${esc(g.label)}">
       <h3>${esc(g.label)}<span class="pcount">0/${g.rows.length}</span></h3>${g.rows.join('')}</section>`).join('')}</div>`;
   updatePlanProgress();
