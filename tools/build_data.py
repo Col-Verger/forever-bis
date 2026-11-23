@@ -29,6 +29,14 @@ SLOT_ORDER = ['head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands', 'wa
               'finger1', 'finger2', 'trinket1', 'trinket2', 'main_hand', 'off_hand', 'ranged']
 PROF = {1: 'Alchemy', 2: 'Blacksmithing', 3: 'Enchanting', 4: 'Engineering', 8: 'Leatherworking', 11: 'Tailoring'}
 REP = {4: 'Neutral', 5: 'Friendly', 6: 'Honored', 7: 'Revered', 8: 'Exalted'}
+PROF_RU = {1: 'Алхимия', 2: 'Кузнечное дело', 3: 'Наложение чар', 4: 'Инженерное дело',
+           8: 'Кожевничество', 11: 'Портняжное дело'}
+REP_RU = {4: 'нейтрально', 5: 'дружелюбно', 6: 'уважение', 7: 'почтение', 8: 'превознесение'}
+# Reputation factions in the Phase 1 pool (Wowhead serves no tooltip for factions).
+FACTION_RU = {
+    509: 'Лига Аратора', 510: 'Осквернители', 576: 'Древобрюхи',
+    2798: 'Налётчики Тёмного Копья', 2799: 'Тераморский экспедиционный корпус', 2819: 'Наблюдатели',
+}
 
 # What the site shows under a set: the sim's ComputeStats values (gear + enchants +
 # talents + buffs + consumables), labelled in both languages. Percent entries are
@@ -70,9 +78,12 @@ SCHOOL_STATS = ['FireDamage', 'FrostDamage', 'ShadowDamage', 'NatureDamage', 'Ar
 SCHOOL_BY_PREFIX = {
     'mage-fire': 'FireDamage', 'mage-ffb': 'FrostDamage', 'mage-frost': 'FrostDamage',
     'mage-arcane': 'ArcaneDamage',
-    'warlock-smruin': 'ShadowDamage', 'priest-shadow': 'ShadowDamage',
+    'warlock-smruin': 'ShadowDamage', 'warlock-affwrack': 'ShadowDamage',
+    'warlock-demo-shadow': 'ShadowDamage', 'warlock-demo-fire': 'FireDamage', 'warlock-destro': 'FireDamage',
+    'priest-shadow': 'ShadowDamage', 'priest-smite': 'HolyDamage',
     'shaman-elemental': 'NatureDamage', 'shaman-enhancement': 'NatureDamage',
     'druid-balance': 'NatureDamage', 'paladin-retribution': 'HolyDamage',
+    'paladin-retribution-holyshock': 'HolyDamage',
 }
 STAT_ORDER = {
     'caster': ['SpellDamage'] + SCHOOL_STATS + ['SpellHitPercent', 'SpellCritPercent', 'Intellect', 'Spirit',
@@ -204,8 +215,19 @@ def side_of(it):
     return fs.pop() if len(fs) == 1 else 0
 
 
-def sources(it, zones, npcs):
-    out, kinds = [], set()
+def sources(it, zones, npcs, factions, tr):
+    """Where the item comes from, in both languages.
+
+    Names (zone, NPC, quest, faction) come from the game files in English and from
+    Wowhead's Russian tooltips (cached in tools/ru_geo.json); anything Wowhead does
+    not translate stays as the English name so nothing turns into a placeholder.
+    """
+    en, ru, kinds = [], [], set()
+
+    def add(a, b):
+        en.append(a)
+        ru.append(b)
+
     for s in it.get('sources') or []:
         k, v = next(iter(s.items()))
         if k == 'drop':
@@ -215,38 +237,52 @@ def sources(it, zones, npcs):
             if any(c in who for c in '"[]()%'):
                 who = ''
             if v.get('otherName') == 'World Drop':
-                out.append('World drop'); kinds.add('world')
+                add('World drop', 'Мировой дроп')
+                kinds.add('world')
             else:
-                where = f' ({zones[zid]})' if zid in zones else ''
-                out.append(f'Drop: {who.strip()}{where}' if who.strip() else f'Drop{where}')
+                if who.strip():
+                    who_ru = tr.npc(v.get('npcId'), who.strip()) if v.get('npcId') else ('Треш' if who.strip() == 'Trash' else who.strip())
+                    add(f'Drop: {who.strip()}' + (f' ({zones[zid]})' if zid in zones else ''),
+                        f'Дроп: {who_ru}' + (f' ({tr.zone(zid, zones[zid])})' if zid in zones else ''))
+                else:
+                    add('Drop' + (f' ({zones[zid]})' if zid in zones else ''),
+                        'Дроп' + (f' ({tr.zone(zid, zones[zid])})' if zid in zones else ''))
                 kinds.add('dungeon' if zid in DUNGEONS else 'world')
         elif k == 'quest':
             if v.get('faction') == 1:
                 continue
-            out.append(f'Quest: {v.get("name")}')
-            kinds.add('bg' if any(q in v.get('name', '') for q in BG_QUESTS) else 'quest')
+            name = v.get('name') or ''
+            add(f'Quest: {name}', f'Квест: {tr.quest(v.get("id"), name)}')
+            kinds.add('bg' if any(q in name for q in BG_QUESTS) else 'quest')
         elif k == 'soldBy':
             if v.get('faction') == 1:
                 continue
-            out.append(f'Vendor: {v.get("npcName")}' + (f' ({zones[v["zoneId"]]})' if v.get('zoneId') in zones else ''))
+            where = f' ({zones[v["zoneId"]]})' if v.get('zoneId') in zones else ''
+            where_ru = f' ({tr.zone(v.get("zoneId"), zones.get(v.get("zoneId"), ""))})' if v.get('zoneId') in zones else ''
+            add(f'Vendor: {v.get("npcName")}{where}', f'Продаёт: {tr.npc(v.get("npcId"), v.get("npcName") or "")}{where_ru}')
             kinds.add('bg' if v.get('npcName') in BG_VENDORS else 'vendor')
         elif k == 'rep':
-            out.append(f'Reputation: {v.get("repFactionId")} {REP.get(v.get("repLevel"), "")}'.strip())
-            kinds.add('bg' if v.get('repFactionId') in BG_REP else 'rep')
+            fid = v.get('repFactionId')
+            fname = factions.get(fid) or f'#{fid}'
+            add(f'Reputation: {fname} {REP.get(v.get("repLevel"), "")}'.strip(),
+                f'Репутация: {FACTION_RU.get(fid, fname)} — {REP_RU.get(v.get("repLevel"), "")}'.strip())
+            kinds.add('bg' if fid in BG_REP else 'rep')
         elif k == 'crafted':
-            out.append(f'Crafted: {PROF.get(v.get("profession"), "Profession")}')
+            prof = PROF.get(v.get('profession'), 'Profession')
+            add(f'Crafted: {prof}', f'Крафт: {PROF_RU.get(v.get("profession"), prof)}')
             kinds.add('craft')
         elif k == 'pvp':
             kinds.add('bg')
-    out = list(dict.fromkeys(out))
-    if not out:
+    en, ru = list(dict.fromkeys(en)), list(dict.fromkeys(ru))
+    if not en:
         if it.get('randomSuffixOptions'):
-            out, kinds = ['World drop (random suffix, Auction House)'], {'world'}
+            en, ru, kinds = ['World drop (random suffix, Auction House)'], ['Мировой дроп (случайный суффикс, аукцион)'], {'world'}
         elif it.get('id', 0) < 200000:
-            out, kinds = ['World drop (Auction House)'], {'world'}
+            en, ru, kinds = ['World drop (Auction House)'], ['Мировой дроп (аукцион)'], {'world'}
         else:
-            out, kinds = ['New Forever item: no source in the game files yet'], {'unknown'}
-    return out[:4], sorted(kinds)
+            en, ru, kinds = (['New Forever item: no source in the game files yet'],
+                             ['Новый предмет Forever: источника в файлах игры пока нет'], {'unknown'})
+    return en[:4], ru[:4], sorted(kinds)
 
 
 def green_lines(so):
@@ -316,6 +352,7 @@ def main():
     zones = {z['id']: z['name'] for z in db['zones']}
     npcs = {n['id']: n for n in db.get('npcs', [])}
     suffixes = {s['id']: s for s in db['randomSuffixes']}
+    factions = {f['id']: f.get('name') for f in db.get('factions', [])}
     ench_by_eff = {}
     for e in db['enchants']:
         ench_by_eff.setdefault(e['effectId'], []).append(e)
@@ -340,6 +377,34 @@ def main():
 
     def ru_name(iid, en_name):
         return ru_cache.get(str(iid), '')
+
+    # Russian zone / NPC / quest names for the "where to get it" lines, cached the
+    # same way as item names. A name Wowhead does not translate stays English.
+    geo_path = os.path.join(os.path.dirname(__file__), 'ru_geo.json')
+    geo = json.load(open(geo_path, encoding='utf-8')) if os.path.exists(geo_path) else {}
+
+    def geo_name(kind, i, en):
+        if not i:
+            return en or ''
+        bucket = geo.setdefault(kind, {})
+        key = str(i)
+        if key not in bucket:
+            try:
+                url = f'https://nether.wowhead.com/tooltip/{kind}/{i}?locale=ru&dataEnv=16'
+                req = urllib.request.Request(url, headers={'User-Agent': 'prebis-bis-build'})
+                with urllib.request.urlopen(req, timeout=8) as r:
+                    name = json.load(r).get('name', '')
+                bucket[key] = name if name and not name.startswith('[') and name != en else ''
+            except Exception:
+                bucket[key] = ''
+        return bucket[key] or en or ''
+
+    class Tr:
+        zone = staticmethod(lambda i, en: geo_name('zone', i, en))
+        npc = staticmethod(lambda i, en: geo_name('npc', i, en))
+        quest = staticmethod(lambda i, en: geo_name('quest', i, en))
+
+    tr = Tr()
 
     def icon(it):
         if it.get('icon'):
@@ -398,7 +463,7 @@ def main():
         if so.get('unroundedDps'):
             weapon = {'min': so.get('weaponDamageMin', 0), 'max': so.get('weaponDamageMax', 0),
                       'speed': it.get('weaponSpeed', 0), 'dps': so.get('unroundedDps', 0)}
-        srcs, kinds = sources(it, zones, npcs)
+        srcs, srcs_ru, kinds = sources(it, zones, npcs, factions, tr)
         sfx = {}
         for sid in used_suffixes.get(iid, set()):
             s = suffixes[sid]
@@ -407,7 +472,7 @@ def main():
         return {'name': it['name'], 'name_ru': ru_name(iid, it['name']), 'q': it.get('quality', 1), 'ilvl': so.get('ilvl', 0), 'icon': icon(it),
                 'slot': slot, 'kind': kind, 'armor': st.get(27, 0), 'white': white, 'green': green, 'weapon': weapon,
                 'set': it.get('setName', ''), 'unique': bool(it.get('unique')),
-                'side': {1: 'Alliance', 2: 'Horde'}.get(side_of(it), ''), 'sources': srcs, 'kinds': kinds,
+                'side': {1: 'Alliance', 2: 'Horde'}.get(side_of(it), ''), 'sources': srcs, 'sources_ru': srcs_ru, 'kinds': kinds,
                 'mods': item_mods(st), 'suffixStats': sfx}
 
     # ---------- configs & runs ----------
@@ -415,6 +480,7 @@ def main():
     used_items, used_suffixes, loadouts = set(), {}, {}
     statuses = {}
     values = {}  # (id, budget) -> headline value, for the "vs other budget" fact
+    sim_stamps = []  # (when the sim finished, which sim commit) per run
     for cf in sorted(os.listdir(a.configs)):
         if not cf.endswith('.json') or cf.startswith('_'):
             continue
@@ -435,16 +501,28 @@ def main():
                         found_budget = True
                 if not found_budget:
                     status = 'pending'
+                    st_path = os.path.join(a.runs, f'{bid}.status.json')
+                    if os.path.exists(st_path):
+                        try:
+                            st = json.load(open(st_path, encoding='utf-8'))
+                        except Exception:
+                            st = {}
+                        if st.get('status') == 'failed':
+                            status = 'failed'
             statuses[bid] = status
+            note = {'ru': bc.get('disabledReason', '') if bc.get('disabled') else '',
+                    'en': bc.get('disabledReasonEn', '') if bc.get('disabled') else ''}
+            if status == 'failed':
+                note = {'ru': 'Этот билд не просчитался в последнем обновлении — данные появятся, как только прогон пройдёт целиком.',
+                        'en': 'This loadout did not finish in the last refresh — it appears as soon as a run completes.'}
             spec = {
                 'id': bc['id'].split('-', 1)[1], 'prefix': bid,
                 'metric': bc.get('metric', 'dps'),
                 'name': bc.get('title'), 'build': bc.get('buildName'), 'rotation': bc.get('rotation'),
-                'note': {'ru': bc.get('disabledReason', '') if bc.get('disabled') else '',
-                         'en': bc.get('disabledReasonEn', '') if bc.get('disabled') else ''},
+                'note': note,
             }
-            if status == 'no-preset':
-                spec['status'] = 'no-preset'
+            if status in ('no-preset', 'failed'):
+                spec['status'] = status
             cls_specs.append(spec)
             if status != 'ok':
                 continue
@@ -457,6 +535,8 @@ def main():
                 if not os.path.exists(mp):
                     continue
                 meta = json.load(open(mp, encoding='utf-8'))
+                if meta.get('simmedAt'):
+                    sim_stamps.append((meta['simmedAt'], meta.get('simCommit') or ''))
                 gp = os.path.join(a.runs, (f'{bid}.gear.json' if legacy else f'{lid}.gear.json'))
                 jgp = os.path.join(a.runs, (f'{bid}.guide.json' if legacy else f'{lid}.guide.json'))
                 gear = json.load(open(gp, encoding='utf-8'))
@@ -479,6 +559,7 @@ def main():
                     'rotation': bc.get('rotation') or meta.get('rotation'),
                     'metric': meta.get('metric', 'dps'), 'budget': budget,
                     'value': meta.get('value'), 'margin': meta.get('margin'),
+                    'simmedAt': meta.get('simmedAt') or '',
                     'talents': loadout_talents(meta, bc, a.forever),
                     'simLink': meta.get('simLink') or sim_link(lid, bid),
                     'stats': stat_rows(bid, json.load(open(os.path.join(a.runs, f'{lid}.stats.json'), encoding='utf-8')))
@@ -511,7 +592,12 @@ def main():
             loadouts[f'{bid}-cheap']['vsOther'] = {'ru': f'«Максимум» даёт +{abs(diff)}', 'en': f'Max adds +{abs(diff)}'}
 
     has_data = bool(loadouts)
-    today = datetime.date.today().isoformat()
+    # When the sims themselves finished (not when this file was built): a deploy
+    # that only touches CSS must not pretend the numbers are new.
+    simmed_at = max((s for s, _ in sim_stamps), default='') or datetime.datetime.now(
+        datetime.timezone.utc).strftime('%Y-%m-%dT%H:%MZ')
+    sim_commit = next((c for _, c in sorted(sim_stamps, reverse=True) if c), a.commit)
+    today = simmed_at[:10]
     now_utc = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%MZ')
 
     # Wowhead-guide BiS fallback for specs the simulator does not support yet (healers).
@@ -616,7 +702,8 @@ def main():
 
     data = {
         'meta': {
-            'hasData': has_data, 'simmed': today if has_data else '', 'simmedAt': now_utc if has_data else '', 'simCommit': a.commit,
+            'hasData': has_data, 'simmed': today if has_data else '', 'simmedAt': simmed_at if has_data else '',
+            'simCommit': sim_commit, 'builtAt': now_utc,
             'simRepo': 'wowsims/forever',
             'repoUrl': f'https://github.com/{a.repo}' if a.repo else '',
             'workflowUrl': f'https://github.com/{a.repo}/actions/workflows/resim.yml' if a.repo else '',
@@ -644,6 +731,7 @@ def main():
 
     json.dump(icon_cache, open(icon_cache_path, 'w', encoding='utf-8'), indent=1, sort_keys=True)
     json.dump(ru_cache, open(ru_cache_path, 'w', encoding='utf-8'), indent=1, sort_keys=True)
+    json.dump(geo, open(geo_path, 'w', encoding='utf-8'), indent=1, sort_keys=True)
 
     # cache-bust the data script tag in index.html
     index = os.path.join(os.path.dirname(os.path.abspath(a.out)), 'index.html')

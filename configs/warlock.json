@@ -1,58 +1,213 @@
 {
   "class": "warlock",
-  "className": {"ru": "Варлок", "en": "Warlock"},
-
-  "_comment": "Варлок: SM/Ruin — классический прерайд-билд; весь player (таленты, ротация, сет, расходники, раса, профессии) берётся из билд-файла репозитория при каждом прогоне. Другие деревья (Demo/Destro/Aff) можно добавить строками в builds.",
-
+  "className": {
+    "ru": "Варлок",
+    "en": "Warlock"
+  },
+  "_comment": "Варлок: все пять готовых билдов репозитория симулятора (ui/specs/warlock/dps/builds/*.build.json) — Aff (Wrack), Demo (Fire Brand), Demo (Shadow Brand), Destro и SM/Ruin. Каждый билд несёт свои таланты, ротацию, расходники и базовый сет; наш поиск заменяет только снаряжение из пула warlock-dps. Текст билдов не перепечатывается, поэтому изменения в репозитории сима доезжают до прогона сами.",
   "encounter": {
-    "duration": 180, "durationVariation": 5,
-    "executeProportion20": 0.2, "executeProportion35": 0.35,
+    "duration": 180,
+    "durationVariation": 5,
+    "executeProportion20": 0.2,
+    "executeProportion35": 0.35,
     "target": {
-      "id": 31146, "name": "Raid Target", "level": 63,
+      "id": 31146,
+      "name": "Raid Target",
+      "level": 63,
       "mobType": "MobTypeMechanical",
-      "stats": { "attackPower": 320, "blockValue": 54, "armor": 3731, "health": 1428900 },
-      "minBaseDamage": 2601, "damageSpread": 0.5, "swingSpeed": 2,
-      "parryHaste": true, "canCrush": true
+      "stats": {
+        "attackPower": 320,
+        "blockValue": 54,
+        "armor": 3731,
+        "health": 1428900
+      },
+      "minBaseDamage": 2601,
+      "damageSpread": 0.5,
+      "swingSpeed": 2,
+      "parryHaste": true,
+      "canCrush": true
     }
   },
-
   "builds": [
+    {
+      "id": "warlock-affwrack",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/warlock/dps",
+      "buildJson": "builds/aff_wrack.build.json",
+      "title": {
+        "ru": "Аффли (Wrack)",
+        "en": "Affliction (Wrack)"
+      },
+      "buildName": {
+        "ru": "Аффликт (Wrack) (билд симулятора)",
+        "en": "Affliction (Wrack) (the sim's build)"
+      },
+      "rotation": {
+        "ru": "Ротация симулятора для этого билда",
+        "en": "the build's rotation"
+      },
+      "metric": "dps",
+      "pool": "warlock-dps",
+      "playerOverrides": {}
+    },
+    {
+      "id": "warlock-demo-fire",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/warlock/dps",
+      "buildJson": "builds/demo_fire_brand.build.json",
+      "title": {
+        "ru": "Демо (Fire Brand)",
+        "en": "Demo (Fire Brand)"
+      },
+      "buildName": {
+        "ru": "Демонолог (Fire Brand) (билд симулятора)",
+        "en": "Demo (Fire Brand) (the sim's build)"
+      },
+      "rotation": {
+        "ru": "Ротация симулятора для этого билда",
+        "en": "the build's rotation"
+      },
+      "metric": "dps",
+      "pool": "warlock-dps",
+      "playerOverrides": {}
+    },
+    {
+      "id": "warlock-demo-shadow",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/warlock/dps",
+      "buildJson": "builds/demo_shadow_brand.build.json",
+      "title": {
+        "ru": "Демо (Shadow Brand)",
+        "en": "Demo (Shadow Brand)"
+      },
+      "buildName": {
+        "ru": "Демонолог (Shadow Brand) (билд симулятора)",
+        "en": "Demo (Shadow Brand) (the sim's build)"
+      },
+      "rotation": {
+        "ru": "Ротация симулятора для этого билда",
+        "en": "the build's rotation"
+      },
+      "metric": "dps",
+      "pool": "warlock-dps",
+      "playerOverrides": {}
+    },
+    {
+      "id": "warlock-destro",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/warlock/dps",
+      "buildJson": "builds/destro.build.json",
+      "title": {
+        "ru": "Дестро",
+        "en": "Destro"
+      },
+      "buildName": {
+        "ru": "Разрушение (билд симулятора)",
+        "en": "Destro (the sim's build)"
+      },
+      "rotation": {
+        "ru": "Ротация симулятора для этого билда",
+        "en": "the build's rotation"
+      },
+      "metric": "dps",
+      "pool": "warlock-dps",
+      "playerOverrides": {}
+    },
     {
       "id": "warlock-smruin",
       "mode": "protojson",
       "repoFolder": "ui/specs/warlock/dps",
       "buildJson": "builds/sm_ruin.build.json",
-      "title": { "ru": "СМ/Рuin", "en": "SM/Ruin" },
-      "buildName": { "ru": "SM/Ruin (билд симулятора)", "en": "SM/Ruin (the sim's build)" },
-      "rotation": { "ru": "Стандартная ротация билда", "en": "the build's rotation" },
+      "title": {
+        "ru": "СМ/Ruin",
+        "en": "SM/Ruin"
+      },
+      "buildName": {
+        "ru": "SM/Ruin (билд симулятора)",
+        "en": "SM/Ruin (the sim's build)"
+      },
+      "rotation": {
+        "ru": "Ротация симулятора для этого билда",
+        "en": "the build's rotation"
+      },
       "metric": "dps",
       "pool": "warlock-dps",
       "playerOverrides": {}
     }
   ],
-
   "pools": {
     "warlock-dps": {
       "classId": 9,
-      "qualityMin": 2, "ilvlMin": 50, "maxPerSlot": 14,
+      "qualityMin": 2,
+      "ilvlMin": 50,
+      "maxPerSlot": 14,
       "excludeZoneNamePattern": "Molten Core|Onyxia|Blackwing|Zul'Gurub|Ahn'Qiraj|Naxxramas",
-      "excludeIds": [], "includeIds": [],
+      "excludeIds": [],
+      "includeIds": [],
       "slots": {
-        "head":     { "armorType": 1 },
-        "neck":     { },
-        "shoulder": { "armorType": 1 },
-        "back":     { },
-        "chest":    { "armorType": 1 },
-        "wrist":    { "armorType": 1 },
-        "hands":    { "armorType": 1 },
-        "waist":    { "armorType": 1 },
-        "legs":     { "armorType": 1 },
-        "feet":     { "armorType": 1 },
-        "finger1":  { },
-        "trinket1": { },
-        "main_hand": { "anyOf": [ { "weaponTypes": [8], "handTypes": [4] }, { "weaponTypes": [2, 9], "handTypes": [1, 2] } ] },
-        "off_hand":  { "weaponTypes": [5], "handTypes": [3] },
-        "ranged":    { "rangedTypes": [5] }
+        "head": {
+          "armorType": 1
+        },
+        "neck": {},
+        "shoulder": {
+          "armorType": 1
+        },
+        "back": {},
+        "chest": {
+          "armorType": 1
+        },
+        "wrist": {
+          "armorType": 1
+        },
+        "hands": {
+          "armorType": 1
+        },
+        "waist": {
+          "armorType": 1
+        },
+        "legs": {
+          "armorType": 1
+        },
+        "feet": {
+          "armorType": 1
+        },
+        "finger1": {},
+        "trinket1": {},
+        "main_hand": {
+          "anyOf": [
+            {
+              "weaponTypes": [
+                8
+              ],
+              "handTypes": [
+                4
+              ]
+            },
+            {
+              "weaponTypes": [
+                2,
+                9
+              ],
+              "handTypes": [
+                1,
+                2
+              ]
+            }
+          ]
+        },
+        "off_hand": {
+          "weaponTypes": [
+            5
+          ],
+          "handTypes": [
+            3
+          ]
+        },
+        "ranged": {
+          "rangedTypes": [
+            5
+          ]
+        }
       }
     }
   }

@@ -13,6 +13,12 @@ const SIM_HOME = 'https://www.wowsims.com/forever/';
 const CLASS_ICON = id => `https://wow.zamimg.com/images/wow/icons/medium/classicon_${id}.jpg`;
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const $ = id => document.getElementById(id);
+// "Where to get it" lines in the page language; Russian ones come from the data
+// build (Wowhead's Russian names) and fall back to English line by line.
+const SRC = it => (lang() === 'ru' && (it.sources_ru || []).length ? it.sources_ru : (it.sources || []));
+const sideOnly = side => (lang() === 'ru'
+  ? ({ Alliance: 'только Альянс', Horde: 'только Орда' }[side] || side)
+  : `${side} only`);
 
 // ---------- i18n ----------
 const STR = {
@@ -122,6 +128,8 @@ const STR = {
   no_source: { ru: 'Источник неизвестен', en: 'Source unknown' },
   empty_title: { ru: 'Симы для этого спека ещё не прогнаны', en: 'Not simmed yet' },
   empty_body: { ru: 'На странице нет придуманных чисел: карточки появятся после ближайшего автоматического обновления (ежедневно).', en: 'No invented numbers here: the cards appear after the next automatic refresh (daily).' },
+  failed_title: { ru: 'Билд не просчитался в последнем обновлении', en: 'This loadout failed in the last refresh' },
+  simmed_on: { ru: 'Прогон этого сета', en: 'Simmed on' },
   empty_run: { ru: '', en: '' },
   no_preset_title: { ru: 'Симулятор пока не умеет считать этот спек', en: 'The simulator cannot sim this spec yet' },
   metric_dps: { ru: 'DPS в симе', en: 'DPS in the sim' },
@@ -205,20 +213,20 @@ const itemName = spec => {
 };
 const enchantName = spec => spec[3] || (spec[1] ? 'Enchant ' + spec[1] : '');
 const fmt = v => `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(1)}`;
+const fmtStamp = iso => {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  const p = n => String(n).padStart(2, '0');
+  const date = lang() === 'ru'
+    ? `${p(d.getUTCDate())}.${p(d.getUTCMonth() + 1)}.${d.getUTCFullYear()}`
+    : `${d.getUTCFullYear()}-${p(d.getUTCMonth() + 1)}-${p(d.getUTCDate())}`;
+  return `${date} · ${p(d.getUTCHours())}:${p(d.getUTCMinutes())} UTC`;
+};
 const fmtSimmed = () => {
   const m = G.meta;
   if (!m.hasData) return '';
-  if (m.simmedAt) {
-    const d = new Date(m.simmedAt);
-    if (!isNaN(d.getTime())) {
-      const p = n => String(n).padStart(2, '0');
-      const date = lang() === 'ru'
-        ? `${p(d.getUTCDate())}.${p(d.getUTCMonth() + 1)}.${d.getUTCFullYear()}`
-        : `${d.getUTCFullYear()}-${p(d.getUTCMonth() + 1)}-${p(d.getUTCDate())}`;
-      return `${date} · ${p(d.getUTCHours())}:${p(d.getUTCMinutes())} UTC`;
-    }
-  }
-  return m.simmed || '';
+  return fmtStamp(m.simmedAt) || m.simmed || '';
 };
 const fmtMetric = v => (v == null ? '-' : v >= 10000 ? (v / 1000).toFixed(1) + 'k' : Math.round(v).toString());
 const fmtStat = s => s.pct ? Number(s.v).toFixed(1) + '%' : Number(s.v).toLocaleString(lang() === 'ru' ? 'ru-RU' : 'en-US');
@@ -269,7 +277,7 @@ function rowText(specs) {
     const it = item(spec[0]);
     if (!it) continue;
     parts.push(itemName(spec), it.name, it.name_ru || '', it.kind || '', it.set || '', slotLabel(slot));
-    parts.push((it.sources || []).join(' '));
+    parts.push((it.sources || []).join(' '), (it.sources_ru || []).join(' '));
   }
   return norm(parts.join(' '));
 }
@@ -309,7 +317,7 @@ function fillSearchSuggestions(L) {
         add(it.name);
         add(it.kind);
         add(it.set);
-        for (const src of it.sources || []) add(src);
+        for (const src of [...(it.sources || []), ...(it.sources_ru || [])]) add(src);
       }
     }
   }
@@ -570,12 +578,13 @@ function renderDoll() {
   const center = () => {
     if (!L) {
       const waiting = sp.status === 'no-preset';
+      const failed = sp.status === 'failed';
       return `<div>
         <span class="small">${esc(L2(curClass().name))}</span><h2>${esc(L2(sp.name))}</h2>
         <p class="target">${esc(L2(G.meta.target))}</p>
         <div class="empty-note">
-          <b>${esc(waiting ? T('no_preset_title') : T('empty_title'))}</b><br>
-          ${esc(waiting ? L2(sp.note) : T('empty_body'))}
+          <b>${esc(waiting ? T('no_preset_title') : failed ? T('failed_title') : T('empty_title'))}</b><br>
+          ${esc(waiting || failed ? L2(sp.note) : T('empty_body'))}
         </div>
       </div>`;
     }
@@ -598,6 +607,7 @@ function renderDoll() {
         ${!wh && L.talents ? `<dt>${esc(T('talents'))}</dt><dd><a href="${esc(WH_TALENTS(state.cls, L.talents))}" target="_blank" rel="noopener" title="Wowhead"><code>${esc(L.talents)}</code></a></dd>` : ''}
         ${!wh && L.rotation ? `<dt>${esc(T('rotation'))}</dt><dd>${esc(L2(L.rotation))}</dd>` : ''}
         ${L.vsOther ? `<dt>${esc(T('vs_other'))}</dt><dd>${esc(L2(L.vsOther))}</dd>` : ''}
+        ${L.simmedAt ? `<dt>${esc(T('simmed_on'))}</dt><dd>${esc(fmtStamp(L.simmedAt))}</dd>` : ''}
       </dl>
       ${wh && L.wowheadUrl ? `<a class="btn primary" href="${esc(L.wowheadUrl)}" target="_blank" rel="noopener">${esc(T('open_guide'))}</a>` : ''}
       <div class="center-actions">
@@ -663,7 +673,7 @@ function rowHTML(r, x, gid, picked) {
   const k = kindOf(r);
   const its = specs.map(([, spec]) => item(spec[0])).filter(Boolean);
   const srcs = its.length ? its : [];
-  const sourceLine = srcs.map(it => (it.sources || []).join(' | ') || T('no_source')).join(' + ');
+  const sourceLine = srcs.map(it => SRC(it).join(' | ') || T('no_source')).join(' + ');
   const d = r.best ? `<b>${esc(T('best'))}</b>` : `<b>${fmt(r.d)}</b> <small>±${r.m.toFixed(1)}</small>`;
   const sig = r.best ? 'best' : sigOf(r.move);
   return `<tr class="${k}${picked ? ' picked' : ''}" data-pick="1" data-g="${esc(gid)}" data-sig="${esc(sig)}" data-d="${r.best ? 0 : r.d}">
@@ -931,12 +941,12 @@ function tipHTML(id, sfx) {
   if (sx) sx.forEach(([k, v]) => lines.push(`<div class="w">+${v} ${esc(k)}</div>`));
   (it.green || []).forEach(l => lines.push(`<div class="g">${esc(l)}</div>`));
   return `<div class="t" style="${qc(it)}">${esc(itemName({ 0: id, 1: 0, 2: sfx }))}</div>
-    ${it.unique ? '<div class="w">Unique</div>' : ''}
+    ${it.unique ? `<div class="w">${lang() === 'ru' ? 'Уникальный' : 'Unique'}</div>` : ''}
     <div class="row"><span class="w">${esc(it.slot)}</span><span class="w">${esc(it.kind || '')}</span></div>
     ${lines.join('')}
     ${it.set ? `<div class="y">${esc(it.set)}</div>` : ''}
-    <div class="m">Item level ${it.ilvl}${it.side ? ' · ' + esc(it.side) + ' only' : ''}</div>
-    <div class="src">${(it.sources || []).map(s => `<div class="y">${esc(s)}</div>`).join('') || `<div class="m">${esc(T('no_source'))}</div>`}</div>`;
+    <div class="m">${lang() === 'ru' ? `Уровень предмета ${it.ilvl}` : `Item level ${it.ilvl}`}${it.side ? ' · ' + esc(sideOnly(it.side)) : ''}</div>
+    <div class="src">${SRC(it).map(s => `<div class="y">${esc(s)}</div>`).join('') || `<div class="m">${esc(T('no_source'))}</div>`}</div>`;
 }
 const tip = $('tip');
 document.addEventListener('mousemove', e => {

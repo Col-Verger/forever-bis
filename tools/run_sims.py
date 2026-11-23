@@ -22,10 +22,19 @@ encounter, rotation and settings stay in charge; only `sim:` iterations/seed and
 Weapon rule (v1, stated on the site's Method page): a set keeps one weapon class —
 a two-hand base only considers two-handers, a one-hand base only one-handers.
 """
-import argparse, json, os, re, subprocess, sys, tempfile, time
+import argparse, datetime, json, os, re, subprocess, sys, tempfile, time
 from concurrent.futures import ThreadPoolExecutor
 
 from spec_routes import SPEC_ROUTES
+
+
+def sim_commit(forever):
+    """The simulator commit these numbers came from, read from the clone itself."""
+    try:
+        return subprocess.run(['git', '-C', forever, 'rev-parse', '--short', 'HEAD'],
+                              capture_output=True, text=True, timeout=15).stdout.strip()
+    except Exception:
+        return ''
 
 SLOTS = ['head', 'neck', 'shoulder', 'back', 'chest', 'wrist', 'hands', 'waist', 'legs', 'feet',
          'finger1', 'finger2', 'trinket1', 'trinket2', 'main_hand', 'off_hand', 'ranged']
@@ -160,76 +169,96 @@ ENCOUNTER_SIML = """encounter:
   duration_variation 5
   execute_proportion_20 0.2
   execute_proportion_35 0.35
-  targets(id=31146, name="Raid Target", level=63, mob_type=dragonkin,
+  targets(id=31146, name="Raid Target", level=63, mob_type=mechanical,
       stats(attack_power=320, block_value=54, armor=3731, health=1428900),
       min_base_damage=2601, damage_spread=0.5, swing_speed=2, parry_haste, can_crush)"""
+
+
+def preset_layers(path, seen):
+    """.siml layers in the order the sim reads them: the file itself, after every
+    plain file it includes. `use` of a gear set or an APL is skipped — this driver
+    supplies both — and a cycle or a missing include is ignored.
+    """
+    path = os.path.normpath(path)
+    if path in seen:
+        return []
+    if not os.path.exists(path):
+        raise SystemExit(f'missing simulator file: {path}')  # never silently sim something else
+    seen.add(path)
+    with open(path, encoding='utf-8') as f:
+        header, order, sections = siml_parts(f.read())
+    layers = []
+    for line in header:
+        m = re.match(r'^use\s+"([^"]+)"', line.strip())
+        if not m:
+            continue
+        target = m.group(1)
+        if 'gear_sets/' in target or '/apls/' in target or target.endswith(('.gear.siml', '.apl.siml')):
+            continue
+        layers += preset_layers(os.path.join(os.path.dirname(path), target), seen)
+    layers.append((header, order, sections))
+    return layers
 
 
 def compose_preset(forever, cfg):
     """The repo's own preset, made runnable on the CLI.
 
     A preset build file is only a layer: the spec's defaults.siml carries race,
-    professions, buffs, debuffs, consumables and the encounter, and the build file
-    adds its talents, pet, distance and consumables. The UI merges the two; here
-    they are merged the same way (a build key replaces the defaults key), the
-    preset's own gear and APL includes are dropped, and our APL, iterations,
-    encounter and gear are added. Nothing is retyped, so a repo change reaches
-    the next run as is.
+    professions, buffs, debuffs, consumables and the encounter, the build file adds
+    its talents, pet, distance and consumables, and a shared buffs.siml may hold the
+    raid buffs. The UI merges them all; here every plain include is expanded and the
+    layers merged the same way (a later key replaces an earlier one), the preset's own
+    gear and APL includes are dropped, and our APL, iterations, encounter and gear are
+    added. Nothing is retyped, so a repo change reaches the next run as is.
     """
     folder = os.path.join(forever, cfg['repoFolder'])
-    with open(os.path.join(folder, cfg.get('defaults') or 'defaults.siml'), encoding='utf-8') as f:
-        base_h, base_order, base_s = siml_parts(f.read())
-    with open(os.path.join(folder, cfg['presetBuild']), encoding='utf-8') as f:
-        build_h, build_order, build_s = siml_parts(f.read())
+    seen = set()
+    layers = preset_layers(os.path.join(folder, cfg.get('defaults') or 'defaults.siml'), seen)
+    build_path = os.path.join(folder, cfg['presetBuild'])
+    layers += preset_layers(build_path, seen)
 
-    def header_lines(lines):
-        out = []
-        for line in lines:
+    head, talents, spec = [], '', ''
+    head_seen = set()
+    sections, order = {}, []
+    for h, layer_order, layer in layers:
+        for line in h:
             s = line.strip()
-            if not s or s.startswith('//'):
+            if not s or s.startswith('//') or s.startswith('use "'):
                 continue
-            if s.startswith('use "'):
-                continue  # the preset's gear/APL includes are replaced below
-            if re.match(r'^(siml 1|spec\s+\S+)$', s):
-                continue  # written once, by this function
-            out.append(line)
-        return out
+            if re.match(r'^siml\s+1$', s):
+                continue
+            m = re.match(r'^spec\s+(\S+)$', s)
+            if m:
+                spec = spec or m.group(1)
+                continue
+            m = re.match(r'^talents\s+"', s)
+            if m:
+                talents = s  # the last layer wins: a build overrides its defaults
+                continue
+            if s not in head_seen:
+                head_seen.add(s)
+                head.append(line)
+        for k in layer_order:
+            if k in ('sim', 'encounter', 'simple', 'gear'):
+                continue
+            if k not in sections:
+                sections[k] = []
+                order.append(k)
+            sections[k] = merge_section(sections[k], layer.get(k, []))
 
-    talents = next((l.strip() for l in header_lines(build_h) if l.strip().startswith('talents')), '')
-    others = [l for l in header_lines(base_h) + header_lines(build_h)
-              if not l.strip().startswith('talents')]
-    if not talents:
-        talents = next((l.strip() for l in header_lines(base_h) if l.strip().startswith('talents')), '')
-
-    for k in ('sim', 'encounter', 'simple', 'gear'):
-        base_s.pop(k, None)
-        if k in base_order:
-            base_order.remove(k)
-    for k in ('sim', 'encounter', 'gear'):
-        build_s.pop(k, None)
-
-    sections = {k: base_s.get(k, []) for k in base_order}
-    for k in build_order:
-        if k in ('sim', 'encounter', 'gear'):
-            continue
-        sections[k] = merge_section(sections.get(k, []), build_s.get(k, []))
-        if k not in base_order:
-            base_order.append(k)
-
-    spec = re.search(r'^spec\s+(\S+)$', '\n'.join(base_h), re.M)
-    head = ['siml 1', f'spec {spec.group(1) if spec else cfg.get("specLine", "")}']
+    out = ['siml 1', f'spec {spec or cfg.get("specLine", "")}']
     if talents:
-        head.append(talents)
-    head += others
-    head.append('use "{{APL}}"')
+        out.append(talents)
+    out += head
+    out.append('use "{{APL}}"')
 
     body = []
-    for k in base_order:
+    for k in order:
         body.append(f'{k}:')
         body += sections[k]
         body.append('')
 
-    return ('\n'.join(head) + '\n\n' + '\n'.join(body) + '\n'
+    return ('\n'.join(out) + '\n\n' + '\n'.join(body) + '\n'
             'sim:\n  iterations {{ITERS}}\n  fixed_rng_seed {{SEED}}\n\n'
             + ENCOUNTER_SIML + '\n\n'
             'gear:\n{{GEAR}}\n')
@@ -631,6 +660,105 @@ def finalize(b, gear, rows_out, tmpdir, pool):
     return base, guide
 
 
+def mark_failed(a, build_id, reason):
+    """Record a broken build instead of killing its class and the daily publish."""
+    reason = ' '.join(str(reason).split())
+    json.dump({'status': 'failed', 'reason': reason[:500]},
+              open(os.path.join(a.out, f'{build_id}.status.json'), 'w', encoding='utf-8'),
+              ensure_ascii=False, indent=1)
+    print(f'{build_id}: FAILED — {reason[:400]}', flush=True)
+    return {'id': build_id, 'status': 'failed', 'reason': reason[:400]}
+
+
+def run_build(bc, tpl, db, a, budgets, pool):
+    """Every sim for one build; returns the summary rows it produced."""
+    out = []
+    b = Build(bc, tpl, a.forever, db, a)
+    pools_path = os.path.join(a.configs, 'pools', f"{bc['pool']}.pools.json")
+    if not os.path.exists(pools_path):
+        raise SystemExit(f'{b.id}: pool file {pools_path} not found — run tools/make_pools.py first')
+    full_pool = {k: v for k, v in json.load(open(pools_path, encoding='utf-8')).items() if not k.startswith('_')}
+
+    if a.settings_only:
+        tmp = tempfile.mkdtemp(prefix='bis')
+        for budget in budgets:
+            lid = f'{b.id}-{budget}'
+            gp = os.path.join(a.out, f'{lid}.gear.json')
+            if not os.path.exists(gp):
+                continue
+            gear = json.load(open(gp, encoding='utf-8'))
+            settings = b.settings_export(gear) if b.mode == 'protojson' else b.settings_export_siml(gear, tmp)
+            json.dump(settings, open(os.path.join(a.out, f'{lid}.settings.json'), 'w', encoding='utf-8'), indent=1)
+            print(f'{lid}: settings written')
+        out.append({'id': b.id, 'status': 'settings-only'})
+        return out
+
+    if a.dry_run:
+        payload = (json.dumps(b.request(b.base_gear, a.search_iterations, a.seed), indent=1)
+                   if b.mode == 'protojson' else b.siml(b.base_gear, a.search_iterations, a.seed))
+        ext = 'json' if b.mode == 'protojson' else 'siml'
+        p = os.path.join(a.out, f'{b.id}-sample.{ext}')
+        open(p, 'w', encoding='utf-8').write(payload)
+        print(f'{b.id}: sample payload → {p}')
+        out.append({'id': b.id, 'status': 'dry-run'})
+        return out
+
+    tmp = tempfile.mkdtemp(prefix='bis')
+    if a.validate:
+        b.pool = full_pool
+        r = b.run(b.base_gear, a.search_iterations, tmp, 'validate')
+        print(f'{b.id}: base sim {r.avg:.1f} DPS, hps {r.hps:.1f}, threat {r.threat:.1f}')
+        out.append({'id': b.id, 'status': 'validated', 'value': round(r.avg, 1)})
+        return out
+
+    for budget in budgets:
+        # Cheap: only freely accessible candidates, and a max-tier incumbent
+        # (PvP / revered+ rep / epic craft) does not stay worn.
+        b.pool = full_pool if budget == 'max' else \
+            {slot: [c for c in rows if c.get('tier') != 'max'] for slot, rows in full_pool.items()}
+        start_gear = {k: list(v) for k, v in b.base_gear.items()}
+        if budget != 'max':
+            for slot, spec in start_gear.items():
+                if spec and spec[0] and db.is_max_item(db.item(spec[0])):
+                    start_gear[slot] = [0, 0, 0]
+        b.start_gear = start_gear
+        print(f'{b.id}-{budget}: searching ({b.mode}, pool ' +
+              str(sum(len(v) for v in b.pool.values())) + ' candidates)', flush=True)
+        gear, rows_out = search(b, tmp, pool)
+        base, guide = finalize(b, gear, rows_out, tmp, pool)
+        lid = f'{b.id}-{budget}'
+        json.dump(gear, open(os.path.join(a.out, f'{lid}.gear.json'), 'w', encoding='utf-8'), indent=1)
+        json.dump(guide, open(os.path.join(a.out, f'{lid}.guide.json'), 'w', encoding='utf-8'), indent=1)
+        meta = {
+            'status': 'ok', 'budget': budget, 'metric': b.metric, 'value': round(base.avg, 2),
+            'margin': round(1.96 * base.sem(), 2), 'hps': round(base.hps, 1), 'threat': round(base.threat, 1),
+            'title': bc.get('title'), 'buildName': bc.get('buildName'), 'rotation': bc.get('rotation'),
+            'talents': b.talents, 'iterations': a.final_iterations, 'seed': a.seed,
+            'searchIterations': a.search_iterations, 'warnings': b.warnings,
+            'simmedAt': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'),
+            'simCommit': sim_commit(a.forever),
+        }
+        settings_path = os.path.join(a.out, f'{lid}.settings.json')
+        try:
+            settings = b.settings_export(gear) if b.mode == 'protojson' else b.settings_export_siml(gear, tmp)
+            json.dump(settings, open(settings_path, 'w', encoding='utf-8'), indent=1)
+            link = b.share_link(settings_path)
+            if link:
+                meta['simLink'] = link
+            b.write_stats(settings_path, lid)
+        except SystemExit:
+            raise
+        except Exception as e:
+            print(f'  settings export failed: {e}', flush=True)
+        link_path = os.path.join(a.out, f'{b.id}.link.txt')
+        if os.path.exists(link_path):  # optional: a WoWSims share link, saved by hand once
+            meta['simLink'] = open(link_path, encoding='utf-8').read().strip()
+        json.dump(meta, open(os.path.join(a.out, f'{lid}.meta.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+        out.append({'id': lid, 'status': 'ok', 'value': meta['value'], 'metric': b.metric})
+        print(f'  done: {meta["value"]} {b.metric.upper()}', flush=True)
+    return out
+
+
 def main():
     if hasattr(sys.stdout, 'reconfigure'):
         sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -689,87 +817,15 @@ def main():
             summary.append({'id': bc['id'], 'status': 'disabled'})
             print(f"{bc['id']}: disabled — {bc.get('disabledReason', '')}")
             continue
-        b = Build(bc, tpl, a.forever, db, a)
-        pools_path = os.path.join(a.configs, 'pools', f"{bc['pool']}.pools.json")
-        if not os.path.exists(pools_path):
-            raise SystemExit(f'{b.id}: pool file {pools_path} not found — run tools/make_pools.py first')
-        full_pool = {k: v for k, v in json.load(open(pools_path, encoding='utf-8')).items() if not k.startswith('_')}
-
-        if a.settings_only:
-            tmp = tempfile.mkdtemp(prefix='bis')
-            for budget in budgets:
-                lid = f'{b.id}-{budget}'
-                gp = os.path.join(a.out, f'{lid}.gear.json')
-                if not os.path.exists(gp):
-                    continue
-                gear = json.load(open(gp, encoding='utf-8'))
-                settings = b.settings_export(gear) if b.mode == 'protojson' else b.settings_export_siml(gear, tmp)
-                json.dump(settings, open(os.path.join(a.out, f'{lid}.settings.json'), 'w', encoding='utf-8'), indent=1)
-                print(f'{lid}: settings written')
-            summary.append({'id': b.id, 'status': 'settings-only'})
-            continue
-
-        if a.dry_run:
-            payload = (json.dumps(b.request(b.base_gear, a.search_iterations, a.seed), indent=1)
-                       if b.mode == 'protojson' else b.siml(b.base_gear, a.search_iterations, a.seed))
-            ext = 'json' if b.mode == 'protojson' else 'siml'
-            p = os.path.join(a.out, f'{b.id}-sample.{ext}')
-            open(p, 'w', encoding='utf-8').write(payload)
-            print(f'{b.id}: sample payload → {p}')
-            summary.append({'id': b.id, 'status': 'dry-run'})
-            continue
-
-        tmp = tempfile.mkdtemp(prefix='bis')
-        if a.validate:
-            b.pool = full_pool
-            r = b.run(b.base_gear, a.search_iterations, tmp, 'validate')
-            print(f'{b.id}: base sim {r.avg:.1f} DPS, hps {r.hps:.1f}, threat {r.threat:.1f}')
-            summary.append({'id': b.id, 'status': 'validated', 'value': round(r.avg, 1)})
-            continue
-
-        for budget in budgets:
-            # Cheap: only freely accessible candidates, and a max-tier incumbent
-            # (PvP / revered+ rep / epic craft) does not stay worn.
-            b.pool = full_pool if budget == 'max' else \
-                {slot: [c for c in rows if c.get('tier') != 'max'] for slot, rows in full_pool.items()}
-            start_gear = {k: list(v) for k, v in b.base_gear.items()}
-            if budget != 'max':
-                for slot, spec in start_gear.items():
-                    if spec and spec[0] and db.is_max_item(db.item(spec[0])):
-                        start_gear[slot] = [0, 0, 0]
-            b.start_gear = start_gear
-            print(f'{b.id}-{budget}: searching ({b.mode}, pool ' +
-                  str(sum(len(v) for v in b.pool.values())) + ' candidates)', flush=True)
-            gear, rows_out = search(b, tmp, pool)
-            base, guide = finalize(b, gear, rows_out, tmp, pool)
-            lid = f'{b.id}-{budget}'
-            json.dump(gear, open(os.path.join(a.out, f'{lid}.gear.json'), 'w', encoding='utf-8'), indent=1)
-            json.dump(guide, open(os.path.join(a.out, f'{lid}.guide.json'), 'w', encoding='utf-8'), indent=1)
-            meta = {
-                'status': 'ok', 'budget': budget, 'metric': b.metric, 'value': round(base.avg, 2),
-                'margin': round(1.96 * base.sem(), 2), 'hps': round(base.hps, 1), 'threat': round(base.threat, 1),
-                'title': bc.get('title'), 'buildName': bc.get('buildName'), 'rotation': bc.get('rotation'),
-                'talents': b.talents, 'iterations': a.final_iterations, 'seed': a.seed,
-                'searchIterations': a.search_iterations, 'warnings': b.warnings,
-            }
-            settings_path = os.path.join(a.out, f'{lid}.settings.json')
-            try:
-                settings = b.settings_export(gear) if b.mode == 'protojson' else b.settings_export_siml(gear, tmp)
-                json.dump(settings, open(settings_path, 'w', encoding='utf-8'), indent=1)
-                link = b.share_link(settings_path)
-                if link:
-                    meta['simLink'] = link
-                b.write_stats(settings_path, lid)
-            except SystemExit:
-                raise
-            except Exception as e:
-                print(f'  settings export failed: {e}', flush=True)
-            link_path = os.path.join(a.out, f'{b.id}.link.txt')
-            if os.path.exists(link_path):  # optional: a WoWSims share link, saved by hand once
-                meta['simLink'] = open(link_path, encoding='utf-8').read().strip()
-            json.dump(meta, open(os.path.join(a.out, f'{lid}.meta.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-            summary.append({'id': lid, 'status': 'ok', 'value': meta['value'], 'metric': b.metric})
-            print(f'  done: {meta["value"]} {b.metric.upper()}', flush=True)
+        try:
+            summary += run_build(bc, tpl, db, a, budgets, pool)
+            status_path = os.path.join(a.out, f"{bc['id']}.status.json")
+            if os.path.exists(status_path):
+                os.remove(status_path)  # it was a failure note from an earlier run
+        except SystemExit as e:
+            summary.append(mark_failed(a, bc['id'], str(e)))
+        except Exception as e:  # one broken build must not sink the whole class (and the daily publish)
+            summary.append(mark_failed(a, bc['id'], f'{type(e).__name__}: {e}'))
 
     json.dump({'builds': summary}, open(os.path.join(a.out, '_summary.json'), 'w', encoding='utf-8'), indent=1)
     print('summary →', os.path.join(a.out, '_summary.json'))

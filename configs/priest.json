@@ -49,6 +49,18 @@
       "playerOverrides": {}
     },
     {
+      "id": "priest-smite",
+      "mode": "protojson",
+      "repoFolder": "ui/specs/priest/dps",
+      "buildJson": "builds/smite_testing.build.json",
+      "title": { "ru": "Смайт", "en": "Smite" },
+      "buildName": { "ru": "Smite (билд симулятора)", "en": "Smite (the sim's build)" },
+      "rotation": { "ru": "Ротация смайта из билда", "en": "the build's Smite rotation" },
+      "metric": "dps",
+      "pool": "priest-dps",
+      "playerOverrides": {}
+    },
+    {
       "id": "priest-healer",
       "mode": "protojson",
       "repoFolder": "ui/specs/priest/healer",

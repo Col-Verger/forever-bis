@@ -31,6 +31,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: resim
@@ -40,7 +42,7 @@ jobs:
   resim:
     if: ${{ !inputs.skip_sims }}
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 300
     strategy:
       fail-fast: false
       matrix:
@@ -130,25 +132,18 @@ jobs:
 
       - name: Fetch the sim, its commit hash and its item database
         run: |
-          git clone --depth 1 --filter=blob:none --sparse https://github.com/wowsims/forever forever
-          cd forever
+          # Outside the site checkout: a clone inside it would dirty the work tree
+          # and make the commit/push steps fail.
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/wowsims/forever "$RUNNER_TEMP/forever"
+          cd "$RUNNER_TEMP/forever"
           git sparse-checkout set assets/database
           echo "SIM_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           ls assets/database/db.json
 
       - name: Rebuild data.js
         run: >
-          python tools/build_data.py --forever forever --runs runs --configs configs
+          python tools/build_data.py --forever "$RUNNER_TEMP/forever" --runs runs --configs configs
           --out data.js --commit "${{ env.SIM_HASH || 'committed' }}" --repo "${{ github.repository }}"
-
-      - name: Commit the runs and the data
-        run: |
-          git config user.name "resim-bot"
-          git config user.email "actions@github.com"
-          git add data.js index.html runs configs/pools tools/icons.json
-          git commit -m "Re-sim: ${{ env.SIM_HASH || 'manual' }} $(date -u +%F)" || echo "nothing changed"
-          git pull --rebase origin ${{ github.ref_name }} || true
-          git push
 
       - name: Cache-bust asset versions
         run: |
@@ -161,6 +156,15 @@ jobs:
           open('index.html', 'w', encoding='utf-8').write(html)
           print('asset versions stamped')
           EOF
+
+      - name: Commit the runs and the data
+        run: |
+          git config user.name "resim-bot"
+          git config user.email "actions@github.com"
+          git add data.js index.html runs configs/pools tools/icons.json tools/ru_names.json tools/ru_geo.json
+          git commit -m "Re-sim: ${{ env.SIM_HASH || 'manual' }} $(date -u +%F)" || echo "nothing changed"
+          git pull --rebase origin ${{ github.ref_name }}
+          git push
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
