@@ -7,12 +7,12 @@
    "items": [
     {
      "id": 12640,
-     "enchant": 0,
+     "enchant": 1503,
      "randomSuffix": 0
     },
     {
      "id": 18404,
-     "enchant": 0,
+     "enchant": 904,
      "randomSuffix": 0
     },
     {
@@ -22,37 +22,37 @@
     },
     {
      "id": 272414,
-     "enchant": 0,
+     "enchant": 7667,
      "randomSuffix": 0
     },
     {
      "id": 226862,
-     "enchant": 0,
+     "enchant": 1892,
      "randomSuffix": 0
     },
     {
-     "id": 19578,
-     "enchant": 0,
+     "id": 12936,
+     "enchant": 1886,
      "randomSuffix": 0
     },
     {
      "id": 273945,
+     "enchant": 8207,
+     "randomSuffix": 0
+    },
+    {
+     "id": 272403,
      "enchant": 0,
      "randomSuffix": 0
     },
     {
-     "id": 13142,
-     "enchant": 0,
+     "id": 13498,
+     "enchant": 1503,
      "randomSuffix": 0
     },
     {
-     "id": 22385,
-     "enchant": 0,
-     "randomSuffix": 0
-    },
-    {
-     "id": 273951,
-     "enchant": 0,
+     "id": 287033,
+     "enchant": 929,
      "randomSuffix": 0
     },
     {
@@ -61,7 +61,7 @@
      "randomSuffix": 0
     },
     {
-     "id": 15855,
+     "id": 19325,
      "enchant": 0,
      "randomSuffix": 0
     },
@@ -71,22 +71,22 @@
      "randomSuffix": 0
     },
     {
-     "id": 10779,
+     "id": 18466,
      "enchant": 0,
      "randomSuffix": 0
     },
     {
      "id": 11684,
-     "enchant": 0,
+     "enchant": 1900,
      "randomSuffix": 0
     },
     {
      "id": 19321,
-     "enchant": 0,
+     "enchant": 7663,
      "randomSuffix": 0
     },
     {
-     "id": 272594,
+     "id": 18323,
      "enchant": 0,
      "randomSuffix": 0
     }

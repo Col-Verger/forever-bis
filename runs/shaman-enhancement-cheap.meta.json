@@ -2,26 +2,28 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 857.03,
- "margin": 0.7,
+ "value": 930.46,
+ "margin": 1.22,
  "hps": 0,
- "threat": 884.5,
+ "threat": 679.9,
  "title": {
   "ru": "Энх",
   "en": "Enhancement"
  },
  "buildName": {
-  "ru": "Enhancement (тестинг-билд сима)",
-  "en": "Enhancement (the sim's testing build)"
+  "ru": "Enhancement (тестовый билд)",
+  "en": "Enhancement (the sim testing build)"
  },
  "rotation": {
-  "ru": "APL из билд-файла репозитория (включая подмену оружия)",
-  "en": "the build file's APL (with weapon swap)"
+  "ru": "Стандартная ротация билда (с подменой оружия)",
+  "en": "the build's rotation (with weapon swap)"
  },
- "talents": "",
+ "talents": "053303102-053030310051012251-02",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simLink": "https://www.wowsims.com/forever/shaman/enhancement/#eNrsVUtsG1UXvufOTOb6uOmd3CT9p/OXYoxSLEvGY7tWH5s44dUKAY2BJQKHuMlIjYtqi0VXiShKFVCaNmkhKZVKnEhDBSGKoHlQCsomDxRhlQoJuimBqi3IKlKlRIAqIdtxGkfAAhXBImc2557Hd797zzczWMlAAx1c0AJtAGcBbABBjLEq5tRU4xDKbDJbjir74Rjo/RGU2Y+9gDI7ndFQZZlsuX5tI6psagj0bM4ZOgP6yVzZXLYcJXY8jir7Mluuv1+PMrtzKtd6KqOhzL7J+3fe4VjGbu7VeyJIUGa/DYN7DLQZy3PrgLnYuK9rADohOcLeqny78pg+Ydy+76z/Xf+AP+0f9L9ujj9xdM9r1hGr2zpunbB6rF7rpDWcmu6AmQ6Y74K+HvjI5h/b/LzNx2w+bvMJm0/a/BObX7D5pza/aPPPbD5t81mbz9n8C5t/OM+XvtfOnK44AY6RFxYbfzr8VSf0gzzx4vW6c1B9Pc27rFtp/qb1XZovpPm1NO9t+hy6BuAqHLG83QqOU7Juf8tEZv3q7rHp1ITdFxQkf/Go7JchXnj9iFgX8LqA/1sCri8r/J8m6f1mOBQyQwEz6DPDITPvmuGAaQaD4YDPDM1QOUPZt5Qs0OkyrEZmlKHMLi7pbgeqqPjCD4eTKFA1FJTYYtStooKSb/vdWHsxFkpiFToMFRWPzOYalqPBu5VXipWBpPi/sRkrvJxJgjYSIx/eadYYMlJdF1sMY21yh1mTw9AWG/Ot3F2OzlFgBao6FEmLrcYWrPRWMFkonRJlNJdAGkwu0xcuY+vqPKzki7TXIsglCO3RtXmpJH8lKmSD7iYiYPjRI7YhuyTnaN/cixvciGwAVq9Gcyt23uoEyqjwGz7UvBsZCGkBSA4OIbAAOm561ko0H4i7nosdao6nXNGDqVjKOpgQNcaD+QaltGEjbqh75rGVMl3yvgF/irHJqKoXqHgUlmnQoHDXZmtSoFEQwuUOENuNID4katAxJ+dCE0s66t5NDIRzKj+BifwE8tuH8/eI7MarwmkUtKCy4YYVuL5F3TsLpQTF48ajuEvsQOcCY1jmkdhUOyAfhQ3L+1NN0QH/561milCmaG5q2E8LA8tGjaKzepPSc0n/1LmC1eh4Pmklml1PPbJPrMz6Bm1qlwghhJCqSKdE+iWRbIm1xhK+eKIllng53hpPpEYk+isUyFCNujPUQQghpG1/pKLYurm/L2eztQ/sz9vXtcH3qK66ar0/w7/zZUlF7i3ek3+Mt+2DkvjgfLhuFyGEkOhgpI4QQgghkZfglXO34bAzGrOalnV9FKAPCCGEkKu1Xsa6n9bbLl121GsMXOABE3ZCBPbAPvh9AO4HROs="
+ "simmedAt": "2026-11-23T11:52Z",
+ "simCommit": "57df2a7",
+ "simLink": "https://www.wowsims.com/forever/shaman/enhancement/#eNrsVW1oW9UbP8+59+aePF160tOX/935zxkjnSEQc5Mu7MUPTevbRNQ26kdxqe3aCzYTE0T2qcVJR9VZt1lthziXfrgOrbXqbDed0i990WqYQ2RDmJ3DiYYJlRYcgiRpuqZMP0xhX/oEDuc8v/P8zu88z5N7sJKBGwzwQAd0ARwBsAEEkX1VjLp1mUKdzWZdxuVKdLAPnjW+c6DKTmZdqLPDGbcxfwfqLJN1GRfKUWfTWZfxfW7yVdZlpHVU2UzWhSr7Mj9+nR//7AdUWX/GjSp7fxhQYS91ooNdbDd+LUeCKrsyDN5RcE9Zvh/fBHOhpen3nb2QHGGvVb5e+bIxLudvOhJ8K3g0mA4OBZ83x+7dt+M5a6/VZ71iHbAOWoesV63h1GQPTPXA7H4YOAgf2vwjmx+3+cc2H7P5uM1P2PykzT+x+ac2P2Xzz2w+afNpm8/Y/AubvzfLFy+43zhccQCcI48ttPyy55teGAR1/PGzDceg+qc0329dTvMXrR/SfC7NL6b5odbzsNfyd2k4RsmaXZeJz9dS9y/NoNvf0ZD8w09nV/qh8D8jYq1d19r1xrZro6Pw9JygN5uRujqzLmSGA2akzsxPzUjIDIXDkVDADE9RNUPZWUrm6KQDq5HJ3DN0atHwOlFHLRC5PZJEgbrUUGELMa+OGiqBzVd93UVfXRKr0Cl11Hwqm2le8oav7jxX3BlKiv/L9Vjh50wRtIXIvHurWStVpIYhNki5Gtxi1uY43Ast+VDudWHZKLCCVAOKosVGuQEr/RVMFVqvQhnNAUjDySX5wiM3rsRhGS/KXs2gljB0x1bjSgl+LiZUSbcTEZJB9IlNyE6rOdk/34frvIjsKKxcjeZW7LjVC5RREZQBdPvLGQhlDkiODiE0BwbWPGwl2p9s8zwSf7q9LeWJ7U7FU9buhKiVt+YDtNKAclzX8NDdy9sMxf8C/C1HjaxqFKj5NJZpdkMh12ZnUqAsNMKZHhBlslBVnQ03i80yjLeJWnTOqDl8fNFAw1/DQJRN5Msxni9HXkskH4Xs0jPLdAMLhn8aSgWKe+RduE1swbI5xtDhU9hENyAfhXVL51O3ZgD+z1/NNKFN0FzVcJAWCpaNyeJk5SGl91Kufa/ru8rKbISr0flo0kq0ex64s0ks1/oSbe1WCCGEkKpor0IGFZHsiHfGE4G2REc88URbZ1siNaLQP8CR63gG3gx1EkII6doVrSgGrh8cyNl0/S278vZtffhtauieev9vcGO+K6nof8t3/7X5Nr1b4h+ajTRsI4QQEhuKNhBCCCEkuhOeOjYPe8picat1qav3AQwAIYQQcr7ez1jfg0bX6TPORjcDD/jAhK0QhR3QBH8NAIx9RM0="
 }

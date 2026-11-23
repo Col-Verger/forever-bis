@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 884.92,
- "margin": 1.03,
- "hps": 24.6,
- "threat": 723.7,
+ "value": 893.14,
+ "margin": 1.02,
+ "hps": 26.7,
+ "threat": 732.9,
  "title": {
   "ru": "Ретри",
   "en": "Retribution"
@@ -15,13 +15,15 @@
   "en": "Unsealed Wrath"
  },
  "rotation": {
-  "ru": "Default APL из репозитория сима",
-  "en": "the repo's Default APL"
+  "ru": "Стандартная ротация симулятора",
+  "en": "the sim's default rotation"
  },
- "talents": "",
+ "talents": "050250002-501-05233011201301351",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simLink": "https://www.wowsims.com/forever/paladin/retribution/#eNrEV29oE2cYz3NJLm+emKZ9m9bra2tvp9V6rHq5LEOds2nrUCeF0G5fhjDP9trGJU3NpcXtw+j+KmPoNzc7FmVxTMqGIAhadAOh4AYDN4qbBZkLGwy2bupgjMBg3MXYJLYJMmHvh+PueX953t/ze/68BP0EakEAEfbBCIzBJMApAMoJwO40EEctx+LoIKcWvOgiPx0D4YgL7eSTg+ggH1yrRQf5cMGLPDmiC2/70UVOLniFo2Fzc8GLdjJ/EF0kveAVfqhBB/n8Y0AH+ee4+bxhPc9fq0We3B4QfqtBGzpI5jxI22qvRtsXYspf+yO3W6bAPd91vP/iizePwjQI02cgm/G9G/0x4/sj47uR8R2N/pzxfardgjejt+HiGV83n49mhmtVQooaUhRF7QgpgQ4lpAaDSiCgKoGgEgiGAlc5xzWOy3J/1+N6XJUFARu7BlLRCS2li5phRIdH9UFRG09qEkEeHR2qYqCI/mmoQ1+OX4EYGY/FxKQ2OqwXIdZiUxYa0R9J6mNiv67FxMSQ2JOIx7XRQcmFTrR3BA18HFuz0IysBNUXHR5J6YlxY1Q3DMmNLnR2BDaGDNyAzVlowpU9mpFapHZgfHBYj+ujqSIoXcskrJFWIN4lLnS2E3IzkgUfensTE7qYSohxPabrFBlhPDrI2TRYv1gtNxOeclttzJ/j69C3Q49pL4u92oFEUuzZYWy10W4WxieYik3ySgLUM8UR5Nvt5OxlMB0hpxjYINcTO3XedXHEzixBlI2qwe4DqczasSXHMxSeNamLSV2LRY24OJZMpPSBVDQxygqcaRtbgytzvB9p/0hiPDYoJvWhpG6MiP2JHsulk1zIQCVYnwUjZDYNtJ7VZaEGV/QkRg19IKmZZ1Ef82YBkTxzKJEciBpxwS63LVcC1MPcFjknuRyRdyybCrqBrcdVOV7Axl2asQTAIsWTuTTIA0sXCd3DduPT9ClslVoqukIhxzdg/fOGXu5iUSD5NFQqMvoWsNcBJ2iq+mmrc/wqbCo+rcQVBtgmbJbY8qzQJ3nRkyUmOSDvnYTFBMnzjvIS/R3Yr4DvAD0MlXkVe0RTu+UJSJJYNQx3lpidcWwyku+jLOdCZzwxoQfo3sJLwzRQrM3xXvT0mmTzQ4B6kx503yWFxlpsMZfkRPuMw0ZxMTO0JlnSpXQO2DeAB2micrhhth29kqeYZ7muVdJQGpZaCEv9r2HlW608rElgr2KQBqoXWCmvIN1ZeHlYXmUUZHmxx+lq1ox1ss+cdvttzJrHAaXNam2efBWRN5UNiVbWshQ+n8ZLGVCl5eKh1ghMJcd1tXXJRBQB2ipUZBFsDbJe7VC5H7E/pQ28ZFAn2hGC6gYUi0ElvkqgAbXpgUlP7w1z1V98veWtakj1l2bAchNSp7ilpjR9g6OT3KPtSPMGcs/z5ueFDGAbXYPuc1D4bJT9xEHdMwUDc17hOGLHveyF8pbZTXeiZ54neaAAuFl+kvDUcwVM0/eHIwKwthwvVdeyyo2mXl9KnD76BUcvcbidbasa/gPdXRTGNrb1IWfuMmrOpkvUnE2XqTmbvq/mMNOrDqAe2lWQdzZtyqvKyqK831nytub45kr1XE3Y7uX36Dp5rcl9Gu6NBNZwjqOEo+6PXAWLObh+4QZfs9ustSU8Aw7k0Ca9b3dblsmhcF1+zx9umjphri87Hxuy1vVO9Q4nuMRO+QJn+19WKvxo/e1Z2t+6z0rsp78OdT2qE7dYz77T4YLH8D4Ym/4TXvH0adFB8TktOaynjgCcgPz2rU6ZkDlNmPx2zt1dY/5daQcFNkMYdsG/AwDZgvEt"
+ "simmedAt": "2026-11-23T12:05Z",
+ "simCommit": "57df2a7",
+ "simLink": "https://www.wowsims.com/forever/paladin/retribution/#eNrEV2FoHGkZ3nd2dvbbd7vZ5MsmnXxJmnHa3KWDuc7OunJX62WbVO56R2RJzn+CN00myZ6bndzMJHf6Q6KoFz3p+UPqJYd76lYooVIJFNpg/VEIVEGIUtQGinVREDS2RvDHgiAz2212t5tdqoX7fgw737x5vud93vd9PoIxAu0gggSvwxwswDLADwEoJwK7LBK+nWM55Mm7VwCD5M/vgbgSRJ6s7kaQJx9styNPfrAbQYGsGOI3YxgkH+5GxPMp5Mn3ttvRT3bexCDJ70bEP7YhT37xE0Ce/OeC+7zjPa9ut6NAfnZO/Hsb+pAnhasgn2q/lRnazar/Ppd+0L8GoZ3TFyavf+HueVgHcf0SFAvR72T+VIjeL0TvFKLnM38pRC/r9+DrmQdw/VJ0VCins8kNqElVS6qqqg0n1fiwmtQSCTUe19R4Qo0nkvFbHL/NcUVuoxufxd4iiNh9esrJLOmOIem2nZnNGdOSvmjpMkEB+WFNtVHC2Dp0YLQkHEJML2azkqXnZo2qiGPYU4RujKUtY0GaNPSsZM5IY+b8vJ6bloMYQP9wwsaP40AR+pDVRE1kZuccw1y0c4ZtyyEMYmA4/lzSxuPYV4QePDym284+tTcWp2eNeSPnVIXSY0zGNvkQ4h4JYmCIkLvpIkQxMm4uGZJjSvNG1jAoMsIE5MmVPHh/cUTpIwLlTvpYrCR0YPSMkdW/JI3rb5iWNHbGPumjoyyFn2Aa9iiHCdDwGkdQGPKTKzfABUJOtbFL6SR+GtgLcsTPPEHU5zSbPQqkChvC/pLAUHzFpS5Zhp7N2PPSgmU6xpSTMXOswpkOsqN4uCTEkE7OmYvZackyZizDnpMmzTEPMkCuFaBZ2IQXRshWHmgn6yhCGx4aM3O2MWXp7lk0yiJFQCSfedu0pjL2vOhXBg9qARpmIY9cgNxIK2cOLAU9zp7F3pIgYvfLut0gwCMlkNt5UKYaNwl9lZ3FT9NP4YDc3xQKxZLQhZ2fs416iH2BlIvQrMnoN4B9DXCJOq1PO1ISerGn+rQaKIyzE9gns4NZYVSOYLhIXHJAvv8h7BdI2eHrW/QfwP4G+G2g70BzXtWI6Gp3MAFZllqmESoSdzLeW06X56jIBTEwby4Zcfr5yo+udaDYXhIiGB53yZZNgEasMIb2SGWw9kcsKAfQv8n7KO5XhrZZNVNKbwP7DeCb1Gyeboq9iBE5XM2zXtcWZahNS6ukpf2/aZVHrT6tZWBfwQSNt26wWl4J+lLlx5PyqqOgKPszTo+wPuxQoq7bnfMxz4/j6qA32gL5VVo5UWcSA6y/UXy5jD8vgCYflA/1LNCxFg1toGEhqgIGm3RkVdhRZOP62/U40qSjT33RpgH0IyS04yhVB9Vg1YTGtZ7HnJ4+NHMtVn29lXe1pBarrYAHk9Q2uEYuTT/g6Pvc051I9wYK7Qju67UC4CA9iqENqLx2KzHC09BmZYMFbnIc8aPDrPqROUtfwvCOQMqBIuDzyieJQMM3wd36wztpEdhgSZBba4ndJaETO157K2M70pxuS7ZjLiwY0y1uOu1b/kZ3Ft3j6H0OX2SnWsry2NRXpXeKnXxCLz5A5a18jcpb+TqVt/KPVF4FdgFaWpNDrYrwW3lXeE1R94X/vSf8QEnoa9bpeIINV7eBVBL6sfeVyuBJ5qKT1W3Hlpw5Q7Lf0hda1WL04G/0GeWYm+46PHQX1rXBUcLR0I+DlR3XA7WzTRlQRRkiQjVMzwbXTYCWxWPhteAjC9V+BA36ib4LdAVqm/YxIf1PKKTb9f7/pev/yk1/1e/z1gupTeCRQ5/8vj/k7SzPpDrK32KpnrVVd/1y5GMz3vrdiPZPTgxKI8o1zveRLCf1dPFebYz3zE9r9i/+Onn6aZ34gvecuJiqIKZeh4X1f8GXwxN6Zlp6TbdmDWcFYBXKn++NKIR897Pi8m9vh0bb3P/0hkCF5yEFL8N/BwC8jkc3"
 }

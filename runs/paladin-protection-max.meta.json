@@ -1,26 +1,29 @@
 {
  "status": "ok",
+ "budget": "max",
  "metric": "dps",
- "value": 607.45,
- "margin": 0.45,
- "hps": 25.6,
- "threat": 1446.7,
+ "value": 622.3,
+ "margin": 0.43,
+ "hps": 28.4,
+ "threat": 1516.2,
  "title": {
   "ru": "Прот (танк)",
   "en": "Protection (tank)"
  },
  "buildName": {
-  "ru": "Прот (defaults спека)",
-  "en": "Protection (the spec's defaults)"
+  "ru": "Прот (стандартный билд)",
+  "en": "Protection (standard build)"
  },
  "rotation": {
-  "ru": "Default APL из репозитория сима",
-  "en": "the repo's Default APL"
+  "ru": "Стандартная ротация симулятора",
+  "en": "the sim's default rotation"
  },
- "talents": "",
+ "talents": "050050002-05302102213301531-502",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simLink": "https://www.wowsims.com/forever/paladin/protection/#eNrEVN9LFG0Y3eedd2efefyWXYf9/Pabi1q3km1pbWaWAfVmJm8KhBisP8ANtRa6kPTKbjSQJDJJJNJiLdcgFkuRBJO6KSSVApEtKAhz6Yc3FiGElzEzbVF4KXQYDs+c95wz88zFUAQhDFGIQQLOQAf0ANwCkFkUlIt+5GGmtBHHT3dCxPH9IBDHl8/DxPHGisPTm0ESsN+xjG0GieOwK3907Wt9lcRxctrhEVefdXnO5clVh7cHnMr8LMTrw4vZxJez6rdTdTevgj0wDqMgXjsxmXlqFyBauAtXsuv5UCkfWsuHPuRDfdnP+dDl7AYMZhvRW8GCebZXNVTnUvWUaqRVXVN1XUunVc1IaylD1RcZX2FCiZUYRQgVkTg+WII4kkg8paud9B9JSoD8CT8+tuNESGJKq6s1nANSkMSEiMUcxCUKkD+l1RqdMldYg08mxWubyoGsKyrVJPcjl6UC/BCVf2eYjEyWxgNlRZjnPjczdMGW04pGB+R9VJWMoCBL827u2Rgo/ieMoUDSG7GsOG8RcCbZQNgptpD7M7aQ82LoTPI/ireKHx/lQa5VDlFM2UPBeAVJJXTsD3ttCs4AEcf1oeMyC/tdP8ep5V9pjkPFJrlC8b4X4lv7542Iy3ZU2GCt2wx6BZ+LiHVJOCy5o3rbqhwdcfDajIrVaRdb5sHzkftH17uHTc1LrJgzwImRL35d8II97VZlue1/r2HJrG538crUv7JoIGYm55jvr6DL2t2+pp37au79pk+8MI7s1hPrXW6esMqNVgt0FLagu6I5k22NncycO93W1Q8wAt7xOzOJWMxEe1aLUgMLQ2NV+VeiQh1YcAxsaIEO+D4A+BCxQw=="
+ "simmedAt": "2026-11-23T13:19Z",
+ "simCommit": "57df2a7",
+ "simLink": "https://www.wowsims.com/forever/paladin/protection/#eNrElN9LFG0Ux/c88+zsmeO77Drs67vvXLzvupVsS2szswyoNzN5UyDIYP0BGmotdCHpld1oYEhllki0Flu5BrFYiiSY1E0iqRAsIUFRmEs/vLEIIbyMmWmLwkuhL8PhzPc5n+/MmYuhCEIYohCDBJyELugDuAUgsygo5/zIw0xpJ44f74SI47thII7ZzSBxvF4ME8fpzSAJONhBHF9fqCSOo679wR1fG3CcyWmnZl1/1q1zxTAJuODY20NOYn4W4vXhpUzi8yn16/G6G1fAHhqHMRCvHp1sW7ALEC3chUuZ9XyolA+t5UPv86GBzKd86GJmA4YzjehtYME8+181VOdS9ZRqpFVdU3VdS6dVzUhrKUPVlxgvMqHESowihIpIHB8sQxxJJJ7S1W76hyQlQP6EHx/bcSIkMaXV1RrOASlIYkLE1RzEJQqQP6XVGt0yV1iDTybFS5vKgawrKtUk9yKXpQJ8N5W/Z5iMTJbGA2VHmOc+lxk5a8tpRaN98h6qSkZQkKV5l3t6ExT/E8ZQIOmVWHactwg4nWwg7IQt5n7HFnMehk4n/6V4q/jxUR7kWuUAxZT/KBivIKmEzvjDfpuCM0DEcX2kWWZhvzvPcWrlJ81xZLVJrlC874X4xv5xI+KKHRU2WPs2g37B5ypinRcOSm6r3rYqx7KOXppRsTrtasvcfyZy//B676ipeUTRnAFOjHzxa4IH9nValeW0f72EZbO609ULU//CooGYmZxjvj+iHmt385p2zqu594s/8cw4tFtPrHdry4RVTrRaoauwBb0VLW2Z9tixttMnOnoGAbLgHb81k4iXm6N9z1elBhaGxqryn0SFOrDgCNjQCl3wbQDms6/w"
 }

@@ -1,0 +1,29 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 490.29,
+ "margin": 0.36,
+ "hps": 0,
+ "threat": 407.4,
+ "title": {
+  "ru": "Смайт",
+  "en": "Smite"
+ },
+ "buildName": {
+  "ru": "Smite (билд симулятора)",
+  "en": "Smite (the sim's build)"
+ },
+ "rotation": {
+  "ru": "Ротация смайта из билда",
+  "en": "the build's Smite rotation"
+ },
+ "talents": "525235031030001001-30515100002-3",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simmedAt": "2026-11-23T11:35Z",
+ "simCommit": "57df2a7",
+ "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrsUk9IVF0UP+e+NzN3znx+73m/7+N73sLGIWsYGrzvTbOozYyugsBEmn2KGgMFogNBK/uz6A+OtrEca2HjQoVAi8LaBNlCo2CKCMuNDQhBBUJQ23hvyqiMIIRazO/C7/445/4O5x4OhTiaaGEYJxEFs1AuGjxo+mQn6XzwbQ3pvHwRSefnPT1WMknnw54+63He49Uh983yrMtDXuTBuKvnL7m8NOLyhbuud/mxSUA6n7psRHaZC9no6yPqfWfb4FWcxn9m9uWzS0XjZdEoF43VojE9iSt4OruGtyeN2LCP5hhU8UsQperoNhkW23vTR/CzI6p7W93bP2tvW3SOFt5h4aSTdBJJlbBVQillK2XHEyppJ22llHLiiQWmlVjoBYMyO6mRoID0kcYftkYC5CMtbveLsKyn2pjBdcE6QXphWzXKIGl8bKdgJhO2bKLtIkI1kRAFnQD5oj4+fuxbk6Ma5efcBhbOr1Qs/u8tbk40yTg1iG0Uuo6cdD53o9VCMmN/c7/Qyghu34QJyckf9fPR5yiktMiI1FDIcXvNZ9xevd/lM2ILR/k/hQpYeV4aQbmuPiWDBfSTzu9/OCCpcnuf/Y+jrCVeQLfSfEZWLlH3pZzOT822yXUl6uXWH8/iTUAEZWXotzKW9op1rbGuExoAAMDu9DkNCtpfvX3Z7v5cvP9oNtc9o7F7yKXbGloYKbEgAAAM9KRrAQAA/k3XFUZdLKYaejw8SzlTzAqEU7E1/D0LmUtvbr39G9fbce2r+MSjZPMeAABon0g3AwAAQPoQ9k6/w+Oh9o5sV/hgR9/h7twZxFEEAABYScU4H261Bp48Dbb4TQxjFD8OAP+bojE="
+}

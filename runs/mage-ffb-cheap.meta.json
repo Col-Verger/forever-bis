@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 761.26,
- "margin": 1.08,
+ "value": 833.68,
+ "margin": 1.13,
  "hps": 0,
- "threat": 788.3,
+ "threat": 861.3,
  "title": {
   "ru": "Фаер (Frostfire)",
   "en": "Fire (Frostfire)"
@@ -15,13 +15,15 @@
   "en": "Frostfire Bolt"
  },
  "rotation": {
-  "ru": "FFB (APL сима)",
-  "en": "FFB (the sim's APL)"
+  "ru": "FFB (ротация симулятора)",
+  "en": "FFB (the sim's rotation)"
  },
  "talents": "-5550000123011303-2035010311013002",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEkV1IW2cYx/O870nynCcGj69O3r3zIsY59WyBc3IMTL1IFMY+dHPIrnYxFqeRDJ1jZB/syn3ANsaGbCCYbTdOaCsVi70yV22u7EUhSGkvFa8KDTSJLVYobTn5qBbEq0L/N8/X+/8dnudQAMEACSE4DyB8koXgO1AlL6KBKkN+PCwGZamV/PjTBshsgjR8UAyShv8UDNLwXjFIfvx9GWR5iPxYKQbl7hBp+FvBID/eb3gPikF5cYQ0XCoYxPFxkjR8uA7EcXGOOF5xgXeX3LoyGw4Z2+neO7Mf/rECa0B/pn9JF/9vPvcvXIJHh8Ye/Jwe8SFIsCDHwpFYLGZZlmVHHcu2HcuJRC0nZtmWY9uW7VhWdJtpBRbYZ0ecXiVUPtLw6C8Iy032EnKhZ1m9406IRWzRrbqo1WxBLtjHHqVXeP3BPgRIf+ub+c+SmfT8F+Jb9TXNis9pUL1JypTIRTAPRBpuXAbBDKa8xAlijVnutNkbyjzD209NYSKsgJc47o6rWhBhFaIOUyGI5jw0HZsk1LGDHhFTDvWJHmo32xCEngd3h/KWrL1wKBgOkF6BE6u7UXSpTpJmO3IRyAOShv/lZAMbdQPeGhekale8mh+V3FyBk0d5V71NHULV+JtVfm77fdJ3NDfdKo9Fe+r/YKs8Rq/8CJI4/v2JajGb0SfYpEf5yUt8YKBbvKfeoddVXw311F8rV6BRHn/kDNZtNlViUz9wT1X9iSzHueTMdCSVmqySiCGEC0z3uFpIJVqqiact8XJ22dW1eGeqqpvx6AUm/aG4WQLPC1Em8Xx5o6fzXlt/pr96PTY8UM0mVhPD9WbiU/hy7QC+D0wk01Ohj5JfzUxnfgVYrl9mL24iLn4gF3Zu6CNaCHrhyQBUILyX"
+ "simmedAt": "2026-11-23T11:50Z",
+ "simCommit": "57df2a7",
+ "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEkU1IXFcUx9+598288844+Lxaub11MY616msH3pvnQNXFjELph7YW6aqL0rE6MkWrFPtBV/YD2lJapIWC02ZjhCQSUczK2WVWZhEYJCRLxVUgs3DGBCOEJMxXNCCuAvlvzrnnnP/vcc6jAIIFEkJwGUD4JQvB96AKPkQL1RwZeFQIyoNmMvDndZCZBOn4sBAkHf/LW6Tj/UKQDPxjCWRxgAwsFYJyd4B0/D1vkYEP6t7DQlBeHSId/81bxPFJknR8tAbEcXGGOG4YpBHH0nQ4ZG2nu+9Nf/znMqwC/ZX+NV242Hjpf9iAx0fWHvySHvIjSHAgy8KRWCzmOI7jRj3HdT3Hi0QdL+a4jue6jus5TnSb6XkW2GfHnF4nVH7S8fhvCMtN9gpyYWZYrVLuEIu4olN1ULPdhFywTzVllnhtYB8CZL7z7ewXyfn07FfiO/UNTYsvqV+9TcqWyEUwB0Q6rl8DwSymfMQJYvVe9qzeW8o+x9tLDWEiLIGPOO6OqmoQYRWiNlshiMYcNJyYJNSw/ZqIKY96RBe12i0IwsxBeYfilqxOeBQMB8gswanVy1F0qHaSdityEcgBko4XsrKOjZYD3hkVpKpXvJ4bltxehtNHeV+9S21CVfmbFX52+0Myd/RyulUciXbV/sFWcYRe+wkkcfznM9VkN6JfsHFNGeQj3tfXKT5Q79GbqqeKeuavPpeh/jz5yDmsu2zigE38yLWKehMZjjPJqclIKjVeIRFDCOeZqZW1kEo0VRKtJfFqZqmsG/H2VEW349ErTBqhuH0A2kvRfOLF8obP5r2x9lx95WZssK+Sja0kBmvFxOcwt3oIPwTGkumJ0CfJr6cm538DWKpdZi9uIy5+JBd2bplDegi64ekAOge65w=="
 }

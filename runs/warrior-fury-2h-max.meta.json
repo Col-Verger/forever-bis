@@ -1,0 +1,29 @@
+{
+ "status": "ok",
+ "budget": "max",
+ "metric": "dps",
+ "value": 970.83,
+ "margin": 1.25,
+ "hps": 9.5,
+ "threat": 789.3,
+ "title": {
+  "ru": "Фури (двуручка)",
+  "en": "Fury (2H)"
+ },
+ "buildName": {
+  "ru": "Fury 2H (стандартный билд)",
+  "en": "Fury 2H (standard build)"
+ },
+ "rotation": {
+  "ru": "Ротация фури с двуручным оружием",
+  "en": "the sim's Fury 2H rotation"
+ },
+ "talents": "30303213032-050500350122110231",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simmedAt": "2026-11-23T12:10Z",
+ "simCommit": "57df2a7",
+ "simLink": "https://www.wowsims.com/forever/warrior/dps/#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"
+}

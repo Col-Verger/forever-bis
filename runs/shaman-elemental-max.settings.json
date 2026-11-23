@@ -72,7 +72,7 @@
      "randomSuffix": 0
     },
     {
-     "id": 13968,
+     "id": 18471,
      "enchant": 0,
      "randomSuffix": 0
     },
@@ -380,16 +380,8 @@
     {
      "action": {
       "condition": {
-       "cmp": {
-        "op": "OpEq",
-        "lhs": {
-         "numberTargets": {}
-        },
-        "rhs": {
-         "const": {
-          "val": "1"
-         }
-        }
+       "variableRef": {
+        "name": "Single Target"
        }
       },
       "castSpell": {
@@ -407,16 +399,8 @@
     {
      "action": {
       "condition": {
-       "cmp": {
-        "op": "OpGt",
-        "lhs": {
-         "numberTargets": {}
-        },
-        "rhs": {
-         "const": {
-          "val": "1"
-         }
-        }
+       "variableRef": {
+        "name": "Multi Target"
        }
       },
       "castSpell": {
@@ -614,33 +598,8 @@
     {
      "action": {
       "condition": {
-       "cmp": {
-        "op": "OpGt",
-        "lhs": {
-         "numberTargets": {}
-        },
-        "rhs": {
-         "const": {
-          "val": "1"
-         }
-        }
-       }
-      },
-      "castSpell": {
-       "spellId": {
-        "spellId": 408345
-       }
-      }
-     }
-    },
-    {
-     "action": {
-      "condition": {
-       "dotIsActive": {
-        "spellId": {
-         "spellId": 10448,
-         "rank": 5
-        }
+       "variableRef": {
+        "name": "Use Cooldowns"
        }
       },
       "castSpell": {
@@ -653,11 +612,8 @@
     {
      "action": {
       "condition": {
-       "dotIsActive": {
-        "spellId": {
-         "spellId": 10448,
-         "rank": 5
-        }
+       "variableRef": {
+        "name": "Use Cooldowns"
        }
       },
       "castSpell": {
@@ -670,11 +626,8 @@
     {
      "action": {
       "condition": {
-       "dotIsActive": {
-        "spellId": {
-         "spellId": 10448,
-         "rank": 5
-        }
+       "variableRef": {
+        "name": "Use Cooldowns"
        }
       },
       "castSpell": {
@@ -703,15 +656,26 @@
           }
          },
          {
-          "not": {
-           "val": {
-            "auraIsActive": {
-             "auraId": {
-              "spellId": 16166
-             },
-             "includeReactionTime": true
+          "or": {
+           "vals": [
+            {
+             "variableRef": {
+              "name": "Multi Target"
+             }
+            },
+            {
+             "not": {
+              "val": {
+               "auraIsActive": {
+                "auraId": {
+                 "spellId": 16166
+                },
+                "includeReactionTime": true
+               }
+              }
+             }
             }
-           }
+           ]
           }
          }
         ]
@@ -720,6 +684,20 @@
       "castSpell": {
        "spellId": {
         "spellId": 10605
+       }
+      }
+     }
+    },
+    {
+     "action": {
+      "condition": {
+       "variableRef": {
+        "name": "Multi Target"
+       }
+      },
+      "castSpell": {
+       "spellId": {
+        "spellId": 408345
        }
       }
      }
@@ -745,6 +723,11 @@
       "condition": {
        "and": {
         "vals": [
+         {
+          "variableRef": {
+           "name": "Single Target"
+          }
+         },
          {
           "auraIsKnown": {
            "auraId": {
@@ -800,6 +783,58 @@
        "spellId": {
         "spellId": 15208
        }
+      }
+     }
+    }
+   ],
+   "valueVariables": [
+    {
+     "name": "Single Target",
+     "value": {
+      "cmp": {
+       "op": "OpEq",
+       "lhs": {
+        "numberTargets": {}
+       },
+       "rhs": {
+        "const": {
+         "val": "1"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Multi Target",
+     "value": {
+      "not": {
+       "val": {
+        "variableRef": {
+         "name": "Single Target"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Use Cooldowns",
+     "value": {
+      "or": {
+       "vals": [
+        {
+         "variableRef": {
+          "name": "Multi Target"
+         }
+        },
+        {
+         "dotIsActive": {
+          "spellId": {
+           "spellId": 10448,
+           "rank": 5
+          }
+         }
+        }
+       ]
       }
      }
     }

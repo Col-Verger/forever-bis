@@ -1,6 +1,6 @@
 {
  "settings": {
-  "iterations": 12500,
+  "iterations": 10000,
   "fixedRngSeed": "20261120"
  },
  "raidBuffs": {
@@ -40,7 +40,7 @@
      "enchant": 904
     },
     {
-     "id": 20058
+     "id": 226969
     },
     {
      "id": 272411,
@@ -55,22 +55,22 @@
      "enchant": 2566
     },
     {
-     "id": 19049,
+     "id": 273909,
      "enchant": 8206
     },
     {
      "id": 272404
     },
     {
-     "id": 22753,
+     "id": 22385,
      "enchant": 2543
     },
     {
-     "id": 279263,
+     "id": 273911,
      "enchant": 1887
     },
     {
-     "id": 21182
+     "id": 284716
     },
     {
      "id": 19325
@@ -1044,6 +1044,11 @@
               }
              ]
             }
+           },
+           {
+            "variableRef": {
+             "name": "Twist has stopped"
+            }
            }
           ]
          }
@@ -1223,6 +1228,24 @@
                  }
                 }
                }
+              },
+              {
+               "or": {
+                "vals": [
+                 {
+                  "auraIsInactive": {
+                   "auraId": {
+                    "spellId": 20920
+                   }
+                  }
+                 },
+                 {
+                  "variableRef": {
+                   "name": "Judgement outlasts the swap"
+                  }
+                 }
+                ]
+               }
               }
              ]
             }
@@ -1266,6 +1289,100 @@
          }
         }
        }
+      }
+     }
+    },
+    {
+     "name": "Judgement outlasts the swap",
+     "value": {
+      "cmp": {
+       "op": "OpGe",
+       "lhs": {
+        "spellTimeToReady": {
+         "spellId": {
+          "spellId": 20271
+         }
+        }
+       },
+       "rhs": {
+        "math": {
+         "op": "OpAdd",
+         "lhs": {
+          "autoTimeToNext": {
+           "autoType": "MainHandAuto"
+          }
+         },
+         "rhs": {
+          "spellGcdHastedDuration": {
+           "spellId": {
+            "spellId": 20293,
+            "rank": 8
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Twist has stopped",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "auraIsInactive": {
+          "auraId": {
+           "spellId": 20920
+          },
+          "includeReactionTime": true
+         }
+        },
+        {
+         "auraIsInactive": {
+          "auraId": {
+           "spellId": 20293
+          },
+          "includeReactionTime": true
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpLt",
+          "lhs": {
+           "auraNumStacks": {
+            "auraId": {
+             "spellId": 1311703
+            },
+            "includeReactionTime": true
+           }
+          },
+          "rhs": {
+           "variableRef": {
+            "name": "Max Seal of Command Stacks"
+           }
+          }
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpLt",
+          "lhs": {
+           "auraNumStacks": {
+            "auraId": {
+             "spellId": 1311704
+            },
+            "includeReactionTime": true
+           }
+          },
+          "rhs": {
+           "variableRef": {
+            "name": "Max Seal of Righteousness Stacks"
+           }
+          }
+         }
+        }
+       ]
       }
      }
     }

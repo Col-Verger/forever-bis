@@ -1,0 +1,29 @@
+{
+ "status": "ok",
+ "budget": "cheap",
+ "metric": "dps",
+ "value": 912.57,
+ "margin": 0.82,
+ "hps": 0,
+ "threat": 827.6,
+ "title": {
+  "ru": "Аркан-фаер",
+  "en": "Arcane Fire"
+ },
+ "buildName": {
+  "ru": "Arcane Fire (билд симулятора)",
+  "en": "Arcane Fire (the sim's build)"
+ },
+ "rotation": {
+  "ru": "Ротация Arcane Fire из симулятора",
+  "en": "the sim's Arcane Fire rotation"
+ },
+ "talents": "050205203100311531-525000012001-003",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simmedAt": "2026-11-23T11:33Z",
+ "simCommit": "57df2a7",
+ "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEUl1oI1UUnnNnmjlzQmx6t5brXdHZrLHbWaJ3Jhulu0KyBXXdVVsWn1fjNl2D7a60RcSnGgUVUYqK0NinWFCLf8yD0IIv9aU+FELx59FSfBAM0rRI64vITCZNCsUnYc/L3Pvd73znnO8MxRGSIMCGzwB4TDAbXgFZNRGTKGfIxP1GQuycIBNf/xpEtUAGHjQSZODH9STpWHmBTGw2EqJ5gUzcbSTEFyNk4Nv1JJn4Vzt1r41/VE+Sgd9/BWTgt6HA/BTFsDkp/rxAGum4O5myk+vlM39Mjr1bg2Wg98pvlhuf9H66CN/AP/vJLXijPBJDEKBglZ1WOeWpnKeyrlJZ181l3UzOyymllOsp5WaUyq4zo87i22yxhx4ilDEycKX5ZMrx2SDq/KTPBAK3qix4qByMSatqRpyASyzj0n1RXuVgLCV8difq3QkRiz8sc3SWD5FwBhB4fA2QDGyuCAGyh3SCLCVScbJ2IUj8+32Q0Zdb0gwY+MsoPy1PUZ/TiwZnz2vSpB7SXZXehjhZj75863pxtnzrJrflPSSloLgfltgISpBVg6ih8xofkP1HXkP530Z5StpdRO8EtQq/c60zIJ+SL1JRPksDTn8w51rI/m5FtIeQjgjw1UM8suLDn67QEB/sHjKAjpc5J6N3TrJT+pJ8jB5xzmMsnN7z2YMIPDTBU2mZ8tm9qPM+n90R+HNZaznvzkikGBnuA9n0oWrb0l9Hhe7UoNu9J+TjdDeXrT79sK3V9afI2jSitXuDnd+ETlZAkI4fXJPBWmKdtQwPp/lleYnOyqGW1GF+61qD9rVT5D+0fmfjO2z8NV0L41yhqvdOFW+UMsXp68WbpYnydCkUJIaQqjNLC2JuotAXHrT+wl3VhSB+yJ+aCOPnvPc5E6add3ZAuy0xW/h/9a4cr3f/l0fwpY3cxeHwdHWpcDECC8/BS8t78Gr8arE8bj9TnL5Rmn0LYCFyZivvIM4/LeY2f7RGDBvOwL8DAOf3340="
+}

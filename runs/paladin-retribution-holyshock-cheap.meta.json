@@ -1,0 +1,29 @@
+{
+ "status": "ok",
+ "budget": "cheap",
+ "metric": "dps",
+ "value": 868.32,
+ "margin": 0.57,
+ "hps": 22.9,
+ "threat": 717.2,
+ "title": {
+  "ru": "Ретри (Holy Shock)",
+  "en": "Retribution (Holy Shock)"
+ },
+ "buildName": {
+  "ru": "Holy Shock",
+  "en": "Holy Shock"
+ },
+ "rotation": {
+  "ru": "Ротация симулятора: Holy Shock",
+  "en": "the sim's Holy Shock rotation"
+ },
+ "talents": "05025210221001--0523330110130035",
+ "iterations": 10000,
+ "seed": 20261120,
+ "searchIterations": 2500,
+ "warnings": [],
+ "simmedAt": "2026-11-23T12:49Z",
+ "simCommit": "57df2a7",
+ "simLink": "https://www.wowsims.com/forever/paladin/retribution/#eNrEV19sU+Ub3nt6evr1LeV037rt7Bsb53d+IvOYwekpjQwiKxsoiDPNJpdGjuxsK+lW0tNB8MLMxRiDBjXGCUOmscSQBuEKshGJ3hCRxGRBYgKRBKpGvSDCjMY0MTE97bp2axkxJH4XTfP++97ne5/3aYp+Aj6QQIY9MAT7YQzgYwDKScA+rCe8j2MHkCdnxgFd5Me3QZoMI0+ujwPy5PisD13kxB2v9MNKdJGr4yC97kcX+f7NWmnGjzz51s46Ow7S6S50kXT+C0/+nsilT8z6kCfvfpH7PDfrQ4Hcq5feC2MN8iR1DpSw73K07U5M+/OlyN2WSXD/vHWib+bFm0cgDVL6FGRS4lvR2ynxt5R4PSUeif6UEk8bX8IfLbfgtehdmDkldgl5aBc4WQtpekgPaLoe0LRAe7sW0oPBoBYIaIGgpgVDlzl+luMy3Pt12Iwikqu8Ex2+X3ceBo5wCkEB+fagZuFabM6AhA1b9yajB4ykKRuWFR0cMftlYzRhFAJ1zUIZ/WmoRTErrECMjMZicsIYGTRLIrbjRlyttGBzVpCwYYdhLdTaN9o/aA6bI8kM+JF2G1ZStsyYuTdp9suWacQUN7rQ2R5YF7LwKexYpkQTNtollvpK6lA/oxkQ0dsTP2DKybg8bMZMkz7CFGxVVxGBcptqmD8r1KK4zYwZh+QeY188IXdvszbVUJF5M4BIerojsnXQ2E+RESYgT85OAV3BkBEU2pzk8xTQIAuglBXqsa5vKD4a65cT5kDCtIZsXFXgUg9zMxc62wi5GaGNrB49n0CuJE/OXAH7or9OLFxkW2kXC+MGpmOT2kiAeia5nMtBzl60E5DTLKxX64iDOudcHHEwezDaOt1ixcDivQK5EpEc6ppqcy8GOsnFiLq26nsXWxTItSlQkxXBBth6/H9WkLF1pyWPWtGRQbnPNGJyfEDujQ4OJc34qDViWvk+Cbk0BfRx9hi2ZAWG0pKU7vjwsDHSX5jAdArUa9ziIX8KLAX4BA3dl0jYoPiRZjgRvcNl6UOLDfVpoOjLCl709OQMeepTb8KD7jkyz4sFhjRWm/vKxArEOVIc/TFgE4BP0s3LLg5KSgP6M1wtimW9yTrdvdRUpWEx4UXPHFkgbymRF/WmRkrorzAZm7JCA/oLJM9Z5YFEfFju6Y7kNAWozFqxMSv4kZbGJOPzEZyuVANHba4mE6OmvgabdltmZYKUhK3GutKwAilKApqWrDUtbInuL9WvvFUP6f7yp3KiAyGkb0FPCRq6nrYvSCniDcGFDnI+KoG9evyi1QtY+rOVX4xuoHphPiVudB52cYTDRrWeOClJQ/6e3CKiY4Nm6S9Uelv6NN1erRbYtfjFtYK6hbWqSJyUe6amYApZ+m1AukjE+uK99AqwrwDdN4QcvS9NAc4APQ8oqQ2Ep+4LUDDn6wQ0q6CvnjQUycU8k67idpf785JX5m9Rm4lAMQ3zXCx3b2YdKNEGdCsudKYJ5yMLX7ny5JzOlSVXxthdjnE6VRHjdOqBMNqidB+MeX9VjHn3v8RoJ+tHoeKPER0D9gqG6ZYHUuPyXS7hA26iG5cR52q53fpxWO5eeogdRFHxoidjCxWQDz4CbM0KzfdRBtxGu1BR5GXjVims8GtdQT70aHVItIfuKm+papkHaeQXrv9VR419OsIXgEcOa5SjDrdtGRsI1+Z9/nDT5LHc+brzfwP2+a5Tv8dJLrlTneZq/pOTDD/cersq13v0szL7yW9CWx/WjR32Z+/J8HzF8B7Yn/4dXvb0GtF++XkjMWgm3wA4Bnn3rU6VkHeek8auXnN3rcz9s2gDDTZCGHbAPwMAIqTIkA=="
+}

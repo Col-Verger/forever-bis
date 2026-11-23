@@ -11,12 +11,12 @@
      "randomSuffix": 0
     },
     {
-     "id": 18404,
+     "id": 15411,
      "enchant": 904,
      "randomSuffix": 0
     },
     {
-     "id": 15058,
+     "id": 226826,
      "enchant": 0,
      "randomSuffix": 0
     },
@@ -26,7 +26,7 @@
      "randomSuffix": 0
     },
     {
-     "id": 226825,
+     "id": 252483,
      "enchant": 1891,
      "randomSuffix": 0
     },
@@ -36,7 +36,7 @@
      "randomSuffix": 0
     },
     {
-     "id": 21278,
+     "id": 15063,
      "enchant": 8206,
      "randomSuffix": 0
     },
@@ -46,7 +46,7 @@
      "randomSuffix": 0
     },
     {
-     "id": 15057,
+     "id": 15062,
      "enchant": 1508,
      "randomSuffix": 0
     },
@@ -188,13 +188,89 @@
        "and": {
         "vals": [
          {
-          "variableRef": {
-           "name": "Use Vanish for Damage"
-          }
-         },
-         {
-          "variableRef": {
-           "name": "Use Ambush Opener"
+          "or": {
+           "vals": [
+            {
+             "and": {
+              "vals": [
+               {
+                "variableRef": {
+                 "name": "Start In Stealth"
+                }
+               },
+               {
+                "variableRef": {
+                 "name": "Use Ambush Opener"
+                }
+               },
+               {
+                "cmp": {
+                 "op": "OpEq",
+                 "lhs": {
+                  "currentTime": {}
+                 },
+                 "rhs": {
+                  "const": {
+                   "val": "0s"
+                  }
+                 }
+                }
+               }
+              ]
+             }
+            },
+            {
+             "and": {
+              "vals": [
+               {
+                "variableRef": {
+                 "name": "Use Vanish for Damage"
+                }
+               },
+               {
+                "variableRef": {
+                 "name": "Use Ambush when Vanishing"
+                }
+               },
+               {
+                "or": {
+                 "vals": [
+                  {
+                   "not": {
+                    "val": {
+                     "talentIsKnown": {
+                      "talentId": {
+                       "spellId": 14278,
+                       "rank": 1
+                      }
+                     }
+                    }
+                   }
+                  },
+                  {
+                   "cmp": {
+                    "op": "OpGt",
+                    "lhs": {
+                     "dotRemainingTime": {
+                      "spellId": {
+                       "spellId": 11290
+                      }
+                     }
+                    },
+                    "rhs": {
+                     "const": {
+                      "val": "7s"
+                     }
+                    }
+                   }
+                  }
+                 ]
+                }
+               }
+              ]
+             }
+            }
+           ]
           }
          },
          {
@@ -218,17 +294,38 @@
        "and": {
         "vals": [
          {
-          "not": {
-           "val": {
-            "variableRef": {
-             "name": "Use Ambush Opener"
+          "or": {
+           "vals": [
+            {
+             "not": {
+              "val": {
+               "variableRef": {
+                "name": "Use Ambush Opener"
+               }
+              }
+             }
+            },
+            {
+             "and": {
+              "vals": [
+               {
+                "variableRef": {
+                 "name": "Use Vanish for Damage"
+                }
+               },
+               {
+                "not": {
+                 "val": {
+                  "variableRef": {
+                   "name": "Use Ambush when Vanishing"
+                  }
+                 }
+                }
+               }
+              ]
+             }
             }
-           }
-          }
-         },
-         {
-          "variableRef": {
-           "name": "Use Vanish for Damage"
+           ]
           }
          },
          {
@@ -260,141 +357,16 @@
     {
      "action": {
       "condition": {
-       "and": {
+       "or": {
         "vals": [
          {
-          "not": {
-           "val": {
-            "dotIsActive": {
-             "spellId": {
-              "spellId": 11290
-             }
-            }
-           }
-          }
-         },
-         {
-          "cmp": {
-           "op": "OpGe",
-           "lhs": {
-            "currentEnergy": {}
-           },
-           "rhs": {
-            "spellCurrentCost": {
-             "spellId": {
-              "spellId": 11290
-             }
-            }
-           }
-          }
-         },
-         {
-          "not": {
-           "val": {
-            "variableRef": {
-             "name": "Use Ambush Opener"
-            }
-           }
+          "variableRef": {
+           "name": "Vanish - Garrote"
           }
          },
          {
           "variableRef": {
-           "name": "Use Vanish for Damage"
-          }
-         },
-         {
-          "variableRef": {
-           "name": "Current Points less than 5"
-          }
-         },
-         {
-          "not": {
-           "val": {
-            "variableRef": {
-             "name": "SnD Fall Imminent"
-            }
-           }
-          }
-         },
-         {
-          "cmp": {
-           "op": "OpGe",
-           "lhs": {
-            "currentTime": {}
-           },
-           "rhs": {
-            "const": {
-             "val": "1s"
-            }
-           }
-          }
-         }
-        ]
-       }
-      },
-      "castSpell": {
-       "spellId": {
-        "spellId": 1857,
-        "rank": 2
-       }
-      }
-     }
-    },
-    {
-     "action": {
-      "condition": {
-       "and": {
-        "vals": [
-         {
-          "cmp": {
-           "op": "OpGe",
-           "lhs": {
-            "currentEnergy": {}
-           },
-           "rhs": {
-            "spellCurrentCost": {
-             "spellId": {
-              "spellId": 11269
-             }
-            }
-           }
-          }
-         },
-         {
-          "variableRef": {
-           "name": "Use Ambush Opener"
-          }
-         },
-         {
-          "variableRef": {
-           "name": "Use Vanish for Damage"
-          }
-         },
-         {
-          "variableRef": {
-           "name": "Current Points less than 5"
-          }
-         },
-         {
-          "not": {
-           "val": {
-            "variableRef": {
-             "name": "SnD Fall Imminent"
-            }
-           }
-          }
-         },
-         {
-          "cmp": {
-           "op": "OpGe",
-           "lhs": {
-            "currentTime": {}
-           },
-           "rhs": {
-            "const": {
-             "val": "1s"
-            }
-           }
+           "name": "Vanish - Ambush"
           }
          }
         ]
@@ -421,6 +393,63 @@
               "spellId": 1857,
               "rank": 2
              }
+            }
+           }
+          }
+         },
+         {
+          "not": {
+           "val": {
+            "spellIsReady": {
+             "spellId": {
+              "spellId": 14278
+             }
+            }
+           }
+          }
+         },
+         {
+          "not": {
+           "val": {
+            "spellIsReady": {
+             "spellId": {
+              "spellId": 14183
+             }
+            }
+           }
+          }
+         },
+         {
+          "not": {
+           "val": {
+            "spellIsReady": {
+             "spellId": {
+              "spellId": 14177
+             }
+            }
+           }
+          }
+         },
+         {
+          "not": {
+           "val": {
+            "spellIsReady": {
+             "spellId": {
+              "spellId": 13877
+             }
+            }
+           }
+          }
+         },
+         {
+          "cmp": {
+           "op": "OpLe",
+           "lhs": {
+            "currentEnergy": {}
+           },
+           "rhs": {
+            "const": {
+             "val": "85"
             }
            }
           }
@@ -1221,16 +1250,49 @@
        "and": {
         "vals": [
          {
-          "cmp": {
-           "op": "OpEq",
-           "lhs": {
-            "currentComboPoints": {}
-           },
-           "rhs": {
-            "const": {
-             "val": "5"
+          "or": {
+           "vals": [
+            {
+             "cmp": {
+              "op": "OpEq",
+              "lhs": {
+               "currentComboPoints": {}
+              },
+              "rhs": {
+               "const": {
+                "val": "5"
+               }
+              }
+             }
+            },
+            {
+             "and": {
+              "vals": [
+               {
+                "talentIsKnown": {
+                 "talentId": {
+                  "spellId": 399956,
+                  "rank": 1
+                 }
+                }
+               },
+               {
+                "cmp": {
+                 "op": "OpGe",
+                 "lhs": {
+                  "currentComboPoints": {}
+                 },
+                 "rhs": {
+                  "const": {
+                   "val": "4"
+                  }
+                 }
+                }
+               }
+              ]
+             }
             }
-           }
+           ]
           }
          },
          {
@@ -1314,7 +1376,7 @@
               "vals": [
                {
                 "cmp": {
-                 "op": "OpEq",
+                 "op": "OpGe",
                  "lhs": {
                   "currentComboPoints": {}
                  },
@@ -1326,22 +1388,8 @@
                 }
                },
                {
-                "or": {
-                 "vals": [
-                  {
-                   "spellIsKnown": {
-                    "spellId": {
-                     "spellId": 1241584,
-                     "rank": 3
-                    }
-                   }
-                  },
-                  {
-                   "variableRef": {
-                    "name": "Use Backstab"
-                   }
-                  }
-                 ]
+                "variableRef": {
+                 "name": "Use Backstab"
                 }
                }
               ]
@@ -1364,8 +1412,22 @@
                 }
                },
                {
-                "variableRef": {
-                 "name": "Fight About to End"
+                "or": {
+                 "vals": [
+                  {
+                   "spellIsKnown": {
+                    "spellId": {
+                     "spellId": 1241584,
+                     "rank": 3
+                    }
+                   }
+                  },
+                  {
+                   "variableRef": {
+                    "name": "Fight About to End"
+                   }
+                  }
+                 ]
                 }
                }
               ]
@@ -1429,6 +1491,15 @@
             }
            ]
           }
+         },
+         {
+          "not": {
+           "val": {
+            "variableRef": {
+             "name": "SnD Fall Imminent"
+            }
+           }
+          }
          }
         ]
        }
@@ -1469,20 +1540,71 @@
           }
          },
          {
-          "cmp": {
-           "op": "OpLe",
-           "lhs": {
-            "dotRemainingTime": {
-             "spellId": {
-              "spellId": 11290
+          "or": {
+           "vals": [
+            {
+             "cmp": {
+              "op": "OpLe",
+              "lhs": {
+               "dotRemainingTime": {
+                "spellId": {
+                 "spellId": 11290,
+                 "rank": 6
+                }
+               }
+              },
+              "rhs": {
+               "const": {
+                "val": "4s"
+               }
+              }
+             }
+            },
+            {
+             "and": {
+              "vals": [
+               {
+                "cmp": {
+                 "op": "OpGe",
+                 "lhs": {
+                  "dotRemainingTime": {
+                   "spellId": {
+                    "spellId": 11290,
+                    "rank": 6
+                   }
+                  }
+                 },
+                 "rhs": {
+                  "const": {
+                   "val": "21s"
+                  }
+                 }
+                }
+               },
+               {
+                "cmp": {
+                 "op": "OpGe",
+                 "lhs": {
+                  "auraRemainingTime": {
+                   "sourceUnit": {
+                    "type": "CurrentTarget"
+                   },
+                   "auraId": {
+                    "spellId": 16511
+                   }
+                  }
+                 },
+                 "rhs": {
+                  "const": {
+                   "val": "2s"
+                  }
+                 }
+                }
+               }
+              ]
              }
             }
-           },
-           "rhs": {
-            "const": {
-             "val": "4s"
-            }
-           }
+           ]
           }
          }
         ]
@@ -1859,20 +1981,8 @@
           "or": {
            "vals": [
             {
-             "cmp": {
-              "op": "OpGe",
-              "lhs": {
-               "dotRemainingTime": {
-                "spellId": {
-                 "spellId": 11290
-                }
-               }
-              },
-              "rhs": {
-               "const": {
-                "val": "8s"
-               }
-              }
+             "variableRef": {
+              "name": "Hemo+Ghostly - Check for Timers"
              }
             },
             {
@@ -2097,6 +2207,14 @@
    ],
    "valueVariables": [
     {
+     "name": "Use Backstab",
+     "value": {
+      "const": {
+       "val": "false"
+      }
+     }
+    },
+    {
      "name": "Start In Stealth",
      "value": {
       "const": {
@@ -2105,7 +2223,7 @@
      }
     },
     {
-     "name": "Use Backstab",
+     "name": "Use Ambush Opener",
      "value": {
       "const": {
        "val": "false"
@@ -2129,10 +2247,24 @@
      }
     },
     {
-     "name": "Use Ambush Opener",
+     "name": "Use Ambush when Vanishing",
      "value": {
-      "const": {
-       "val": "false"
+      "and": {
+       "vals": [
+        {
+         "const": {
+          "val": "true"
+         }
+        },
+        {
+         "talentIsKnown": {
+          "talentId": {
+           "spellId": 14079,
+           "rank": 1
+          }
+         }
+        }
+       ]
       }
      }
     },
@@ -2596,6 +2728,364 @@
         "spellId": 14082,
         "rank": 2
        }
+      }
+     }
+    },
+    {
+     "name": "Ghostly - Use for Ambush",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "dotRemainingTime": {
+            "spellId": {
+             "spellId": 11290,
+             "rank": 6
+            }
+           }
+          },
+          "rhs": {
+           "spellTimeToReady": {
+            "spellId": {
+             "spellId": 14278
+            }
+           }
+          }
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "currentEnergy": {}
+          },
+          "rhs": {
+           "spellCurrentCost": {
+            "spellId": {
+             "spellId": 11269,
+             "rank": 6
+            }
+           }
+          }
+         }
+        },
+        {
+         "not": {
+          "val": {
+           "variableRef": {
+            "name": "Use Ambush Opener"
+           }
+          }
+         }
+        },
+        {
+         "variableRef": {
+          "name": "Use Vanish for Damage"
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpLe",
+          "lhs": {
+           "currentComboPoints": {}
+          },
+          "rhs": {
+           "const": {
+            "val": "3"
+           }
+          }
+         }
+        },
+        {
+         "not": {
+          "val": {
+           "variableRef": {
+            "name": "SnD Fall Imminent"
+           }
+          }
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "currentTime": {}
+          },
+          "rhs": {
+           "const": {
+            "val": "1s"
+           }
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Hemo+Ghostly - Check for Timers",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "dotRemainingTime": {
+            "spellId": {
+             "spellId": 11290,
+             "rank": 6
+            }
+           }
+          },
+          "rhs": {
+           "const": {
+            "val": "8s"
+           }
+          }
+         }
+        },
+        {
+         "auraIsInactive": {
+          "auraId": {
+           "spellId": 1329326
+          },
+          "includeReactionTime": true
+         }
+        },
+        {
+         "or": {
+          "vals": [
+           {
+            "not": {
+             "val": {
+              "spellIsReady": {
+               "spellId": {
+                "spellId": 14278
+               }
+              }
+             }
+            }
+           },
+           {
+            "and": {
+             "vals": [
+              {
+               "cmp": {
+                "op": "OpGt",
+                "lhs": {
+                 "dotRemainingTime": {
+                  "spellId": {
+                   "spellId": 11290,
+                   "rank": 6
+                  }
+                 }
+                },
+                "rhs": {
+                 "const": {
+                  "val": "4s"
+                 }
+                }
+               }
+              },
+              {
+               "cmp": {
+                "op": "OpLt",
+                "lhs": {
+                 "dotRemainingTime": {
+                  "spellId": {
+                   "spellId": 11290,
+                   "rank": 6
+                  }
+                 }
+                },
+                "rhs": {
+                 "const": {
+                  "val": "21s"
+                 }
+                }
+               }
+              }
+             ]
+            }
+           }
+          ]
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Vanish - Garrote",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "not": {
+          "val": {
+           "dotIsActive": {
+            "spellId": {
+             "spellId": 11290
+            }
+           }
+          }
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "currentEnergy": {}
+          },
+          "rhs": {
+           "spellCurrentCost": {
+            "spellId": {
+             "spellId": 11290
+            }
+           }
+          }
+         }
+        },
+        {
+         "not": {
+          "val": {
+           "variableRef": {
+            "name": "Use Ambush Opener"
+           }
+          }
+         }
+        },
+        {
+         "variableRef": {
+          "name": "Use Vanish for Damage"
+         }
+        },
+        {
+         "variableRef": {
+          "name": "Current Points less than 5"
+         }
+        },
+        {
+         "not": {
+          "val": {
+           "variableRef": {
+            "name": "SnD Fall Imminent"
+           }
+          }
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "currentTime": {}
+          },
+          "rhs": {
+           "const": {
+            "val": "1s"
+           }
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Vanish - Ambush",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "dotRemainingTime": {
+            "spellId": {
+             "spellId": 11290,
+             "rank": 6
+            }
+           }
+          },
+          "rhs": {
+           "spellTimeToReady": {
+            "spellId": {
+             "spellId": 14278
+            }
+           }
+          }
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "currentEnergy": {}
+          },
+          "rhs": {
+           "spellCurrentCost": {
+            "spellId": {
+             "spellId": 11269,
+             "rank": 6
+            }
+           }
+          }
+         }
+        },
+        {
+         "not": {
+          "val": {
+           "variableRef": {
+            "name": "Use Ambush Opener"
+           }
+          }
+         }
+        },
+        {
+         "variableRef": {
+          "name": "Use Vanish for Damage"
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpLe",
+          "lhs": {
+           "currentComboPoints": {}
+          },
+          "rhs": {
+           "const": {
+            "val": "3"
+           }
+          }
+         }
+        },
+        {
+         "not": {
+          "val": {
+           "variableRef": {
+            "name": "SnD Fall Imminent"
+           }
+          }
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "currentTime": {}
+          },
+          "rhs": {
+           "const": {
+            "val": "1s"
+           }
+          }
+         }
+        }
+       ]
       }
      }
     }

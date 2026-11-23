@@ -1289,7 +1289,7 @@
     "id": 31146,
     "name": "Raid Target",
     "level": 63,
-    "mobType": "MobTypeDragonkin",
+    "mobType": "MobTypeMechanical",
     "stats": [
      0,
      0,

@@ -2,58 +2,58 @@
  "player": {
   "apiVersion": 2,
   "name": "shaman-enhancement",
-  "race": "RaceWindshaperSkyborne",
+  "race": "RaceDwarf",
   "class": "ClassShaman",
   "equipment": {
    "items": [
     {
-     "id": 252605,
-     "enchant": 1509,
+     "id": 227021,
+     "enchant": 2543,
      "randomSuffix": 0
     },
     {
-     "id": 18404,
-     "enchant": 8218,
+     "id": 15411,
+     "enchant": 856,
      "randomSuffix": 0
     },
     {
-     "id": 19050,
+     "id": 227003,
      "enchant": 0,
      "randomSuffix": 0
     },
     {
      "id": 272411,
-     "enchant": 849,
+     "enchant": 7667,
      "randomSuffix": 0
     },
     {
-     "id": 21183,
-     "enchant": 1893,
+     "id": 227024,
+     "enchant": 1891,
      "randomSuffix": 0
     },
     {
-     "id": 21186,
-     "enchant": 1901,
+     "id": 227017,
+     "enchant": 1885,
      "randomSuffix": 0
     },
     {
-     "id": 20133,
-     "enchant": 8213,
+     "id": 227022,
+     "enchant": 931,
      "randomSuffix": 0
     },
     {
-     "id": 18405,
+     "id": 227018,
      "enchant": 0,
      "randomSuffix": 0
     },
     {
-     "id": 252486,
-     "enchant": 1509,
+     "id": 252606,
+     "enchant": 2543,
      "randomSuffix": 0
     },
     {
-     "id": 227007,
-     "enchant": 8492,
+     "id": 273336,
+     "enchant": 1887,
      "randomSuffix": 0
     },
     {
@@ -67,18 +67,18 @@
      "randomSuffix": 0
     },
     {
-     "id": 19289,
+     "id": 22321,
      "enchant": 0,
      "randomSuffix": 0
     },
     {
-     "id": 249469,
+     "id": 13965,
      "enchant": 0,
      "randomSuffix": 0
     },
     {
-     "id": 9449,
-     "enchant": 8211,
+     "id": 13285,
+     "enchant": 1900,
      "randomSuffix": 0
     },
     {},
@@ -91,9 +91,9 @@
   },
   "consumables": {
    "flaskId": 13512,
-   "foodId": 13935,
+   "foodId": 20452,
    "conjuredId": 12662,
-   "mhImbueId": 20750,
+   "mhImbueId": 12404,
    "potions": [
     1072,
     2455,
@@ -150,7 +150,7 @@
    ],
    "extraIds": [
     12217,
-    8423
+    8410
    ],
    "elixirIds": [
     250343,
@@ -162,7 +162,6 @@
     250341,
     12820
    ],
-   "swapMhImbueId": 20750,
    "resourcePotId": 13444
   },
   "bonusStats": {
@@ -248,12 +247,9 @@
     0,
     0,
     0,
-    0,
-    0,
     0
    ]
   },
-  "enableItemSwap": true,
   "itemSwap": {
    "items": [
     {},
@@ -271,8 +267,8 @@
     {},
     {},
     {
-     "id": 250617,
-     "enchant": 8211
+     "id": 19323,
+     "enchant": 1900
     },
     {},
     {}
@@ -360,8 +356,6 @@
      0,
      0,
      0,
-     0,
-     0,
      0
     ]
    }
@@ -374,12 +368,11 @@
   "enhancementShaman": {
    "options": {
     "classOptions": {
-     "imbueMh": "FlametongueWeapon",
-     "imbueMhSwap": "FlametongueWeapon"
+     "imbueMh": "WindfuryWeapon"
     }
    }
   },
-  "talentsString": "053303102-053030310051002251-03",
+  "talentsString": "053303102-053030310051012251-02",
   "profession1": "Engineering",
   "profession2": "Leatherworking",
   "cooldowns": {},
@@ -740,6 +733,16 @@
       },
       {
        "action": {
+        "castSpell": {
+         "spellId": {
+          "spellId": 10414,
+          "rank": 7
+         }
+        }
+       }
+      },
+      {
+       "action": {
         "condition": {
          "and": {
           "vals": [
@@ -775,16 +778,6 @@
          "spellId": {
           "spellId": 15208,
           "rank": 10
-         }
-        }
-       }
-      },
-      {
-       "action": {
-        "castSpell": {
-         "spellId": {
-          "spellId": 10414,
-          "rank": 7
          }
         }
        }

@@ -2,26 +2,28 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 791.53,
+ "value": 795.56,
  "margin": 0.77,
  "hps": 0,
- "threat": 809.6,
+ "threat": 814.7,
  "title": {
   "ru": "Баланс (Мункин)",
   "en": "Balance (Moonkin)"
  },
  "buildName": {
-  "ru": "Moonkin (defaults сима)",
-  "en": "Moonkin (the sim's defaults)"
+  "ru": "Moonkin (стандартный билд)",
+  "en": "Moonkin (standard build)"
  },
  "rotation": {
-  "ru": "Default APL из репозитория сима",
-  "en": "the repo's Default APL"
+  "ru": "Стандартная ротация симулятора",
+  "en": "the sim's default rotation"
  },
  "talents": "5232220115501351--5053",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
+ "simmedAt": "2026-11-23T11:23Z",
+ "simCommit": "57df2a7",
  "simLink": "https://www.wowsims.com/forever/druid/balance/#eNrEkE9oE1EQxnfevmRnJ8ZsnyW8PgRjoDEGIptNl6o9ZJujWi1F8WrStBIoIm299FRBsBdFQZRWL5peLOpBRMWDgl6qIASpRfRgrYiHYEkVPXiS3cRDxaPgd9hv+O38eTOECBZISIBgElSNY8iKqCky8HUjKptbyMDVKyDnPOL4thEljlfrFhn4phGVt4pk4syg9XhYrveRidcO+eH7PuK4FKS+a0TJwOVWKscX14E4Xq5bxPF+8H1QtyiM62NyrY804ninbiW3WYvV9Jcx+0d58NwNWIDI+ernWuxDLfapFluBM9UiR5DwiMVdJ+84jp3Lua6dy7u5bNa13fwi0+ssssruMUpRF1mZzagLfRU0FSKdoMc3fDiQNMmgUDa3y50QXLG9mhhWJTqqjtBOsYNExsKQYPs0hRQmnt9tT1BHJoa6YGVNGRQivdfuprRI/Yl77O4AtaoDlLcnVJg4rn0EEVedFPFnO/4zGgdUy4RUcdqUJELHz7z4DFTbxValgiXCG5bw//48C6KoPOoVLpl3wUdPvktKqxTFM50YEubT37BVlmuN+Ar+0EsDqmXCVEb7KFJvssppXQvU483p0cr4qWolWy6NlU4Mj5TDihMjLVlnpuZretTrCAKt0+uam/X1vLB9NNBywbnJpJEoZJqg/RdNev+23/6/90vd3sDnX7r9e4JoaN7rb0PvGJxc+AZTkaFStZI4XBo/PjI5AzDbvsxKIYN44aCcfrVkFnkC0vBrAH0Nj78="
 }

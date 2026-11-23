@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 723.31,
- "margin": 0.67,
+ "value": 783.45,
+ "margin": 0.72,
  "hps": 0,
- "threat": 636.3,
+ "threat": 688.7,
  "title": {
   "ru": "Аркейн",
   "en": "Arcane"
@@ -15,13 +15,15 @@
   "en": "Arcane"
  },
  "rotation": {
-  "ru": "Arcane (APL сима)",
-  "en": "Arcane (the sim's APL)"
+  "ru": "Аркан (ротация симулятора)",
+  "en": "Arcane (the sim's rotation)"
  },
  "talents": "050205223101311531-5500003-003",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEkE1IFH8Yx/f5zbjzzDMsrqP/P7//zz8ybpm2sTCz2wbmYUcherFSpLM0+daCL2ES0cm2oCIKoRDcOsQmVJYUe9NTRzsIi/RyTKRD0B58IfQQFTOOrkJ0Cvqenpfv9zPze0hDCAMHA54C6EHODLgM4lEZYhjFRVJwvRjiy5Wk4LWXwLM2ybhRDJGMDwphkjBznhRcKYb4ShMpuFoM8Y9NJOOtQpgU/LoVXSuG+IsWknHcC/1wSMZv00ASjg2QhK9d3tq426/2R4zwXLrhS3/7nRxMAd1N30gXH5c/eQiv4Pt6eBGup1uCCBxMmGU1ZtKMm8l4PGGZVsKykgkrlkyapmkmYqaZmGNygWlL7LlEhwhFkGScWTkZieZZPUp6dZ5xBF3NMneR2WgXalbxPa6XWMyivX4us9Ee4Xn2D0o7A75L3yNqqSJajrLOzgWEQmUkWWbdEmikHrk01OWMpIcGdUPUkBCctDwgyTg/wzmQmgMfdjig/yuqdm1FGUn4qU2PCGOHMV5Jire53Vn6OZ1EqVbFpuFD2/b4/rtWLkVzsPOHjouj9L8uKBTRSM17+Nm5U6QuyP4V4vWlq1F1BjhJeK9TuC8Nll7a2FinnxDH6IDYv4nazm+2OdhqSx/5Desz615m3VelgKeDdlbSBpy+npgz3OUM9ngwYgiRAlMDrkZ77QqvCFTZ/2UnXL1J1fZ6ep+KP2NcMVLRZQj8FY3Yf5bX+mvevuld88n5ZHOjV3VM2s3+0D4LF6bW4IrW4aS7jTPOcF/PyE2ACf8yi6ko4thpPrrwVm2RDWiAnwMAcUe2ew=="
+ "simmedAt": "2026-11-23T11:23Z",
+ "simCommit": "57df2a7",
+ "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEkN1LFF8Yx+c5M+488wyL6+jvx+kYMm6ZtrEws9sG5sWOQvRipUjX0uRbC76ESERXtgUVUQhF4ObVJlSWFHunf4FdCIv0cplIF0F74SqhF1Gx4+gqRFdB36vnPM/3+znnPKQjhICDCc8BjABnJlwDMVWBGEIxQipuFIJ8tZpUvPkaeMYhBTcLQVLwST5EMqYvk4rFQpAXW0jFtUKQf2ohBe/mQ6Tit+3oeiHIX7WRgo+90E+XFPw+CyTjxBDJWBwkiWRcGwyboYVU09fBzvtZmAF6kLqdKjytfDYFb+DHRmgZbqXaAggcLJhndVbCilmJWCxuW3bcthNxO5pIWJZlxaOWFV9gSp7pK+ylTMcIRYAUnCueDUdyrBFlozbHOIKhZVhpkN7sFFpG9T0lL7GoTQf9XHqzM8xz7D+Udwd8l3FA1FNVpBIVg12ShEoVJNtWwwropJ24OtLjjqVGhg1T1JEQnPQcICm4OMc5kJYFH3ZcMv4XNXumooJk/NxhhIW5yxirJtWb3OsuP84gUa41sWX42LHTfvS+ncuRLOx+0GlxkvYbgoJhnbSch59fOEfakuJvIdZY3hrVpoGTjA+7RemngfJPm5sbjDPiFB0Rh7dQO/mtYxa2j+VL/sD6wnpXWe8NWfJ01MnI+pA70Bd1R3vc4T4PRgwhnGeaVNJ4v1PlFVKNsy8zWdLbZH2/pw/J2AvGVTMZWQXpn2jM+bu89t/zDs3u6U8vJlqbvapr2mn1m85FuDKzDtf1LjfVa15wRwf6xu4ATPqbWU5GECfO8/Gld1qbYkIT/BoAIZi1bQ=="
 }

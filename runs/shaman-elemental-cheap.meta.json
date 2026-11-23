@@ -2,26 +2,28 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 737.57,
- "margin": 0.6,
+ "value": 811.45,
+ "margin": 0.65,
  "hps": 0,
- "threat": 676.5,
+ "threat": 741.5,
  "title": {
   "ru": "Элем",
   "en": "Elemental"
  },
  "buildName": {
-  "ru": "Elemental (билд сима)",
+  "ru": "Elemental (билд симулятора)",
   "en": "Elemental (the sim's build)"
  },
  "rotation": {
-  "ru": "APL из билд-файла репозитория",
-  "en": "the build file's APL"
+  "ru": "Стандартная ротация билда",
+  "en": "the build's rotation"
  },
- "talents": "",
+ "talents": "5500331023001351-05500001-053",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simLink": "https://www.wowsims.com/forever/shaman/elemental/#eNrsU8+LW1UUPufe93wnZ0zzcieVO7etjNHYMTDl5hdqXSSTjQtBkuAfYEJTHZgUMYOIC5miC6kidWFx4sJiqmjRUQqKVqyVgowDQhBxYQXrFGk3wdZCxJ28NxPHzhQULcwm520e3/nOxzvf+R6PEfqocRLfQVRgvozTmO+Zp9mj0/2ovjLOHj33AepOiR36rB9lj17v+frzBHv0x4tx/V6ZPfq0H9VXH2CPzvSj+tWAebYfZUmvNNmjL/rRgOXQsZ7PDp1bQnbo457Pko62WNJSgx26dixA3/gIk2l/eXbq1zk7aFRefhM7KC7NnMT4pW7s3IOr3dgv3djP3dhP3dgFfH42veDyJwJG9Z9KnR1Z9z9Li/1vuQz/9KhRTkc53d6clh1CjafFnkLB2lwuY7M5azO5QmbaBoi1wUtuWVBPyB8ErIqXXN7JZG5hh878rpMR9tidLuwrtDnBEeOxO+XQSjXpsctyOt9mxZ5xWdKgto7lNrDDQyzb5rt4gv30DkIlVxGCNmMmZH01VMtssNwtrPO1v1hql5ngeDpGUokGmBC+z6aMw0JrtduYzc17bSrQ8AcNtcfs2twt2FS47vLVSqgcS0Z57BTSmgMah14ox4j9oPImy/eovVuX4fF0nBzlHpGCZDDEwrbXN7xuyv13U+dr4S5b7Qi+Z3GgVcIojmSDk7jUq4Yzbz+rdprxv6MB+cfjeCN45Tgqa/ZxSt0ZeuJueJK3Kd6RvJX5FHqhrMZQv19Tt5lEWa3L+HKNbltttdek2CjNkRUnEO9crAxd7FysaAyj49FSVd1udm8+Qdamwj7Ra1UVMWvpufyUlpfFgcMSAAAgXzoioSP99uP1Vv3QdHOu2Woemq/PfSjFb+gowZDsiQgAACwcLMUBAAASpYnOYlBfF+84GNb3xey7QnuTxfQV3J6fcr50c/UeurHe3e9fh5/4pjBzPwAA1E6UZgAAAKD0KD5x8ho+M1arzx6YfKT+5GPN+RcQFxEAAOBCMU109GG98O13kbIziVP45wC33MtB"
+ "simmedAt": "2026-11-23T11:32Z",
+ "simCommit": "57df2a7",
+ "simLink": "https://www.wowsims.com/forever/shaman/elemental/#eNrsVF9oW2UUP+e79/aenC7Nzdc4vn3dRhZJrcGOm5sGXSc0rcgeRGmjvpvSbAbSVkxV2IN06INsIHtx2Ig4zOafoVMGik6mg4LUghBk+OAEZ4dsL8HNQcU9yb1pnY1BRQd9ybkvH79zzu+c8zuHy92EDiqM4zuIEvSRXup2bH2QbTrbCKtrvWzTCx+gqubYpM8aYbbptbqjzsXYpt+ORNV7Y2zTp42wur6XbTr5OqpX/MjzjTCbdC6I/6IR9sNMOlZ32KTF08gmfRy83z6KbNBilE26ccyH3/gIEylnqTTwc9ldnRx/+U2sorgyegqjV2qRxX0rtchPtciPtcgPtcglfLGUmrf4EwEd+08mz3ek+5+mxPBJi+GfPtm5086dbu6djpmECs+KHdms62YyadfLuG46k00Puj7iuv4jsySoLozvBKyIC118B5PuYpM+/1UlQmyzNZjdna1wjEPaZmvApOWJhM0WG4NDFZZsa4sNWs2vYZlb2KF1zKtwP/exvNkV4fCjpZkD5WL8scLTB4pzQdyX63zpCidZc/RmVw9vefiZ8lzpz2EX83+EyT69jaOpCBlSTIIO4PvcpDZZKCW3a93qvNdN+hzO6qTcoftavVk3GUy8dH08YI4kwtx9BqkpgsJ1OaSpxTDIIe3x3fIudlI9hNJYQfC5GdPcm4qSKa3DhiDDT2LhVtZG3JBl/busi/mg26Zuj1eK8QdmZ8tTs8/NNN1vPS936u1t3X7D3x/Hv/UvH0e5Tz/I98vhQBDrliBDbpKT+s42m+CexBbmM2gH9RUGjTSafbbZm19nYVXJrTo2JtkasKg+4RjNIu50Re7Ve3i3vKfdaXBo2fTTq5fH15dRvTyuMDhCm05PBMO1bNJzk4Gf6NUJGdLNO7z6rDK8XS308i/b8/o3Ni+3JmLtGvPSLWrKuN7ZTqqQZ6+NfFVMHTIAAACGcocNqBpO5cnCdGFmsFguThdn5grlDw3xC5pSMCTqIgQAAPP7c1EAAIBYblt1wbevRnbtD+zbEe9doez4SOoabs7PZS53e/keas/X//4G/MTX2dE9AACQP5EbBQAAgNwT+NSpG3iwO18oTa2p/xLiAgIAAFwaSREdfUTNf3MhNGbGcQB/HwC/IhNm"
 }

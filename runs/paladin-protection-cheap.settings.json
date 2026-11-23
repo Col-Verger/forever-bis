@@ -1,6 +1,6 @@
 {
  "settings": {
-  "iterations": 12500,
+  "iterations": 10000,
   "fixedRngSeed": "20261120"
  },
  "raidBuffs": {
