@@ -818,8 +818,8 @@ function matrixIds() {
 
 const matrixBar = slider => `<div class="slbar">
   <div class="slviews">
-    <button data-matrixview="slider" class="${slider ? 'on' : ''}">${esc(T('view_slider'))}</button>
     <button data-matrixview="table" class="${slider ? '' : 'on'}">${esc(T('view_table'))}</button>
+    <button data-matrixview="slider" class="${slider ? 'on' : ''}">${esc(T('view_slider'))}</button>
   </div>
   ${slider ? `<div class="slnav"><button data-slide="-1" aria-label="${esc(T('prev_set'))}">‹</button><span id="slcount"></span><button data-slide="1" aria-label="${esc(T('next_set'))}">›</button></div>` : ''}
 </div>`;
