@@ -56,7 +56,7 @@
       "repoFolder": "ui/specs/druid/feralcat",
       "title": { "ru": "Ферал (кот)", "en": "Feral (cat)" },
       "buildName": { "ru": "Cat (стандартный билд)", "en": "Cat (standard build)" },
-      "rotation": { "ru": "Стандартная ротация кота с MCP-опенером (оружие из слота подмены)", "en": "the sim's Adaptive Cat rotation with the MCP opener (weapon from the swap slot)" },
+      "rotation": { "ru": "Стандартная ротация кота; без подмены оружия (MCP-опенер не моделируется)", "en": "the sim's Adaptive Cat rotation; no weapon swap (the MCP opener is not modelled)" },
       "metric": "dps",
       "talents": "050021-53200032123012125001-055",
       "apls": "apls/adaptive.apl.json",
@@ -73,7 +73,7 @@
       "partyBuffs": { "manaSpringTotem": "TristateEffectRegular" },
       "individualBuffs": { "greaterBlessingOfKings": true, "greaterBlessingOfMight": 1 },
       "debuffs": { "judgementOfWisdom": true, "sunderArmor": true, "giftOfArthas": true, "vindication": true },
-      "playerOverrides": { "enableItemSwap": true, "itemSwap": {"items": [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{"id":9449,"enchant":1896},{},{}]}, "race": "RaceTauren", "reactionTimeMs": 250, "distanceFromTarget": 25, "profession1": "Engineering", "profession2": "Enchanting" }
+      "playerOverrides": { "race": "RaceTauren", "reactionTimeMs": 250, "distanceFromTarget": 25, "profession1": "Engineering", "profession2": "Enchanting" }
     },
     {
       "id": "druid-feralbear",
