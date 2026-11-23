@@ -1041,7 +1041,7 @@ function renderPlan() {
     <p class="sub">${esc(T('plan_sub'))}</p>
     <div class="planhead">
       <div class="planprog"><b id="planprogress">${esc(T('plan_progress').replace('{d}', String(doneN)).replace('{t}', String(total)))}</b>
-        <div class="pbar"><i id="planbar" style="width:${total ? Math.round(doneN / total * 100) : 0}%"></i></div></div>
+        <div class="pbar"><i id="planbar" style="width:${total ? Math.round(doneN / total * 100) : 0}%"></i></div><span class="pct" id="planpct">${total ? Math.round(doneN / total * 100) : 0}%</span></div>
       <span class="small">${esc(T('plan_budget').replace('{b}', budgetLabel))}</span>
       <span class="planbtns">
         ${simBtn}
@@ -1060,7 +1060,10 @@ function updatePlanProgress() {
   const done = boxes.filter(b => b.checked).length;
   const total = boxes.length;
   const bar = $('planbar');
-  if (bar) bar.style.width = (total ? Math.round(done / total * 100) : 0) + '%';
+  const pct = total ? Math.round(done / total * 100) : 0;
+  if (bar) bar.style.width = pct + '%';
+  const pctEl = $('planpct');
+  if (pctEl) pctEl.textContent = pct + '%';
   const txt = $('planprogress');
   if (txt) txt.textContent = T('plan_progress').replace('{d}', String(done)).replace('{t}', String(total));
   document.querySelectorAll('#plan [data-pgroup]').forEach(g => {

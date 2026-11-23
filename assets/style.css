@@ -389,3 +389,6 @@ a.brand:hover>span:first-of-type{text-decoration:underline}
 a.brand:hover .tag{border-color:var(--acc)}
 .mhint.on{display:block}
 .freshsum{display:block;margin:0 0 6px}
+.pbar{background:#0b0e14;border-color:var(--line2);height:10px}
+.pbar i{background:linear-gradient(90deg,var(--good),#8be08f)}
+.pct{font-size:11px;color:var(--mut2);min-width:34px;text-align:right;font-variant-numeric:tabular-nums}
