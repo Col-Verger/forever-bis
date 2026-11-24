@@ -76,3 +76,9 @@ jobs:
           done
           echo "::error::the live site still serves a different data.js"
           exit 1
+
+      # Google has no public ping endpoint; IndexNow covers Bing and Yandex.
+      # The step is best-effort and never fails an already successful deploy.
+      - name: Tell search engines (IndexNow)
+        if: success()
+        run: python tools/indexnow.py

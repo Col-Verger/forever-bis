@@ -322,28 +322,78 @@ details.localrun[open] summary{border-bottom:1px solid var(--line)}
   .doll .center{grid-column:1/-1;grid-row:auto;order:-1}
   .doll .col.right{grid-column:2}
   .weapons{grid-column:1/-1;grid-row:auto;grid-template-columns:repeat(auto-fit,224px);justify-content:start}
+  /* Hiding a cell with display:none shifts the remaining cells into the wrong
+     columns. Keep every cell in place and collapse the ones we don't need. */
   table.bt col.w-where{width:0}
-  table.bt th.c-where, table.bt td.c-where{display:none}
+  table.bt th.c-where, table.bt td.c-where{width:0;padding:0;border:0;font-size:0;line-height:0;overflow:hidden}
   table.bt col.w-chart{width:150px}
 }
 @media (max-width:860px){
   .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;justify-content:flex-start;padding-bottom:0}
   .tabs button{flex:0 0 auto;padding:8px 12px;font-size:12px}
+  .tabs.can-scroll:not(.at-start){-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 100%);mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 100%)}
+  .tabs.can-scroll:not(.at-end){-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 16px),transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 16px),transparent 100%)}
+  .tabs.can-scroll:not(.at-start):not(.at-end){-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%)}
 }
 @media (max-width:720px){
-  .doll{grid-template-columns:1fr}
-  .doll .col.right{grid-column:1}
+  /* The doll is one column here: without auto rows both halves land in the same cell. */
+  .doll{grid-template-columns:1fr;row-gap:0}
+  .doll .col,.doll .col.right{grid-column:1;grid-row:auto}
+  /* Flatten the middle column so the score stays above the gear and the
+     reference blocks (stats, build, notes) move below it. */
+  .doll .center,.doll .center>div{display:contents}
+  .doll .col{order:10}
+  .doll .col.right{order:11}
+  .doll .weapons{order:12}
+  .doll .center .ups{order:3;margin-bottom:12px}
+  .doll .center .center-actions{margin:8px 0 12px}
+  .doll .center .dps{width:100%;justify-self:center}
+  .doll .center .statsbox{order:20}
+  .doll .center .facts{order:21}
+  .doll .center .estnote{order:22}
+  .doll .center .blurb{order:24}
+  .doll .weapons{grid-template-columns:1fr}
   .c-d{font-size:12px}
   .top h1{font-size:24px}
+  .lede{display:none}
+  .statuschip{display:none}
+  .stamp b{display:block;margin-bottom:2px}
+  .seg{gap:7px}
+  .seg button{min-height:38px;padding:8px 12px}
+  .slviews button{min-height:38px}
+  .slnav button{width:42px;height:42px;font-size:18px}
+  .pchips button{min-height:36px}
+  .pcheck{min-height:36px}
+  .srcmenu label{min-height:34px;font-size:13px}
+  .search,.psearch{font-size:16px}
+  .search{min-height:38px}
+  .srcpick summary{min-height:38px;display:flex;align-items:center}
+  .slot .nm{min-height:0}
+  .slot .en.blank{display:none}
+  .totop{width:44px;height:44px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom))}
   table.bt td{padding:7px 8px}
-  table.bt td.c-item{padding-left:26px}
+  table.bt td.c-item{padding-left:26px;min-width:0}
   table.bt col.w-chart{width:104px}
   table.bt col.w-d{width:64px}
-  .it .n{max-width:180px}
+  .it .n{max-width:220px}
   .it .en{display:none}
   .ov-row{grid-template-columns:120px 1fr 34px}
-  .brandrow{flex-direction:column;gap:8px;align-items:flex-start}
-  .brand-right{align-self:stretch;display:flex;justify-content:space-between}
+  .brandrow{flex-direction:row;gap:8px;align-items:center;flex-wrap:wrap}
+  .brand-right{align-self:auto;margin-left:auto}
+  /* A 360px sticky filter wall would leave half the screen for content. */
+  .bar{position:static}
+  main.wrap{padding-bottom:60px}
+}
+@media (max-width:600px){
+  /* At phone width the score column plus a fixed chart can't share a row with the item. */
+  table.bt col.w-chart{width:0}
+  table.bt th.c-chart,table.bt td.c-chart{width:0;padding:0;border:0;font-size:0;line-height:0;overflow:hidden}
+  table.bt td.c-chart .gap{display:none}
+  .it{width:100%;align-items:flex-start}
+  .it .n{max-width:100%;white-space:normal;overflow:visible;text-overflow:clip}
+}
+@media (max-width:380px){
+  .brand .tag{display:none}
 }
 
 /* Per-slot stat change of a candidate: quiet until the row is pointed at, so the table stays short. */
@@ -424,7 +474,7 @@ table,.dps b,.statsgrid b,.facts dd,.fresh td,.matrix td,.prow,.planprog,.pct{fo
 .tscroll{max-width:100%;overflow-x:auto}
 a:focus-visible,button:focus-visible,input:focus-visible,tr[data-pick]:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 tr[data-pick]:focus-visible{outline-offset:-2px;background:var(--acc-soft)}
-@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.tabs{scroll-behavior:auto}}
 .ups{margin-top:10px;border-top:1px solid var(--line);padding-top:8px;text-align:left;max-width:430px;margin-left:auto;margin-right:auto}
 .ups-t{font-size:10.5px;color:var(--mut2);margin-bottom:2px}
 .up{display:flex;gap:8px;align-items:baseline;width:100%;background:none;border:0;padding:4px 0;cursor:pointer;font:12px Inter;text-align:left;color:var(--fg)}

@@ -90,6 +90,7 @@ const STR = {
   plan_fallback: { ru: 'альтернатива из другого источника', en: 'alternative from another source' },
   plan_open_sim: { ru: 'Открыть сет в WoWSims ↗', en: 'Open the set in WoWSims ↗' },
   spec_pages: { ru: 'Все спеки отдельными страницами', en: 'All specs as separate pages' },
+  source_link: { ru: 'Исходники на GitHub', en: 'Source on GitHub' },
   chip_no_data: { ru: 'Симы не прогнаны', en: 'No sim runs yet' },
   chip_ok: { ru: 'Симы', en: 'Simmed' },
   chip_stale: { ru: 'данные старше N дней', en: 'data older than N days' },
@@ -133,6 +134,7 @@ const STR = {
   topn: { ru: 'Опций на слот', en: 'Options per slot' },
   filter: { ru: 'Фильтр', en: 'Filter' },
   search_ph: { ru: 'Название предмета, босс или зона', en: 'Item, boss or zone name' },
+  search_ph_short: { ru: 'Предмет или босс', en: 'Item or boss' },
   q_showing: { ru: 'Показано {n} из {m}', en: 'Showing {n} of {m}' },
   q_total: { ru: 'вариантов: {m}', en: 'options: {m}' },
   q_none_short: { ru: 'ничего не найдено', en: 'nothing found' },
@@ -162,6 +164,7 @@ const STR = {
   next_set: { ru: 'Следующий сет', en: 'Next set' },
   every_slot: { ru: 'Каждая опция, слот за слотом', en: 'Every option, slot by slot' },
   matrix_sub: { ru: 'Все сеты бок о бок. Ряды без подсветки одинаковы во всех сетах; подсвеченная ячейка отличается от самого частого выбора.', en: 'Every loadout side by side. Faded rows are the same in every loadout; a shaded cell differs from the most common pick.' },
+  matrix_sub_slider: { ru: 'По одному сету: листай стрелками или свайпом вбок.', en: 'One set at a time: use the arrows or swipe sideways.' },
   best: { ru: 'Лучший', en: 'Best' },
   all_sources: { ru: 'Все источники', en: 'All sources' },
   n_of_sources: { ru: 'источников', en: 'sources' },
@@ -214,7 +217,7 @@ const state = {
   lang: localStorage.getItem('bislang') || 'ru',
   cls: G.classes[0].id, spec: G.classes[0].specs[0].id,
   budget: 'max', topn: 4, q: '', srcs: new Set(SOURCE_KINDS), tab: 'gear',
-  pick: {}, pickLid: '', matrixView: 'table',
+  pick: {}, pickLid: '', matrixView: innerWidth <= 600 ? 'slider' : 'table',
   planKinds: new Set(['dungeon', 'quest', 'rep', 'craft', 'vendor', 'pvp', 'world', 'other', 'ench']),
   planHideDone: false, planQ: ''
 };
@@ -286,15 +289,21 @@ const slotLabel = s => T('slot.' + s);
 function applyStatic() {
   document.documentElement.lang = lang();
   document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = T(el.dataset.i18n); });
-  document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.placeholder = T(el.dataset.i18nPh); });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    el.placeholder = el.id === 'q' && innerWidth <= 480 ? T('search_ph_short') : T(el.dataset.i18nPh);
+  });
   document.title = lang() === 'ru' ? 'Пререйд-BiS · WoW Forever' : 'Pre-raid BiS · WoW Forever';
   $('pagetitle').textContent = lang() === 'ru' ? 'Пререйд-BiS · все классы' : 'Pre-raid best in slot — every class';
   $('lede').textContent = L2(G.meta.lede);
   $('method').innerHTML = L2(G.method);
   const stamp = $('stamp');
   stamp.hidden = false;
+  const staleDays = G.meta.staleAfterDays || 7;
+  const stale = G.meta.hasData && (Date.now() - new Date(G.meta.simmed)) / 86400000 > staleDays;
   if (!G.meta.hasData) {
     stamp.innerHTML = `<b class="stale">${esc(T('stamp_notrun'))}</b> — ${esc(L2(G.meta.footer))}`;
+  } else if (stale) {
+    stamp.innerHTML = `<b class="stale">${esc(T('stamp_run'))}: WoWSims Forever · ${esc(fmtSimmed())} · ${esc(T('chip_stale').replace('N', staleDays))}</b> — ${esc(L2(G.meta.footer))}`;
   } else {
     stamp.innerHTML = `<b>${esc(T('stamp_run'))}: WoWSims Forever · ${esc(fmtSimmed())}</b> — ${esc(L2(G.meta.footer))}`;
   }
@@ -656,7 +665,7 @@ function renderDoll() {
     const enLabel = enchantName(spec);
     const enHTML = enLabel
       ? (spec[1] ? `<a class="en" href="${esc(enchantHref(enLabel))}" target="_blank" rel="noopener" title="${esc(enLabel)} — Wowhead">${esc(enLabel)}</a>` : `<span class="en">${esc(enLabel)}</span>`)
-      : '<span class="en">&nbsp;</span>';
+      : '<span class="en blank">&nbsp;</span>';
     return `<div class="slot" data-go="${s}" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}">
       <img class="icon${q}" src="${ICON(it.icon, 'large')}" alt="" loading="lazy"><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span>
       <span class="nm" style="${qc(it)}">${esc(itemName(spec))}</span>
@@ -858,7 +867,7 @@ function renderCards() {
     : '';
   $('cards').innerHTML = none + (filtering && !shown ? '' : `<table class="bt">
     <colgroup><col class="w-item"><col class="w-where"><col class="w-d"><col class="w-chart"></colgroup>
-    <thead><tr><th class="c-item">${esc(lang() === 'ru' ? 'Предмет' : 'Item')}</th><th class="c-where">${esc(lang() === 'ru' ? 'Где достать' : 'Where')}</th><th class="c-d">Δ ${esc(metricName(L.metric))}</th><th class="c-chart">${esc(T('vs_best'))}</th></tr></thead>
+    <thead><tr><th class="c-item">${esc(lang() === 'ru' ? 'Предмет' : 'Item')}</th><th class="c-where">${esc(lang() === 'ru' ? 'Где достать' : 'Where')}</th><th class="c-d">Δ ${esc(L.metric === 'hps' ? 'HPS' : 'DPS')}</th><th class="c-chart">${esc(T('vs_best'))}</th></tr></thead>
     ${L.groups.map(g => groupHTML(g, L)).join('')}</table>`);
   if (q && !shown) $('ovd').hidden = true;
   renderOverview(L);
@@ -935,6 +944,8 @@ const matrixBar = slider => `<div class="slbar">
 
 function renderMatrix() {
   const ids = matrixIds();
+  const sub = $('matrixsub');
+  if (sub) sub.textContent = T(state.matrixView === 'slider' ? 'matrix_sub_slider' : 'matrix_sub');
   if (!ids.length) { $('matrix').innerHTML = `<div class="empty-note">${esc(T('empty_title'))}</div>`; return; }
   if (state.matrixView === 'table') renderMatrixTable(ids);
   else renderMatrixSlider(ids);
@@ -1400,6 +1411,22 @@ function renderControls() {
   pressed('[data-budget]', 'budget', state.budget);
   pressed('[data-topn]', 'topn', state.topn);
 }
+// Keep the chosen tab visible in the sideways-scrolling strip, and fade the
+// edge only when there is something more to scroll to.
+function syncTabs() {
+  const nav = document.querySelector('.tabs');
+  if (!nav) return;
+  const b = nav.querySelector('[aria-selected="true"]');
+  if (b) {
+    const nr = nav.getBoundingClientRect(), br = b.getBoundingClientRect();
+    if (br.left < nr.left + 4) nav.scrollLeft -= nr.left + 12 - br.left;
+    else if (br.right > nr.right - 4) nav.scrollLeft += br.right - nr.right + 12;
+  }
+  const can = nav.scrollWidth > nav.clientWidth + 2;
+  nav.classList.toggle('can-scroll', can);
+  nav.classList.toggle('at-start', nav.scrollLeft <= 2);
+  nav.classList.toggle('at-end', nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 2);
+}
 function render() {
   document.body.dataset.class = state.cls;
   applyStatic();
@@ -1407,6 +1434,7 @@ function render() {
   renderSources();
   renderKey();
   renderChip();
+  syncTabs();
   const top = $('totop');
   if (top) { top.title = T('to_top'); top.setAttribute('aria-label', T('to_top')); }
   if (state.tab === 'gear') { renderDoll(); renderCards(); }
@@ -1596,12 +1624,24 @@ document.addEventListener('input', e => {
 });
 const totop = $('totop');
 if (totop) {
-  // Always available: it is small, sits in the corner, and needs no scroll wiring.
+  // Small, in the corner, and only once there is something to scroll back from.
   totop.title = T('to_top');
   totop.setAttribute('aria-label', T('to_top'));
-  totop.addEventListener('click', () => window.scrollTo(0, 0));
+  totop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'auto' }));
+  const syncTop = () => { totop.hidden = window.scrollY < 420; };
+  addEventListener('scroll', syncTop, { passive: true });
+  syncTop();
 }
-new ResizeObserver(() => document.documentElement.style.setProperty('--barh', $('bar').offsetHeight + 'px')).observe($('bar'));
+new ResizeObserver(() => {
+  const bar = $('bar');
+  // Only a sticky bar has to be reserved at the top of the viewport;
+  // on mobile it scrolls away, so table headers can use the full height.
+  const h = getComputedStyle(bar).position === 'sticky' ? bar.offsetHeight : 0;
+  document.documentElement.style.setProperty('--barh', h + 'px');
+}).observe($('bar'));
+const tabsNav = document.querySelector('.tabs');
+if (tabsNav) tabsNav.addEventListener('scroll', syncTabs, { passive: true });
+addEventListener('resize', syncTabs);
 
 // Shared links and back/forward navigation: re-read the hash when it changes from outside
 // (toHash uses replaceState, so this never loops).
