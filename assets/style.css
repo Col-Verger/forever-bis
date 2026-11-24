@@ -155,7 +155,7 @@ small{color:var(--mut)}
 tr[data-pick]{cursor:pointer}
 tr[data-pick]:hover{background:rgba(255,255,255,.03)}
 tr.picked{background:var(--acc-soft)}
-.pickmark{display:inline-block;width:10px;height:10px;border-radius:50%;border:1px solid var(--line2);margin-right:8px;vertical-align:middle}
+.pickmark{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;border:1px solid var(--line2)}
 tr.picked .pickmark{background:var(--acc);border-color:var(--acc)}
 
 /* ---------- key ---------- */
@@ -178,6 +178,7 @@ table.bt col.w-chart{width:206px}
 table.bt thead th{position:sticky;top:var(--barh);background:var(--bg2);z-index:30;font-size:10.5px;letter-spacing:.2px;color:var(--mut2);text-align:left;padding:8px 12px;border-bottom:1px solid var(--line2);white-space:nowrap}
 table.bt thead th.c-d{text-align:right}
 table.bt td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.bt td.c-item{position:relative;padding-left:32px}
 tbody.grp{--z:50%;--b0:47%;--b1:53%}
 tbody.grp:hover tr td{background:color-mix(in srgb, var(--bg2) 70%, transparent)}
 tr.gh th{background:var(--bg3);font-size:13px;padding:8px 12px;border-bottom:1px solid var(--line2);position:sticky;top:var(--barh);z-index:31;cursor:default;border-top:8px solid var(--bg)}
@@ -335,6 +336,7 @@ details.localrun[open] summary{border-bottom:1px solid var(--line)}
   .c-d{font-size:12px}
   .top h1{font-size:24px}
   table.bt td{padding:7px 8px}
+  table.bt td.c-item{padding-left:26px}
   table.bt col.w-chart{width:104px}
   table.bt col.w-d{width:64px}
   .it .n{max-width:180px}
