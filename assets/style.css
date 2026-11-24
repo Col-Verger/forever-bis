@@ -417,3 +417,4 @@ table,.dps b,.statsgrid b,.facts dd,.fresh td,.matrix td,.prow,.planprog,.pct{fo
 .prow .pstat{font-size:11px;line-height:1.4;color:var(--mut)}
 .pfb{display:none;font-size:10.5px;line-height:1.3;color:var(--warn)}
 .prow.fallback .pfb{display:block}
+@media(max-width:520px){.pbar{min-width:0;flex:1 1 80px}}
