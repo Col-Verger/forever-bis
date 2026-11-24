@@ -986,7 +986,7 @@ function renderHowto() {
     </div>
     <h2>${esc(T('howto_ench_title'))}</h2>
     ${enchRows.length
-      ? `<table><thead><tr><th>${esc(lang() === 'ru' ? 'Слот' : 'Slot')}</th><th>${esc(lang() === 'ru' ? 'Энчант' : 'Enchant')}</th><th>${esc(lang() === 'ru' ? 'Предмет' : 'Item')}</th></tr></thead><tbody>${enchRows.join('')}</tbody></table>`
+      ? `<div class="tscroll"><table><thead><tr><th>${esc(lang() === 'ru' ? 'Слот' : 'Slot')}</th><th>${esc(lang() === 'ru' ? 'Энчант' : 'Enchant')}</th><th>${esc(lang() === 'ru' ? 'Предмет' : 'Item')}</th></tr></thead><tbody>${enchRows.join('')}</tbody></table></div>`
       : `<p class="small">${esc(T('howto_ench_none'))}</p>`}
     <h2>${esc(T('howto_budgets_title'))}</h2><p>${esc(T('howto_budgets_body'))}</p>
     <h2>${esc(T('howto_read_title'))}</h2><p>${esc(T('howto_read_body'))}</p>
@@ -1262,8 +1262,8 @@ function renderRefresh() {
     : '';
   const fresh = `<h3>${esc(T('fresh_title'))}</h3>
     <div class="panel">${freshSum}<span>${esc(T('fresh_note'))}</span>
-      <table class="fresh"><thead><tr><th>${esc(T('cls'))}</th><th>${esc(T('fresh_last'))}</th><th>${esc(T('fresh_sets'))}</th><th>${esc(T('fresh_wait'))}</th></tr></thead>
-      <tbody>${freshRows}</tbody></table></div>`;
+      <div class="tscroll"><table class="fresh"><thead><tr><th>${esc(T('cls'))}</th><th>${esc(T('fresh_last'))}</th><th>${esc(T('fresh_sets'))}</th><th>${esc(T('fresh_wait'))}</th></tr></thead>
+      <tbody>${freshRows}</tbody></table></div></div>`;
   $('refresh').innerHTML = `
     <h2>${esc(T('ref_status'))}</h2>
     <div class="panels">${status}${auto}</div>
