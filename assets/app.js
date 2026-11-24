@@ -1480,6 +1480,9 @@ document.addEventListener('click', e => {
         if (r) state.pick[gid] = { sig, d: r.d, move: r.move };
       }
       renderDoll(); renderCards();
+      // The table is rebuilt, so put focus back on the same row for keyboard users.
+      const again = document.querySelector(`tr[data-pick][data-g="${CSS.escape(gid)}"][data-sig="${CSS.escape(sig)}"]`);
+      if (again) again.focus({ preventScroll: true });
     }
     return;
   }
