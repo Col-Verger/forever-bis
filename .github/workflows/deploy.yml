@@ -61,3 +61,18 @@ jobs:
       - name: Deploy to GitHub Pages (retry)
         if: steps.deploy_pages.outcome == 'failure'
         uses: actions/deploy-pages@v4
+
+      # GitHub Pages can report a successful deployment while still serving the
+      # previous one. Compare the data.js hash in the live index with the file we
+      # just uploaded, and fail loudly instead of leaving a stale site.
+      - name: Verify the live site is current
+        run: |
+          want="data.js?v=$(sha256sum data.js | cut -c1-10)"
+          for i in 1 2 3 4 5 6; do
+            sleep 20
+            live=$(curl -fsSL "https://col-verger.github.io/forever-bis/index.html" | grep -o 'data\.js?v=[0-9a-f]*' | head -1 || true)
+            echo "attempt $i: live=${live:-none} want=$want"
+            if [ "$live" = "$want" ]; then exit 0; fi
+          done
+          echo "::error::the live site still serves a different data.js"
+          exit 1

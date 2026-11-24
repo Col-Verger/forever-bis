@@ -563,9 +563,8 @@ class Build:
         for s in SLOTS:
             if s not in self.pool or not self.pool[s]:
                 continue
-            # finger2/trinket2 are covered by the finger1/trinket1 sweep — unless they started empty.
-            if s in ('finger2', 'trinket2') and gear.get(s) and gear.get(s)[0]:
-                continue
+            # Both ring and both trinket slots are searched: candidates() keeps the
+            # pair distinct, so the second slot is no longer stuck with the base item.
             if s == 'off_hand' and (twoh or not gear.get('main_hand', [0])[0]):
                 continue
             out.append(s)
