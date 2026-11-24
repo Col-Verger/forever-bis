@@ -293,7 +293,9 @@ function applyStatic() {
     el.placeholder = el.id === 'q' && innerWidth <= 480 ? T('search_ph_short') : T(el.dataset.i18nPh);
   });
   document.title = lang() === 'ru' ? 'Пререйд-BiS · WoW Forever, Фаза 1' : 'Pre-raid BiS · WoW Forever, Phase 1';
-  $('pagetitle').textContent = lang() === 'ru' ? 'Пререйд-BiS · Фаза 1 · все классы' : 'Pre-raid best in slot · Phase 1 · every class';
+  $('pagetitle').innerHTML = lang() === 'ru'
+    ? '<span class="nw">Пререйд-BiS</span> · <span class="nw">Фаза 1</span> · <span class="nw">все классы</span>'
+    : '<span class="nw">Pre-raid best in slot</span> · <span class="nw">Phase 1</span> · <span class="nw">every class</span>';
   $('lede').textContent = L2(G.meta.lede);
   $('method').innerHTML = L2(G.method);
   const stamp = $('stamp');
