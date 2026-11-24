@@ -1,34 +1,20 @@
 {
  "builds": [
   {
-   "id": "warlock-affwrack-cheap",
+   "id": "shaman-elemental-cheap",
    "status": "ok",
-   "value": 931.57,
+   "value": 802.85,
    "metric": "dps"
   },
   {
-   "id": "warlock-demo-fire-cheap",
+   "id": "shaman-enhancement-cheap",
    "status": "ok",
-   "value": 898.98,
+   "value": 920.91,
    "metric": "dps"
   },
   {
-   "id": "warlock-demo-shadow-cheap",
-   "status": "ok",
-   "value": 899.44,
-   "metric": "dps"
-  },
-  {
-   "id": "warlock-destro-cheap",
-   "status": "ok",
-   "value": 872.75,
-   "metric": "dps"
-  },
-  {
-   "id": "warlock-smruin-cheap",
-   "status": "ok",
-   "value": 790.47,
-   "metric": "dps"
+   "id": "shaman-restoration",
+   "status": "disabled"
   }
  ]
 }

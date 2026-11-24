@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 485.12,
- "margin": 0.37,
+ "value": 462.07,
+ "margin": 0.35,
  "hps": 0,
- "threat": 403.2,
+ "threat": 385.5,
  "title": {
   "ru": "Смайт",
   "en": "Smite"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-23T11:41Z",
- "simCommit": "57df2a7",
- "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrsUk1oE1sUPufOJLk5eX0zve893vQqNQ1WQzD0zsQsdJO0K0GopZi9LW0lUKG0AcFV/VlItbGCVJPqoqaLtiBURaluBOuiikIQkeqqBgTxByqCbmUmWlErghR0kW/gu4dz5hy+c/goxNFEC8M4jSiYhXLR4EHTJ7tI56Nv6kjnlbNIOn95xuWJskk6H/PyJwpuJu/FIx6f9PiUx/cm3erCOZeXxl0+fcskjb/tJyCdz5w3ItvMxWz0Vb96390xehFn8Z+5XfnsUsl4VjIqJeN5yZidxmU8ll3BG9NGbMxH8wxq+CWIcu106wyL7bzmI/jZJ2q+rfn2z/Jtm87RwpssnHSSTiKpErZKKKVspex4QiXtpK2UUk48sci0Mgs9ZVBhRzQSFJA+0vj99kiAfKTF7SERlo1UHzO4Llg3SC9tq2YZJI1PbBXMZMKWLbRZRKguEqKgEyBf1McnD37b5Khm+bm2RgvnF6ot/u9b3JpokXFqEpsodAU56Xz+aruFZMb+5n6hVRBc3YQJyckf9fPCExRSWmRE6ijkuFrzGVert10+IzZwlP9TqIjV38vjKFejT8VgEf2k8zsf9kiqvt6y/3GU9cSL6E5ayMjqIxq+jNP50csdcjUSjXLjj2/xOiCCsnr06xlLe8F6VljPYQ0AAGB7ekSDovbXwGC2dygXHzqQzfXOaew2culKQwsjZRYEAIDhvnQ9AADAv+mGYsHF3VRTn4fHKWeGWYFwKraCv8eQufT6ztu99rwtl77KTz1Itu4AAIDOqXQrAAAApPfhwOw7PBTq7Mr2hPd2De7vzR1HLCAAAMByKsb5WLs1/PBRsM1vYhij+HEARiOhcw=="
+ "simmedAt": "2026-11-24T10:22Z",
+ "simCommit": "23dd537",
+ "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrsUk9oE2kUf++bSfLystmZfuyy02+Xbhq2u9lA6EyyOayXpD0JQi3F3NvSVgIVahsQPNU/B6k2VpBiUj3U9tAWhKoo1Ytge6iiEESkepBSEEQtVAS9yky0olYEKeghv4Hf93hv3uP3Hj8OEZpoYQRnEKWwUC0ZFDR9qpN1Gl0Ps0aP97NOz04j6zRRMVmnsfUw63S85GaKXjzi8QmPT3p8e9KtLp5xeWXc5VM3TNboZT8D6zR71oj+ay7nY8/77dfd7aPncQ7N+Z3F/MqUsTZlPJky5mZwFY/mN/DajBEf8/GCgBq+CbJSO902wxI7rvgYvvbJmm9rvv2xfNuqE1p4XUTSyXQylbZTjp2ybduxbSeRstNO2rFt204mUstCq4jQIwFr4rDGkgPKxxrdaYsG2MdawhmSEdXAdXGDdCm6QXlpx25SQdZo4h8pTCEd1cx/ySiHoyEOJgPsi/lo8sCnTUm7Sb2vbdFCdK7a4v+8xa3JZpXgRvknhy4hsU4Ll9ssZDP+M/mltobg6mZMKWJ/zE+lhyiVstiIhjmUdLUWc65Wb7tiTv5OqH7jUBmrv1fGUW1G74rBMvpZp6U3uxVXX2/ZXwlVHVMZ3UmLOVV9ZP2HcTodudiuNiPZoP748i1eBGRQVY9+NWdpT0XPhug5pAEAAPyXHdGgrP00MJjvHSokhvblC73zmriJpFxpaGG0IoIAADDcl60DAAD4JVtfLrm4lWns8/Agk5wVViCSiW/g9zFkIbu983ZtPe/vCx/lp++mW/4HAICO6WwLAAAAZDtxYO4VHgx1dOV7Inu6Bvf2Fo4hlhAAAGA1Eycaa7OG790PtvpNjGAM3w4ANF2fqQ=="
 }

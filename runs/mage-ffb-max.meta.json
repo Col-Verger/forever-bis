@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "max",
  "metric": "dps",
- "value": 882.76,
- "margin": 1.17,
+ "value": 865.9,
+ "margin": 1.1,
  "hps": 0,
- "threat": 910.3,
+ "threat": 895.0,
  "title": {
   "ru": "Фаер (Frostfire)",
   "en": "Fire (Frostfire)"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-23T11:47Z",
- "simCommit": "57df2a7",
+ "simmedAt": "2026-11-24T10:38Z",
+ "simCommit": "23dd537",
  "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEkU1IXFcUx+fc92beeWecOl6t3N66GMda9bUD781zoOpiRqH0Q1uLdNVF6VgdmeJHKfYDV/YD2k0TSUBwkmyMkERiDGbl7DKrySIwSEiWiiAEMqAzkhghJOHNRzQgrgL5b865/3P/v8c9j7wIfhAQgKsA3CNYAP4A+cSN6Ec5Qxoe5H1ir540/HsVRCpGKj7N+0jFCzk/eTA7KXbeIQ0LeZ8o9JCGxbxPbPaQijtngTR8XE3v533ieh+pOJ/zk4Iv4qTisxUgBecmSMPdGyAWHPjuvOMVx4MBfzbZ/mj8m/8XYRnoTPLfZP5y7ZWLcBOeH/i34J9knwdBgAlpFgxFIhHTNE0rbJuWZZt2KGzaEdMybcsyLds0w1mm5ph3mx0q9AGh9JCKh+cgKNbYu6hwPcUqjjMhFrJ4q2yheqMOFc6+c0m9qFQubIOX9E9/m/oxPp2cmuS/y19pnP9E3fITkoZAhfsyQKTi6i3gzM+kmxSCSHWWPmn2sTROyXZSTZAIi+AmBTcHZbnwoAxQkyEReG0Gao5CAirYbhePSJs6eBs1Gg0IXM+A84bCuijfsMkX9JJehGNPdypvkc0kjEZUuDcDSCpeSosqNuwUfDDISZa3eDvTLxRjEY4v5Qv5GTVxWeavlfjp7Fekb6hOu14YCLdV/sF6YYDe/wsEKXj+e1ln1KKHs2GX1MhNSldXK/9Sfk4fyY4y6lW+fFyE6vHoI6ewHrKRPTbyp+IqqTOWUnAiPjYaSiSGSyRiCMEc012OZhOxulLjaoi9l1pwdCfanCjpfjR8jQktEDX2wPVWNB17s7z+k3kfrrzmL92N9HaVuqGlWG/FjP0APy/vw4x3KJ4cCXwb/2VsdPo/gIXKZraiBuLc12J2457epwagHV4OAOlKv5A="
 }

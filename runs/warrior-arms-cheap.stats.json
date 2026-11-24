@@ -3,17 +3,17 @@
   "BlockValueMultiplier": 1,
   "BlockValuePerStrength": 0.05,
   "CastSpeedMultiplier": 1,
-  "DodgePercent": 15.7,
+  "DodgePercent": 14.700000000000003,
   "ExpertisePercent": 1.2000000000000002,
   "MainHandCritRating": 70,
   "MainHandDps": 53.888888888888886,
   "MainHandHitRating": 55,
-  "MeleeCritPercent": 34.7,
+  "MeleeCritPercent": 33.7,
   "MeleeHastePercent": 1.0000000000000009,
   "MeleeHitPercent": 7.5,
   "MeleeSpeedMultiplier": 1.01,
   "ParryPercent": 5,
-  "RangedCritPercent": 29.700000000000003,
+  "RangedCritPercent": 28.700000000000003,
   "RangedCritRating": 70,
   "RangedCritSuppressionPercent": 4.8,
   "RangedHastePercent": 1.0000000000000009,
@@ -34,11 +34,11 @@
   "Battlegear of Heroism (2pc)"
  ],
  "stats": {
-  "Agility": 314,
+  "Agility": 294,
   "ArcaneResistance": 35,
-  "Armor": 3779,
+  "Armor": 3739,
   "ArmorNoMods": 385,
-  "AttackPower": 1325,
+  "AttackPower": 1335,
   "CritRating": 70,
   "ExpertiseRating": 12,
   "FireResistance": 48,
@@ -51,6 +51,6 @@
   "ShadowResistance": 35,
   "Spirit": 70,
   "Stamina": 376,
-  "Strength": 398
+  "Strength": 403
  }
 }

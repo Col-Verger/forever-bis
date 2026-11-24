@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 833.68,
- "margin": 1.13,
+ "value": 795.18,
+ "margin": 1.09,
  "hps": 0,
- "threat": 861.3,
+ "threat": 822.6,
  "title": {
   "ru": "Фаер (Frostfire)",
   "en": "Fire (Frostfire)"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-23T11:50Z",
- "simCommit": "57df2a7",
- "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEkU1IXFcUx9+598288844+Lxaub11MY616msH3pvnQNXFjELph7YW6aqL0rE6MkWrFPtBV/YD2lJapIWC02ZjhCQSUczK2WVWZhEYJCRLxVUgs3DGBCOEJMxXNCCuAvlvzrnnnP/vcc6jAIIFEkJwGUD4JQvB96AKPkQL1RwZeFQIyoNmMvDndZCZBOn4sBAkHf/LW6Tj/UKQDPxjCWRxgAwsFYJyd4B0/D1vkYEP6t7DQlBeHSId/81bxPFJknR8tAbEcXGGOG4YpBHH0nQ4ZG2nu+9Nf/znMqwC/ZX+NV242Hjpf9iAx0fWHvySHvIjSHAgy8KRWCzmOI7jRj3HdT3Hi0QdL+a4jue6jus5TnSb6XkW2GfHnF4nVH7S8fhvCMtN9gpyYWZYrVLuEIu4olN1ULPdhFywTzVllnhtYB8CZL7z7ewXyfn07FfiO/UNTYsvqV+9TcqWyEUwB0Q6rl8DwSymfMQJYvVe9qzeW8o+x9tLDWEiLIGPOO6OqmoQYRWiNlshiMYcNJyYJNSw/ZqIKY96RBe12i0IwsxBeYfilqxOeBQMB8gswanVy1F0qHaSdityEcgBko4XsrKOjZYD3hkVpKpXvJ4bltxehtNHeV+9S21CVfmbFX52+0Myd/RyulUciXbV/sFWcYRe+wkkcfznM9VkN6JfsHFNGeQj3tfXKT5Q79GbqqeKeuavPpeh/jz5yDmsu2zigE38yLWKehMZjjPJqclIKjVeIRFDCOeZqZW1kEo0VRKtJfFqZqmsG/H2VEW349ErTBqhuH0A2kvRfOLF8obP5r2x9lx95WZssK+Sja0kBmvFxOcwt3oIPwTGkumJ0CfJr6cm538DWKpdZi9uIy5+JBd2bplDegi64ekAOge65w=="
+ "simmedAt": "2026-11-24T10:24Z",
+ "simCommit": "23dd537",
+ "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEkU1IXFcUx9+598288844OF6t3N66GMda9bUD781zoOpiRqH0Q1uLdNVF6VgdO0VrKfaDrqwttFkkSAIBJ8nGCEkkopiVs8uszCIwSEiWiquAs3BGghFCEuYrGhBXgfw359xzzv/3OOeRDyEAEoJwE0B4JQvCn6D2PIgBVNNk4GHeL/cbycB/VkGm46Tj07yfdLySCxDHuR/JwELeLwt9ZGAx75fbfaTjuVyADHxSsx7k/fL2AOl4uWx6kSAdn60AcZyfIo5rBmnEsTgZCgY2U517k1+fX4RloAup/1L56/U3rsIaPD8M7MC/qQEvggQbMiwUjkajtm3bTsS1Hce13XDEdqO2Y7uOYzuubUc2mZ5jvl12xOl9QuUlHY8uQkius3eQCzPNqpVSh1jYEe2qjRqtBuSCfasps8irA7vgI/OT36d/SMykpn8Wf6jfaFL8RL3qY1KWRC78WSDScfUOCBZgykOcIFrrZU7rfaSsM7zdVBciwiJ4iOP2sKoEEVJBarEUgqjPQt2xSUIV26uJqHKpS3RQs9WEIMwslHYobMjKhEv+kI/MIpxYvRRFm2olaTUjF74sIOl4LSNr2Egp4KNhQapyxbvZQcmtRTh5lM/Vp9QiVIW/XuZnNr8kc0svpRuFoUhH9R9sFIbovTmQxPHSd6rBqkevYKOaMshDvKenXXyhPqMPVVcF9cpfeS5C7Xn8kTNYj9nYPhv7m2tldcfTHKcSE+PhZHK0TCKGEMoxUytpNhlvKCdaU/zd9EJJ92KtybIexiK3mDSCMWsftLeimfib5Q2ezvtg5bX60v1of085G1mK91eL8e/hl+UD+Ms3kkiNBb9J/DoxPvM/wEL1MjsxC3H+Kzm79cAc0IPQCS8HABmEuqY="
 }

@@ -24,7 +24,7 @@
   "SchoolHitPercentHoly": 13.8,
   "SchoolHitPercentNature": 13.8,
   "SchoolHitPercentShadow": 13.8,
-  "SpellCritPercent": 21.8403,
+  "SpellCritPercent": 21.3164,
   "SpellHastePercent": 2.0000000000000018,
   "SpellHitPercent": 13.8
  },
@@ -47,15 +47,15 @@
   "HealingPower": 425,
   "Health": 4650,
   "HitRating": 88,
-  "Intellect": 387,
+  "Intellect": 356,
   "MP5": 64,
-  "Mana": 7045,
+  "Mana": 6580,
   "NatureDamage": 60,
   "NatureResistance": 50,
   "ShadowResistance": 35,
   "SpellDamage": 623,
   "SpellPiercing": 6,
-  "Spirit": 237,
+  "Spirit": 210,
   "Stamina": 315,
   "Strength": 110
  }

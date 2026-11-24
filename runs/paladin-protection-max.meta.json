@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "max",
  "metric": "dps",
- "value": 622.3,
- "margin": 0.43,
- "hps": 28.4,
- "threat": 1516.2,
+ "value": 617.89,
+ "margin": 0.42,
+ "hps": 28.5,
+ "threat": 1507.0,
  "title": {
   "ru": "Прот (танк)",
   "en": "Protection (tank)"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-23T13:19Z",
- "simCommit": "57df2a7",
+ "simmedAt": "2026-11-24T11:28Z",
+ "simCommit": "23dd537",
  "simLink": "https://www.wowsims.com/forever/paladin/protection/#eNrElN9LFG0Ux/c88+zsmeO77Drs67vvXLzvupVsS2szswyoNzN5UyDIYP0BGmotdCHpld1oYEhllki0Flu5BrFYiiSY1E0iqRAsIUFRmEs/vLEIIbyMmWmLwkuhL8PhzPc5n+/MmYuhCEIYohCDBJyELugDuAUgsygo5/zIw0xpJ44f74SI47thII7ZzSBxvF4ME8fpzSAJONhBHF9fqCSOo679wR1fG3CcyWmnZl1/1q1zxTAJuODY20NOYn4W4vXhpUzi8yn16/G6G1fAHhqHMRCvHp1sW7ALEC3chUuZ9XyolA+t5UPv86GBzKd86GJmA4YzjehtYME8+181VOdS9ZRqpFVdU3VdS6dVzUhrKUPVlxgvMqHESowihIpIHB8sQxxJJJ7S1W76hyQlQP6EHx/bcSIkMaXV1RrOASlIYkLE1RzEJQqQP6XVGt0yV1iDTybFS5vKgawrKtUk9yKXpQJ8N5W/Z5iMTJbGA2VHmOc+lxk5a8tpRaN98h6qSkZQkKV5l3t6ExT/E8ZQIOmVWHactwg4nWwg7IQt5n7HFnMehk4n/6V4q/jxUR7kWuUAxZT/KBivIKmEzvjDfpuCM0DEcX2kWWZhvzvPcWrlJ81xZLVJrlC874X4xv5xI+KKHRU2WPs2g37B5ypinRcOSm6r3rYqx7KOXppRsTrtasvcfyZy//B676ipeUTRnAFOjHzxa4IH9nValeW0f72EZbO609ULU//CooGYmZxjvj+iHmt385p2zqu594s/8cw4tFtPrHdry4RVTrRaoauwBb0VLW2Z9tixttMnOnoGAbLgHb81k4iXm6N9z1elBhaGxqryn0SFOrDgCNjQCl3wbQDms6/w"
 }
