@@ -44,12 +44,12 @@ jobs:
     if: ${{ !inputs.skip_sims }}
     name: resim (${{ matrix.class }}, ${{ matrix.budget }})
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 360
     strategy:
       fail-fast: false
       matrix:
         # One job per class and budget: a heavy class is split in half, so a run
-        # cannot eat the whole five-hour limit and take the daily refresh with it.
+        # cannot eat the whole six-hour limit and take the daily refresh with it.
         class: ${{ fromJSON(inputs.only_class && format('["{0}"]', inputs.only_class) || '["mage","paladin","druid","hunter","priest","rogue","shaman","warlock","warrior"]') }}
         budget: ${{ fromJSON(inputs.budget && format('["{0}"]', inputs.budget) || '["max","cheap"]') }}
     steps:
