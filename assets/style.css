@@ -1,7 +1,7 @@
 /* Pre-raid BiS · Mage & Paladin · WoW Forever. Dark, class-tinted. */
 :root{
   --bg:#121318; --bg2:#171921; --bg3:#1d2029; --line:#2a2e3a; --line2:#343a49;
-  --fg:#e7e9ee; --mut:#9aa1b2; --mut2:#6b7284;
+  --fg:#e7e9ee; --mut:#9aa1b2; --mut2:#8f97a8;
   --q0:#9d9d9d; --q1:#ffffff; --q2:#1eff00; --q3:#0070dd; --q4:#a335ee; --q5:#ff8000;
   --acc:#69CCF0; --acc-soft:rgba(105,204,240,.13); --good:#3fb96f; --bad:#cf5f70; --warn:#dfa64b;
   --barh:0px; --rad:10px;
@@ -34,9 +34,9 @@ small{color:var(--mut)}
 .brand .tag{font-size:11px;font-weight:600;color:var(--mut);border:1px solid var(--line2);border-radius:99px;padding:2px 9px}
 .brand-right{display:flex;gap:10px;align-items:center}
 .lang{display:flex;gap:0;border:1px solid var(--line2);border-radius:8px;overflow:hidden}
-.lang button{background:none;border:0;color:var(--mut);padding:5px 11px;cursor:pointer;font:600 12px Inter}
+.lang button{background:none;border:0;color:var(--mut);padding:8px 13px;cursor:pointer;font:600 12.5px Inter}
 .lang button[aria-pressed="true"]{background:var(--acc);color:#10131a}
-.statuschip{display:inline-flex;align-items:center;gap:7px;background:none;border:1px solid var(--line2);color:var(--mut);border-radius:99px;padding:4px 12px;cursor:pointer;font:600 11.5px Inter;white-space:nowrap}
+.statuschip{display:inline-flex;align-items:center;gap:7px;background:none;border:1px solid var(--line2);color:var(--mut);border-radius:99px;padding:6px 12px;cursor:pointer;font:600 11.5px Inter;white-space:nowrap}
 .statuschip::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--mut2)}
 .statuschip.ok{border-color:var(--good);color:var(--good)}
 .statuschip.ok::before{background:var(--good)}
