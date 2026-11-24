@@ -37,8 +37,8 @@
   "FireResistance": 45,
   "FrostDamage": 40,
   "FrostResistance": 35,
-  "HealingPower": 332,
-  "Health": 3797,
+  "HealingPower": 337,
+  "Health": 3817,
   "HitRating": 30,
   "Intellect": 299,
   "MP5": 81,
@@ -46,9 +46,9 @@
   "NatureResistance": 35,
   "ShadowDamage": 179,
   "ShadowResistance": 35,
-  "SpellDamage": 539,
+  "SpellDamage": 544,
   "Spirit": 255,
-  "Stamina": 258,
+  "Stamina": 260,
   "Strength": 56
  }
 }

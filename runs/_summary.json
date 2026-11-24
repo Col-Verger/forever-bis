@@ -1,15 +1,15 @@
 {
  "builds": [
   {
-   "id": "shaman-elemental-cheap",
+   "id": "shaman-elemental-max",
    "status": "ok",
-   "value": 802.85,
+   "value": 842.54,
    "metric": "dps"
   },
   {
-   "id": "shaman-enhancement-cheap",
+   "id": "shaman-enhancement-max",
    "status": "ok",
-   "value": 920.91,
+   "value": 952.94,
    "metric": "dps"
   },
   {

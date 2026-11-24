@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "max",
  "metric": "dps",
- "value": 817.31,
- "margin": 0.56,
+ "value": 819.89,
+ "margin": 0.57,
  "hps": 0,
- "threat": 582.3,
+ "threat": 584.1,
  "title": {
   "ru": "Шэдоу",
   "en": "Shadow"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-24T10:19Z",
+ "simmedAt": "2026-11-24T16:04Z",
  "simCommit": "23dd537",
- "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrsVF9oHNUXPmf+7Z0z3WZyf/kzufnRbhcpYSFldjarbRCyjRorpjWkDaX6Ykw23Y3rbt1JWelTFQvSahJ9WElfhKYPNVpaFEv1RWh9qIKwhCLWp1IMWDUQI1jYvMj8SdpgVZCCPuQse4e53z3fuXzfx5DB0EQLY3gOkUsWiuv/Y4qpimOksJXzSAr7fspbTy1GSWELJxpJY5eL1oe9FGGnZtBa3Ewau+JvKGxhCklnbw6YN0aCE1OL0QCZ/NkkhZ3w10s1b337c5Mi7IN505rJkMIWq0ga+7hi3hiJbzev5Tt+Kti/vTDw1hmcw+jFPZP5b2cbbs02LMw23MTX80v46bmGxLRKlyXYqH9UvLYh3QMuS+r+RCX4ux/fyO1Gbv9bue1VGFr4mbTVttMpO2XbSTvVmepM23aX49hJJ51M2Y6dTl6T5JpkfCfBLWlFo23UQlTXIqQeKJcKBcFI69DYUhXjEVJJ7ky51EK6iJDaobOrQ3GdIqR2JnekXd4qmmlTnIh9hCrJ7JdXRPDgbaKVonWNiD0+XH4xtn94RGiksOmVvVwIizbXNYP0ffnDuYnYE4UxH3t3uZ+3iKbwKk8WSy9l/f0Ly/1cEVI38HbRRmZdi5Kx/+BAbDA7Vs66OX/i5BC3REtwFcdrqlVRhE+ui4h/6OoQJ8H87S/uPMMNhiFwqcL3iD56lHfTlsT/mcqNHzVPhAi7XUURvmjszjtIVqKFaZzmcFUNj46kLtenvV1F3s5QtDrNFFC/5xKJNS7edj/IZ/ag17CJFO9FbBJErK6pJO/tS1lyop30x0qlwmipUnS5JODev7PlrsicJ0ymcOlZ8JhJcWzbdnZR41PFYrYc6yuNHHVjg0cLWZc/xOOBXGcw0Ia8Vo1L3WFr146064h1UnPD894JBHeawrxwY15Zi4xTucdWPs5zpM8robv0HD9E8kmEUEV93BORsckh4Qctabu0UzxMbYlWT+PxgNRzcg0OIGMO72K+/jtd5+UwMzzHx1aHXljup0P8YDC0NdG8fmjYSY+I9Kqv43/g/auRW317uNeL3PhKXjPT85cwFRxw/vSA84M0uiSNvioDAAB0ZU7KcFqOHinns+5Ep5sbHi1VLsrSFQxCixbGa5IOAADHxzKNAAAATZm20zNefdmzbcyvb3qc9yUrEutJLOG/8yWayDxYvqfvz7f9/Lr9s1+nd+8CAIDBs5ndAAAAkHkej8z9iseMweH8aOzAcPlwduINxBkEAAC42ZNgbHqfdXz+ut6rmRjDDvx9AOtIEcU="
+ "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrsVF9oHNUXPmf+7Z0z3WZyf/kzufnRbhcpYSFldjarbRCyjRorpjWkDaX6Ykw23Y3rbt1JWelTFQVtNYk+rKQvQtOHGi0tiqX6IrQ+VEFYQhHrUykGrBqIESxsXmT+JG2wKkhBH3KWvcPc757vXL7vY8hgaKKFMTyLyCULxbX/McVUxTFS2Mo5JIV9P+WtJxejpLCF1xpJY5eK1oe9FGEnZ9Ba3Ewau+xvKGxhCklnbw6Y10eCE1OL0QCZ/Nkkhb3hrxdr3vr25yZF2AfzpjWTIYUtVpE09nHFvD4S325ezXf8VLB/e27grdM4h9ELeybz38423JxtWJhtuIGv5pfw07MNiWmVLkmwUf+oeG1DuvtcltT9iUrwdz++kduN3P63cturMLTwM2mrbadTdsq2k3aqM9WZtu0ux7GTTjqZsh07nbwqyTXJ+E6Cm9KKRtuohaiuRUg9UC4VCoKR1qGxpSrGI6SS3JlyqYV0ESG1Q2dXhuI6RUjtTO5Iu7xVNNOmOBH7CFWS2S8vieDB20QrResaEXt0uPx8bP/wiNBIYdMre7kQFm2uawbp+/KHcxOxxwpjPvbucj9vEU3hVR4vll7I+vvnl/u5IqRu4O2ijcy6FiVj/8GB2GB2rJx1c/7EySFuiZbgKo7XVKuiCJ9cFxH/0JUhToL521/cfoobDEPgYoXvEX30MO+mLYn/M5UbP2qeCBF2q4oifNHY7XeQrEQL0zjN4aoaHh1JXa5Pe6uKvJ2haHWaKaB+zyUSa1y87V6Qz+xBr2ATKd6L2CSIWF1TSd7bl7LkRDvpj5RKhdFSpehyScDdf2fLHZE5T5hM4dLT4DGT4ti27eyixieKxWw51lcaOerGBo8Wsi5/gMcDuU5joA15rRqXusPWrh1p1xHrpOaG570TCO40hXnhxryyFhmncpetfJznSJ9XQnfpGX6I5BMIoYr6uCciY5NDwg9a0nZpp3iQ2hKtnsbjAann5BocQMYc3sF8/Xe6zothZniOj60OPb/cT4f4wWBoa6J5/dCwkx4S6VVfx//A+1cjt/r2cK8XufGVvGam5y9hKjjg/OkB5wdpdEkafVkGAADoypyQ4ZQcPVLOZ92JTjc3PFqqXJClyxiEFi2M1yQdAACOj2UaAQAAmjJtp2a8+rJn25hf3/Q470tWJNaTWMJ/50s0kbm/fE/em2/7uXX7Z75O794FAACDZzK7AQAAIPMsHpn7FY8Zg8P50diB4fLh7MTriDMIAABwoyfB2PQ+6/j8Nb1XMzGGHfj7ABbTEck="
 }

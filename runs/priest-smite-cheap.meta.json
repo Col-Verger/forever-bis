@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 462.07,
- "margin": 0.35,
+ "value": 465.87,
+ "margin": 0.36,
  "hps": 0,
- "threat": 385.5,
+ "threat": 388.5,
  "title": {
   "ru": "Смайт",
   "en": "Smite"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-24T10:22Z",
+ "simmedAt": "2026-11-24T16:03Z",
  "simCommit": "23dd537",
- "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrsUk9oE2kUf++bSfLystmZfuyy02+Xbhq2u9lA6EyyOayXpD0JQi3F3NvSVgIVahsQPNU/B6k2VpBiUj3U9tAWhKoo1Ytge6iiEESkepBSEEQtVAS9yky0olYEKeghv4Hf93hv3uP3Hj8OEZpoYQRnEKWwUC0ZFDR9qpN1Gl0Ps0aP97NOz04j6zRRMVmnsfUw63S85GaKXjzi8QmPT3p8e9KtLp5xeWXc5VM3TNboZT8D6zR71oj+ay7nY8/77dfd7aPncQ7N+Z3F/MqUsTZlPJky5mZwFY/mN/DajBEf8/GCgBq+CbJSO902wxI7rvgYvvbJmm9rvv2xfNuqE1p4XUTSyXQylbZTjp2ybduxbSeRstNO2rFt204mUstCq4jQIwFr4rDGkgPKxxrdaYsG2MdawhmSEdXAdXGDdCm6QXlpx25SQdZo4h8pTCEd1cx/ySiHoyEOJgPsi/lo8sCnTUm7Sb2vbdFCdK7a4v+8xa3JZpXgRvknhy4hsU4Ll9ssZDP+M/mltobg6mZMKWJ/zE+lhyiVstiIhjmUdLUWc65Wb7tiTv5OqH7jUBmrv1fGUW1G74rBMvpZp6U3uxVXX2/ZXwlVHVMZ3UmLOVV9ZP2HcTodudiuNiPZoP748i1eBGRQVY9+NWdpT0XPhug5pAEAAPyXHdGgrP00MJjvHSokhvblC73zmriJpFxpaGG0IoIAADDcl60DAAD4JVtfLrm4lWns8/Agk5wVViCSiW/g9zFkIbu983ZtPe/vCx/lp++mW/4HAICO6WwLAAAAZDtxYO4VHgx1dOV7Inu6Bvf2Fo4hlhAAAGA1Eycaa7OG790PtvpNjGAM3w4ANF2fqQ=="
+ "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrsUk1oU1kUPue+l+TkZDLv9TLDvN4ZOmmYzmQCoe8lZqGbpF0JQi3F7NvSVgIVahsQXNWfhVQbK0ghqS5qu2gLQlWU6kbQLqooBBGpLqQUBKkWKoJu5b1oRa0IUtBFvgvnHs4f3zl8HCI00cIIziBKYaFaNCho+lQn6zS6HmaNnh5kndbOIus0UTFZp7H1MOt0suRGip4/4tlTnj3t2fKaW3l30q1ZHnftmZsma/Sqn4F1mj1nRP83l/KxF/32m+720Qs4h+b87mJ+ecpYnTKeTRlzM7iCx/MbeH3GiI/5eEFADd8FWamdbpthiV1XfQzferKm25pufy7dtuqEFt4QkXQynUyl7ZRjp2zbdmzbSaTstJN2bNu2k4nUktAqIvREwKo4qrHkgPKxRvfaogH2sZZwhmRENXBd3CBdim5QXtixm1SQNZr4TwpTSEc18z8yyuFoiIPJAPtiPpo89HlT0m5SH3JbtBCdr7b4v2xxc7JZJbhR/s2hy0is08KVNgvZjP9KfqmtIri8GVOK2B/zU+kxSqUsNqJhDiVdrsWcy9XbrpiTfxKqPzhUxmp5ZRzVpvc+GSyjn3VafLtXcfX3lv2dUNUxldGddDunqp+s/zhOp2OX2tWmJxvUX1+/xcuADKrq0a/lLO256NkQPUc0AACAHdkRDcraLwOD+d6hQmLoQL7QO6+JW0jKpYYWRisiCAAAw33ZOgAAgN+y9eWSizuZxj4PjzLJWWEFIpn4Bv4YQRay2ztvz9bz/r34SXz6frplJwAAdExnWwAAACDbiQNzr/FwqKMr3xPZ1zW4v7dwArGEAAAAK5k40VibNfzgYbDVb2IEY/huACXDn+E="
 }
