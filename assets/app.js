@@ -765,7 +765,7 @@ function rowHTML(r, x, gid, picked, bisMap, metric) {
   const st = specs.map(([, spec]) => itemStats(item(spec[0]))).filter(Boolean).join(' · ');
   const delta = r.best ? '' : specs.map(([s, spec]) => slotDeltaText(bisMap && bisMap[s], spec, s, metric)).filter(Boolean).join(' · ');
   const why = r.best ? T('chart_why_best') : (delta || T('chart_why_same'));
-  return `<tr class="${k}${picked ? ' picked' : ''}" data-pick="1" data-g="${esc(gid)}" data-sig="${esc(sig)}" data-d="${r.best ? 0 : r.d}">
+  return `<tr class="${k}${picked ? ' picked' : ''}" tabindex="0" data-pick="1" data-g="${esc(gid)}" data-sig="${esc(sig)}" data-d="${r.best ? 0 : r.d}">
     <td class="c-item"><span class="pickmark" aria-hidden="true"></span><span class="items">${specs.map(([s, spec]) => itemHTML(spec, true)).join('<span class="plus">+</span>')}</span>${st ? `<span class="sdelta" data-why="${esc(why)}">${esc(st)}</span>` : ''}</td>
     <td class="c-where" title="${esc(sourceLine)}">${esc(srcs.map(it => SRC(it)[0] || T('no_source')).join(' + '))}</td>
     <td class="c-d" title="${r.best ? '' : fmt(r.d)}">${d}</td>
@@ -1295,6 +1295,14 @@ function tipHTML(id, sfx) {
     <div class="src">${SRC(it).map(s => `<div class="y">${esc(s)}</div>`).join('') || `<div class="m">${esc(T('no_source'))}</div>`}</div>`;
 }
 const tip = $('tip');
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const row = e.target.closest && e.target.closest('tr[data-pick]');
+  if (!row) return;
+  e.preventDefault();
+  row.click();
+});
+
 document.addEventListener('mousemove', e => {
   const t = e.target.closest('[data-tip],[data-why],[data-chart]');
   if (!t || !matchMedia('(hover: hover)').matches || innerWidth < 720) { tip.hidden = true; return; }
