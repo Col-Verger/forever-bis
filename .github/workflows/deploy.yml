@@ -5,6 +5,11 @@ name: Deploy site
 
 on:
   workflow_dispatch: {}
+  # A safety net: every push to master also deploys the committed site, so a
+  # missed Pages deployment (or a blocked API from a local machine) cannot leave
+  # the live site behind the repository.
+  push:
+    branches: [master]
 
 permissions:
   contents: read
