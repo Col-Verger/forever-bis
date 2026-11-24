@@ -137,7 +137,7 @@ const STR = {
   q_none_short: { ru: 'ничего не найдено', en: 'nothing found' },
   q_none: { ru: 'По этому запросу ничего нет. Попробуй название предмета, босса или зоны — подсказки появляются при вводе.', en: 'Nothing matches. Try an item, boss or zone name — suggestions appear as you type.' },
   q_reset: { ru: 'Сбросить фильтр', en: 'Clear filter' },
-  pick_hint: { ru: 'Клик по строке — примерить предмет', en: 'Click a row to try the item on' },
+  pick_hint: { ru: 'Клик по строке — примерить предмет. Набор сохраняется в этом браузере.', en: 'Click a row to try the item on. The set is kept in this browser.' },
   est_label: { ru: 'оценка сборки', en: 'build estimate' },
   est_reset: { ru: 'Вернуть BiS', en: 'Back to BiS' },
   est_bis: { ru: 'BiS', en: 'BiS' },
@@ -386,6 +386,26 @@ const sigOf = move => Object.entries(move || {})
   .sort((a, b) => a[0].localeCompare(b[0]))
   .map(([s, v]) => `${s}:${v[0]}:${v[2] || 0}`).join('|');
 
+// The try-on set lives in the browser, per loadout, so a visitor can build a
+// personal set and come back to it. Entries that no longer match the data are
+// dropped instead of quietly skewing the estimate after a refresh.
+const pickKey = lid => `bispick:${lid}`;
+function pickLoad(lid, L) {
+  let raw = {};
+  try { raw = JSON.parse(localStorage.getItem(pickKey(lid)) || '{}'); } catch { return {}; }
+  const out = {};
+  for (const [gid, p] of Object.entries(raw || {})) {
+    const g = (L.groups || []).find(x => x.id === gid);
+    if (!g || !p || !p.move || !p.sig || p.sig === 'best') continue;
+    if (!(g.rows || []).some(r => sigOf(r.move) === p.sig)) continue;
+    out[gid] = p;
+  }
+  return out;
+}
+const pickSave = (lid, pick) => {
+  try { localStorage.setItem(pickKey(lid), JSON.stringify(pick)); } catch { /* private mode */ }
+};
+
 // What the visitor picked, group by group; an empty map means the BiS set.
 function pickState(L) {
   let delta = 0, count = 0;
@@ -621,7 +641,10 @@ async function currentSimLink(L, gear) {
 function renderDoll() {
   const sp = curSpec(), L = loadout(sp);
   const lid = L ? loadoutKey(sp) : '';
-  if (state.pickLid !== lid) { state.pickLid = lid; state.pick = {}; }
+  if (state.pickLid !== lid) {
+    state.pickLid = lid;
+    state.pick = lid && L ? pickLoad(lid, L) : {};
+  }
   const gear = L ? effectiveGear(L) : null;
   const slotHTML = s => {
     if (!L) return `<div class="slot empty"><span class="icon"></span><span class="meta"><span class="lbl">${esc(slotLabel(s))}</span><span class="nm">—</span></span></div>`;
@@ -1447,6 +1470,7 @@ document.addEventListener('click', e => {
   }
   if (t.closest('[data-pickreset]')) {
     state.pick = {};
+    pickSave(loadoutKey(curSpec()), {});
     renderDoll(); renderCards();
     return;
   }
@@ -1490,6 +1514,7 @@ document.addEventListener('click', e => {
         const r = (g.rows || []).find(x => sigOf(x.move) === sig);
         if (r) state.pick[gid] = { sig, d: r.d, move: r.move };
       }
+      pickSave(loadoutKey(sp), state.pick);
       renderDoll(); renderCards();
       // The table is rebuilt, so put focus back on the same row for keyboard users.
       const again = document.querySelector(`tr[data-pick][data-g="${CSS.escape(gid)}"][data-sig="${CSS.escape(sig)}"]`);
