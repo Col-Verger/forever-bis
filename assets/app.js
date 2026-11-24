@@ -305,9 +305,9 @@ function applyStatic() {
   if (!G.meta.hasData) {
     stamp.innerHTML = `<b class="stale">${esc(T('stamp_notrun'))}</b> — ${esc(L2(G.meta.footer))}`;
   } else if (stale) {
-    stamp.innerHTML = `<b class="stale">${esc(T('stamp_run'))}: WoWSims Forever · ${esc(fmtSimmed())} · ${esc(T('chip_stale').replace('N', staleDays))}</b> — ${esc(L2(G.meta.footer))}`;
+    stamp.innerHTML = `<b class="stale">${esc(T('stamp_run'))}: WoWSims Forever · <span class="stampwhen">${esc(fmtSimmed())}</span> · ${esc(T('chip_stale').replace('N', staleDays))}</b> — ${esc(L2(G.meta.footer))}`;
   } else {
-    stamp.innerHTML = `<b>${esc(T('stamp_run'))}: WoWSims Forever · ${esc(fmtSimmed())}</b> — ${esc(L2(G.meta.footer))}`;
+    stamp.innerHTML = `<b>${esc(T('stamp_run'))}: WoWSims Forever · <span class="stampwhen">${esc(fmtSimmed())}</span></b> — ${esc(L2(G.meta.footer))}`;
   }
   document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang()));
 }
