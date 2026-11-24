@@ -53,7 +53,7 @@ jobs:
           ONLY_CLASS: ${{ inputs.only_class }}
           BUDGET: ${{ inputs.budget }}
         run: |
-          python - <<'EOF'
+          python - <<'EOF' >> "$GITHUB_OUTPUT"
           import json, os
           classes = ['mage', 'paladin', 'druid', 'hunter', 'priest', 'rogue', 'shaman', 'warlock', 'warrior']
           budgets = ['max', 'cheap']
