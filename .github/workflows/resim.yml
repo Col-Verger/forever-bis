@@ -93,6 +93,9 @@ jobs:
         working-directory: tools/statdump
         run: go build --tags=with_db -o ../../statdump .
 
+      - name: Check healer readiness (informational)
+        run: python tools/check_healers.py --forever forever
+
       - name: Materialize candidate pools
         run: python tools/make_pools.py --forever forever --configs configs
 
