@@ -65,7 +65,7 @@ const STR = {
   tab_refresh: { ru: 'Данные и обновление', en: 'Data & refresh' },
   tab_plan: { ru: 'План одевания', en: 'Gearing plan' },
   plan_title: { ru: 'План одевания', en: 'Gearing plan' },
-  plan_sub: { ru: 'Весь BiS-сет по источникам: отметь, что уже есть, и видно, сколько осталось. Бюджет и спек переключаются сверху.', en: 'The whole BiS set grouped by where it comes from: tick what you already have and see what is left. Switch budget and spec above.' },
+  plan_sub: { ru: 'Весь BiS-сет по источникам: отметь, что уже есть, и видно, сколько осталось. Название предмета открывает Wowhead; бюджет и спек переключаются сверху.', en: 'The whole BiS set grouped by source: tick what you already have and see what is left. Item names open Wowhead; budget and spec switch above.' },
   plan_progress: { ru: 'Собрано {d} из {t}', en: '{d} of {t} collected' },
   plan_budget: { ru: 'План для бюджета «{b}»', en: 'Plan for the “{b}” budget' },
   plan_copy: { ru: 'Скопировать как текст', en: 'Copy as text' },
