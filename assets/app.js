@@ -1190,6 +1190,7 @@ function planText() {
   const budget = state.budget === 'cheap' ? T('budget_cheap') : T('budget_max');
   const out = [`Pre-raid BiS · ${L2(sp.name)} · ${budget}`];
   document.querySelectorAll('#plan [data-pgroup]').forEach(g => {
+    if (![...g.querySelectorAll('label.prow')].some(r => !r.hidden)) return;
     out.push('', g.dataset.title || '');
     g.querySelectorAll('label.prow').forEach(r => {
       if (r.hidden) return;
