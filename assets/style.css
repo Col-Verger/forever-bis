@@ -422,3 +422,4 @@ table,.dps b,.statsgrid b,.facts dd,.fresh td,.matrix td,.prow,.planprog,.pct{fo
 .tscroll{max-width:100%;overflow-x:auto}
 a:focus-visible,button:focus-visible,input:focus-visible,tr[data-pick]:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 tr[data-pick]:focus-visible{outline-offset:-2px;background:var(--acc-soft)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}

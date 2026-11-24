@@ -1100,6 +1100,7 @@ function renderPlan() {
       <div class="pchips">${PLAN_KINDS.map(([k, key]) => `<button type="button" data-plan-kind="${k}" class="${state.planKinds.has(k) ? 'on' : ''}">${esc(T(key))}</button>`).join('')}</div>
       <label class="pcheck"><input type="checkbox" data-plan-hidedone${state.planHideDone ? ' checked' : ''}> ${esc(T('plan_only_left'))}</label>
       <input type="search" class="psearch" id="planq" value="${esc(state.planQ)}" placeholder="${esc(T('plan_search_ph'))}" aria-label="${esc(T('plan_search_ph'))}">
+      <button class="linkbtn" type="button" data-planfilter-reset="1">${esc(T('q_reset'))}</button>
     </div>
     <div class="plan">${list.map(g => `<section class="pgroup" data-pgroup="${esc(g.key)}" data-kind="${esc(g.kind)}" data-title="${esc(g.label)}">
       <h3>${esc(g.label)}<span class="pcount">0/${g.rows.length}</span></h3>${g.rows.join('')}</section>`).join('')}</div>
@@ -1191,6 +1192,7 @@ function planText() {
   document.querySelectorAll('#plan [data-pgroup]').forEach(g => {
     out.push('', g.dataset.title || '');
     g.querySelectorAll('label.prow').forEach(r => {
+      if (r.hidden) return;
       const cb = r.querySelector('input[data-plan]');
       const n = r.querySelector('.n');
       const src = r.querySelector('.psrc');
@@ -1391,6 +1393,13 @@ document.addEventListener('click', e => {
   if (t.closest('[data-planreset]')) {
     const lid = loadoutKey(curSpec());
     try { localStorage.removeItem(planKey(lid)); } catch { /* private mode */ }
+    renderPlan();
+    return;
+  }
+  if (t.closest('[data-planfilter-reset]')) {
+    state.planKinds = new Set(PLAN_KINDS.map(k => k[0]));
+    state.planHideDone = false;
+    state.planQ = '';
     renderPlan();
     return;
   }
