@@ -32,8 +32,7 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
+  actions: write
   issues: write
 
 concurrency:
@@ -231,28 +230,13 @@ jobs:
           git commit -m "Re-sim: ${{ env.SIM_HASH || 'manual' }} $(date -u +%F)" || echo "nothing changed"
           git push
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        id: deploy_pages
-        continue-on-error: true
-        uses: actions/deploy-pages@v4
-
-      # GitHub sometimes answers the artifact metadata lookup with zero
-      # artifacts right after a successful upload. One delayed retry fixes it.
-      - name: Wait before retrying the deployment
-        if: steps.deploy_pages.outcome == 'failure'
-        run: sleep 15
-
-      - name: Deploy to GitHub Pages (retry)
-        if: steps.deploy_pages.outcome == 'failure'
-        uses: actions/deploy-pages@v4
+      # Pushes made with GITHUB_TOKEN do not start other workflows, so ask the
+      # verified deploy explicitly. It runs on the new commit, deploys Pages,
+      # checks the live data hash and sends the URLs to IndexNow.
+      - name: Deploy the fresh data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref "${{ github.ref_name }}"
 
   report:
     # Without anyone watching, a failed run still leaves a trace: one open issue
