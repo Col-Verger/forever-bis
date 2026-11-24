@@ -805,19 +805,20 @@ function renderCards() {
   fillSearchSuggestions(L);
   const { shown, all } = countRows(L);
   const q = state.q.trim();
+  const filtering = !!q || state.srcs.size !== SOURCE_KINDS.length;
   const cnt = $('qcount');
   if (cnt) {
-    cnt.textContent = q ? (shown ? T('q_showing').replace('{n}', shown).replace('{m}', all) : T('q_none_short'))
+    cnt.textContent = filtering ? (shown ? T('q_showing').replace('{n}', shown).replace('{m}', all) : T('q_none_short'))
       : T('q_total').replace('{m}', all);
-    cnt.classList.toggle('none', !!q && !shown);
+    cnt.classList.toggle('none', filtering && !shown);
   }
   const qclear = $('qclear');
   if (qclear) qclear.hidden = !q;
   if ($('pickhint')) $('pickhint').hidden = false;
-  const none = q && !shown
-    ? `<div class="empty-note">${esc(T('q_none'))} <button class="linkbtn" type="button" data-qclear="1">${esc(T('q_reset'))}</button></div>`
+  const none = filtering && !shown
+    ? `<div class="empty-note">${esc(T('q_none'))} <button class="linkbtn" type="button" data-filters-reset="1">${esc(T('q_reset'))}</button></div>`
     : '';
-  $('cards').innerHTML = none + (q && !shown ? '' : `<table class="bt">
+  $('cards').innerHTML = none + (filtering && !shown ? '' : `<table class="bt">
     <colgroup><col class="w-item"><col class="w-where"><col class="w-d"><col class="w-chart"></colgroup>
     <thead><tr><th class="c-item">${esc(lang() === 'ru' ? 'Предмет' : 'Item')}</th><th class="c-where">${esc(lang() === 'ru' ? 'Где достать' : 'Where')}</th><th class="c-d">Δ ${esc(metricName(L.metric))}</th><th class="c-chart">${esc(T('vs_best'))}</th></tr></thead>
     ${L.groups.map(g => groupHTML(g, L)).join('')}</table>`);
@@ -1392,9 +1393,7 @@ document.addEventListener('click', e => {
       cp.textContent = T('plan_copied');
       setTimeout(() => { cp.textContent = old; }, 1500);
     };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(flash, () => {});
-    } else {
+    const fallback = () => {
       const ta = document.createElement('textarea');
       ta.value = text;
       ta.style.position = 'fixed';
@@ -1403,6 +1402,11 @@ document.addEventListener('click', e => {
       ta.select();
       try { document.execCommand('copy'); flash(); } catch (err) { /* nothing else to do */ }
       ta.remove();
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(flash, fallback);
+    } else {
+      fallback();
     }
     return;
   }
@@ -1411,6 +1415,14 @@ document.addEventListener('click', e => {
   if (t.closest('[data-qclear]')) {
     state.q = '';
     if ($('q')) $('q').value = '';
+    if (state.tab === 'gear') renderCards();
+    return;
+  }
+  if (t.closest('[data-filters-reset]')) {
+    state.q = '';
+    state.srcs = new Set(SOURCE_KINDS);
+    if ($('q')) $('q').value = '';
+    renderSources();
     if (state.tab === 'gear') renderCards();
     return;
   }
