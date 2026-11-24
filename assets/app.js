@@ -86,6 +86,7 @@ const STR = {
   plan_only_left: { ru: 'Только не собранное', en: 'Only what is left' },
   plan_search_ph: { ru: 'Предмет или источник', en: 'Item or source' },
   plan_nothing: { ru: 'Под фильтр ничего не подходит — ослабь его или сбрось.', en: 'Nothing matches the filter — loosen or clear it.' },
+  ups_title: { ru: 'Вернуть к лучшему', en: 'Back to the best' },
   plan_fallback: { ru: 'альтернатива из другого источника', en: 'alternative from another source' },
   plan_open_sim: { ru: 'Открыть сет в WoWSims ↗', en: 'Open the set in WoWSims ↗' },
   spec_pages: { ru: 'Все спеки отдельными страницами', en: 'All specs as separate pages' },
@@ -680,6 +681,12 @@ function renderDoll() {
     const dup = ps.count ? duplicateUnique(gear) : null;
     const setsChanged = ps.count ? setChanged(L.gear, gear) : false;
     const delta = ps.count ? gearDelta(L.gear, gear, L.metric) : [];
+    const ups = !ps.count ? [] : Object.entries(state.pick)
+      .map(([gid, p]) => {
+        const g = (L.groups || []).find(x => x.id === gid);
+        const best = g && g.best && g.best[gid];
+        return best && -p.d > 0.5 ? { gid, gain: -p.d, best } : null;
+      }).filter(Boolean).sort((a, b) => b.gain - a.gain).slice(0, 3);
     return `<div>
       <span class="small">${esc(L2(curClass().name))}</span><h2>${esc(L2(L.title || sp.name))}${wh ? ` <span class="status-badge wow">${esc(T('wowhead_badge'))}</span>` : ''}</h2>
       <p class="target">${esc(L2(G.meta.target))}</p>
@@ -711,6 +718,13 @@ function renderDoll() {
         </div>` : ''}
       </div>` : ''}
       ${ps.count ? `<p class="estnote">${esc(T('est_note'))}${setsChanged ? ' ' + esc(T('est_sets')) : ''}${dup ? ' ' + esc(T('est_dup')) + ' ' + esc(itemName([dup.id])) : ''}</p>` : ''}
+      ${ups.length ? `<div class="ups">
+        <div class="ups-t">${esc(T('ups_title'))}</div>
+        ${ups.map(u => `<button class="up" type="button" data-unpick="${esc(u.gid)}">
+          <span class="up-slot">${esc(slotLabel(u.gid))}</span>
+          <span class="up-n" style="${qc(item(u.best[0]))}">${esc(itemName(u.best))}</span>
+          <span class="up-g">+${Math.round(u.gain)}</span></button>`).join('')}
+      </div>` : ''}
       <p class="blurb">${esc(wh ? T('wowhead_note') : L2(sp.note))}</p>
     </div>`;
   };
@@ -1471,6 +1485,13 @@ document.addEventListener('click', e => {
   if (t.closest('[data-pickreset]')) {
     state.pick = {};
     pickSave(loadoutKey(curSpec()), {});
+    renderDoll(); renderCards();
+    return;
+  }
+  const unp = t.closest('[data-unpick]');
+  if (unp) {
+    delete state.pick[unp.dataset.unpick];
+    pickSave(loadoutKey(curSpec()), state.pick);
     renderDoll(); renderCards();
     return;
   }

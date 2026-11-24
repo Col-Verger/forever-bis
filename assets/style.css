@@ -425,3 +425,10 @@ table,.dps b,.statsgrid b,.facts dd,.fresh td,.matrix td,.prow,.planprog,.pct{fo
 a:focus-visible,button:focus-visible,input:focus-visible,tr[data-pick]:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 tr[data-pick]:focus-visible{outline-offset:-2px;background:var(--acc-soft)}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+.ups{margin-top:10px;border-top:1px solid var(--line);padding-top:8px;text-align:left;max-width:430px;margin-left:auto;margin-right:auto}
+.ups-t{font-size:10.5px;color:var(--mut2);margin-bottom:2px}
+.up{display:flex;gap:8px;align-items:baseline;width:100%;background:none;border:0;padding:4px 0;cursor:pointer;font:12px Inter;text-align:left;color:var(--fg)}
+.up:hover .up-n{text-decoration:underline}
+.up-slot{color:var(--mut2);min-width:72px;font-size:10.5px}
+.up-n{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.up-g{color:var(--good);font-weight:600;font-variant-numeric:tabular-nums}
