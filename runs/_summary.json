@@ -1,20 +1,16 @@
 {
  "builds": [
   {
-   "id": "shaman-elemental-max",
+   "id": "warlock-demo-fire-max",
    "status": "ok",
-   "value": 842.54,
+   "value": 945.34,
    "metric": "dps"
   },
   {
-   "id": "shaman-enhancement-max",
+   "id": "warlock-demo-shadow-max",
    "status": "ok",
-   "value": 952.94,
+   "value": 949.2,
    "metric": "dps"
-  },
-  {
-   "id": "shaman-restoration",
-   "status": "disabled"
   }
  ]
 }
