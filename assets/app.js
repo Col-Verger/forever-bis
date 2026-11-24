@@ -88,6 +88,7 @@ const STR = {
   plan_nothing: { ru: 'Под фильтр ничего не подходит — ослабь его или сбрось.', en: 'Nothing matches the filter — loosen or clear it.' },
   plan_fallback: { ru: 'альтернатива из другого источника', en: 'alternative from another source' },
   plan_open_sim: { ru: 'Открыть сет в WoWSims ↗', en: 'Open the set in WoWSims ↗' },
+  spec_pages: { ru: 'Все спеки отдельными страницами', en: 'All specs as separate pages' },
   chip_no_data: { ru: 'Симы не прогнаны', en: 'No sim runs yet' },
   chip_ok: { ru: 'Симы', en: 'Simmed' },
   chip_stale: { ru: 'данные старше N дней', en: 'data older than N days' },
