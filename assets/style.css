@@ -34,9 +34,9 @@ small{color:var(--mut)}
 .brand .tag{font-size:11px;font-weight:600;color:var(--mut);border:1px solid var(--line2);border-radius:99px;padding:2px 9px}
 .brand-right{display:flex;gap:10px;align-items:center}
 .lang{display:flex;gap:0;border:1px solid var(--line2);border-radius:8px;overflow:hidden}
-.lang button{background:none;border:0;color:var(--mut);padding:8px 13px;cursor:pointer;font:600 12.5px Inter}
+.lang button{background:none;border:0;color:var(--mut);padding:10px 14px;cursor:pointer;font:600 12.5px Inter}
 .lang button[aria-pressed="true"]{background:var(--acc);color:#10131a}
-.statuschip{display:inline-flex;align-items:center;gap:7px;background:none;border:1px solid var(--line2);color:var(--mut);border-radius:99px;padding:6px 12px;cursor:pointer;font:600 11.5px Inter;white-space:nowrap}
+.statuschip{display:inline-flex;align-items:center;gap:7px;background:none;border:1px solid var(--line2);color:var(--mut);border-radius:99px;padding:8px 12px;cursor:pointer;font:600 11.5px Inter;white-space:nowrap}
 .statuschip::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--mut2)}
 .statuschip.ok{border-color:var(--good);color:var(--good)}
 .statuschip.ok::before{background:var(--good)}
