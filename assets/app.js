@@ -68,7 +68,10 @@ const STR = {
   plan_sub: { ru: 'Весь BiS-сет по источникам: отметь, что уже есть, и видно, сколько осталось. Бюджет и спек переключаются сверху.', en: 'The whole BiS set grouped by where it comes from: tick what you already have and see what is left. Switch budget and spec above.' },
   plan_progress: { ru: 'Собрано {d} из {t}', en: '{d} of {t} collected' },
   plan_budget: { ru: 'План для бюджета «{b}»', en: 'Plan for the “{b}” budget' },
-  plan_copy: { ru: 'Скопировать список', en: 'Copy list' },
+  plan_copy: { ru: 'Скопировать как текст', en: 'Copy as text' },
+  plan_copy_hint: { ru: 'Скопирует план обычным текстом: источники, предметы, слоты и статы. Вставь в Discord, блокнот или сообщение.', en: 'Copies the plan as plain text: sources, items, slots and stats. Paste it into Discord, a note or a message.' },
+  plan_copy_note: { ru: 'Обычный текст для Discord, блокнота или сообщения — без картинок и ссылок.', en: 'Plain text for Discord, a note or a message — no images or links.' },
+  open_on_wowhead: { ru: 'Открыть на Wowhead', en: 'Open on Wowhead' },
   plan_copied: { ru: 'Скопировано', en: 'Copied' },
   plan_reset: { ru: 'Сбросить отметки', en: 'Clear ticks' },
   plan_local: { ru: 'Отметки хранятся только в этом браузере и никуда не отправляются.', en: 'Ticks live in this browser only and are never sent anywhere.' },
@@ -1075,16 +1078,16 @@ function planRow(key, checked, it, spec, slot) {
   const src = SRC(it)[0] || T('no_source');
   const q = norm([itemName(spec), slotLabel(slot), src, it.name, it.name_ru || ''].join(' '));
   return `<label class="prow${checked ? ' done' : ''}" data-q="${esc(q)}" data-slot="${esc(slot)}" data-bis="1">
-    <input type="checkbox" data-plan="${esc(key)}"${checked ? ' checked' : ''}>
+    <input type="checkbox" data-plan="${esc(key)}"${checked ? ' checked' : ''} aria-label="${esc(itemName(spec) + ' — ' + slotLabel(slot))}">
     <img class="icon xs${it.q >= 3 ? ' q' + it.q : ''}" src="${ICON(it.icon)}" alt="" loading="lazy">
     <span class="pmeta">
-      <span class="n" style="${qc(it)}" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}">${esc(itemName(spec))}</span>
+      <a class="n" href="${esc(WH(spec[0]))}" target="_blank" rel="noopener" style="${qc(it)}" data-tip="${spec[0]}" data-sfx="${spec[2] || 0}">${esc(itemName(spec))}</a>
       ${itemStats(it) ? `<span class="pstat">${esc(itemStats(it))}</span>` : ''}
       <span class="pslot">${esc(slotLabel(slot))}</span>
       <span class="psrc">${esc(src)}</span>
       <span class="pfb">${esc(T('plan_fallback'))}</span>
     </span>
-    <a class="pext" href="${WH(spec[0])}" target="_blank" rel="noopener" aria-label="Wowhead">↗</a>
+    <a class="pext" href="${WH(spec[0])}" target="_blank" rel="noopener" aria-label="${esc(T('open_on_wowhead'))}" title="${esc(T('open_on_wowhead'))}">↗</a>
   </label>`;
 }
 
@@ -1120,8 +1123,8 @@ function renderPlan() {
     const key = 'e:' + s;
     const q = norm([spec[3], slotLabel(s), T('plan_ench_hint')].join(' '));
     push('ench', T('plan_ench'), 90, `<label class="prow${st[key] ? ' done' : ''}" data-q="${esc(q)}">
-      <input type="checkbox" data-plan="${esc(key)}"${st[key] ? ' checked' : ''}>
-      <span class="pmeta"><span class="n" style="color:var(--fg)">${esc(spec[3])}</span>
+      <input type="checkbox" data-plan="${esc(key)}"${st[key] ? ' checked' : ''} aria-label="${esc(spec[3] + ' — ' + slotLabel(s))}">
+      <span class="pmeta"><a class="n" href="${esc(enchantHref(spec[3]))}" target="_blank" rel="noopener" style="color:var(--fg)" title="${esc(T('open_on_wowhead'))}">${esc(spec[3])}</a>
       <span class="pslot">${esc(slotLabel(s))}</span><span class="psrc">${esc(T('plan_ench_hint'))}</span></span>
     </label>`);
   }
@@ -1142,9 +1145,10 @@ function renderPlan() {
     </div>
     <div class="planactions">
       ${simBtn}
-      <button class="btn" type="button" data-plancopy="1">${esc(T('plan_copy'))}</button>
+      <button class="btn" type="button" data-plancopy="1" title="${esc(T('plan_copy_hint'))}" aria-describedby="plancopyhint">${esc(T('plan_copy'))}</button>
       <button class="btn" type="button" data-planreset="1">${esc(T('plan_reset'))}</button>
     </div>
+    <p class="small plancopyhint" id="plancopyhint">${esc(T('plan_copy_note'))}</p>
     <p class="small planlocal">${esc(T('plan_local'))}</p>
     <div class="planfilter">
       <div class="pchips">${PLAN_KINDS.map(([k, key]) => `<button type="button" data-plan-kind="${k}" class="${state.planKinds.has(k) ? 'on' : ''}">${esc(T(key))}</button>`).join('')}</div>
