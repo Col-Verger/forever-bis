@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 976.6,
- "margin": 0.5,
+ "value": 1030.84,
+ "margin": 0.52,
  "hps": 0,
- "threat": 688.6,
+ "threat": 685.0,
  "title": {
   "ru": "BM (пет)",
   "en": "BM (pet)"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-24T16:06Z",
- "simCommit": "23dd537",
- "simLink": "https://www.wowsims.com/forever/hunter/dps/#eNrEVF1oHNUX3zs7O3v3pNmd3G77n96m+d+uVNclCbOTrjapupviR1AssasURDDT7OzukN25y85dQ32K4EOR1LYKoQ15UFshBBXsi9oXQbB+gBhUUh+kLaFClT7EhAquKLKzTbKJ9UEoeB7m3vM79/x+59yPAYKRijQ0goqogiYQegMh+kEbVlQ/FSDjz260QxBfO4G0Y0GQ8Z+nECh4pqit7AcZX/SCn95o167vBwVfqmmvZkDGx+dVUPBCTbvWBgo+UdauhEHGp+dVkPEfUwj8+HgZZPz+ewiC+Pe3I9pCFHyg4CuWdvLhWFJdvKzGv38zov96ZN/MKTQ8+RaaRjCVvTj8jvnR8z8MzqHApP3j2chV9LK9hD6ejRxQmj1ckDpTfYau68mUnkrqSSOV7NH1VJ+e0g09ufdzSZ6XpEVpNgTbIESDEIjL+CaPYVBA7jEMdw1W8PIarLvAIDqHOiBSV7YADNdKJVY1nYJ1a0Wy3yXbaRTURBgrRBrwUQVkkFLugI/sojtBjYVhy3kUAj++yYmkBtaUCaUatMfaIGQ0IIxXbLo6IY/RR+ABMgC9pBuidaUDIs+4FsvWymXusCFzfKwFHayOmo7FskUuAC9KAfAPDQ0mmgN5jj77b0lIvJkKFIMSl/Gl3w5umIdulfk1Jxn6EBhE/wd2Lbb99gotZGn64CaG1nY2MrRwr5ewm/4fttYVFcJesl22cusaCp49i0gX7WxZ8mStJOweb0kA/PjbKOEknRVmVTCeZ6JosbxdKIoBVrAEE5yVjzK3wgUbt0WR1wQrcdd2Csx02GBNcE+rl3ZDV6ITSyT4pSKDpMq0eV2yRc6Fl76IQhA8bJbGmO1o/sSMtOaRnxB5HXnOulo3K3E+5ukUTNth1gtW9SirWuaosLnDhF22ellW8AobL9olq5G2Vs09Lhu3nVytwmyXjZa4azFeZdWa49hOoZuZTq5J1JCzzNEic4tcsCNWnlctNm6WPFnu9NKnoD92P6RIH8AyXt1w2EPvgo66EoYth5sqngSE60obhB6vucLjm0NbYfMeqIjsITQrTCfXkMjz6oa6e2kwFgD/Bdln0M2nSbzXJqo1y9i5+RhJCIIQyJsltxH8221uzdx8jVqC0dZKifeIk4YRbX3yTdRIGY9u7J3cR/d6PwCZBD6RJBygjSaAJbqwsopsPS+pWCKBn4MNL7DcGIxdLRtGGgR+0ox4BNelKbQk5V7y+zyLZ5b8l6VX0A74H2zD068htT6JtPZ7m9Gl9IgcO+0Pec5EPtPRhKOZHdNnGvZFenfes4W08YukBVk68aHk+09MZO4s3xO357v73Q34ua9Sg3dKsd/7HjqXWWXMjKDK3Ap6se2QaefY02a1YIljCJ1BzfDVdALjkwe1iW++Cx0gGmIojnS0D2XQEBpGFfTXAPKlnJg="
+ "simmedAt": "2026-11-25T09:58Z",
+ "simCommit": "9c0decc",
+ "simLink": "https://www.wowsims.com/forever/hunter/dps/#eNrEVF1sFNUX75mdnb17+jW9LPyHy8f/sgatm9LMDqxCUXdL/Gg0kspiSIyJDO3s7qTbuc182OATJj4QAwqaEPl4UEElFU3kSXkxEsWPxEjUFB8MkAYTNDxUCCau0ZiZpe204IMJifdh5tzfuef3O3PmnIuUgAoabIcajMEugNcB2Ok2oqgJFqBMPr/Sjily6WXQdqdQJn/tB1TIkZp2bSPK5Ezk/OxKu3Z5IyrkXKC9VEKZ7D2rokImA+1SK6bIJ1fatQsdKJM/DwDK5NN9gAmydxRl8sH7gCnyx1ud2mQGW1AhFyxt34PZvDp1Xu3+4Y1O/bcd64/sh8E9b8IhwAPlM4MnzI+e+bF/ApJ77J+Odl6EF+xp+Ph45yal+RGnpOWFtYau6/mCXsjreaOQX6PrhbV6QTf0/LovJPmsJE1JJxFX4eIpoKhudc2hEe7XLO6bbtXyswQVlNcY6zxcjGmWwmS3TK6LGdiYgxVydRbWPeSYmYAu7GwobYiDQb3OXdOpWjdO5Dd4dAnLoJrrIAqV+lqYgjJKBa+vha5gy1DNdmDbSUhjglwXVFKTs8qUMQ3bs62YNkKIkGs2mzHoI+whvI/2YS/twUxD6cLOJz2Ll4PRUeHwAXN8JIb2u0OmY/FyTfhIpqQkJgYG+nPNF32aPfVvSWh3MxQZQaVbJud+3zzPTt9I8xtBS+wBNKj+D+xadsmtFWJkRXb/Aob458xniHHPpbCK/R8XNRQVO6Jge9QantNQyPGjQFey5bEjjwd1314THUlignyXoYIWy77p+lxUooap2NWa38erls99wUd3cm9M+Hzc9msi8HldeLZT5abD+wNfRFq9rAdX5pYTiaa+UmSUVJk126VcE8KPwqcgjaltZn2E246WyB2RZnf0Z6CvQrSZU+vhdSFGIp2qaTvcetZyd3LXMod8Wzjct0etXl72xRgfr9l1KwybzeYuj4/bznAwxm2PD9WFZ3HhcjdwHNup9nDTGW4ShXKWOVTjXk34fIdVEa7Fx816JCucXvYEbsjeiwW6FvEqmSk4rmZ3YFdD6cC2bU2VSAI7Gkorph8NPD/im4BFuLAGKtDVlJV90xkOJSrCnZd3L0tlk5g4JbfkrJvnN2y76IdNtobdGI4ZefswzNrvxOzjMXsiZr8bs08cBoMtbBoaDbXvBpaxbGG30DSmMFkx617ovGlo4pELuzXmzMQLQqO7Im8YmfjN0kSNgvHw/BLTe9i66J6RafK0JJEkC2uFPLeSKDPIopOSSiSa/CUV7pJXw5exIvZfaEiQoE1PRHBZOgDT0vDziZZodZemE+elF2Ep/g8Xk0OvgNrYA1r73U3vdHG7nH0tkY42uyqlriacKS09dDBcXxZXVaI1WTR+lbQUL+Y+lFr+k+WXbi/fY7fmu/O9efixrwv9t0txQ/Tccqw0w1jaDmMT1+C51i2mPcy3RnOxG+AgNN0XizlC9m3Wdn37fXoT1YBDN+iwHkowAIMwBn8PAHn4uD0="
 }

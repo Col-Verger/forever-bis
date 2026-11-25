@@ -36,49 +36,51 @@
     },
     {
      "id": 18404,
-     "enchant": 904
+     "enchant": 8218
     },
     {
-     "id": 14503
+     "id": 226969
     },
     {
-     "id": 272411
+     "id": 272411,
+     "enchant": 7667
     },
     {
-     "id": 226973
+     "id": 226973,
+     "enchant": 1891
     },
     {
-     "id": 12936,
-     "enchant": 2566
+     "id": 226970,
+     "enchant": 7665
     },
     {
      "id": 226975,
-     "enchant": 8206
+     "enchant": 7646
     },
     {
      "id": 226971
     },
     {
-     "id": 226972
+     "id": 14554
     },
     {
      "id": 226974,
      "enchant": 1887
     },
     {
-     "id": 21182
-    },
-    {
      "id": 19325
     },
     {
-     "id": 19289
+     "id": 272406
+    },
+    {
+     "id": 22321
     },
     {
      "id": 272437
     },
     {
-     "id": 12784,
+     "id": 647,
      "enchant": 1900
     },
     {},
@@ -91,21 +93,22 @@
    "flaskId": 13512,
    "foodId": 13933,
    "conjuredId": 12662,
+   "explosiveId": 284868,
    "mhImbueId": 3824,
    "extraIds": [
     8410,
     10646,
     12217,
     18269,
-    12460
+    12460,
+    12451
    ],
    "elixirIds": [
     21546,
     13452,
     250329,
     13454,
-    250341,
-    9206
+    250341
    ],
    "resourcePotId": 13444,
    "offensivePotId": 250937
@@ -120,12 +123,55 @@
     "classOptions": {}
    }
   },
-  "talentsString": "050250002-501-05233011201301351",
+  "talentsString": "050050002-503-05233011201301351",
   "profession1": "Engineering",
   "profession2": "Blacksmithing",
   "rotation": {
    "type": "TypeAPL",
    "prepullActions": [
+    {
+     "action": {
+      "condition": {
+       "and": {
+        "vals": [
+         {
+          "talentIsKnown": {
+           "talentId": {
+            "spellId": 1310735
+           }
+          }
+         },
+         {
+          "spellIsKnown": {
+           "spellId": {
+            "itemId": 9449
+           }
+          }
+         },
+         {
+          "not": {
+           "val": {
+            "spellCanCast": {
+             "spellId": {
+              "itemId": 9449
+             }
+            }
+           }
+          }
+         }
+        ]
+       }
+      },
+      "itemSwap": {
+       "swapSet": "Swap1"
+      }
+     },
+     "doAtValue": {
+      "const": {
+       "val": "-30s"
+      }
+     }
+    },
     {
      "action": {
       "groupReference": {
@@ -213,6 +259,20 @@
     },
     {
      "action": {
+      "groupReference": {
+       "groupName": "MCP swap"
+      }
+     }
+    },
+    {
+     "action": {
+      "condition": {
+       "auraIsInactive": {
+        "auraId": {
+         "spellId": 20423
+        }
+       }
+      },
       "castSpell": {
        "spellId": {
         "spellId": 20271
@@ -297,6 +357,36 @@
       "castSpell": {
        "spellId": {
         "spellId": 10333,
+        "rank": 8
+       }
+      }
+     }
+    },
+    {
+     "action": {
+      "condition": {
+       "variableRef": {
+        "name": "Should swap to SoF"
+       }
+      },
+      "castSpell": {
+       "spellId": {
+        "spellId": 20423,
+        "rank": 7
+       }
+      }
+     }
+    },
+    {
+     "action": {
+      "condition": {
+       "variableRef": {
+        "name": "Should swap to SoR from SoF"
+       }
+      },
+      "castSpell": {
+       "spellId": {
+        "spellId": 20293,
         "rank": 8
        }
       }
@@ -404,6 +494,15 @@
             "variableRef": {
              "name": "Use Seal of Command"
             }
+           },
+           {
+            "not": {
+             "val": {
+              "variableRef": {
+               "name": "MCP twist"
+              }
+             }
+            }
            }
           ]
          }
@@ -436,32 +535,49 @@
             }
            },
            {
-            "variableRef": {
-             "name": "Use Seal of Righteousness"
-            }
-           },
-           {
             "or": {
              "vals": [
               {
-               "not": {
-                "val": {
-                 "variableRef": {
-                  "name": "Use Seal of Command"
-                 }
-                }
+               "variableRef": {
+                "name": "MCP twist"
                }
               },
               {
-               "not": {
-                "val": {
-                 "talentIsKnown": {
-                  "talentId": {
-                   "spellId": 20375,
-                   "rank": 1
+               "and": {
+                "vals": [
+                 {
+                  "variableRef": {
+                   "name": "Use Seal of Righteousness"
+                  }
+                 },
+                 {
+                  "or": {
+                   "vals": [
+                    {
+                     "not": {
+                      "val": {
+                       "variableRef": {
+                        "name": "Use Seal of Command"
+                       }
+                      }
+                     }
+                    },
+                    {
+                     "not": {
+                      "val": {
+                       "talentIsKnown": {
+                        "talentId": {
+                         "spellId": 20375,
+                         "rank": 1
+                        }
+                       }
+                      }
+                     }
+                    }
+                   ]
                   }
                  }
-                }
+                ]
                }
               }
              ]
@@ -475,6 +591,23 @@
           "spellId": 20293,
           "rank": 8
          }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "name": "MCP swap",
+     "actions": [
+      {
+       "action": {
+        "condition": {
+         "variableRef": {
+          "name": "Should swap from MCP"
+         }
+        },
+        "itemSwap": {
+         "swapSet": "Main"
         }
        }
       }
@@ -526,6 +659,15 @@
                }
               }
              ]
+            }
+           },
+           {
+            "not": {
+             "val": {
+              "variableRef": {
+               "name": "MCP twist"
+              }
+             }
             }
            },
            {
@@ -614,6 +756,11 @@
            {
             "or": {
              "vals": [
+              {
+               "variableRef": {
+                "name": "MCP twist"
+               }
+              },
               {
                "not": {
                 "val": {
@@ -919,10 +1066,301 @@
      }
     },
     {
+     "name": "MCP Max Seal of Righteousness Stacks",
+     "value": {
+      "const": {
+       "val": "3"
+      }
+     }
+    },
+    {
+     "name": "MCP Max Seal of Fury Stacks",
+     "value": {
+      "const": {
+       "val": "1"
+      }
+     }
+    },
+    {
+     "name": "MCP twist",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "talentIsKnown": {
+          "talentId": {
+           "spellId": 1310735
+          }
+         }
+        },
+        {
+         "spellIsKnown": {
+          "spellId": {
+           "itemId": 9449
+          }
+         }
+        },
+        {
+         "or": {
+          "vals": [
+           {
+            "activeItemSwapSet": {
+             "swapSet": "Swap1"
+            }
+           },
+           {
+            "const": {
+             "val": "false"
+            }
+           }
+          ]
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Should swap",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "talentIsKnown": {
+          "talentId": {
+           "spellId": 1310735
+          }
+         }
+        },
+        {
+         "spellIsKnown": {
+          "spellId": {
+           "itemId": 9449
+          }
+         }
+        },
+        {
+         "auraIsInactive": {
+          "auraId": {
+           "spellId": 13494
+          },
+          "includeReactionTime": true
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpLe",
+          "lhs": {
+           "autoTimeSinceLast": {
+            "autoType": "MainHandAuto"
+           }
+          },
+          "rhs": {
+           "const": {
+            "val": "0.1s"
+           }
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Should swap from MCP",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "variableRef": {
+          "name": "Should swap"
+         }
+        },
+        {
+         "activeItemSwapSet": {
+          "swapSet": "Swap1"
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpGt",
+          "lhs": {
+           "spellTimeToReady": {
+            "spellId": {
+             "itemId": 9449
+            }
+           }
+          },
+          "rhs": {
+           "const": {
+            "val": "40s"
+           }
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Should swap to SoF",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "variableRef": {
+          "name": "MCP twist"
+         }
+        },
+        {
+         "auraIsInactive": {
+          "auraId": {
+           "spellId": 20423
+          },
+          "includeReactionTime": true
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "auraNumStacks": {
+            "auraId": {
+             "spellId": 1311704
+            },
+            "includeReactionTime": true
+           }
+          },
+          "rhs": {
+           "variableRef": {
+            "name": "MCP Max Seal of Righteousness Stacks"
+           }
+          }
+         }
+        },
+        {
+         "variableRef": {
+          "name": "Judge realism protection"
+         }
+        },
+        {
+         "variableRef": {
+          "name": "Judgement outlasts the swap"
+         }
+        },
+        {
+         "variableRef": {
+          "name": "Can pay for both swaps"
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Should swap to SoR from SoF",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "variableRef": {
+          "name": "MCP twist"
+         }
+        },
+        {
+         "auraIsInactive": {
+          "auraId": {
+           "spellId": 20293
+          },
+          "includeReactionTime": true
+         }
+        },
+        {
+         "or": {
+          "vals": [
+           {
+            "auraIsInactive": {
+             "auraId": {
+              "spellId": 20423
+             }
+            }
+           },
+           {
+            "cmp": {
+             "op": "OpGe",
+             "lhs": {
+              "auraNumStacks": {
+               "auraId": {
+                "spellId": 1311701
+               },
+               "includeReactionTime": true
+              }
+             },
+             "rhs": {
+              "variableRef": {
+               "name": "MCP Max Seal of Fury Stacks"
+              }
+             }
+            }
+           }
+          ]
+         }
+        },
+        {
+         "variableRef": {
+          "name": "Judge realism protection"
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Can pay for both swaps",
+     "value": {
+      "cmp": {
+       "op": "OpGe",
+       "lhs": {
+        "currentMana": {}
+       },
+       "rhs": {
+        "math": {
+         "op": "OpAdd",
+         "lhs": {
+          "spellCurrentCost": {
+           "spellId": {
+            "spellId": 20423,
+            "rank": 7
+           }
+          }
+         },
+         "rhs": {
+          "spellCurrentCost": {
+           "spellId": {
+            "spellId": 20293,
+            "rank": 8
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
      "name": "Should refresh SoC",
      "value": {
       "and": {
        "vals": [
+        {
+         "not": {
+          "val": {
+           "variableRef": {
+            "name": "MCP twist"
+           }
+          }
+         }
+        },
         {
          "or": {
           "vals": [
@@ -1061,6 +1499,15 @@
      "value": {
       "and": {
        "vals": [
+        {
+         "not": {
+          "val": {
+           "variableRef": {
+            "name": "MCP twist"
+           }
+          }
+         }
+        },
         {
          "or": {
           "vals": [

@@ -32,56 +32,56 @@
   "equipment": {
    "items": [
     {
-     "id": 16686
+     "id": 226976
     },
     {
      "id": 18404,
      "enchant": 8218
     },
     {
-     "id": 16729
+     "id": 226969
     },
     {
-     "id": 272411
+     "id": 272411,
+     "enchant": 7667
     },
     {
      "id": 226973,
      "enchant": 1891
     },
     {
-     "id": 16722,
-     "enchant": 2566
+     "id": 12936,
+     "enchant": 7665
     },
     {
-     "id": 280028,
-     "enchant": 2617
+     "id": 226975,
+     "enchant": 7646
     },
     {
-     "id": 16723
+     "id": 226971
     },
     {
-     "id": 16687,
+     "id": 14554
+    },
+    {
+     "id": 226974,
      "enchant": 8492
-    },
-    {
-     "id": 16682,
-     "enchant": 8492
-    },
-    {
-     "id": 19325
     },
     {
      "id": 272406
     },
     {
-     "id": 270225
+     "id": 19325
     },
     {
-     "id": 19289
+     "id": 13213
     },
     {
-     "id": 2801,
-     "enchant": 8211
+     "id": 22321
+    },
+    {
+     "id": 647,
+     "enchant": 7662
     },
     {},
     {
@@ -93,21 +93,22 @@
    "flaskId": 13512,
    "foodId": 13933,
    "conjuredId": 12662,
+   "explosiveId": 284868,
    "mhImbueId": 3824,
    "extraIds": [
-    8423,
+    8410,
     10646,
     12217,
     18269,
-    12460
+    12460,
+    12451
    ],
    "elixirIds": [
     21546,
     13452,
     250329,
     13454,
-    250341,
-    9206
+    250341
    ],
    "swapMhImbueId": 3829,
    "resourcePotId": 13444,
@@ -637,7 +638,7 @@
      "name": "Use Seal of Righteousness",
      "value": {
       "const": {
-       "val": "true"
+       "val": "false"
       }
      }
     },
@@ -1167,22 +1168,42 @@
          }
         },
         {
+         "not": {
+          "val": {
+           "variableRef": {
+            "name": "Use Seal of Command"
+           }
+          }
+         }
+        },
+        {
+         "auraIsActive": {
+          "auraId": {
+           "spellId": 13494
+          }
+         }
+        },
+        {
          "and": {
           "vals": [
            {
-            "not": {
-             "val": {
-              "variableRef": {
-               "name": "Use Seal of Righteousness"
-              }
-             }
+            "activeItemSwapSet": {
+             "swapSet": "Swap1"
             }
            },
            {
-            "not": {
-             "val": {
-              "variableRef": {
-               "name": "Use Seal of Command"
+            "cmp": {
+             "op": "OpLe",
+             "lhs": {
+              "spellTimeToReady": {
+               "spellId": {
+                "itemId": 9449
+               }
+              }
+             },
+             "rhs": {
+              "const": {
+               "val": "10s"
               }
              }
             }
@@ -1216,7 +1237,7 @@
          "not": {
           "val": {
            "variableRef": {
-            "name": "Use Seal of Righteousness"
+            "name": "Is using Seal of Righteousness"
            }
           }
          }

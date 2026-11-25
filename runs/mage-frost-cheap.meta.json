@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 856.59,
- "margin": 1.11,
+ "value": 857.64,
+ "margin": 1.12,
  "hps": 0,
- "threat": 790.7,
+ "threat": 791.7,
  "title": {
   "ru": "Фрост",
   "en": "Frost"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-24T16:22Z",
- "simCommit": "23dd537",
+ "simmedAt": "2026-11-25T10:10Z",
+ "simCommit": "9c0decc",
  "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEUU1oI2UYnvebycybN2Yz/Zrtfvnqz3Rs1zIQmUkYl7hC0qKnVbMsexaztF0Du1baHMRTrYJ6UAqi2KgH24Ia/2oO/vRYKVRECCIKPZVcVAzaH0o9FZmZxFIpPQm+l7w8eZ5n3uf5KIFgggALPgDgumAWPAvyFx3RRFkjAw87SbHTTwa+8BmIeok0/KuTJA3fbpmk4vxTZOBuJyl2L5OBe52k+DJNGr7SMsnAg550v5MUH4+Thm+2TNLwm0+BNPwiNFi4TTquGuKPy6SQhitvgG2Zm9XR329dfXUJGkCvVV+qdpZT778Dq3B0aG7Di9VxHUGAC2tsMOfmc66f9bOun/dd1/U8L+fl817O9zaZ1mKJNjvQ6GEyZIxU/G3SLjTZA6hyp8nuQ+CZJhtA4Fhnwd8bZYmNf7a6EUmkThqxrEf5rstG2R5tshFUz5L3RHZX9F7KvtBkaVQ5bhkR0OPwe+UQmc451Di7oUSoP9KGO4geqzxdsa5PT9+a5X0yRYkmIGn47poQ8KDC75Qy1OlcbYMSfIYg34YYqWPlR7gl76bzTj/qHBsBhp+XI8ql4Ae/qvCLcpgGnQwCP7cOCVJx+QZnZkxAxPNlpOKuvJ+GuU0DThqBx9dBj46IaB7hHhynxj9/vsKH5D0hW+PxtZD90dHV7n3dh+Bx2WtTqM6lE1FJYuj09e6j/C45OA+CVHz9CdnnpFAPOzIoRmqhMOK8BVHYoELhDKDOE+vHHXUP7OUYlvYZpN7tASvDL5zend/r7rzsJ9rSjTCMgH+n+q78K5vYYRPPq0o4D5XqKt2u3JzMTs1Mz9aWIHxlBLvF4kowc1OlvnBR0qVMfTGYb4tDU+H8VMx9yIRhFZ0dUP6XqZX+W78rp/td/OQEvvK9P1YIt2srpbEuWHoSnmnsw3OJa5XqhHW9MnNzsvYywGK3me2ig7jwuJj74cf4uGbBKPw9ALioyAY="
 }

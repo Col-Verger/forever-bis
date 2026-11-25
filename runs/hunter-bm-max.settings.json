@@ -41,7 +41,7 @@
      "id": 272106
     },
     {
-     "id": 272414,
+     "id": 13340,
      "enchant": 7667
     },
     {
@@ -68,10 +68,10 @@
      "enchant": 1887
     },
     {
-     "id": 272408
+     "id": 19325
     },
     {
-     "id": 19325
+     "id": 18500
     },
     {
      "id": 13965
@@ -132,6 +132,18 @@
   "rotation": {
    "type": "TypeAPL",
    "prepullActions": [
+    {
+     "action": {
+      "groupReference": {
+       "groupName": "Track the target"
+      }
+     },
+     "doAtValue": {
+      "const": {
+       "val": "-24s"
+      }
+     }
+    },
     {
      "action": {
       "castSpell": {
@@ -499,6 +511,74 @@
         "wait": {
          "duration": {
           "inputDelay": {}
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "name": "Track the target",
+     "actions": [
+      {
+       "action": {
+        "castSpell": {
+         "spellId": {
+          "spellId": 1494
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "castSpell": {
+         "spellId": {
+          "spellId": 19878
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "castSpell": {
+         "spellId": {
+          "spellId": 19879
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "castSpell": {
+         "spellId": {
+          "spellId": 19880
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "castSpell": {
+         "spellId": {
+          "spellId": 19882
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "castSpell": {
+         "spellId": {
+          "spellId": 19883
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "castSpell": {
+         "spellId": {
+          "spellId": 19884
          }
         }
        }

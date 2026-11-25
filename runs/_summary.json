@@ -1,15 +1,28 @@
 {
  "builds": [
   {
-   "id": "warlock-demo-fire-max",
+   "id": "rogue-combat-max",
    "status": "ok",
-   "value": 945.34,
+   "value": 860.77,
+   "metric": "dps"
+  }
+ ]
+} {
+   "id": "warrior-fury-2h-cheap",
+   "status": "ok",
+   "value": 885.18,
    "metric": "dps"
   },
   {
-   "id": "warlock-demo-shadow-max",
+   "id": "warrior-arms-cheap",
    "status": "ok",
-   "value": 949.2,
+   "value": 821.92,
+   "metric": "dps"
+  },
+  {
+   "id": "warrior-protection-cheap",
+   "status": "ok",
+   "value": 301.21,
    "metric": "dps"
   }
  ]
