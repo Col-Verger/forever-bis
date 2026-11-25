@@ -71,9 +71,12 @@ jobs:
               sys.exit(0)
 
           last_run = runs[0] if runs else {}
-          print(f'oldest set: {oldest} ({age:.1f}h ago); last run: {last_run.get("conclusion")}')
+          # Aim for a morning refresh: inside 00:00-06:00 UTC twelve hours is
+          # enough; outside it, wait for a full day before the fallback run.
+          limit = 12 if 0 <= now.hour < 6 else 23
+          print(f'oldest set: {oldest} ({age:.1f}h ago); last run: {last_run.get("conclusion")}; limit: {limit}h')
 
-          if age < 23:
+          if age < limit:
               print('data is fresh enough; skip')
               sys.exit(0)
 
