@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "max",
  "metric": "dps",
- "value": 825.79,
- "margin": 0.8,
+ "value": 823.01,
+ "margin": 0.79,
  "hps": 0,
- "threat": 723.5,
+ "threat": 721.6,
  "title": {
   "ru": "Аркейн",
   "en": "Arcane"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-25T09:51Z",
- "simCommit": "9c0decc",
+ "simmedAt": "2026-11-25T13:11Z",
+ "simCommit": "09ec1dc",
  "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEkN1LFF8Yx/c5M+488yz7cx39xekYMm6ZtrEws9sG5sWOQvRipUjX0uQbC76ESIRXZkFBVEIhuHW1CZZlxd7pX7BdCIv0cplIQtBCvhB6ERUzjq5CdBX0vXrO83y/n3POQwGEEHDQ4SmA5udMh2sgpkoQQyiGScGNQpCvlJOCN14BT1sk42YhSDI+yofIj7l+vvwfKbhaCPLVBlJwrRDkHxtIxuX7QAp+206vF4L8RRPJOJ4PkYQ/bZLx+wyQhGN9pODXl8AnHPj6uNNb6w3roVyq7ktv690MTAPdS91KFZ6UTj2G1/BjI7QIN1NNfgQOBsyxKiNhxIxELBY3DTNumom4GU0kDMMw4lHDiOeYnGeBJfZcouOEwk8yzq6eC0eyrBYlrTLLOIKmppkzGN1sFWpa8TyOl1jUpENebnSzNcyz7H+Udgc8l3ZQVFNZpBRljV32CYVKSDKNmiUIkHry6kCHPZQa6Nd0UUVCcApkAUnG+VnOgdQMeLATPm2fqNgzFSUk4acWLSz0XcZYOSnu5E578XEaiWKtii3Dh5ad9sN3zVyKZGD3g86IU3RAExQMB0jNuvi53HlSF2RvC7Ha4taochQ4SfigXTg/9Rd/Wl9fo50Vp+moOLKF2slvHTOwfSxe8gfWZ9a5wjqvSz5Xx6y0FOize7qi9mCH3d/lwoghhPNM9Tka6bbK3MJXYe1PTzh6k6zudvU+GXvGuKInIyvg+ycasv4ur/n3vMMze/qT84nGerdqm7QavaZ1Ca5Mr8NwoM1OdeoX7cGerqHbABPeZhaTEcSxC3xk4a3aJOtQB78GACbxubU="
 }
