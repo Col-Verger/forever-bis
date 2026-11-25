@@ -1,0 +1,73 @@
+name: Watchdog - refresh stale data
+
+# GitHub's scheduled runs are best effort and can be hours late (the old
+# 04:00 UTC run was showing up around 14:00 and getting cancelled). Instead
+# of one fragile timer, check every hour whether the last successful resim is
+# older than a day and dispatch one only then. A run already in progress, or
+# a failure in the last six hours, makes the watchdog stay quiet.
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: resim-watchdog
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Run a resim only when the data is stale
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          python - <<'EOF'
+          import datetime, json, os, subprocess, sys
+
+          repo = os.environ['REPO']
+
+          def gh(*args):
+              return subprocess.check_output(['gh', *args, '--repo', repo], text=True)
+
+          runs = json.loads(gh('run', 'list', '--workflow', 'resim.yml',
+                               '--limit', '20', '--json',
+                               'status,conclusion,createdAt'))
+          now = datetime.datetime.now(datetime.timezone.utc)
+
+          active = [r for r in runs
+                    if r['status'] in ('queued', 'in_progress', 'requested', 'waiting', 'pending')]
+          if active:
+              print('a resim is already active; skip')
+              sys.exit(0)
+
+          def when(r):
+              return datetime.datetime.fromisoformat(r['createdAt'].replace('Z', '+00:00'))
+
+          ok = [r for r in runs if r['conclusion'] == 'success']
+          last = max((when(r) for r in ok), default=None)
+          age = (now - last).total_seconds() / 3600 if last else 1e9
+          print(f'last successful resim: {last} ({age:.1f}h ago)')
+
+          if age < 23:
+              print('data is fresh enough; skip')
+              sys.exit(0)
+
+          recent_fail = [r for r in runs
+                         if r['conclusion'] in ('failure', 'cancelled')
+                         and (now - when(r)).total_seconds() < 6 * 3600]
+          if recent_fail:
+              print('a recent attempt failed; retry in a few hours')
+              sys.exit(0)
+
+          print('dispatching resim.yml')
+          subprocess.check_call(['gh', 'workflow', 'run', 'resim.yml',
+                                 '--ref', 'master', '--repo', repo])
+          EOF

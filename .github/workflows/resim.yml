@@ -27,9 +27,6 @@ on:
         description: 'Only rebuild data.js from existing runs (no sims)'
         type: boolean
         default: false
-  schedule:
-    - cron: '0 4 * * *' # Every day 04:00 UTC; edit to taste.
-
 permissions:
   contents: write
   actions: write
