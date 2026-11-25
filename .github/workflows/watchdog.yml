@@ -30,7 +30,7 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           python - <<'EOF'
-          import datetime, json, os, subprocess, sys
+          import datetime, json, os, subprocess, sys, urllib.request
 
           repo = os.environ['REPO']
 
@@ -51,14 +51,29 @@ jobs:
           def when(r):
               return datetime.datetime.fromisoformat(r['createdAt'].replace('Z', '+00:00'))
 
-          ok = [r for r in runs if r['conclusion'] == 'success']
-          last = max((when(r) for r in ok), default=None)
-          age = (now - last).total_seconds() / 3600 if last else 1e9
-          last_run = runs[0] if runs else {}
-          last_failed = last_run.get('conclusion') in ('failure', 'cancelled')
-          print(f'last successful resim: {last} ({age:.1f}h ago); last run: {last_run.get("conclusion")}')
+          # The freshness that matters is the oldest set on the live site, not
+          # the last successful workflow: a one-class rerun must not reset the
+          # clock for every other class.
+          site = 'https://col-verger.github.io/forever-bis/data.js'
+          try:
+              req = urllib.request.Request(
+                  site + '?x=%d' % int(now.timestamp()),
+                  headers={'User-Agent': 'forever-bis-watchdog/1.0',
+                           'Cache-Control': 'no-cache'})
+              raw = urllib.request.urlopen(req, timeout=30).read().decode('utf-8')
+              data = json.loads(raw[raw.find('{'):raw.rfind('}') + 1])
+              dates = [datetime.datetime.fromisoformat(v['simmedAt'].replace('Z', '+00:00'))
+                       for v in (data.get('loadouts') or {}).values() if v.get('simmedAt')]
+              oldest = min(dates) if dates else None
+              age = (now - oldest).total_seconds() / 3600 if oldest else 1e9
+          except Exception as exc:
+              print(f'cannot read the live data ({exc}); skip')
+              sys.exit(0)
 
-          if age < 23 and not last_failed:
+          last_run = runs[0] if runs else {}
+          print(f'oldest set: {oldest} ({age:.1f}h ago); last run: {last_run.get("conclusion")}')
+
+          if age < 23:
               print('data is fresh enough; skip')
               sys.exit(0)
 
