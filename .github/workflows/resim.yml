@@ -1,8 +1,8 @@
 name: Re-sim and deploy
 
 # Builds the sim CLI from the latest wowsims/forever master, re-runs every class's
-# per-slot searches IN PARALLEL (one matrix job per class and budget; the heavy
-# warlock/max set is split into three spec groups so the daily refresh stays short),
+# per-slot searches IN PARALLEL (one matrix job per build and budget: a heavy
+# spec cannot hold a whole class hostage),
 # then merges all runs, rebuilds data.js (with the sim's commit hash and date
 # stamped into it), commits the runs and deploys the static site to GitHub Pages.
 #
@@ -44,38 +44,54 @@ jobs:
     outputs:
       matrix: ${{ steps.m.outputs.matrix }}
     steps:
+      - uses: actions/checkout@v4
       - id: m
         env:
           ONLY_CLASS: ${{ inputs.only_class }}
           BUDGET: ${{ inputs.budget }}
         run: |
           python - <<'EOF' >> "$GITHUB_OUTPUT"
-          import json, os
-          classes = ['mage', 'paladin', 'druid', 'hunter', 'priest', 'rogue', 'shaman', 'warlock', 'warrior']
+          import glob, json, os
+          # One job per build and budget. A class-sized job can hide a single
+          # heavy spec for hours; a build-sized job cannot. The order puts the
+          # known-heavy builds first so they do not start in the last wave.
+          order = ['warlock', 'hunter', 'paladin', 'rogue', 'warrior',
+                   'druid', 'mage', 'priest', 'shaman']
           budgets = ['max', 'cheap']
           only_class = os.environ.get('ONLY_CLASS', '').strip()
           budget = os.environ.get('BUDGET', '').strip()
+          if budget and budget not in budgets:
+              raise SystemExit(f'unknown budget: {budget}')
+          if budget:
+              budgets = [budget]
+
+          configs = {}
+          for cf in glob.glob('configs/*.json'):
+              if os.path.basename(cf).startswith('_'):
+                  continue
+              cfg = json.load(open(cf, encoding='utf-8'))
+              cls = cfg.get('class') or os.path.basename(cf)[:-5]
+              configs[cls] = cfg
+
+          classes = [c for c in order if c in configs]
+          classes += [c for c in configs if c not in classes]
           if only_class:
-              if only_class not in classes:
+              if only_class not in configs:
                   raise SystemExit(f'unknown class: {only_class}')
               classes = [only_class]
-          if budget:
-              if budget not in budgets:
-                  raise SystemExit(f'unknown budget: {budget}')
-              budgets = [budget]
+
           jobs = []
           for c in classes:
-              for b in budgets:
-                  if c == 'warlock' and b == 'max':
-                      # The heaviest set is split by spec: one job per group
-                      # finishes in about an hour instead of five.
-                      jobs += [
-                          {'class': c, 'budget': b, 'part': 'affwrack', 'only': 'warlock-affwrack'},
-                          {'class': c, 'budget': b, 'part': 'demo', 'only': 'warlock-demo-shadow,warlock-demo-fire'},
-                          {'class': c, 'budget': b, 'part': 'destro', 'only': 'warlock-destro,warlock-smruin'},
-                      ]
-                  else:
-                      jobs.append({'class': c, 'budget': b, 'part': '', 'only': ''})
+              for bc in configs[c].get('builds') or []:
+                  if bc.get('disabled'):
+                      continue
+                  bid = bc.get('id')
+                  if not bid:
+                      continue
+                  part = bid[len(c) + 1:] if bid.startswith(c + '-') else bid
+                  for b in budgets:
+                      jobs.append({'class': c, 'budget': b,
+                                   'part': part, 'only': bid})
           print('matrix=' + json.dumps({'include': jobs}))
           EOF
 
@@ -144,7 +160,7 @@ jobs:
       - name: Run the per-slot searches (${{ matrix.class }})
         run: >
           python tools/run_sims.py --forever forever --wowsimcli wowsimcli
-          --configs configs --out runs --verbose --jobs 3
+          --configs configs --out runs --verbose --jobs 4
           --class ${{ matrix.class }}
           --linkhash ./linkhash
           --statdump ./statdump
