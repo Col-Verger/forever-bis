@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 771.7,
- "margin": 0.74,
+ "value": 779.59,
+ "margin": 0.75,
  "hps": 0,
- "threat": 678.7,
+ "threat": 684.5,
  "title": {
   "ru": "Аркейн",
   "en": "Arcane"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-25T13:12Z",
- "simCommit": "09ec1dc",
- "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEkN1LFF8Yx+c5M+488wyL6+jvx+kYMm6ZtrEws9sG5sWOQvRipUjX0uRbC76ESERXtgUVUQhF4ObVJlSWFHunf4FdCIv0cplIF0F74SqhF1Gx4+gqRFdB36vnPM/3+znnPKQjhICDCc8BjABnJlwDMVWBGEIxQipuFIJ8tZpUvPkaeMYhBTcLQVLwST5EMqYvk4rFQpAXW0jFtUKQf2ohBe/mQ6Tit+3oeiHIX7WRgo+90E+XFPw+CyTjxBDJWBwkiWRcGwyboYVU09fBzvtZmAF6kLqdKjytfDYFb+DHRmgZbqXaAggcLJhndVbCilmJWCxuW3bcthNxO5pIWJZlxaOWFV9gSp7pK+ylTMcIRYAUnCueDUdyrBFlozbHOIKhZVhpkN7sFFpG9T0lL7GoTQf9XHqzM8xz7D+Udwd8l3FA1FNVpBIVg12ShEoVJNtWwwropJ24OtLjjqVGhg1T1JEQnPQcICm4OMc5kJYFH3ZcMv4XNXumooJk/NxhhIW5yxirJtWb3OsuP84gUa41sWX42LHTfvS+ncuRLOx+0GlxkvYbgoJhnbSch59fOEfakuJvIdZY3hrVpoGTjA+7RemngfJPm5sbjDPiFB0Rh7dQO/mtYxa2j+VL/sD6wnpXWe8NWfJ01MnI+pA70Bd1R3vc4T4PRgwhnGeaVNJ4v1PlFVKNsy8zWdLbZH2/pw/J2AvGVTMZWQXpn2jM+bu89t/zDs3u6U8vJlqbvapr2mn1m85FuDKzDtf1LjfVa15wRwf6xu4ATPqbWU5GECfO8/Gld1qbYkIT/BoAIZi1bQ=="
+ "simmedAt": "2026-11-26T03:15Z",
+ "simCommit": "9e2e0ef",
+ "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEkN9LFF0Yx+c5M+488wyL4+j7ct7ji4z7vqZtLMzstoF5saMQ/bBSpGtp81cL/kIkoivbgooohCJwq4s2obKk2Dv9CywQFunHZSJdBO2Fq4ReRMSOo6sQXQV9r57zPN/v55zzkI5gAAcLngKYAc4suAjiYQWigWKUVNwoBPlqNal45SXwjEsKbhaCpOD9vEEyps+TisVCkBdbSMW1QpB/bCEFb+QNUvHrdnS9EOQv2kjBe3mDFHzzCEjBb7NAMk4OkYzFQZJIxrXBkGUspJq+DHbeysIM0O3UtVThceWTB/AKvm8Yy3A11RZA4GDDPKuz43bUjkejMcd2Yo4TjzmReNy2bTsWse3YAlPyTF9hz2U6RCgCpOBc8WQonGONKJu1OcYRTC3DSoP0ZqfQMqrvKXmJRRz638+lNztDPMf+Qnl3wHeZ/4l6qgpXomKyc5JQqYJkx25YAZ20IxdGepLjqZFh0xJ1JAQnPQdICi7OcQ6kZcGHHZbMv0XNnqmoIBk/dZghYe0yRqtJ9SY3u8uPM0mUa01sGT507LTvvmvncjgLux90XBylf01BwZBOWs7Dzy+cIm1J8bcQbSxvjWrTwEnGO92i9NNA+afNzQ3mCXGMDoj9W6id/NYxC9vH8iW/YH1mvaus97IseTroZmR9KDnQF0mO9SSH+zwYMYRQnmlSSRP9bpVXSDXuP5mpkl4n6vs9vU9EnzGuWonwKkh/ROPu7+W1/5y3b3ZPf3ox3trsVV3TbqvfdM/C6Mw6XNK7kqle60xybKBv/DrAlL+Z5UQYcfI0n1h6q7UpFjTBjwEAdxi1fA=="
 }

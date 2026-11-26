@@ -1,9 +1,9 @@
 {
  "builds": [
   {
-   "id": "mage-fire-cheap",
+   "id": "druid-feralbear-max",
    "status": "ok",
-   "value": 926.32,
+   "value": 501.99,
    "metric": "dps"
   }
  ]

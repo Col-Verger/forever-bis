@@ -2,15 +2,15 @@
  "pseudo": {
   "BlockValueMultiplier": 1,
   "CastSpeedMultiplier": 1,
-  "DodgePercent": 28.550000000000004,
+  "DodgePercent": 29.000000000000004,
   "ExpertisePercent": 1.2000000000000002,
   "MainHandCritRating": 77,
   "MainHandDps": 73.5,
   "MainHandHitRating": 24,
-  "MeleeCritPercent": 47.05,
+  "MeleeCritPercent": 47.5,
   "MeleeHitPercent": 4.4,
   "MeleeSpeedMultiplier": 1,
-  "RangedCritPercent": 47.05,
+  "RangedCritPercent": 47.5,
   "RangedCritRating": 77,
   "RangedCritSuppressionPercent": 4.8,
   "RangedHitPercent": 4.4,
@@ -22,7 +22,7 @@
   "SchoolHitPercentHoly": 4.4,
   "SchoolHitPercentNature": 4.4,
   "SchoolHitPercentShadow": 4.4,
-  "SpellCritPercent": 28.0909,
+  "SpellCritPercent": 28.1076,
   "SpellHitPercent": 4.4
  },
  "sets": [
@@ -31,26 +31,26 @@
   "Feralheart Raiment (4pc)"
  ],
  "stats": {
-  "Agility": 473,
+  "Agility": 482,
   "ArcaneResistance": 35,
-  "Armor": 2894,
+  "Armor": 2920,
   "ArmorNoMods": 885,
-  "AttackPower": 1704,
+  "AttackPower": 1695,
   "CritRating": 77,
   "ExpertiseRating": 12,
   "FireResistance": 35,
   "FrostResistance": 35,
-  "HealingPower": 56.75,
+  "HealingPower": 57,
   "Health": 5578.650000000001,
   "HitRating": 24,
-  "Intellect": 227,
+  "Intellect": 228,
   "MP5": 53,
-  "Mana": 4369,
+  "Mana": 4384,
   "NatureResistance": 35,
   "RangedAttackPower": 102,
   "ShadowResistance": 35,
-  "Spirit": 196,
+  "Spirit": 205,
   "Stamina": 361,
-  "Strength": 356
+  "Strength": 347
  }
 }

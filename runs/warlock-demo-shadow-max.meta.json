@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "max",
  "metric": "dps",
- "value": 949.2,
+ "value": 956.94,
  "margin": 0.92,
  "hps": 0,
- "threat": 781.9,
+ "threat": 782.6,
  "title": {
   "ru": "Демо (Shadow Brand)",
   "en": "Demo (Shadow Brand)"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-25T12:16Z",
- "simCommit": "9c0decc",
+ "simmedAt": "2026-11-26T04:40Z",
+ "simCommit": "9e2e0ef",
  "simLink": "https://www.wowsims.com/forever/warlock/dps/#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"
 }

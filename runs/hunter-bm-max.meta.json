@@ -2,7 +2,7 @@
  "status": "ok",
  "budget": "max",
  "metric": "dps",
- "value": 1096.52,
+ "value": 1096.33,
  "margin": 0.57,
  "hps": 0,
  "threat": 740.9,
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-25T10:19Z",
- "simCommit": "9c0decc",
+ "simmedAt": "2026-11-26T03:16Z",
+ "simCommit": "9e2e0ef",
  "simLink": "https://www.wowsims.com/forever/hunter/dps/#eNrEVF1oHFUUzpmdnbl7ku5Obrd1evvj7Uo1LmmYnXa1jT+7Kf4ExRK7lYIIdprM7g7ZzA07s4b6IBF8KNJqq1Dsz4PaqiVWoUVBCyKoiD8Ua5UqVGqJFWpBjC0VjAgys00ySeuDUPA+zJz7nXu+78yZcy5SAhrosBmqMAyjAC8DsC/biKLF2FOokg/eTennWlEl554HfZuKMrlwXEOF7K/ql+5AlXz8Tkr/KYkqOT4K+vkA+fW0pj9XRJnsOKGhSnYdgSbBb6c1/cckyuTv3YAy+WQnYIzsGEKZHHkbUCV/vZbST6WxBVVy8mtN33lPJqeNn9E6vn8lZfyxZc3+XdC3/VXYC7i79GnfYev9x3/oGYP4dufnA6mz8IwzAR8eSq1Tml9zTFqSX2UahpHLG/mckTPzuZWGkV9l5A3TyK3+TJJPSNK4dBRxOS4YB4raxrrVP8j9qs19q16x/QxBBeWV5moPF2CCqRjvkMllMQWbM7BCLk7Dhocc02PQjqlJpQ2xr1Gr8brlVuwrJ3JrPbqQpVHLJolCpe4WpqCMUt7rbqFL2WLUMklsOwoJjJHLgkpafFqZMqbjvEwrJswAIuSSw6YMej+7F++k3dhFOzE9qbRj6hHP5qXG0JBwea81MhhBe+r9lmvzUlX4SMalOMZ6e3uyzRd9jD36X0loRzMUGUGlQybf/bl+lp24kuZXghbZ3WhS41/Y9czCaytEyArsrjkM0c+ZzRDhnklhObsR508qGibDYGfIHpjRUMihA0CXsSWRIw81ar6zMjwSxxj5Jk0FLZR8q+5zUQ4bpuxUqn43r9g+9wUf2sq9YeHzEceviobPa8Jz3Aq3XN7T8EWo1cU6cVl2CZGo+oUio6TJrNkupaoQfhg+DglUN1m1Qe64eiy7X5re0V+AvgjhZkatk9eEGAx1KpbjcvsJu76V122r33eEy31nyO7iJV8M85GqU7ODsOlsbvH4iOMONIa54/H+mvBsLuq83nBdx610cssdaBIFcrbVX+VeVfh8i10WdZuPWLVQVrhd7GFcm7kd83QV4kUyVXBcwW7C9kkliW2bmiqhBCYnlVZMPNDw/JBvDObj3BpoQFdQVvItdyCQKIv6rLy7mJqJY+yY3JK1r57foO3CH3aqNejGYMzI6/tg2n4jYh+K2GMR+82IfXgfmGxu09BwqP16wzYXz+0WmkAV42Wr5gXOq4YmGjm3WyPOdLQgNLwrcqaZjt4sTdTMm/fNLjG9ja0O7xmZxj+SJBJnQa2QZ5cRZQqZf1TSiETjF9RgF78YvMylkf9CA4IYbXpCgvPSbpiQBp6OtYSrozgROyM9C4vwBlxA9r4A2uR20Ofd2vROFDbLmZdiiXAzWi62N+F0cdHePcH6vLC8HK5TBfN3SVd5Ifue1PK/LL94ffkevDbfzW/Nwg8ez/dcL8W14XPDweIUY3EzDI9dgidbN1jOAN8YzsU2gD3QdJ8tZAnZuV4fPfltYh3VgUMHGLAGitALfTAM/wwA9ay6yg=="
 }

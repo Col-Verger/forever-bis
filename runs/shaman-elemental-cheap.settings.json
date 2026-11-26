@@ -1,6 +1,6 @@
 {
  "player": {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "shaman-elemental",
   "race": "RaceWindshaperSkyborne",
   "class": "ClassShaman",
@@ -77,15 +77,11 @@
      "randomSuffix": 0
     },
     {
-     "id": 2243,
+     "id": 13937,
      "enchant": 0,
      "randomSuffix": 0
     },
-    {
-     "id": 19315,
-     "enchant": 0,
-     "randomSuffix": 0
-    },
+    {},
     {
      "id": 23199,
      "enchant": 0,
@@ -111,7 +107,7 @@
    "resourcePotId": 13444
   },
   "bonusStats": {
-   "apiVersion": 2,
+   "apiVersion": 3,
    "stats": [
     0,
     0,
@@ -217,7 +213,7 @@
     {}
    ],
    "prepullBonusStats": {
-    "apiVersion": 2,
+    "apiVersion": 3,
     "stats": [
      0,
      0,
@@ -483,6 +479,7 @@
      }
     },
     {
+     "hide": true,
      "action": {
       "condition": {
        "not": {
@@ -639,27 +636,22 @@
     {
      "action": {
       "condition": {
-       "and": {
+       "or": {
         "vals": [
          {
-          "cmp": {
-           "op": "OpGt",
-           "lhs": {
-            "currentManaPercent": {}
-           },
-           "rhs": {
-            "const": {
-             "val": "40%"
-            }
-           }
+          "variableRef": {
+           "name": "Multi Target"
           }
          },
          {
-          "or": {
+          "and": {
            "vals": [
             {
-             "variableRef": {
-              "name": "Multi Target"
+             "auraIsActive": {
+              "auraId": {
+               "spellId": 16246
+              },
+              "includeReactionTime": true
              }
             },
             {

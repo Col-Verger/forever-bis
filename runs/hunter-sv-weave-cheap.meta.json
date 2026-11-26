@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 1123.05,
- "margin": 0.82,
+ "value": 1117.26,
+ "margin": 0.81,
  "hps": 15.0,
- "threat": 1150.6,
+ "threat": 1144.8,
  "title": {
   "ru": "SV weave",
   "en": "SV weave"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-25T10:18Z",
- "simCommit": "9c0decc",
+ "simmedAt": "2026-11-26T03:41Z",
+ "simCommit": "9e2e0ef",
  "simLink": "https://www.wowsims.com/forever/hunter/dps/#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"
 }

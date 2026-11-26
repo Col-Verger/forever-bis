@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 607.81,
+ "value": 618.72,
  "margin": 0.43,
- "hps": 28.3,
- "threat": 1475.4,
+ "hps": 28.6,
+ "threat": 1510.7,
  "title": {
   "ru": "Прот (танк)",
   "en": "Protection (tank)"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-25T10:24Z",
- "simCommit": "9c0decc",
- "simLink": "https://www.wowsims.com/forever/paladin/protection/#eNrElN9LFF0Yx/c5c3b2mcd32XXY13ffuah1K9mW1mZmGVBvZvKmQJDB+gO01FrowtIru9FAkH5ZIpIWm7lexGIqklBSEImkQrCEBEpRLgXeWIQQ3QQxM21ReCn0ZRi+8z3P5ztz5uJQBCEMUYhBAs5AB/QAjAHILApKnx95mCmniOPYVpA4vh8A4jji+luFMHGc2QqSgP1txPH15XLiOFQIk4Dr54hj1p2bnHHib8MOOecya8NAAi448dMpJ87NQbw2vJRJfDqrfjlZc/sG2FfHYRTE4eOTLQt2HqL5e3Ats5ELFXOht7nQh1yoL/MxF7qS2YSBTD16G7Bgnu1VDdW5VD2lGmlV11Rd19JpVTPSWspQ9SXGC0wosiKjCKEiEscHyxBHEomndLWT/iNJCZA/4ccndpwISUxpNdWGs0AKkpgQcTULcYkC5E9p1UanzBVW55NJ8dqmsyDrikpVyf3IZSkPP0Ll31kmI5Ol8UApEea5z2UGL9pyWtHogLyPKpIRFGRp3uWe3wHF/4wxFEhaF0uJ8xUBx8kGwk7YYvZPbDHrYeg4+R/F24ofH+dArlYOUUzZQ8F4GUlFdMYf9doUnAUijhuDjTIL+915jtMrv2iOg6sNcpni/S/EN/bPBxFX7KiwyVq/MugVfK4i1iXhsORa9a5VPjriaM2MipVpV9vmwQuRqaMb3UOm5hEFcxY4MfLFbwoe2NNulZfa/vcals3KdlevTP0ziwZiZvIh8/0VdVm729ewc1/V/d/yiRfGkd16Y617b5qwSo1WM3Tkt6G7rKkl0xo70XL+dFtXP8AIeMvvzCTi9cZoz8tVqY6Fob6idJCoUAMWHAMbmqEDvg8AhUqvnA=="
+ "simmedAt": "2026-11-26T03:27Z",
+ "simCommit": "9e2e0ef",
+ "simLink": "https://www.wowsims.com/forever/paladin/protection/#eNrElN9LFGsYx/d5593ZZx7Psuuwx7PnvThn3XOO7Flam5llQL2ZyZsCQQbrD9BQa6ELSa/sRoNC+mVJSJps5noRi6lIQklBJJIKgYQERlEuBd5YhBDdBDEzbVF4KfRleHjm+7yf78wzF0MxhCjEIQEpOA5d0AcwDqCyOIizQeRRJtqJ4/h2mDi+GQTiOOL119eixHF2O0wSDnQQxxfnK13bG455Ne/VqVnX/zzsovMetDEMJOGiaz+cdu3CPCTro8u51PsT2sejdWNXwLk4AaMgDx+ealt0ihAv3oJLuc1CpFSIvCpE3hYiZ3LvCpELuS0YzDWiv4ENC+xvzdTcSzMympnVDF0zDD2b1XQzq2dMzVhmfI1JJVZiFCMUMnG8swJJJJl4xtC66Q9SRIiCqSA+cJJESHJGr6s13QEJJDkl43oekgqFKJjRa81ulQvWEFBJ+GkzeVANoVFN+l/kqlKEr6b4fY6pyFRlIlR2pAUe8Jih046aFTr9p/5DVekYSqqy4HGPb4AIPmIMJVKey2XHfYuQ26kmwm7YUv5nbCnvY+h26m/CXyWI9wug1op9lBB/UThZQUoJ3eP3+h0KzwERx82hZpVFg955jjOr32mOQ+tNaoXwvxfiS+fbjYyrTlzaYu2fGPRLAU8x+5y0X/Fa7aZdOTriasOKy9VZTzvW/6di0wc3e69auk+sWXPAiVEgeU3ywb5Ou7Kc9qefsGJVd3p6ZhkfWDyUsNJ3WeCXqMfe27ym3fNqbv/gTz4xD+zVE+u92jJplxPtVugq7kBvRUtbrj1xpO3ksY6eAYAR8MevrTTi5eZ439N1pYFFobGq/CfRoA5sOAQOtEIXfBkAWiWwCw=="
 }

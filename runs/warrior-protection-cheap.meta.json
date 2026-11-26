@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 301.21,
+ "value": 298.77,
  "margin": 0.54,
  "hps": 0,
- "threat": 729.3,
+ "threat": 724.6,
  "title": {
   "ru": "Прот (танк)",
   "en": "Protection (tank)"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-25T10:26Z",
- "simCommit": "9c0decc",
+ "simmedAt": "2026-11-26T03:33Z",
+ "simCommit": "9e2e0ef",
  "simLink": "https://www.wowsims.com/forever/warrior/protection/#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"
 }
