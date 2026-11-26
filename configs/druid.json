@@ -28,15 +28,15 @@
   "builds": [
     {
       "id": "druid-balance",
-      "mode": "protojson",
+      "mode": "siml",
       "repoFolder": "ui/specs/druid/balance",
+      "presetBuild": "defaults.siml",
       "title": { "ru": "Баланс (Мункин)", "en": "Balance (Moonkin)" },
       "buildName": { "ru": "Moonkin (стандартный билд)", "en": "Moonkin (standard build)" },
       "rotation": { "ru": "Стандартная ротация симулятора", "en": "the sim's default rotation" },
       "metric": "dps",
-      "talents": "5232220115501351--5053",
-      "apls": "apls/default.apl.json",
-      "baseGear": "gear_sets/prebis.gear.json",
+      "apls": "apls/default.apl.siml",
+      "baseGear": "gear_sets/prebis.gear.siml",
       "pool": "druid-dps",
       "specOptions": { "balanceDruid": { "options": { "classOptions": { "innervateTarget": { } } } } },
       "consumables": {
