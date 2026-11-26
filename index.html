@@ -44,12 +44,30 @@
     <p class="lede" id="lede"></p>
     <div class="stamp" id="stamp" hidden></div>
     <nav class="tabs" role="tablist">
-      <button role="tab" data-tab="gear" aria-selected="true" data-i18n="tab_gear">Экипировка по слотам</button>
-      <button role="tab" data-tab="plan" aria-selected="false" data-i18n="tab_plan">План одевания</button>
-      <button role="tab" data-tab="all" aria-selected="false" data-i18n="tab_all">Все сеты</button>
-      <button role="tab" data-tab="howto" aria-selected="false" data-i18n="tab_howto">Как одеваться</button>
-      <button role="tab" data-tab="method" aria-selected="false" data-i18n="tab_method">Методика</button>
-      <button role="tab" data-tab="refresh" aria-selected="false" data-i18n="tab_refresh">Данные и обновление</button>
+      <button role="tab" data-tab="gear" aria-selected="true">
+        <svg class="tico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4l2-1h4l2 1 4 3-2 4-2-1v10H8V10l-2 1-2-4 4-3z"/></svg>
+        <span class="tlong" data-i18n="tab_gear">Экипировка по слотам</span><span class="tshort" data-i18n="tab_gear_short">Слоты</span>
+      </button>
+      <button role="tab" data-tab="plan" aria-selected="false">
+        <svg class="tico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M8.5 12l2 2 4-4"/></svg>
+        <span class="tlong" data-i18n="tab_plan">План одевания</span><span class="tshort" data-i18n="tab_plan_short">План</span>
+      </button>
+      <button role="tab" data-tab="all" aria-selected="false">
+        <svg class="tico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+        <span class="tlong" data-i18n="tab_all">Сеты класса</span><span class="tshort" data-i18n="tab_all_short">Сеты</span>
+      </button>
+      <button role="tab" data-tab="howto" aria-selected="false">
+        <svg class="tico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6a3 3 0 013 3v13a3 3 0 00-3-3H4z"/><path d="M20 4h-4a3 3 0 00-3 3v13a3 3 0 013-3h4z"/></svg>
+        <span class="tlong" data-i18n="tab_howto">Как одеваться</span><span class="tshort" data-i18n="tab_howto_short">Гайд</span>
+      </button>
+      <button role="tab" data-tab="method" aria-selected="false">
+        <svg class="tico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6"/><path d="M10 3v6l-5 9a2 2 0 001.8 3h10.4A2 2 0 0019 18l-5-9V3"/><path d="M7.5 15h9"/></svg>
+        <span class="tlong" data-i18n="tab_method">Методика</span><span class="tshort" data-i18n="tab_method_short">Метод</span>
+      </button>
+      <button role="tab" data-tab="refresh" aria-selected="false">
+        <svg class="tico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 10-2.34 5.66"/><path d="M20 4v6h-6"/></svg>
+        <span class="tlong" data-i18n="tab_refresh">Данные и обновление</span><span class="tshort" data-i18n="tab_refresh_short">Данные</span>
+      </button>
     </nav>
   </div>
 </header>
