@@ -250,7 +250,10 @@ def compose_preset(forever, cfg):
     if talents:
         out.append(talents)
     out += head
-    out.append('use "{{APL}}"')
+    # Newer upstream presets carry their APL inline; use it instead of an
+    # external {{APL}} include.
+    if 'apl' not in sections:
+        out.append('use "{{APL}}"')
 
     body = []
     for k in order:
@@ -510,7 +513,10 @@ class Build:
     def siml(self, gear, iters, seed):
         """A full-setup .siml from the build's template: repo APL via use + our sim and gear sections."""
         cfg = self.cfg
-        apl = os.path.abspath(os.path.join(self.forever, cfg['repoFolder'], cfg['apls'])).replace('\\', '/')
+        tpl = cfg['template']
+        if '{{APL}}' in tpl:
+            apl = os.path.abspath(os.path.join(self.forever, cfg['repoFolder'], cfg['apls'])).replace('\\', '/')
+            tpl = tpl.replace('{{APL}}', apl)
         rows = []
         for s in SLOTS:
             v = gear.get(s) or [0, 0, 0]
@@ -522,9 +528,7 @@ class Build:
             if v[2]:
                 spec['randomSuffix'] = v[2]
             rows.append(f"  {s} `{json.dumps(spec, separators=(',', ':'))}`")
-        tpl = cfg['template']
-        return (tpl.replace('{{APL}}', apl)
-                   .replace('{{ITERS}}', str(iters))
+        return (tpl.replace('{{ITERS}}', str(iters))
                    .replace('{{SEED}}', str(seed))
                    .replace('{{GEAR}}', '\n'.join(rows) + '\n'))
 

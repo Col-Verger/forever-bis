@@ -1,4 +1,0 @@
-{
- "status": "failed",
- "reason": "FileNotFoundError: [Errno 2] No such file or directory: 'forever/ui/specs/druid/balance/gear_sets/prebis.gear.siml'"
-}
