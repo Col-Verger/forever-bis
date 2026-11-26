@@ -1644,13 +1644,18 @@ if (totop) {
   addEventListener('scroll', syncTop, { passive: true });
   syncTop();
 }
-new ResizeObserver(() => {
+const navEl = document.querySelector('.tabs');
+const syncHeights = () => {
   const bar = $('bar');
-  // Only a sticky bar has to be reserved at the top of the viewport;
-  // on mobile it scrolls away, so table headers can use the full height.
-  const h = getComputedStyle(bar).position === 'sticky' ? bar.offsetHeight : 0;
-  document.documentElement.style.setProperty('--barh', h + 'px');
-}).observe($('bar'));
+  const navH = navEl && getComputedStyle(navEl).position === 'fixed' ? navEl.offsetHeight : 0;
+  const barH = getComputedStyle(bar).position === 'sticky' ? bar.offsetHeight : 0;
+  document.documentElement.style.setProperty('--navh', navH + 'px');
+  // Table headers stick below everything that is fixed at the top.
+  document.documentElement.style.setProperty('--barh', (navH + barH) + 'px');
+};
+new ResizeObserver(syncHeights).observe($('bar'));
+if (navEl) new ResizeObserver(syncHeights).observe(navEl);
+syncHeights();
 const tabsNav = document.querySelector('.tabs');
 if (tabsNav) tabsNav.addEventListener('scroll', syncTabs, { passive: true });
 addEventListener('resize', syncTabs);

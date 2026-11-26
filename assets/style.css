@@ -4,7 +4,7 @@
   --fg:#e7e9ee; --mut:#9aa1b2; --mut2:#8f97a8;
   --q0:#9d9d9d; --q1:#ffffff; --q2:#1eff00; --q3:#0070dd; --q4:#a335ee; --q5:#ff8000;
   --acc:#69CCF0; --acc-soft:rgba(105,204,240,.13); --good:#3fb96f; --bad:#cf5f70; --warn:#dfa64b;
-  --barh:0px; --rad:10px;
+  --barh:0px; --navh:0px; --rad:10px;
 }
 /* Class themes: the WoW class colors drive the accent. */
 body[data-class="warrior"]{--acc:#C79C6E;--acc-soft:rgba(199,156,110,.14)}
@@ -344,13 +344,22 @@ details.localrun[open] summary{border-bottom:1px solid var(--line)}
   .tabs.can-scroll:not(.at-start):not(.at-end){-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%)}
 }
 @media (max-width:960px){
-  /* Phones and tablets: a six-item navigation bar at the top, never a sideways scroll. */
+  /* Phones and tablets: a six-item bar fixed at the top, never a sideways scroll. */
   html{overflow-y:auto;scrollbar-gutter:auto;scrollbar-width:none}
   html::-webkit-scrollbar{width:0;height:0}
+  :root{--navh:calc(62px + env(safe-area-inset-top))}
+  body{padding-top:var(--navh)}
+  .bar{top:var(--navh)}
   .tabs{
-    position:static;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:2px;
-    margin:12px 0 0;padding:4px;background:var(--bg3);border:1px solid var(--line);
-    border-radius:14px;overflow:visible;justify-content:stretch;
+    position:fixed;top:0;left:0;right:0;z-index:70;
+    display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:2px;
+    margin:0;padding:calc(4px + env(safe-area-inset-top)) 6px 4px;
+    background:var(--bg2);
+    background:color-mix(in srgb, var(--bg2) 92%, transparent);
+    border:0;border-bottom:1px solid var(--line2);border-radius:0;
+    box-shadow:0 8px 24px rgba(0,0,0,.38);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    overflow:visible;justify-content:stretch;
     -webkit-mask-image:none;mask-image:none;
   }
   .tabs.can-scroll{-webkit-mask-image:none;mask-image:none}
@@ -425,7 +434,7 @@ details.localrun[open] summary{border-bottom:1px solid var(--line)}
 }
 @media (max-width:380px){
   .brand .tag{display:none}
-  .tabs{padding:4px 2px}
+  .tabs{padding-left:2px;padding-right:2px}
   .tabs button{padding-left:0;padding-right:0;font-size:10px}
 }
 
