@@ -1,9 +1,10 @@
 {
  "builds": [
   {
-   "id": "priest-shadow",
-   "status": "failed",
-   "reason": "FileNotFoundError: [Errno 2] No such file or directory: 'forever/ui/specs/priest/dps/gear_sets/default.gear.siml'"
+   "id": "druid-balance-max",
+   "status": "ok",
+   "value": 875.03,
+   "metric": "dps"
   }
  ]
 }

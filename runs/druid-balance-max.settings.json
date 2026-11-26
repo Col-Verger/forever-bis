@@ -1,148 +1,226 @@
 {
+ "settings": {
+  "iterations": 10000,
+  "fixedRngSeed": "20261120"
+ },
+ "raidBuffs": {
+  "arcaneIntellect": true,
+  "prayerOfSpirit": true,
+  "markOfTheWild": true,
+  "powerWordFortitude": true
+ },
+ "debuffs": {
+  "judgementOfWisdom": true,
+  "curseOfElements": true
+ },
+ "partyBuffs": {
+  "manaSpringTotem": "TristateEffectRegular"
+ },
  "player": {
-  "name": "druid-balance",
+  "race": "RaceWindshaperSkyborne",
   "class": "ClassDruid",
-  "race": "RaceNightElf",
   "equipment": {
    "items": [
     {
      "id": 226773,
-     "enchant": 2544,
-     "randomSuffix": 0
+     "enchant": 2544
     },
     {
-     "id": 18404,
-     "enchant": 8218,
-     "randomSuffix": 0
+     "id": 19426,
+     "enchant": 8218
     },
     {
-     "id": 226778,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 226778
     },
     {
      "id": 272411,
-     "enchant": 0,
-     "randomSuffix": 0
+     "enchant": 2621
     },
     {
      "id": 226776,
-     "enchant": 8492,
-     "randomSuffix": 0
+     "enchant": 8492
     },
     {
-     "id": 10248,
-     "enchant": 7665,
-     "randomSuffix": 12734
+     "id": 12966,
+     "enchant": 7665
     },
     {
-     "id": 10140,
-     "enchant": 7647,
-     "randomSuffix": 12734
+     "id": 226777,
+     "enchant": 7647
     },
     {
-     "id": 18405,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 226772
     },
     {
      "id": 252486,
-     "enchant": 2544,
-     "randomSuffix": 0
+     "enchant": 2544
     },
     {
      "id": 226774,
-     "enchant": 8492,
-     "randomSuffix": 0
+     "enchant": 8492
     },
     {
-     "id": 275982,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 272406
     },
     {
-     "id": 272406,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 22339
     },
     {
-     "id": 272438,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 272438
     },
     {
-     "id": 272439,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 13968
     },
     {
-     "id": 272603,
-     "enchant": 7662,
-     "randomSuffix": 0
+     "id": 2243,
+     "enchant": 8217
     },
-    {},
     {
-     "id": 272430,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 19315,
+     "enchant": 7659
+    },
+    {
+     "id": 272430
     }
    ]
   },
-  "talentsString": "5232220115501351--5053",
-  "profession1": "Enchanting",
-  "profession2": "Tailoring",
-  "reactionTimeMs": 0,
-  "channelClipDelayMs": 100,
-  "distanceFromTarget": 20,
   "consumables": {
    "flaskId": 13512,
    "foodId": 13933,
    "conjuredId": 12662,
-   "mhImbueId": 20749,
-   "resourcePotId": 13444,
+   "explosiveId": 260814,
+   "mhImbueId": 20750,
+   "extraIds": [
+    8423
+   ],
    "elixirIds": [
     13454,
     250343,
     250337,
     250341
-   ]
+   ],
+   "resourcePotId": 13444,
+   "offensivePotId": 250937
   },
   "buffs": {
    "greaterBlessingOfKings": true,
    "greaterBlessingOfWisdom": 1
   },
+  "balanceDruid": {
+   "options": {
+    "classOptions": {
+     "innervateTarget": {}
+    }
+   }
+  },
+  "talentsString": "5532220115001351--505302",
+  "profession1": "Enchanting",
+  "profession2": "Leatherworking",
   "rotation": {
    "type": "TypeAPL",
    "prepullActions": [
     {
      "action": {
       "condition": {
-       "cmp": {
-        "op": "OpLt",
-        "lhs": {
-         "numberTargets": {}
-        },
-        "rhs": {
-         "const": {
-          "val": "4"
-         }
+       "spellIsKnown": {
+        "spellId": {
+         "spellId": 1259705
         }
        }
       },
-      "castSpell": {
-       "spellId": {
-        "spellId": 9912
-       }
+      "groupReference": {
+       "groupName": "Read Leyline, then Wrath twice"
       }
      },
      "doAtValue": {
-      "const": {
-       "val": "-1.5s"
+      "math": {
+       "op": "OpSub",
+       "lhs": {
+        "const": {
+         "val": "0s"
+        }
+       },
+       "rhs": {
+        "variableRef": {
+         "name": "ley to wrath"
+        }
+       }
+      }
+     }
+    },
+    {
+     "action": {
+      "groupReference": {
+       "groupName": "Read Leyline, then Wrath twice"
+      }
+     },
+     "doAtValue": {
+      "math": {
+       "op": "OpAdd",
+       "lhs": {
+        "math": {
+         "op": "OpSub",
+         "lhs": {
+          "const": {
+           "val": "0s"
+          }
+         },
+         "rhs": {
+          "variableRef": {
+           "name": "wrath to pull"
+          }
+         }
+        }
+       },
+       "rhs": {
+        "const": {
+         "val": "0.05s"
+        }
+       }
+      }
+     }
+    },
+    {
+     "action": {
+      "groupReference": {
+       "groupName": "Read Leyline, then Wrath twice"
+      }
+     },
+     "doAtValue": {
+      "math": {
+       "op": "OpAdd",
+       "lhs": {
+        "math": {
+         "op": "OpSub",
+         "lhs": {
+          "const": {
+           "val": "0s"
+          }
+         },
+         "rhs": {
+          "variableRef": {
+           "name": "wrath flight"
+          }
+         }
+        }
+       },
+       "rhs": {
+        "const": {
+         "val": "0.05s"
+        }
+       }
       }
      }
     }
    ],
    "priorityList": [
+    {
+     "action": {
+      "groupReference": {
+       "groupName": "Spellblasting or a mana potion"
+      }
+     }
+    },
     {
      "action": {
       "autocastOtherCooldowns": {}
@@ -158,7 +236,7 @@
            "vals": [
             {
              "cmp": {
-              "op": "OpGt",
+              "op": "OpGe",
               "lhs": {
                "remainingTime": {}
               },
@@ -173,12 +251,28 @@
              "cmp": {
               "op": "OpLt",
               "lhs": {
-               "currentManaPercent": {}
+               "math": {
+                "op": "OpAdd",
+                "lhs": {
+                 "math": {
+                  "op": "OpMul",
+                  "lhs": {
+                   "currentManaRegen": {}
+                  },
+                  "rhs": {
+                   "const": {
+                    "val": "100"
+                   }
+                  }
+                 }
+                },
+                "rhs": {
+                 "currentMana": {}
+                }
+               }
               },
               "rhs": {
-               "const": {
-                "val": "70%"
-               }
+               "maxMana": {}
               }
              }
             }
@@ -202,16 +296,35 @@
              }
             },
             {
-             "cmp": {
-              "op": "OpGt",
-              "lhs": {
-               "remainingTime": {}
-              },
-              "rhs": {
-               "const": {
-                "val": "30s"
+             "or": {
+              "vals": [
+               {
+                "cmp": {
+                 "op": "OpGt",
+                 "lhs": {
+                  "remainingTime": {}
+                 },
+                 "rhs": {
+                  "const": {
+                   "val": "30s"
+                  }
+                 }
+                }
+               },
+               {
+                "cmp": {
+                 "op": "OpLt",
+                 "lhs": {
+                  "currentManaPercent": {}
+                 },
+                 "rhs": {
+                  "const": {
+                   "val": "10%"
+                  }
+                 }
+                }
                }
-              }
+              ]
              }
             }
            ]
@@ -229,153 +342,1034 @@
     },
     {
      "action": {
-      "condition": {
-       "not": {
-        "val": {
-         "dotIsActive": {
-          "spellId": {
-           "spellId": 9835
-          }
-         }
-        }
-       }
-      },
-      "castSpell": {
-       "spellId": {
-        "spellId": 9835
-       }
+      "groupReference": {
+       "groupName": "Hurricane on several targets"
       }
      }
     },
     {
      "action": {
-      "condition": {
-       "not": {
-        "val": {
-         "dotIsActive": {
-          "spellId": {
-           "spellId": 24977
-          }
-         }
-        }
-       }
-      },
-      "castSpell": {
-       "spellId": {
-        "spellId": 24977
-       }
+      "groupReference": {
+       "groupName": "Refresh Moonfire and Insect Swarm"
       }
      }
     },
     {
      "action": {
-      "condition": {
-       "cmp": {
-        "op": "OpGe",
-        "lhs": {
-         "numberTargets": {}
+      "groupReference": {
+       "groupName": "Starfire with Eclipse, otherwise Wrath"
+      }
+     }
+    }
+   ],
+   "groups": [
+    {
+     "name": "Read Leyline, then Wrath twice",
+     "actions": [
+      {
+       "action": {
+        "condition": {
+         "spellIsKnown": {
+          "spellId": {
+           "spellId": 1259705
+          }
+         }
         },
-        "rhs": {
-         "const": {
-          "val": "4"
+        "castSpell": {
+         "spellId": {
+          "spellId": 1259705
          }
         }
        }
       },
-      "castSpell": {
+      {
+       "action": {
+        "castSpell": {
+         "spellId": {
+          "spellId": 9912,
+          "rank": 8
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "name": "Spellblasting or a mana potion",
+     "actions": [
+      {
+       "action": {
+        "condition": {
+         "or": {
+          "vals": [
+           {
+            "variableRef": {
+             "name": "spellblast"
+            }
+           },
+           {
+            "variableRef": {
+             "name": "no mana potion needed"
+            }
+           }
+          ]
+         }
+        },
+        "castSpell": {
+         "spellId": {
+          "otherId": "OtherActionOffensivePotion"
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "condition": {
+         "not": {
+          "val": {
+           "or": {
+            "vals": [
+             {
+              "variableRef": {
+               "name": "spellblast"
+              }
+             },
+             {
+              "variableRef": {
+               "name": "no mana potion needed"
+              }
+             }
+            ]
+           }
+          }
+         }
+        },
+        "castSpell": {
+         "spellId": {
+          "otherId": "OtherActionResourcePotion"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "name": "Hurricane on several targets",
+     "actions": [
+      {
+       "action": {
+        "condition": {
+         "and": {
+          "vals": [
+           {
+            "auraIsKnown": {
+             "auraId": {
+              "spellId": 1323400
+             }
+            }
+           },
+           {
+            "auraIsActive": {
+             "auraId": {
+              "spellId": 1323400
+             }
+            }
+           },
+           {
+            "cmp": {
+             "op": "OpGe",
+             "lhs": {
+              "numberTargets": {}
+             },
+             "rhs": {
+              "const": {
+               "val": "3"
+              }
+             }
+            }
+           }
+          ]
+         }
+        },
+        "castSpell": {
+         "spellId": {
+          "spellId": 17402,
+          "rank": 3
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "condition": {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "numberTargets": {}
+          },
+          "rhs": {
+           "const": {
+            "val": "5"
+           }
+          }
+         }
+        },
+        "castSpell": {
+         "spellId": {
+          "spellId": 17402,
+          "rank": 3
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "condition": {
+         "and": {
+          "vals": [
+           {
+            "cmp": {
+             "op": "OpGe",
+             "lhs": {
+              "numberTargets": {}
+             },
+             "rhs": {
+              "const": {
+               "val": "3"
+              }
+             }
+            }
+           },
+           {
+            "cmp": {
+             "op": "OpLt",
+             "lhs": {
+              "remainingTime": {}
+             },
+             "rhs": {
+              "const": {
+               "val": "14s"
+              }
+             }
+            }
+           }
+          ]
+         }
+        },
+        "castSpell": {
+         "spellId": {
+          "spellId": 17402,
+          "rank": 3
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "condition": {
+         "and": {
+          "vals": [
+           {
+            "cmp": {
+             "op": "OpEq",
+             "lhs": {
+              "numberTargets": {}
+             },
+             "rhs": {
+              "const": {
+               "val": "4"
+              }
+             }
+            }
+           },
+           {
+            "dotIsActiveOnAllTargets": {
+             "spellId": {
+              "spellId": 9835,
+              "rank": 10
+             }
+            }
+           },
+           {
+            "dotIsActiveOnAllTargets": {
+             "spellId": {
+              "spellId": 24977,
+              "rank": 5
+             }
+            }
+           }
+          ]
+         }
+        },
+        "castSpell": {
+         "spellId": {
+          "spellId": 17402,
+          "rank": 3
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "name": "Refresh Moonfire and Insect Swarm",
+     "actions": [
+      {
+       "action": {
+        "condition": {
+         "cmp": {
+          "op": "OpLe",
+          "lhs": {
+           "remainingTime": {}
+          },
+          "rhs": {
+           "const": {
+            "val": "2.5s"
+           }
+          }
+         }
+        },
+        "castSpell": {
+         "spellId": {
+          "spellId": 9835,
+          "rank": 10
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "condition": {
+         "cmp": {
+          "op": "OpGt",
+          "lhs": {
+           "remainingTime": {}
+          },
+          "rhs": {
+           "const": {
+            "val": "8s"
+           }
+          }
+         }
+        },
+        "multidot": {
+         "spellId": {
+          "spellId": 9835,
+          "rank": 10
+         },
+         "maxDots": 4,
+         "maxOverlap": {}
+        }
+       }
+      },
+      {
+       "action": {
+        "condition": {
+         "cmp": {
+          "op": "OpGt",
+          "lhs": {
+           "remainingTime": {}
+          },
+          "rhs": {
+           "const": {
+            "val": "8s"
+           }
+          }
+         }
+        },
+        "multidot": {
+         "spellId": {
+          "spellId": 24977,
+          "rank": 5
+         },
+         "maxDots": 4,
+         "maxOverlap": {}
+        }
+       }
+      }
+     ]
+    },
+    {
+     "name": "Starfire with Eclipse, otherwise Wrath",
+     "actions": [
+      {
+       "action": {
+        "condition": {
+         "and": {
+          "vals": [
+           {
+            "auraIsKnown": {
+             "auraId": {
+              "spellId": 1323400
+             }
+            }
+           },
+           {
+            "auraIsActive": {
+             "auraId": {
+              "spellId": 1323400
+             },
+             "includeReactionTime": true
+            }
+           },
+           {
+            "cmp": {
+             "op": "OpLt",
+             "lhs": {
+              "numberTargets": {}
+             },
+             "rhs": {
+              "const": {
+               "val": "3"
+              }
+             }
+            }
+           }
+          ]
+         }
+        },
+        "castSpell": {
+         "spellId": {
+          "spellId": 9876,
+          "rank": 6
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "condition": {
+         "and": {
+          "vals": [
+           {
+            "or": {
+             "vals": [
+              {
+               "not": {
+                "val": {
+                 "auraIsKnown": {
+                  "auraId": {
+                   "spellId": 1323400
+                  }
+                 }
+                }
+               }
+              },
+              {
+               "not": {
+                "val": {
+                 "auraIsActive": {
+                  "auraId": {
+                   "spellId": 1323400
+                  }
+                 }
+                }
+               }
+              }
+             ]
+            }
+           },
+           {
+            "not": {
+             "val": {
+              "spellIsHitCapped": {
+               "spellId": {
+                "spellId": 9912,
+                "rank": 8
+               }
+              }
+             }
+            }
+           },
+           {
+            "or": {
+             "vals": [
+              {
+               "and": {
+                "vals": [
+                 {
+                  "dotIsActive": {
+                   "spellId": {
+                    "spellId": 9835,
+                    "rank": 10
+                   }
+                  }
+                 },
+                 {
+                  "cmp": {
+                   "op": "OpLe",
+                   "lhs": {
+                    "dotRemainingTime": {
+                     "spellId": {
+                      "spellId": 9835,
+                      "rank": 10
+                     }
+                    }
+                   },
+                   "rhs": {
+                    "spellCastTime": {
+                     "spellId": {
+                      "spellId": 9912,
+                      "rank": 8
+                     }
+                    }
+                   }
+                  }
+                 }
+                ]
+               }
+              },
+              {
+               "and": {
+                "vals": [
+                 {
+                  "dotIsActive": {
+                   "spellId": {
+                    "spellId": 24977,
+                    "rank": 5
+                   }
+                  }
+                 },
+                 {
+                  "cmp": {
+                   "op": "OpLe",
+                   "lhs": {
+                    "dotRemainingTime": {
+                     "spellId": {
+                      "spellId": 24977,
+                      "rank": 5
+                     }
+                    }
+                   },
+                   "rhs": {
+                    "spellCastTime": {
+                     "spellId": {
+                      "spellId": 9912,
+                      "rank": 8
+                     }
+                    }
+                   }
+                  }
+                 }
+                ]
+               }
+              }
+             ]
+            }
+           }
+          ]
+         }
+        },
+        "castSpell": {
+         "spellId": {
+          "spellId": 9912,
+          "rank": 8
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "condition": {
+         "and": {
+          "vals": [
+           {
+            "auraIsActive": {
+             "auraId": {
+              "spellId": 408255
+             }
+            }
+           },
+           {
+            "or": {
+             "vals": [
+              {
+               "cmp": {
+                "op": "OpGt",
+                "lhs": {
+                 "auraNumStacks": {
+                  "auraId": {
+                   "spellId": 408255
+                  }
+                 }
+                },
+                "rhs": {
+                 "const": {
+                  "val": "1"
+                 }
+                }
+               }
+              },
+              {
+               "not": {
+                "val": {
+                 "spellIsCasting": {
+                  "spellId": {
+                   "spellId": 9876,
+                   "rank": 6
+                  }
+                 }
+                }
+               }
+              }
+             ]
+            }
+           }
+          ]
+         }
+        },
+        "castSpell": {
+         "spellId": {
+          "spellId": 9876,
+          "rank": 6
+         }
+        }
+       }
+      },
+      {
+       "action": {
+        "castSpell": {
+         "spellId": {
+          "spellId": 9912,
+          "rank": 8
+         }
+        }
+       }
+      }
+     ]
+    }
+   ],
+   "valueVariables": [
+    {
+     "name": "wrath flight",
+     "value": {
+      "spellTravelTime": {
        "spellId": {
-        "spellId": 17402
+        "spellId": 9912,
+        "rank": 8
        }
       }
      }
     },
     {
-     "action": {
-      "condition": {
-       "and": {
-        "vals": [
-         {
-          "auraIsActive": {
-           "auraId": {
-            "spellId": 408255
+     "name": "wrath to pull",
+     "value": {
+      "math": {
+       "op": "OpAdd",
+       "lhs": {
+        "spellCastTime": {
+         "spellId": {
+          "spellId": 9912,
+          "rank": 8
+         }
+        }
+       },
+       "rhs": {
+        "variableRef": {
+         "name": "wrath flight"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "ley to wrath",
+     "value": {
+      "math": {
+       "op": "OpAdd",
+       "lhs": {
+        "math": {
+         "op": "OpAdd",
+         "lhs": {
+          "spellGcdHastedDuration": {
+           "spellId": {
+            "spellId": 9912,
+            "rank": 8
            }
           }
          },
-         {
-          "or": {
-           "vals": [
-            {
-             "cmp": {
-              "op": "OpGt",
+         "rhs": {
+          "variableRef": {
+           "name": "wrath to pull"
+          }
+         }
+        }
+       },
+       "rhs": {
+        "const": {
+         "val": "50ms"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "potion window",
+     "value": {
+      "min": {
+       "vals": [
+        {
+         "remainingTime": {}
+        },
+        {
+         "const": {
+          "val": "120s"
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "rune ready in",
+     "value": {
+      "spellTimeToReady": {
+       "spellId": {
+        "itemId": 12662
+       }
+      }
+     }
+    },
+    {
+     "name": "innervate ready in",
+     "value": {
+      "spellTimeToReady": {
+       "spellId": {
+        "spellId": 29166
+       }
+      }
+     }
+    },
+    {
+     "name": "mana at window end",
+     "value": {
+      "math": {
+       "op": "OpAdd",
+       "lhs": {
+        "math": {
+         "op": "OpMul",
+         "lhs": {
+          "const": {
+           "val": "-45"
+          }
+         },
+         "rhs": {
+          "variableRef": {
+           "name": "potion window"
+          }
+         }
+        }
+       },
+       "rhs": {
+        "currentMana": {}
+       }
+      }
+     }
+    },
+    {
+     "name": "spellblast",
+     "value": {
+      "or": {
+       "vals": [
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "variableRef": {
+            "name": "mana at window end"
+           }
+          },
+          "rhs": {
+           "const": {
+            "val": "0"
+           }
+          }
+         }
+        },
+        {
+         "and": {
+          "vals": [
+           {
+            "cmp": {
+             "op": "OpLt",
+             "lhs": {
+              "variableRef": {
+               "name": "rune ready in"
+              }
+             },
+             "rhs": {
+              "variableRef": {
+               "name": "potion window"
+              }
+             }
+            }
+           },
+           {
+            "cmp": {
+             "op": "OpGe",
+             "lhs": {
+              "variableRef": {
+               "name": "mana at window end"
+              }
+             },
+             "rhs": {
+              "const": {
+               "val": "-1200"
+              }
+             }
+            }
+           }
+          ]
+         }
+        },
+        {
+         "and": {
+          "vals": [
+           {
+            "cmp": {
+             "op": "OpLt",
+             "lhs": {
+              "math": {
+               "op": "OpAdd",
+               "lhs": {
+                "variableRef": {
+                 "name": "innervate ready in"
+                }
+               },
+               "rhs": {
+                "const": {
+                 "val": "20s"
+                }
+               }
+              }
+             },
+             "rhs": {
+              "variableRef": {
+               "name": "potion window"
+              }
+             }
+            }
+           },
+           {
+            "cmp": {
+             "op": "OpGe",
+             "lhs": {
+              "variableRef": {
+               "name": "mana at window end"
+              }
+             },
+             "rhs": {
+              "const": {
+               "val": "-3000"
+              }
+             }
+            }
+           }
+          ]
+         }
+        },
+        {
+         "and": {
+          "vals": [
+           {
+            "cmp": {
+             "op": "OpLt",
+             "lhs": {
+              "variableRef": {
+               "name": "rune ready in"
+              }
+             },
+             "rhs": {
+              "variableRef": {
+               "name": "potion window"
+              }
+             }
+            }
+           },
+           {
+            "cmp": {
+             "op": "OpLt",
+             "lhs": {
+              "math": {
+               "op": "OpAdd",
+               "lhs": {
+                "variableRef": {
+                 "name": "innervate ready in"
+                }
+               },
+               "rhs": {
+                "const": {
+                 "val": "20s"
+                }
+               }
+              }
+             },
+             "rhs": {
+              "variableRef": {
+               "name": "potion window"
+              }
+             }
+            }
+           },
+           {
+            "cmp": {
+             "op": "OpGe",
+             "lhs": {
+              "variableRef": {
+               "name": "mana at window end"
+              }
+             },
+             "rhs": {
+              "const": {
+               "val": "-4200"
+              }
+             }
+            }
+           }
+          ]
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "no mana potion needed",
+     "value": {
+      "or": {
+       "vals": [
+        {
+         "cmp": {
+          "op": "OpLt",
+          "lhs": {
+           "math": {
+            "op": "OpMul",
+            "lhs": {
+             "const": {
+              "val": "73.3"
+             }
+            },
+            "rhs": {
+             "variableRef": {
+              "name": "potion window"
+             }
+            }
+           }
+          },
+          "rhs": {
+           "math": {
+            "op": "OpAdd",
+            "lhs": {
+             "math": {
+              "op": "OpAdd",
               "lhs": {
-               "auraNumStacks": {
-                "auraId": {
-                 "spellId": 408255
+               "math": {
+                "op": "OpMul",
+                "lhs": {
+                 "currentManaRegen": {}
+                },
+                "rhs": {
+                 "variableRef": {
+                  "name": "potion window"
+                 }
                 }
                }
               },
               "rhs": {
-               "const": {
-                "val": "1"
-               }
+               "currentMana": {}
               }
              }
             },
-            {
-             "not": {
-              "val": {
-               "spellIsCasting": {
-                "spellId": {
-                 "spellId": 9876
+            "rhs": {
+             "const": {
+              "val": "-1000"
+             }
+            }
+           }
+          }
+         }
+        },
+        {
+         "and": {
+          "vals": [
+           {
+            "cmp": {
+             "op": "OpLt",
+             "lhs": {
+              "variableRef": {
+               "name": "rune ready in"
+              }
+             },
+             "rhs": {
+              "variableRef": {
+               "name": "potion window"
+              }
+             }
+            }
+           },
+           {
+            "cmp": {
+             "op": "OpLt",
+             "lhs": {
+              "math": {
+               "op": "OpMul",
+               "lhs": {
+                "const": {
+                 "val": "73.3"
+                }
+               },
+               "rhs": {
+                "variableRef": {
+                 "name": "potion window"
+                }
+               }
+              }
+             },
+             "rhs": {
+              "math": {
+               "op": "OpAdd",
+               "lhs": {
+                "math": {
+                 "op": "OpAdd",
+                 "lhs": {
+                  "math": {
+                   "op": "OpMul",
+                   "lhs": {
+                    "currentManaRegen": {}
+                   },
+                   "rhs": {
+                    "variableRef": {
+                     "name": "potion window"
+                    }
+                   }
+                  }
+                 },
+                 "rhs": {
+                  "currentMana": {}
+                 }
+                }
+               },
+               "rhs": {
+                "const": {
+                 "val": "200"
                 }
                }
               }
              }
             }
-           ]
-          }
+           }
+          ]
          }
-        ]
-       }
-      },
-      "castSpell": {
-       "spellId": {
-        "spellId": 9876
-       }
-      }
-     }
-    },
-    {
-     "action": {
-      "castSpell": {
-       "spellId": {
-        "spellId": 9912
-       }
+        }
+       ]
       }
      }
     }
    ]
   },
-  "balanceDruid": {
-   "options": {
-    "classOptions": {
-     "innervateTarget": {}
-    }
-   }
-  }
- },
- "partyBuffs": {
-  "manaSpringTotem": "TristateEffectRegular"
- },
- "raidBuffs": {
-  "arcaneIntellect": true,
-  "markOfTheWild": true,
-  "powerWordFortitude": true,
-  "prayerOfSpirit": true
- },
- "debuffs": {
-  "curseOfElements": true,
-  "judgementOfWisdom": true
+  "reactionTimeMs": 100,
+  "channelClipDelayMs": 100,
+  "distanceFromTarget": 20
  },
  "encounter": {
   "duration": 180,
@@ -389,36 +1383,45 @@
     "level": 63,
     "mobType": "MobTypeMechanical",
     "stats": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     320.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     54.0,
-     0.0,
-     0.0,
-     3731.0,
-     0.0,
-     1428900.0
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     320,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     54,
+     0,
+     0,
+     3731,
+     0,
+     1428900,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
     ],
     "minBaseDamage": 2601,
     "damageSpread": 0.5,
@@ -428,8 +1431,5 @@
    }
   ]
  },
- "settings": {
-  "iterations": 10000,
-  "fixedRngSeed": 20261120
- }
+ "targetDummies": 1
 }

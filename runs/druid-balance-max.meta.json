@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "max",
  "metric": "dps",
- "value": 816.89,
- "margin": 0.77,
+ "value": 875.03,
+ "margin": 0.76,
  "hps": 0,
- "threat": 835.9,
+ "threat": 701.8,
  "title": {
   "ru": "Баланс (Мункин)",
   "en": "Balance (Moonkin)"
@@ -18,12 +18,12 @@
   "ru": "Стандартная ротация симулятора",
   "en": "the sim's default rotation"
  },
- "talents": "5232220115501351--5053",
+ "talents": "5532220115001351--505302",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-25T09:55Z",
- "simCommit": "9c0decc",
- "simLink": "https://www.wowsims.com/forever/druid/balance/#eNrEUEFoE10Q3nn7kp2d/PmzfZbw+hCMgcYYiGySLlV7yDZHtVqK4tWkaSVQRNp68SAVBHuxVRCh1ZMtiEU9SFHxoKAg9SBE0SJ6sFaLh2ipih48ye7GQ8Wj4HeYb/jezDdvhhDBAgkJEEyCusIxZEXUCTLwRSMq1zaQge8nQU67xPFVI0ocL9YtMvBlIyqvlcjE8V7rXr/83EUmXtrnpW+6iOPKJJCBj+ZjgcViUM1x4qNFHC/UvXjLj7d9u9dPLbnaRRpxvFG3kpushVr605D9vdJ75jLMQWSi9mEm9nYmtjITW4JTtRJHkHCXxZ18IZ/P27mc49i5gpPLZh3bKSwwvc4iy2yeUYrayMr8j7rQl0FTIdIJOjzCOz1JkwwKZXPbnBHBFdupiX5VpoPqAG0VW0hkLAwJtktTSGHihe32CLVkYqgLVtGUQSHSO+12SovU73KH3e5LQbcvFewRFSaOq+9AxFUrRbzZee8bjT0qICFVnP5LEmHeqzz3EFSTxUal/CXC65bwXn+cBlFSLnUKh8yb4En3v0lKqxTFM60YEuaDX2LQlgtGfAFv6PkeFZAwldE8itTXWPWkrvnocKf1aHX4WK2arZSHykf6ByphxYmRlqwzU/MwNui2+InW6rZNT3l4XNw86GOxmL/KpJEoZtZA+ycYdf+u3+4/+6Wur9NnnzjdO/ysb9btboruITg69xWOR/rKtWpif3n48MDoOMBU8zJLxQzi2b1y7Nlzs8QTkIafAwAHOJC8"
+ "simmedAt": "2026-11-26T10:33Z",
+ "simCommit": "b6c9efc",
+ "simLink": "https://www.wowsims.com/forever/druid/balance/#eNrEVm9oG+cZ1/Pe+fTqkWXJb9z28ja1X8uxo14t93SyEnumWPa60nXJKM5gm9mHna1zfEU+Gd2lIvvUho4WBiXr0mZxYIWmlGG2fjjGaANjsMDoChsmZGEbjGUOIwNvI1lIPvjT0J1ky7GzOCFs7wf7/D6/5/f8f14jpZACFQQwogJ/93EaT8X564BR+vu1hHpjD0bp6hlQl4oo0z+tJTBKz62k1F90YZT+YS2h/mQSFfqRpd4cwyj941pC/csYyvRyAPz1z5IhwZUQKNP3VlIo04sfA8r05ysplOipBVToxU71bBGj9NZ7oK7V9T9eSaWzqc/szD/L+p2Zkd/dTr789gewBOT6xDLE37avn0/+9Xzyb+eTV+EN+wZ8+uPkpExBhQtELRTyhmHouVxB13P5Qi6bLeiFvG58RqQVQlfJuS6cwiGMXZIVlOmnNw+vgsDuKcssicPWibLtWIPCm7cc8fWq6c0Lr2bPWmnhk6coYQrKSHSXd64rHdhetk4IryJqdRxOY99uiPI+0SmwXp90t/CxdSWJiVqIq4jF4+Uyj2EU2/QhveDiN3fHbfjkWQpsR19D7rmyfWzea6Fm/TykPrpolcszZdP1bOeYqFSFKRZMxxSLFc+uOEzm5AsR9i7wdwDfBP4G4AQbR6alqMLISxFOUUE5P6K7+LR2gEqs2ydPUmB7fJKiEpPeoREexTaUcrrOyXSESydpBMfZc9ipJanEyExDPqz3Y4YPBNdtAXNwndfdu5E5vZ/XC/iva8D6eO8qdOO+F49Xq/as6Vii4gjXetWqmmXhmdVjlueyDB9YhT7snbLmqpY7L45UKs6cXbWE6ZTElx3XmvXE0ZpZXWBZ/swqZHDgqGdWA0TN9ubFl2bL9qJrDYqKN29Va7ZrhclXJe35+5WGPcb3tHQcb/xmcR6rR5Oh9JMj2hLctwyj/BA+y7OYXFfaEd0NMPJ15Ql8zKm0ooVjWSWrxGUkKmfP8THMp3MPp65q/4D7pHeEH0SNZTD2eRDlW9dexpgPzc+U1kEVJq1ChLehhJCvd0xGoutvAuvm+7bJCy3yAs/jAda/naPZEs0uyQ27LWpjfBSz7JlADVrUhhEvKPWkI107jPELSl2ljX7/Imwqa9+D3TRKD38qmAF5cwaMoYLLm+ysl/cE9sNWDiZyxJ2MN8QpmUdYmosdIO1Nn+oY7c9kt80YdMgg01rLEPeBhp8qBKakLYWoO6vQ00fYB8DfB/wBsFOAgndjIh1vpQn+3KxoR7od8XNodi9+i0+H9Tc2cvuktpfKLPZK84LjEtnA151EYyP3uE/jVGb4ymY1WtAbQ8Je4M/jKDvU9OSXt1XUeAYf17poG4v9qnkZBpcLvfw3NGPcDLZ18gy+dT8yXN6wbBTu2stsv096KbBW77avWOOFrc8DO+iTPAXW75N0oBzdUN5p9wetVNAXXCONicY41mynVKmxzpNSB5KXIhhgcobuGnsxUT3uWKJqmaUTwnYYXYY2lFJ3ZoweZLbjWNVXTa9FHluGxuo0vogsmHnTaxgQllNiWZ9oFFjaJz1UYsFwZYcLDVe3+FPf5sZHUus2YWckflrC/VqaKuyJdaVrJxNhgXScZt/AQU2jEgvJtwSyk0HMaAP/jTd427I5Q9exwhZwQhunEjvgk/0UGkrbExKuD0N3H95gXtd1/BGwc/CA4fyvHBw2dN14n9xjy7PvEn6S4JxWohLr84mgEgsa7FB+KL9j3cd8MkKBPe2TAQrhe9946O/RJc3K1BN1BtjpB01USZvZrW+jPjn4YL418qv/nZRukNLrUiQ4w8UZpf7+YST9QykWXL02V+wMhV3FvUtn6+c3471zwbkybtwkalSMa5+QyP/leMVHy/eVnfkGfrrl/sPfFiYelcXR4OfUh8UmY/HbsLh8C74TnzLtkvha8N/GWwBnIRRfHdcoPfVV9bVLl2OTsoAMvAj/GQDwZcVs"
 }
