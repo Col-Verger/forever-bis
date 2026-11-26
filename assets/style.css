@@ -349,6 +349,8 @@ details.localrun[open] summary{border-bottom:1px solid var(--line)}
   html::-webkit-scrollbar{width:0;height:0}
   :root{--navh:calc(62px + env(safe-area-inset-top))}
   body{padding-top:var(--navh)}
+  header.top{padding-bottom:12px}
+  .stamp{margin-bottom:0}
   .bar{top:var(--navh)}
   .tabs{
     position:fixed;top:0;left:0;right:0;z-index:70;
