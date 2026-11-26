@@ -1,9 +1,9 @@
 {
  "builds": [
   {
-   "id": "druid-balance",
+   "id": "priest-shadow",
    "status": "failed",
-   "reason": "FileNotFoundError: [Errno 2] No such file or directory: 'forever/ui/specs/druid/balance/gear_sets/prebis.gear.siml'"
+   "reason": "FileNotFoundError: [Errno 2] No such file or directory: 'forever/ui/specs/priest/dps/gear_sets/default.gear.siml'"
   }
  ]
 }
