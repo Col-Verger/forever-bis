@@ -73,7 +73,23 @@
 </header>
 
 <div class="bar" id="bar">
-  <div class="wrap bar-in">
+  <div class="bar-compact">
+    <button class="bc-sum" id="bcsum" type="button" aria-expanded="false" aria-controls="barin">
+      <span class="bc-sumtext" id="bcsumtext">Текущий сет</span>
+      <svg class="bc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <button class="bc-filters" id="bcfilters" type="button" aria-expanded="false" aria-controls="barin">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+      <span data-i18n="filters">Фильтры</span>
+      <i class="bc-dot" id="bcdot" hidden></i>
+    </button>
+  </div>
+  <div class="wrap bar-in" id="barin">
+    <div class="sheethead">
+      <span class="sheetgrab" aria-hidden="true"></span>
+      <b data-i18n="filters">Фильтры</b>
+      <button class="sheetdone" type="button" data-sheetclose="1" data-i18n="sheet_done">Готово</button>
+    </div>
     <div class="group"><span data-i18n="cls">Класс</span><div class="seg" id="cls"></div></div>
     <div class="group"><span data-i18n="spec">Спек</span><div class="seg" id="spec"></div></div>
     <div class="group" id="budgetgroup" hidden><span data-i18n="budget">Бюджет</span><div class="seg" id="budget"></div></div>
@@ -87,6 +103,7 @@
     </div>
   </div>
 </div>
+<div class="sheetback" id="sheetback"></div>
 
 <main class="wrap">
   <section data-panel="gear">

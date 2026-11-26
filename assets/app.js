@@ -142,6 +142,8 @@ const STR = {
   howto_talents: { ru: 'Таланты на Wowhead ↗', en: 'Talents on Wowhead ↗' },
   topn: { ru: 'Опций на слот', en: 'Options per slot' },
   filter: { ru: 'Фильтр', en: 'Filter' },
+  filters: { ru: 'Фильтры', en: 'Filters' },
+  sheet_done: { ru: 'Готово', en: 'Done' },
   search_ph: { ru: 'Название предмета, босс или зона', en: 'Item, boss or zone name' },
   search_ph_short: { ru: 'Предмет или босс', en: 'Item or boss' },
   q_showing: { ru: 'Показано {n} из {m}', en: 'Showing {n} of {m}' },
@@ -1360,6 +1362,11 @@ function tipHTML(id, sfx) {
 }
 const tip = $('tip');
 document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && $('bar').classList.contains('open')) {
+    e.preventDefault();
+    closeSheet();
+    return;
+  }
   if (e.key !== 'Enter' && e.key !== ' ') return;
   const row = e.target.closest && e.target.closest('tr[data-pick]');
   if (!row) return;
@@ -1392,6 +1399,13 @@ document.addEventListener('mousemove', e => {
 });
 
 // ---------- controls & render ----------
+function syncFilterBadge() {
+  const fb = $('bcfilters');
+  if (!fb) return;
+  const active = state.tab === 'gear' && (!!state.q.trim() || state.srcs.size !== SOURCE_KINDS.length);
+  fb.classList.toggle('has', active);
+  if ($('bcdot')) $('bcdot').hidden = !active;
+}
 function renderControls() {
   document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === state.tab));
   document.querySelectorAll('section[data-panel]').forEach(s => { s.hidden = s.dataset.panel !== state.tab; });
@@ -1422,6 +1436,13 @@ function renderControls() {
   pressed('[data-spec]', 'spec', state.spec);
   pressed('[data-budget]', 'budget', state.budget);
   pressed('[data-topn]', 'topn', state.topn);
+  const sum = $('bcsumtext');
+  if (sum) {
+    const parts = [L2(C.name), L2(spNow.name)];
+    if (hasMax || hasCheap) parts.push(T(state.budget === 'cheap' ? 'budget_cheap' : 'budget_max'));
+    sum.textContent = parts.join(' · ');
+  }
+  syncFilterBadge();
 }
 // Keep the chosen tab visible in the sideways-scrolling strip, and fade the
 // edge only when there is something more to scroll to.
@@ -1457,8 +1478,49 @@ function render() {
   toHash();
 }
 
+let sheetOpener = null;
+function openSheet(opener) {
+  const bar = $('bar'), sheet = $('barin');
+  if (!bar || !sheet) return;
+  sheetOpener = opener || null;
+  bar.classList.add('open');
+  document.body.classList.add('sheetopen');
+  sheet.inert = false;
+  [document.querySelector('header.top'), document.querySelector('main'), document.querySelector('footer.foot'), $('totop')].filter(Boolean).forEach(el => { el.inert = true; });
+  ['bcsum', 'bcfilters'].forEach(id => { const b = $(id); if (b) b.setAttribute('aria-expanded', 'true'); });
+  sheet.setAttribute('role', 'dialog');
+  sheet.setAttribute('aria-modal', 'true');
+  sheet.setAttribute('aria-label', T('filters'));
+  setTimeout(() => {
+    const target = sheet.querySelector('.seg button[aria-pressed="true"]') || sheet.querySelector('.seg button:not([disabled])');
+    if (target) target.focus({ preventScroll: true });
+  }, 260);
+}
+function closeSheet() {
+  const bar = $('bar'), sheet = $('barin');
+  if (!bar || !bar.classList.contains('open')) return;
+  bar.classList.remove('open');
+  document.body.classList.remove('sheetopen');
+  if (sheet) sheet.inert = true;
+  [document.querySelector('header.top'), document.querySelector('main'), document.querySelector('footer.foot'), $('totop')].filter(Boolean).forEach(el => { el.inert = false; });
+  ['bcsum', 'bcfilters'].forEach(id => { const b = $(id); if (b) b.setAttribute('aria-expanded', 'false'); });
+  if (sheet) {
+    sheet.removeAttribute('role');
+    sheet.removeAttribute('aria-modal');
+    sheet.removeAttribute('aria-label');
+  }
+  if (sheetOpener && document.contains(sheetOpener)) sheetOpener.focus({ preventScroll: true });
+  sheetOpener = null;
+}
+
 document.addEventListener('click', e => {
   const t = e.target;
+  if (t.closest('#bcsum,#bcfilters')) {
+    const bar = $('bar');
+    if (bar && bar.classList.contains('open')) closeSheet(); else openSheet(t.closest('#bcsum,#bcfilters'));
+    return;
+  }
+  if (t.closest('[data-sheetclose],#sheetback')) { closeSheet(); return; }
   if (!t.closest('#srcpick')) $('srcpick').open = false;
   const pk = t.closest('[data-plan-kind]');
   if (pk) {
@@ -1511,6 +1573,7 @@ document.addEventListener('click', e => {
   if (t.closest('[data-qclear]')) {
     state.q = '';
     if ($('q')) $('q').value = '';
+    syncFilterBadge();
     if (state.tab === 'gear') renderCards();
     return;
   }
@@ -1519,6 +1582,7 @@ document.addEventListener('click', e => {
     state.srcs = new Set(SOURCE_KINDS);
     if ($('q')) $('q').value = '';
     renderSources();
+    syncFilterBadge();
     if (state.tab === 'gear') renderCards();
     return;
   }
@@ -1583,7 +1647,7 @@ document.addEventListener('click', e => {
     }
     return;
   }
-  if (t.closest('.srcall')) { SOURCE_KINDS.forEach(k => state.srcs.add(k)); renderSources(); if (state.tab === 'gear') renderCards(); return; }
+  if (t.closest('.srcall')) { SOURCE_KINDS.forEach(k => state.srcs.add(k)); renderSources(); syncFilterBadge(); if (state.tab === 'gear') renderCards(); return; }
   const b = t.closest('button');
   if (!b) {
     const go = t.closest('[data-go]');
@@ -1603,7 +1667,7 @@ document.addEventListener('click', e => {
   else if (b.dataset.spec) state.spec = b.dataset.spec;
   else if (b.dataset.budget) state.budget = b.dataset.budget;
   else if (b.dataset.topn) state.topn = +b.dataset.topn;
-  else if (b.dataset.tab) state.tab = b.dataset.tab;
+  else if (b.dataset.tab) { state.tab = b.dataset.tab; closeSheet(); }
   else return;
   render();
 });
@@ -1626,11 +1690,11 @@ document.addEventListener('change', e => {
   const s = ds.src;
   if (!s) return;
   e.target.checked ? state.srcs.add(s) : state.srcs.delete(s);
-  renderSources(); if (state.tab === 'gear') renderCards();
+  renderSources(); syncFilterBadge(); if (state.tab === 'gear') renderCards();
   $('srcpick').open = true;
 });
-$('q').addEventListener('input', e => { state.q = e.target.value; if (state.tab === 'gear') renderCards(); });
-$('q').addEventListener('keydown', e => { if (e.key === 'Escape' && state.q) { state.q = ''; e.target.value = ''; if (state.tab === 'gear') renderCards(); } });
+$('q').addEventListener('input', e => { state.q = e.target.value; syncFilterBadge(); if (state.tab === 'gear') renderCards(); });
+$('q').addEventListener('keydown', e => { if (e.key === 'Escape' && state.q) { state.q = ''; e.target.value = ''; syncFilterBadge(); if (state.tab === 'gear') renderCards(); } });
 document.addEventListener('input', e => {
   if (e.target.id === 'planq') { state.planQ = e.target.value; applyPlanFilter(); }
 });
@@ -1656,6 +1720,18 @@ const syncHeights = () => {
 new ResizeObserver(syncHeights).observe($('bar'));
 if (navEl) new ResizeObserver(syncHeights).observe(navEl);
 syncHeights();
+const sheetMq = matchMedia('(max-width: 960px)');
+const sheetEl = $('barin');
+if (sheetEl) sheetEl.inert = sheetMq.matches;
+const onSheetMq = () => {
+  if (!sheetMq.matches) {
+    closeSheet();
+    if (sheetEl) sheetEl.inert = false;
+  } else if (sheetEl && !$('bar').classList.contains('open')) {
+    sheetEl.inert = true;
+  }
+};
+if (sheetMq.addEventListener) sheetMq.addEventListener('change', onSheetMq); else sheetMq.addListener(onSheetMq);
 const tabsNav = document.querySelector('.tabs');
 if (tabsNav) tabsNav.addEventListener('scroll', syncTabs, { passive: true });
 addEventListener('resize', syncTabs);
