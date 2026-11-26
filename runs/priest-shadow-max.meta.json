@@ -2,28 +2,28 @@
  "status": "ok",
  "budget": "max",
  "metric": "dps",
- "value": 819.89,
- "margin": 0.57,
+ "value": 838.64,
+ "margin": 0.54,
  "hps": 0,
- "threat": 584.1,
+ "threat": 597.1,
  "title": {
   "ru": "Шэдоу",
   "en": "Shadow"
  },
  "buildName": {
-  "ru": "Shadow Testing (билд симулятора)",
-  "en": "Shadow Testing (the sim's build)"
+  "ru": "Shadow (стандартный билд)",
+  "en": "Shadow (the standard build)"
  },
  "rotation": {
-  "ru": "Ротация тестового билда",
-  "en": "the testing build's rotation"
+  "ru": "Стандартная ротация симулятора",
+  "en": "the sim's default rotation"
  },
- "talents": "00530300103-3-50042201251302051",
+ "talents": "00530200103-3-50042201251312051",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-25T09:56Z",
- "simCommit": "9c0decc",
- "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrsVF9oHNUXPmf+7Z0z3WZyf/kzufnRbhcpYSFldjarbRCyjRorpjWkDaX6Ykw23Y3rbt1JWelTFQVtNYk+rKQvQtOHGi0tiqX6IrQ+VEFYQhHrUykGrBqIESxsXmT+JG2wKkhBH3KWvcPc757vXL7vY8hgaKKFMTyLyCULxbX/McVUxTFS2Mo5JIV9P+WtJxejpLCF1xpJY5eK1oe9FGEnZ9Ba3Ewau+xvKGxhCklnbw6Y10eCE1OL0QCZ/Nkkhb3hrxdr3vr25yZF2AfzpjWTIYUtVpE09nHFvD4S325ezXf8VLB/e27grdM4h9ELeybz38423JxtWJhtuIGv5pfw07MNiWmVLkmwUf+oeG1DuvtcltT9iUrwdz++kduN3P63cturMLTwM2mrbadTdsq2k3aqM9WZtu0ux7GTTjqZsh07nbwqyTXJ+E6Cm9KKRtuohaiuRUg9UC4VCoKR1qGxpSrGI6SS3JlyqYV0ESG1Q2dXhuI6RUjtTO5Iu7xVNNOmOBH7CFWS2S8vieDB20QrResaEXt0uPx8bP/wiNBIYdMre7kQFm2uawbp+/KHcxOxxwpjPvbucj9vEU3hVR4vll7I+vvnl/u5IqRu4O2ijcy6FiVj/8GB2GB2rJx1c/7EySFuiZbgKo7XVKuiCJ9cFxH/0JUhToL521/cfoobDEPgYoXvEX30MO+mLYn/M5UbP2qeCBF2q4oifNHY7XeQrEQL0zjN4aoaHh1JXa5Pe6uKvJ2haHWaKaB+zyUSa1y87V6Qz+xBr2ATKd6L2CSIWF1TSd7bl7LkRDvpj5RKhdFSpehyScDdf2fLHZE5T5hM4dLT4DGT4ti27eyixieKxWw51lcaOerGBo8Wsi5/gMcDuU5joA15rRqXusPWrh1p1xHrpOaG570TCO40hXnhxryyFhmncpetfJznSJ9XQnfpGX6I5BMIoYr6uCciY5NDwg9a0nZpp3iQ2hKtnsbjAann5BocQMYc3sF8/Xe6zothZniOj60OPb/cT4f4wWBoa6J5/dCwkx4S6VVfx//A+1cjt/r2cK8XufGVvGam5y9hKjjg/OkB5wdpdEkafVkGAADoypyQ4ZQcPVLOZ92JTjc3PFqqXJClyxiEFi2M1yQdAACOj2UaAQAAmjJtp2a8+rJn25hf3/Q470tWJNaTWMJ/50s0kbm/fE/em2/7uXX7Z75O794FAACDZzK7AQAAIPMsHpn7FY8Zg8P50diB4fLh7MTriDMIAABwoyfB2PQ+6/j8Nb1XMzGGHfj7ABbTEck="
+ "simmedAt": "2026-11-26T10:43Z",
+ "simCommit": "b6c9efc",
+ "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrEU01sG1UQ9uyud2dn42T7SJzNS2hdC1WRUar1cwwlQYoboBRIS5W2qgoXQmPXDo4N3pQgTuXngKiURhwCCRJITQ9RRAniEBW4FYQKEpKJKi4cKJUqfkQhCRKV3AvaHzuJKJwqMQd7d7433/dmvlkyEEywIAYLAEyygL+no2KG+Yuk4a0LYK3eRRq+tgTWXIYUPHMjQgq+WzVJxYsl64NB0vDMLFhr/aTiJS+h4PWzQBp++WFQfPZGxM9P/WaSgp8tACm4XDVJxulx0vD7b03r934KkYxX8vF7zcuF7j+K9l/PHpo6B3Mg/bR3ESIf7Z8qXJ9v+XG+5Yf5lqvwemEVPlloGVQQLPhU2mHb6ZQtbDtpp3pSPWnb7hXCTop0MpUUdjp5WZKrknFNWtBoJ0WJaqpG4SOVcrHIkdRuFVdnIK5RmOSelENR0rlG4W4dPz8a10mjcE9yd9ph7byNmuJE+DGESca1l7j/xzp5B0VqKhE+PFJ5LnZ45IRHG8bpWwcY5xY111SD9IOFk/mJ2CPFHFdJwbfXh1iUtwaXebRUHs96+aX1IWby5mtgkP5QuVwcLU+WHKZwqS/E7uadZNbUCBmHjx2KDWdzlayT9+6KOHWUdXFOzfEmIuF3VZ0B3nhiBt9oizVx8iAFv7j5JDMQuOZ1szzJHuf76UHWR9sTXRhmxq+qe07DX2aABy8q3nwLyEpEUWW0CHVS9/ok9Tq8UcA6EXi7aCOf/H2HaBPYcTvI43Yn+ipE66+8iRNhTQ2TfGBfypIT8c2jIY6usrlcNZnut2FOj4vtG24wljBRYdJTIVeCFGHbtuinbY+VStlKbF/5xCknNnyqmHXYLnaPP8Fzja7ILVaZ1BcU9+5OO6JriwMsEjdIF3UfRGuwXMxYURr7JSY3bQAbY3nSV5RgEehpdpzkNyEUDFUfq3NxbyuTtkN7+H3UkWh3Rz62YW8D9iFjETYwz449jnghWC+WZ7m66NL6EB1nx3zR9kTbVtGgku7n6brNY//g/S/JHZ5TzK0FZnwtN5x13SFI+QfEvx4QP0ujq9LoK3LIi97MJfBMdj/3+DuyHnLjdC6zzXsItWY65mbd+GpgZ86L7wbEmmRpsYHERSn0v8RE5s7yPXF7vl0XtuTPf5Pee6cUH/B+h89n6oyZZ+D5xT/hZWN4pDAaOzJSOZmdeANgFnz46kACcfqgdXrlij6omhCDbvh7AMxUDOc="
 }

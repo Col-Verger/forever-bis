@@ -1,9 +1,9 @@
 {
  "builds": [
   {
-   "id": "druid-balance-max",
+   "id": "priest-shadow-cheap",
    "status": "ok",
-   "value": 875.03,
+   "value": 814.59,
    "metric": "dps"
   }
  ]
