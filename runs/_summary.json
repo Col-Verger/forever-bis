@@ -1,13 +1,10 @@
 {
  "builds": [
   {
-   "id": "warlock-demo-fire-max",
+   "id": "hunter-sv-cheap",
    "status": "ok",
-   "value": 957.12,
+   "value": 885.24,
    "metric": "dps"
-  }
- ]
-}ch file or directory: 'forever/ui/specs/shaman/elemental/builds/default.build.json'"
   }
  ]
 }

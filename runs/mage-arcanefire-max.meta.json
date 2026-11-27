@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "max",
  "metric": "dps",
- "value": 924.69,
- "margin": 0.93,
+ "value": 926.59,
+ "margin": 0.94,
  "hps": 0,
- "threat": 837.5,
+ "threat": 838.9,
  "title": {
   "ru": "Аркан-фаер",
   "en": "Arcane Fire"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-27T05:35Z",
- "simCommit": "6c0a5ab",
- "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEUl1oHFUUnnNnsnPmLGsmtzFcb0WnW9c0U1bvzHaVtMJuA2pt1YTic3VtNmWxSSUGFZ9qFBRELSpC1+LDGlCDf8yDkIAv8WV9CKzBnwcfDEFBcJFsgiS+iMzsbHYDwSfB8zL3fvc73znnO0NJBBsEOPARAE8I5sDzIN83EW2Uz5GJO82U2DxEJr70OYhqkQzcbabIwPcaNiWwPiM+GSMTW82UaJ0iE7eaqRAx8Nc3gUz8s5O93cHfbdhk4NefARn4ZcMmHa9Nk4k/fWuLP06RRjpuXU47dr1y7PfLE6/XYBHojcorleYH/R/egC/g7x17HV6ujCUQBChYZkdVXvkq76ucp1TO8/I5L5v380op5flKeVmlcnVmNFhyg93oo3sIZYIMXGo9nHYDNow6PxwwgcCtKgsf5ncnpFU1Y07IJZb16I44b353Ii0CdjPqvQkxi98r83Scj5BwhxB4cgWQDGwtCQGyj3SCHKXSSbK2IEz86y2Q8Zdb0gwZ+OM4PyqP0IDbjwZnT2rSpD7SPZXZgCRZ9z975WJprnJlhjvyNpJSUDKISqyGJciqQdzQSY0PycF9r5H8L+M8LZ0eon+I2oVfu9AdkE/Lp6gkH6chdzCccyVif7UkOkNIV4T48h4eW/HO9+dohA/3DhlCB8uckPE7J9ktfUY+QPe5JzERTe8H7G4EHpngq4xMB+x21PlAwG4K/TmrtZ33npFICTK8u3KZPdWOpT+PC92tQa97D8kH6VYu230GUVvL9UfIWjPitfvD3d+EDs+DIB3fviDDtSS6axkdzfCz8gwdlyNtqb389rUGnWu3yL9o/cYmN9nki7oWxYliVe+fLl0qZ0uzF0sz5anKbDkSJIaQbjBLC+PqVHEgOmiDxVuq18P4pnBkKoofCv7HTJhOwd0E7X+JueJ/q3fuYL07P92HL6zmT49Gp/MLxdMxWHwCnl7chheS50uVSeex0uyl8tyrANdjZ9YLLuK1R8XVte+sMcOBY/DPAL1E4VY="
+ "simmedAt": "2026-11-27T15:32Z",
+ "simCommit": "3b9c125",
+ "simLink": "https://www.wowsims.com/forever/mage/dps/#eNrEUl1oHFUUnnNnsnPmLGsmtzFcb0WnW9c0U1bvzHaVtMJuA2pt1YTic3VtNmWxSSUGFZ9qFBRELSpC1yK4BtSgKPMgJOBLnlYhsAZ/HnwwBAXBRbIJkvgiMrOz2Q0EnwTPy9z73e9855zvDCURbBDgwMcAPCGYA8+DfN9EtFE+RybuNFNi8xCZ+NLnIKpFMnC3mSID32vYlMD6jPh0jExsNVOidYpM3GqmQsTAX98EMvHPTvZ2B3+3YZOB33wAZOCXDZt0vDZNJv70rS3+OEUa6bh1Oe3Y9cqx3y9PvF6DRaA3Kq9Umh/2f3QDvoC/d+x1eLkylkAQoGCZHVV55au8r3KeUjnPy+e8bN7PK6WU5yvlZZXK1ZnRYMkNdqOP7iGUCTJwqfVw2g3YMOr8cMAEAreqLHyY352QVtWMOSGXWNajO+K8+d2JtAjYzaj3JsQsfq/M03E+QsIdQuDJFUAysLUkBMg+0glylEonydqCMPGvt0DGX25JM2Tgj+P8qDxCA24/Gpw9qUmT+kj3VGYDkmTd/+yVi6W5ypUZ7sjbSEpBySAqsRqWIKsGcUMnNT4kB/e9RvK/jPO0dHqI/iFqF37tQndAPi2fopJ8nIbcwXDOlYj91ZLoDCFdEeLLe3hsxTvfn6MRPtw7ZAgdLHNCxu+cZLf0GfkA3eeexEQ0vR+wuxF4ZIKvMjIdsNtR5wMBuyn056zWdt57RiIlyPDuymX2VDuW/jwudLcGve49JB+kW7ls9xlEbS3XHyFrzYjX7g93fxM6PA+CdHz7ggzXkuiuZXQ0w8/KM3RcjrSl9vLb1xp0rt0i/6L1G5vcZJMv6loUJ4pVvX+6dKmcLc1eLM2Upyqz5UiQGEK6wSwtjKtTxYHooA0Wb6leD+PrwpGpKH4o+J8wYToFdxO0/yXmiv+t3rmD9e78bB++sJo/PRqdzi8UT8dg8Ql4enEbXkieL1UmncdKs5fKc68CXI+dWS+4iNceFVfXvrPGDAeOwT8DAKGF4VA="
 }

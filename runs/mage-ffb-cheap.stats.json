@@ -39,7 +39,7 @@
   "BonusArmor": 40,
   "CritRating": 42,
   "FireDamage": 100,
-  "FireResistance": 60,
+  "FireResistance": 75,
   "FrostDamage": 100,
   "FrostResistance": 60,
   "HealingPower": 295,

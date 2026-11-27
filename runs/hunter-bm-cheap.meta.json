@@ -2,10 +2,10 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 1033.98,
- "margin": 0.54,
+ "value": 1045.02,
+ "margin": 0.57,
  "hps": 0,
- "threat": 678.6,
+ "threat": 678.8,
  "title": {
   "ru": "BM (пет)",
   "en": "BM (pet)"
@@ -23,7 +23,7 @@
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-27T05:16Z",
- "simCommit": "6c0a5ab",
+ "simmedAt": "2026-11-27T15:16Z",
+ "simCommit": "3b9c125",
  "simLink": "https://www.wowsims.com/forever/hunter/dps/#eNrEVF1oHNUXz5mdnb178jW53fY/vf34365U45KG2WlX21TdTUENiiV2KwUR7DSZ3R2ymRvmw1CfKvhQpLVWofTrQW3VEqtgn7QvYsH6AWJRSX2QWkKFKn2IDRVcUWRmm2SS1geh4H2YOfd37vn9zpw55yIloIIGO6EGY7AH4HUAdq6NKGqCBSiTz661Y4pcOQDa3hTK5K+DgAo5XtNmNqNMzkfOT6+1a1c3o0IuBtrLJZTJ/gsqKmQy0K60Yop8cq1dOxDGHr6gokz+PASYIPtHUSYfvA+YIn+81alNZrAFFfKjpR1OZvPq1CW1+/s3OvXfdm08fhAG970JRwEPlc8PnjY/evaH/glI7rN/OtF5GV60p+HjU51blOZHnJVWFtYbuq7nC3ohr+eNQn6drhfW6wXd0PMbPpfkC5I0JZ1BXINLp4Ciut01h0a4X7O4b7pVy88SVFBeZ2zwcCmmWQqT3TK5IWZhYx5WyPU5WPeQY2YCurCzobQhDgb1OndNp2rdPJHf5NFlLINqroMoVOprYQrKKBW8vha6iq1ANduBbWcgjQlyQ1BJTc4pU8Y0bM+2YtoIIUJmbDZr0EfZw/gA7cNe2oOZhtKFnU95Fi8Ho6PC4QPm+EgM7XeHTMfi5ZrwkUxJSUwMDPTnmi/6DHv635LQ7mYoMoJKt0wu/r51gZ2+mebXgpbYQ2hQ/R/Yteyy2yvEyIrswUUM8c9ZyBDjnk9hDfs/LmkoKnZEwfaoNTyvoZBTJ4CuZitjR54I6r69LjqSxAT5NkMFLZZ90/W5qEQNU7GrNb+PVy2f+4KP7ubemPD5uO3XRODzuvBsp8pNh/cHvoi0elkPrs6tJBJNfanIKKkya7ZLuSaEH4VPQRpTO8z6CLcdLZE7Ls3t6M9AX4NoM6/Ww+tCjEQ6VdN2uPWc5e7mrmUO+bZwuG+PWr287IsxPl6z61YYNpfNPR4ft53hYIzbHh+qC8/iwuVu4Di2U+3hpjPcJArlLHOoxr2a8PkuqyJci4+b9UhWOL3sSdyUvR8LdD3idTJbcFzL7sKuhtKBbTuaKpEEdjSUVkw/Fnh+xDcBS3BxDVSgaykr+6YzHEpUhLsg716WyiYxcVZuyVm3zm/YdtEPm2wNuzEcM/L2MZiz34nZp2L2RMx+N2afPgYGW9w0NBpq3w0sY8XibqFpTGGyYta90HnL0MQjF3drzJmJF4RGd0XeMDLxm6WJGgXjkYUlpvexDdE9I9PkOUkiSRbWCnluNVFmkSVnJJVINPlLKtwlr4cvY1Xsv9CQIEGbnojgqnQIpqXhFxIt0eouTScuSS/BcvwfLiVHXwW1sQ+09nub3uniTjl7OJGONnsqpa4mnCktP3okXF8U11SiNVk0fpW0FC/mPpRa/pPll+4s3+O357v7vQX4ya8K/XdKcVP03HayNMtY2gljEzPwfOs20x7m26O52AtwBJruy8UcIa9s1fZ88116C9WAQzfosBFKMACDMAZ/DwBLrLfS"
 }
