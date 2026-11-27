@@ -1,10 +1,13 @@
 {
  "builds": [
   {
-   "id": "priest-shadow-cheap",
+   "id": "warlock-demo-fire-max",
    "status": "ok",
-   "value": 814.59,
+   "value": 957.12,
    "metric": "dps"
+  }
+ ]
+}ch file or directory: 'forever/ui/specs/shaman/elemental/builds/default.build.json'"
   }
  ]
 }
