@@ -11,19 +11,19 @@
   "en": "Smite"
  },
  "buildName": {
-  "ru": "Smite (билд симулятора)",
-  "en": "Smite (the sim's build)"
+  "ru": "Smite (сохранённый билд)",
+  "en": "Smite (frozen upstream build)"
  },
  "rotation": {
-  "ru": "Ротация смайта из билда",
-  "en": "the build's Smite rotation"
+  "ru": "Ротация из сохранённого билда симулятора",
+  "en": "the saved sim build's Smite rotation"
  },
  "talents": "525235031030001001-30515100002-3",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-26T03:22Z",
- "simCommit": "9e2e0ef",
+ "simmedAt": "2026-11-28T08:18Z",
+ "simCommit": "dc09e00",
  "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrsUk9IVF8UPue+NzN3zvzm956XouctbByypoHB+940i9rM6CoITKTZp6gxUGA6ELSyP4tQnGwjzFgL04UKgRaFtQn6AxYFU0RYQogQBCkIQW3jvSmjMoIQajHfg3c/zrnn47uHj0IcTbQwgpOIglkoHxo8aPpkO+l8aDVMGn9zknQ+uBomnY+WTdL5sMcHi0g6L3h8wPsvzrqVix5/POZ1V9z7CyMuv3TX5YvPTALS+dRlI7rXnM/F3h9XHztah67iNJozBwu5hXFjedx4O25MT+ISns+t4e1JIz7sozkGVfwRRLm6uk2GxQ7c9BH87hPV3FZz+2/ltlnnaOEdFkk5KSeZUklbJZVStlJ2IqlSdspWSiknkZxnWpmFXjNYZmc1EhSQPtL4k5ZogHykJew+EZF1VBM3uC5YB0ivbKsGGSSNj+4RzGTClo20S0QpHA1R0AmQL+bjY6d+HHJUg/za22CE8yuVEf/PI25PNMoE1YudFLqOnHQ+d6PFQjLj/3O/0JYRXN+EScnJH/Pz4isUUlpkRMMUclyvhazr1XtdISu2c5TbKFTCyvXyCMp19qUZLKGfdP7g02FJldN77FaOsoZ4CV2l+1lZOUTtNzmdn5ttletM1Mkdv97FSkAEZWXpt7KW9o51rrHOMxoAAMC+zIAGJe2/nt5cV18+0Xcil++a0dg95NK1hhZGyywIAAD93ZkaAACALZnaUtHFo3R9t4eXaWeKWYFIOr6GfyeQ+czm6h3aWG/3te/qE09TTfsBAKBtItMEAAAAmaPYM/0BT4fa2nOdkSPtvce68hcQiwgAALCUjnM+3GL1P38RbPabGMEYfh4Aui2gRg=="
 }

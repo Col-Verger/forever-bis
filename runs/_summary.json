@@ -1,9 +1,9 @@
 {
  "builds": [
   {
-   "id": "druid-feralbear-cheap",
+   "id": "priest-smite-max",
    "status": "ok",
-   "value": 480.14,
+   "value": 469.62,
    "metric": "dps"
   }
  ]

@@ -2,28 +2,28 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 465.87,
- "margin": 0.36,
+ "value": 462.12,
+ "margin": 0.35,
  "hps": 0,
- "threat": 388.5,
+ "threat": 385.5,
  "title": {
   "ru": "Смайт",
   "en": "Smite"
  },
  "buildName": {
-  "ru": "Smite (билд симулятора)",
-  "en": "Smite (the sim's build)"
+  "ru": "Smite (сохранённый билд)",
+  "en": "Smite (frozen upstream build)"
  },
  "rotation": {
-  "ru": "Ротация смайта из билда",
-  "en": "the build's Smite rotation"
+  "ru": "Ротация из сохранённого билда симулятора",
+  "en": "the saved sim build's Smite rotation"
  },
  "talents": "525235031030001001-30515100002-3",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-26T03:17Z",
- "simCommit": "9e2e0ef",
- "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrsUk1oU1kUPue+l+TkZDLv9TLDvN4ZOmmYzmQCoe8lZqGbpF0JQi3F7NvSVgIVahsQXNWfhVQbK0ghqS5qu2gLQlWU6kbQLqooBBGpLqQUBKkWKoJu5b1oRa0IUtBFvgvnHs4f3zl8HCI00cIIziBKYaFaNCho+lQn6zS6HmaNnh5kndbOIus0UTFZp7H1MOt0suRGip4/4tlTnj3t2fKaW3l30q1ZHnftmZsma/Sqn4F1mj1nRP83l/KxF/32m+720Qs4h+b87mJ+ecpYnTKeTRlzM7iCx/MbeH3GiI/5eEFADd8FWamdbpthiV1XfQzferKm25pufy7dtuqEFt4QkXQynUyl7ZRjp2zbdmzbSaTstJN2bNu2k4nUktAqIvREwKo4qrHkgPKxRvfaogH2sZZwhmRENXBd3CBdim5QXtixm1SQNZr4TwpTSEc18z8yyuFoiIPJAPtiPpo89HlT0m5SH3JbtBCdr7b4v2xxc7JZJbhR/s2hy0is08KVNgvZjP9KfqmtIri8GVOK2B/zU+kxSqUsNqJhDiVdrsWcy9XbrpiTfxKqPzhUxmp5ZRzVpvc+GSyjn3VafLtXcfX3lv2dUNUxldGddDunqp+s/zhOp2OX2tWmJxvUX1+/xcuADKrq0a/lLO256NkQPUc0AACAHdkRDcraLwOD+d6hQmLoQL7QO6+JW0jKpYYWRisiCAAAw33ZOgAAgN+y9eWSizuZxj4PjzLJWWEFIpn4Bv4YQRay2ztvz9bz/r34SXz6frplJwAAdExnWwAAACDbiQNzr/FwqKMr3xPZ1zW4v7dwArGEAAAAK5k40VibNfzgYbDVb2IEY/huACXDn+E="
+ "simmedAt": "2026-11-28T08:17Z",
+ "simCommit": "dc09e00",
+ "simLink": "https://www.wowsims.com/forever/priest/dps/#eNrsUk9IVGsUP+e7d2bOnHnz7vXjPd71ew/fOGRNA4P3zjSL2szoKghMpNmrqDFgYDoQtLI/i4ocDUJwrIXpQoXAisLaBOXComCICGsRYgRRCUZQ27h3yqiMIIRazO+D8x3O+c6P33f4cYjQRAsjOI0ohYVqwaCg6VPtrNPQapg1enqQdXp5Flmn8bLJOo2shlmnk14sVnKvftrLh714d8J9/2zYjUujbjxz02SN3vQysE4z54zodnMxH3vVa7/rbB26gLNozu0u5pcmjZVJ4/mkMTuNy3g8v4bXp434iI/nBVTxU5Dl6uo2GZbYddXH8KMjq76t+vb38m2zTmjhDRFJJ9PJVNpOOXbKtm3Htp1Eyk47ace2bTuZSC0KrSxCTwSsiKMaSw4oH2t0ryUaYB9rCWdARlQd18QN0qXoBOWVHbtBBVmj8W1SmEI6qpG3yCiHoyEOJgPsi/lo4tDXQ0m7QX3qbTBCdL4y4v92xO3JRpXgevk/hy4jsU7zV1osZDP+J/mltoLg6mZMKWJ/zE9jj1EqZbERDXMo6Wot5lyt3u+KOfkvofqHQyWsPC+PolrPPjaDJfSzTgvv9yqu3N5n/yZUNUwldJlu51TlkrWf6XQ6dqlVrWeyTv33/V28Dsigqiz9Ws7SXoiuNdF1RAMAANiRPaVBSfujrz/fPVBIDBzIF7rnNHELSbnS0MJoWQQBAGCwJ1sDAADwV7a2NObiTqa+x8OjTHJGWIFIJr6Gv8aQhezm8u3ZmG/rxS/qU/fTTTsBAKBtKtsEAAAA2Xbsm32Lh0NtHfmuyL6O/v3dhROIYwgAALCciRONtFiDDx4Gm/0mRjCGHwYAXVSgAw=="
 }
