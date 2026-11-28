@@ -81,7 +81,7 @@ jobs:
               sys.exit(0)
 
           recent_fail = [r for r in runs
-                         if r['conclusion'] in ('failure', 'cancelled')
+                         if r['conclusion'] == 'failure'
                          and (now - when(r)).total_seconds() < 6 * 3600]
           if recent_fail:
               print('a recent attempt failed; retry in a few hours')
