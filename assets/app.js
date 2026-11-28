@@ -112,6 +112,7 @@ const STR = {
   fresh_last: { ru: 'Последний прогон', en: 'Last simmed' },
   fresh_sets: { ru: 'Сетов', en: 'Sets' },
   fresh_wait: { ru: 'Ждут прогона', en: 'Waiting' },
+  fresh_lag: { ru: 'Отстают', en: 'Behind' },
   fresh_sum: { ru: 'Обновлено в этот прогон: {n} из {m} классов', en: 'Refreshed in this run: {n} of {m} classes' },
   set_lag: { ru: 'не пересчитан в последнем прогоне', en: 'not refreshed in the latest run' },
   delta_vs_bis: { ru: 'Статы против BiS', en: 'Stats vs BiS' },
@@ -1300,7 +1301,7 @@ function renderChip() {
 // Dates come from each run's own meta, so a class that lagged behind shows its
 // older date instead of borrowing the site's headline date.
 function classFreshness(c) {
-  let last = '', sets = 0, waiting = 0, failed = 0;
+  let last = '', sets = 0, waiting = 0, failed = 0, lag = 0;
   for (const sp of c.specs) {
     if (sp.status === 'no-preset') continue;
     if (sp.status === 'failed') failed++;
@@ -1311,10 +1312,11 @@ function classFreshness(c) {
       any = true;
       sets++;
       if (l.simmedAt && l.simmedAt > last) last = l.simmedAt;
+      if (setLag(l.simmedAt)) lag++;
     }
     if (!any) waiting++;
   }
-  return { last, sets, waiting, failed };
+  return { last, sets, waiting, failed, lag };
 }
 function renderRefresh() {
   const m = G.meta;
@@ -1330,19 +1332,19 @@ function renderRefresh() {
     const f = classFreshness(c);
     const date = f.last ? fmtStamp(f.last).split(' · ')[0] : '—';
     const wait = f.waiting + f.failed;
-    const lag = setLag(f.last);
-    return `<tr><td>${esc(L2(c.name))}</td><td${lag ? ' class="warn"' : ''}>${esc(date)}</td><td>${f.sets}</td><td${wait ? ' class="warn"' : ''}>${wait}</td></tr>`;
+    return `<tr><td>${esc(L2(c.name))}</td><td>${esc(date)}</td><td>${f.sets}</td><td${wait ? ' class="warn"' : ''}>${wait}</td><td${f.lag ? ' class="warn"' : ''}>${f.lag}</td></tr>`;
   }).join('');
   const freshN = G.classes.filter(c => {
     const f = classFreshness(c);
-    return f.last && f.sets && f.last.slice(0, 10) === String(m.simmed || '').slice(0, 10);
+    return f.last && f.sets && !f.lag &&
+      f.last.slice(0, 10) === String(m.simmed || '').slice(0, 10);
   }).length;
   const freshSum = m.hasData
     ? `<div class="freshsum">${esc(T('fresh_sum').replace('{n}', freshN).replace('{m}', G.classes.length))}</div>`
     : '';
   const fresh = `<h3>${esc(T('fresh_title'))}</h3>
     <div class="panel">${freshSum}<span>${esc(T('fresh_note'))}</span>
-      <div class="tscroll"><table class="fresh"><thead><tr><th>${esc(T('cls'))}</th><th>${esc(T('fresh_last'))}</th><th>${esc(T('fresh_sets'))}</th><th>${esc(T('fresh_wait'))}</th></tr></thead>
+      <div class="tscroll"><table class="fresh"><thead><tr><th>${esc(T('cls'))}</th><th>${esc(T('fresh_last'))}</th><th>${esc(T('fresh_sets'))}</th><th>${esc(T('fresh_wait'))}</th><th title="${esc(T('set_lag'))}">${esc(T('fresh_lag'))}</th></tr></thead>
       <tbody>${freshRows}</tbody></table></div></div>`;
   $('refresh').innerHTML = `
     <h2>${esc(T('ref_status'))}</h2>
