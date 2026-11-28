@@ -1,106 +1,102 @@
 {
+ "settings": {
+  "iterations": 10000,
+  "fixedRngSeed": "20261120"
+ },
+ "raidBuffs": {
+  "arcaneIntellect": true,
+  "prayerOfSpirit": true,
+  "markOfTheWild": true,
+  "powerWordFortitude": true,
+  "strengthOfEarthTotem": 1,
+  "graceOfAirTotem": 1,
+  "windfuryTotem": true,
+  "battleShout": 1
+ },
+ "debuffs": {
+  "judgementOfWisdom": true,
+  "sunderArmor": true,
+  "giftOfArthas": true,
+  "vindication": true
+ },
+ "partyBuffs": {
+  "manaSpringTotem": "TristateEffectRegular"
+ },
  "player": {
-  "name": "druid-feralcat",
-  "class": "ClassDruid",
   "race": "RaceTauren",
+  "class": "ClassDruid",
   "equipment": {
    "items": [
     {
      "id": 226792,
-     "enchant": 1508,
-     "randomSuffix": 0
+     "enchant": 1508
     },
     {
      "id": 19491,
-     "enchant": 904,
-     "randomSuffix": 0
+     "enchant": 904
     },
     {
-     "id": 271955,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 271955
     },
     {
      "id": 13340,
-     "enchant": 7667,
-     "randomSuffix": 0
+     "enchant": 7667
     },
     {
      "id": 252484,
-     "enchant": 1891,
-     "randomSuffix": 0
+     "enchant": 1891
     },
     {
      "id": 19587,
-     "enchant": 7656,
-     "randomSuffix": 0
+     "enchant": 7656
     },
     {
      "id": 271948,
-     "enchant": 2564,
-     "randomSuffix": 0
+     "enchant": 2564
     },
     {
-     "id": 272396,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 272396
     },
     {
      "id": 15065,
-     "enchant": 1508,
-     "randomSuffix": 0
+     "enchant": 1508
     },
     {
      "id": 273891,
-     "enchant": 1887,
-     "randomSuffix": 0
+     "enchant": 1887
     },
     {
-     "id": 19325,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 19325
     },
     {
-     "id": 284716,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 284716
     },
     {
-     "id": 19120,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 19120
     },
     {
-     "id": 270275,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 270275
     },
     {
      "id": 272601,
-     "enchant": 1896,
-     "randomSuffix": 0
+     "enchant": 1896
     },
     {},
     {
-     "id": 220606,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 220606
     }
    ]
   },
-  "talentsString": "050021-53200032123012125001-055",
-  "profession1": "Enchanting",
-  "profession2": "Tailoring",
-  "reactionTimeMs": 250,
-  "channelClipDelayMs": 100,
-  "distanceFromTarget": 25,
   "consumables": {
    "flaskId": 274274,
    "foodId": 250072,
    "conjuredId": 12662,
    "mhImbueId": 12643,
-   "resourcePotId": 13444,
-   "offensivePotId": 13442,
+   "extraIds": [
+    12460,
+    8412,
+    10646
+   ],
    "elixirIds": [
     250328,
     250338,
@@ -108,16 +104,22 @@
     250341,
     250351
    ],
-   "extraIds": [
-    12460,
-    8412,
-    10646
-   ]
+   "resourcePotId": 13444,
+   "offensivePotId": 13442
   },
   "buffs": {
    "greaterBlessingOfKings": true,
    "greaterBlessingOfMight": 1
   },
+  "feralCatDruid": {
+   "options": {
+    "classOptions": {},
+    "assumeBleedActive": true
+   }
+  },
+  "talentsString": "050021-53200032123012125001-055",
+  "profession1": "Engineering",
+  "profession2": "Enchanting",
   "rotation": {
    "type": "TypeAPL",
    "prepullActions": [
@@ -144,7 +146,8 @@
      "action": {
       "castSpell": {
        "spellId": {
-        "spellId": 9913
+        "spellId": 9913,
+        "rank": 3
        }
       }
      },
@@ -179,7 +182,8 @@
      "action": {
       "castSpell": {
        "spellId": {
-        "spellId": 9821
+        "spellId": 9821,
+        "rank": 2
        }
       }
      },
@@ -214,7 +218,8 @@
       },
       "cancelAura": {
        "auraId": {
-        "spellId": 9913
+        "spellId": 9913,
+        "rank": 3
        }
       }
      }
@@ -228,12 +233,16 @@
          {
           "spellIsKnown": {
            "spellId": {
-            "spellId": 9907
+            "spellId": 9907,
+            "rank": 4
            }
           }
          },
          {
           "auraShouldRefresh": {
+           "sourceUnit": {
+            "type": "CurrentTarget"
+           },
            "auraId": {
             "spellId": 9907
            },
@@ -249,7 +258,8 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 9907
+        "spellId": 9907,
+        "rank": 4
        }
       }
      }
@@ -322,13 +332,15 @@
       "condition": {
        "auraIsActive": {
         "auraId": {
-         "spellId": 9913
+         "spellId": 9913,
+         "rank": 3
         }
        }
       },
       "castSpell": {
        "spellId": {
-        "spellId": 9867
+        "spellId": 9867,
+        "rank": 4
        }
       }
      }
@@ -379,7 +391,8 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 22829
+        "spellId": 22829,
+        "rank": 5
        }
       }
      }
@@ -435,7 +448,24 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 22829
+        "spellId": 22829,
+        "rank": 5
+       }
+      }
+     }
+    },
+    {
+     "notes": "Bleeds cannot land on this target: Bite is the only finisher",
+     "action": {
+      "condition": {
+       "variableRef": {
+        "name": "Bleed-immune Bite is ready"
+       }
+      },
+      "castSpell": {
+       "spellId": {
+        "spellId": 22829,
+        "rank": 5
        }
       }
      }
@@ -512,7 +542,8 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 22829
+        "spellId": 22829,
+        "rank": 5
        }
       }
      }
@@ -542,7 +573,8 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 9830
+        "spellId": 9830,
+        "rank": 5
        }
       }
      }
@@ -570,7 +602,8 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 9896
+        "spellId": 9896,
+        "rank": 6
        }
       }
      }
@@ -598,7 +631,8 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 9904
+        "spellId": 9904,
+        "rank": 4
        }
       }
      }
@@ -632,7 +666,8 @@
            "rhs": {
             "spellCurrentCost": {
              "spellId": {
-              "spellId": 9830
+              "spellId": 9830,
+              "rank": 5
              }
             }
            }
@@ -648,7 +683,8 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 9830
+        "spellId": 9830,
+        "rank": 5
        }
       }
      }
@@ -686,7 +722,8 @@
            "rhs": {
             "spellCurrentCost": {
              "spellId": {
-              "spellId": 9850
+              "spellId": 9850,
+              "rank": 5
              }
             }
            }
@@ -702,7 +739,8 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 9850
+        "spellId": 9850,
+        "rank": 5
        }
       }
      }
@@ -727,7 +765,8 @@
            "rhs": {
             "spellCurrentCost": {
              "spellId": {
-              "spellId": 9850
+              "spellId": 9850,
+              "rank": 5
              }
             }
            }
@@ -738,7 +777,8 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 9850
+        "spellId": 9850,
+        "rank": 5
        }
       }
      }
@@ -759,7 +799,6 @@
      }
     }
    ],
-   "groups": [],
    "valueVariables": [
     {
      "name": "Shifting Power energy ceiling",
@@ -922,6 +961,22 @@
      }
     },
     {
+     "name": "Bleed-immune Bite CP",
+     "value": {
+      "const": {
+       "val": "5"
+      }
+     }
+    },
+    {
+     "name": "Bleed-immune Bite energy",
+     "value": {
+      "const": {
+       "val": "95"
+      }
+     }
+    },
+    {
      "name": "Shifting Power ready",
      "value": {
       "and": {
@@ -963,6 +1018,13 @@
       "and": {
        "vals": [
         {
+         "not": {
+          "val": {
+           "targetIsBleedImmune": {}
+          }
+         }
+        },
+        {
          "auraIsInactive": {
           "sourceUnit": {
            "type": "CurrentTarget"
@@ -999,6 +1061,13 @@
      "value": {
       "and": {
        "vals": [
+        {
+         "not": {
+          "val": {
+           "targetIsBleedImmune": {}
+          }
+         }
+        },
         {
          "cmp": {
           "op": "OpGe",
@@ -1217,7 +1286,8 @@
           "val": {
            "auraIsActive": {
             "auraId": {
-             "spellId": 9913
+             "spellId": 9913,
+             "rank": 3
             }
            }
           }
@@ -1538,7 +1608,8 @@
           "val": {
            "spellCanCast": {
             "spellId": {
-             "spellId": 9830
+             "spellId": 9830,
+             "rank": 5
             }
            }
           }
@@ -1553,7 +1624,8 @@
           "rhs": {
            "spellCurrentCost": {
             "spellId": {
-             "spellId": 9830
+             "spellId": 9830,
+             "rank": 5
             }
            }
           }
@@ -1594,6 +1666,15 @@
             }
            }
           ]
+         }
+        },
+        {
+         "not": {
+          "val": {
+           "variableRef": {
+            "name": "Pool combo points for a bleed-immune Bite"
+           }
+          }
          }
         }
        ]
@@ -1815,7 +1896,8 @@
         {
          "auraIsActive": {
           "auraId": {
-           "spellId": 9913
+           "spellId": 9913,
+           "rank": 3
           }
          }
         },
@@ -1852,7 +1934,8 @@
                 "val": {
                  "spellCanCast": {
                   "spellId": {
-                   "spellId": 9867
+                   "spellId": 9867,
+                   "rank": 4
                   }
                  }
                 }
@@ -1916,7 +1999,8 @@
               {
                "spellCanCast": {
                 "spellId": {
-                 "spellId": 9830
+                 "spellId": 9830,
+                 "rank": 5
                 }
                }
               },
@@ -1942,14 +2026,16 @@
                   "lhs": {
                    "spellCurrentCost": {
                     "spellId": {
-                     "spellId": 9830
+                     "spellId": 9830,
+                     "rank": 5
                     }
                    }
                   },
                   "rhs": {
                    "spellCurrentCost": {
                     "spellId": {
-                     "spellId": 9896
+                     "spellId": 9896,
+                     "rank": 6
                     }
                    }
                   }
@@ -1977,7 +2063,8 @@
               {
                "spellCanCast": {
                 "spellId": {
-                 "spellId": 9850
+                 "spellId": 9850,
+                 "rank": 5
                 }
                }
               },
@@ -2003,14 +2090,16 @@
                   "lhs": {
                    "spellCurrentCost": {
                     "spellId": {
-                     "spellId": 9850
+                     "spellId": 9850,
+                     "rank": 5
                     }
                    }
                   },
                   "rhs": {
                    "spellCurrentCost": {
                     "spellId": {
-                     "spellId": 9896
+                     "spellId": 9896,
+                     "rank": 6
                     }
                    }
                   }
@@ -2147,7 +2236,8 @@
                 "lhs": {
                  "dotRemainingTime": {
                   "spellId": {
-                   "spellId": 9896
+                   "spellId": 9896,
+                   "rank": 6
                   }
                  }
                 },
@@ -2192,7 +2282,8 @@
                       "lhs": {
                        "dotRemainingTime": {
                         "spellId": {
-                         "spellId": 9896
+                         "spellId": 9896,
+                         "rank": 6
                         }
                        }
                       },
@@ -2224,7 +2315,8 @@
                       "lhs": {
                        "dotRemainingTime": {
                         "spellId": {
-                         "spellId": 9896
+                         "spellId": 9896,
+                         "rank": 6
                         }
                        }
                       },
@@ -2276,6 +2368,15 @@
               }
              }
             ]
+           }
+          }
+         }
+        },
+        {
+         "not": {
+          "val": {
+           "variableRef": {
+            "name": "Pool combo points for a bleed-immune Bite"
            }
           }
          }
@@ -2617,6 +2718,76 @@
      }
     },
     {
+     "name": "Bleed-immune Bite is ready",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "auraIsActive": {
+          "auraId": {
+           "spellId": 768
+          }
+         }
+        },
+        {
+         "targetIsBleedImmune": {}
+        },
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "currentComboPoints": {}
+          },
+          "rhs": {
+           "variableRef": {
+            "name": "Bleed-immune Bite CP"
+           }
+          }
+         }
+        },
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "currentEnergy": {}
+          },
+          "rhs": {
+           "variableRef": {
+            "name": "Bleed-immune Bite energy"
+           }
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
+     "name": "Pool combo points for a bleed-immune Bite",
+     "value": {
+      "and": {
+       "vals": [
+        {
+         "targetIsBleedImmune": {}
+        },
+        {
+         "cmp": {
+          "op": "OpGe",
+          "lhs": {
+           "currentComboPoints": {}
+          },
+          "rhs": {
+           "variableRef": {
+            "name": "Bleed-immune Bite CP"
+           }
+          }
+         }
+        }
+       ]
+      }
+     }
+    },
+    {
      "name": "Bite energy is funded",
      "value": {
       "or": {
@@ -2761,30 +2932,8 @@
     }
    ]
   },
-  "feralCatDruid": {
-   "options": {
-    "assumeBleedActive": true
-   }
-  }
- },
- "partyBuffs": {
-  "manaSpringTotem": "TristateEffectRegular"
- },
- "raidBuffs": {
-  "arcaneIntellect": true,
-  "prayerOfSpirit": true,
-  "markOfTheWild": true,
-  "powerWordFortitude": true,
-  "strengthOfEarthTotem": 1,
-  "graceOfAirTotem": 1,
-  "windfuryTotem": true,
-  "battleShout": 1
- },
- "debuffs": {
-  "judgementOfWisdom": true,
-  "sunderArmor": true,
-  "giftOfArthas": true,
-  "vindication": true
+  "reactionTimeMs": 250,
+  "distanceFromTarget": 25
  },
  "encounter": {
   "duration": 180,
@@ -2798,36 +2947,45 @@
     "level": 63,
     "mobType": "MobTypeMechanical",
     "stats": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     320.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     54.0,
-     0.0,
-     0.0,
-     3731.0,
-     0.0,
-     1428900.0
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     320,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     54,
+     0,
+     0,
+     3731,
+     0,
+     1428900,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
     ],
     "minBaseDamage": 2601,
     "damageSpread": 0.5,
@@ -2836,9 +2994,5 @@
     "canCrush": true
    }
   ]
- },
- "settings": {
-  "iterations": 10000,
-  "fixedRngSeed": 20261120
  }
 }

@@ -1,10 +1,11 @@
 {
  "builds": [
   {
-   "id": "hunter-sv-weave-cheap",
+   "id": "druid-feralcat-max",
    "status": "ok",
-   "value": 1116.09,
+   "value": 997.21,
    "metric": "dps"
   }
  ]
+}
 }
