@@ -1,9 +1,9 @@
 {
  "builds": [
   {
-   "id": "hunter-sv-cheap",
+   "id": "hunter-sv-weave-cheap",
    "status": "ok",
-   "value": 885.24,
+   "value": 1116.09,
    "metric": "dps"
   }
  ]
