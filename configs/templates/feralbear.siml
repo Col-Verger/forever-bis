@@ -1,0 +1,59 @@
+siml 1
+spec feral_bear_druid
+talents "050022-5023030212310112501-055"
+use "{{APL}}"
+
+settings:
+  race tauren
+  profession1 engineering
+  profession2 enchanting
+  reaction_time 250ms
+  distance_from_target 25
+  assume_bleed_active
+  in_front_of_target
+  healing_model(hps=2200, cadence_seconds=0.4, cadence_variation=1.2, absorb_frac=0.02, burst_window=6, inspiration_uptime=0.25)
+
+consumables:
+  flask flask_of_natural_precision
+  food dirges_kickin_chimaerok_chops
+  conjured major_healthstone
+  mh_imbue elemental_sharpening_stone
+  defensive_pot greater_stoneshield_potion
+  offensive_pot mighty_rage_potion
+  elixir gift_of_arthas, elixir_of_the_grizzly, elixir_of_cunning, elixir_of_the_phalanx, elixir_of_greater_defense
+  extra goblin_sapper_charge, juju_might, scroll_of_stamina_iv, lung_juice_cocktail
+
+buffs:
+  greater_blessing_of_kings
+  greater_blessing_of_might 1
+  thorns
+
+party_buffs:
+  devotion_aura
+  mana_spring_totem
+  retribution_aura
+
+raid_buffs:
+  arcane_intellect, prayer_of_spirit, mark_of_the_wild, power_word_fortitude, shadow_protection
+  strength_of_earth_totem 1
+  grace_of_air_totem 1
+  windfury_totem
+  battle_shout 1
+
+debuffs: judgement_of_light, judgement_of_wisdom, expose_armor, sunder_armor, vindication
+
+sim:
+  iterations {{ITERS}}
+  fixed_rng_seed {{SEED}}
+
+encounter:
+  duration 180
+  duration_variation 5
+  execute_proportion_20 0.2
+  execute_proportion_35 0.35
+  targets(id=31146, name="Raid Target", level=63, mob_type=mechanical,
+      stats(attack_power=320, block_value=54, armor=3731, health=1428900),
+      min_base_damage=6000, damage_spread=0.5, swing_speed=2, parry_haste, can_crush)
+
+gear:
+{{GEAR}}
