@@ -1,11 +1,10 @@
 {
  "builds": [
   {
-   "id": "druid-feralcat-max",
+   "id": "shaman-elemental-max",
    "status": "ok",
-   "value": 997.21,
+   "value": 851.66,
    "metric": "dps"
   }
  ]
-}
 }

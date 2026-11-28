@@ -2,28 +2,28 @@
  "status": "ok",
  "budget": "cheap",
  "metric": "dps",
- "value": 792.43,
- "margin": 0.62,
+ "value": 833.01,
+ "margin": 0.66,
  "hps": 0,
- "threat": 721.3,
+ "threat": 756.9,
  "title": {
   "ru": "Элем",
   "en": "Elemental"
  },
  "buildName": {
-  "ru": "Elemental (билд симулятора)",
-  "en": "Elemental (the sim's build)"
+  "ru": "Elemental (стандартный билд)",
+  "en": "Elemental (the standard build)"
  },
  "rotation": {
-  "ru": "Стандартная ротация билда",
-  "en": "the build's rotation"
+  "ru": "Стандартная ротация симулятора",
+  "en": "the sim's default rotation"
  },
  "talents": "5500331023001351-05500001-053",
  "iterations": 10000,
  "seed": 20261120,
  "searchIterations": 2500,
  "warnings": [],
- "simmedAt": "2026-11-26T03:31Z",
- "simCommit": "9e2e0ef",
- "simLink": "https://www.wowsims.com/forever/shaman/elemental/#eNrsVF9oW2UUP+d+9/aenC7Nzbc4vn79QxZIV4MdNzcNug1sWh98EKWN+m5KsxlIWzF1gg+lQx9kguxFsRFx2G3q0CkDRSfTwUBqQQwiPjjB0SHbS3BVqLgX5d40amNQ0cFecvLy5fz55Xd+50e4m9BBhXF8A1GC/lVSt2Prw2zTuXpYXd/JNj39Dqpqjk36qB5mm16uOep8jG365bmoemuCbfqwHlYbB9imk6+gesHvvFAPs0nng/5P6mG/zaQXaw6bdPEMsknvB+/XjyEL2igzsEmvvoeJPc5qafiHsrs5Pfn8a1hF4+r4aey5uhK5eO/6SuT7lch3K5HL+EwptWTxBwZ04j+FvNCR7n+GEvtPWgz/9JEdn3Z8emt9OmESKjxnDGSzrpvJpF0v47rpTDY94voZ1/UfmVWDaob4xoB144suvo1Jd7FJH/+sEiG22RrJ7s1WOMYhbbM1bNLaVMJmi8XIaIUl29piQZv5rVzmj9yRZs6r8BD3sbzRFeHwg6W5Q+Vi/KHC44eKC0Hfp028dIWTrDl6o6uHd9z/RHmh9Oe2S/nf22Sf7uVoKkJCGtOgg/RdblKbbCgl+7VuLd7pJn0MZ3NaDui+1mrWTQYbr25MygFC3cuRRJi7zyI1ZFDYFESa2tgPclR7fLvcw06qh1CKdQQfnTHNO1NRMqV1VBgk/CE23MrWktumrH83dSkf8G0o93ClGL9nfr48M//kXKN8alEO6v62ZZ/wt8fxb+trx1Hm9N2c1Zk2ovOg7Gc+i7Z/3kWF3JPY0fx+alFhwKDeINjmZP4PLG8quUvHJiRbwxbVphzRENydrcgDeh/vlXe0cwWH1kx/vHplsnmF6pVJhYH/bDozFWzVckTPTQZ1opemZEg3LHjtsBLe7hZ4+ZezeUPbyctdiVg7Yl66RUYZ14PtpAt59tbK14yZIwIAAGA0d1RAVTiVRwuzhbmRYrk4W5xbKJTfFeJHNKXBkKgZIQAAWDqYiwIAAMRyvdVlPz4b230wiK/HvDcNZcfHUtfx1vyvLORuLt597fGG3t6WP/F5dnwfAADkT+TGAQAAIPcIPnb6J3yqO18ozWyp/yziMgIAAFweSxEde0AtfflVaMKM4zD+NgC2xxHh"
+ "simmedAt": "2026-11-28T07:09Z",
+ "simCommit": "dc09e00",
+ "simLink": "https://www.wowsims.com/forever/shaman/elemental/#eNrEU1FoW1UYvv+9Jzl//ixNeozj9Kzp0mC3GNdxk+y6dX3oXXzwQZQ0zndbm41AtspuVOZDWdEHmSB7UdaIOOycMnTCQNHJVBhILQhFxAcVHB2yvUStQmR7knuTzObuqi8D/0A49/++85//+85/KIqQAAlpeBdAaKpJGE1wdZw4XmrF5G/3EMcXPgDZtInhp60YcXx9LSEvJ4njzZcH5Xsl4vhJKyY3Jonj22+AfNVlftGKEcPLHv/zVsylMXxtLUEMr1wAYviRt37nFFAYN+ryl0nSiOGbH0JmZ2Kllv21brZny6+8BU3Qrx84DwPXl+NXHl5fjv+8HP9pOX4VXqztv4+0//oJrcQQJFzSU5ZlmsVi3iwUTTNftPLjppsxTXdRXNFxTTe+17V1/SanewlVmBh+9qfMRIhTaNzabTmUpIjiFMoyXJ3OcAqRMb7n76yB7Uo3W9zMXexlCw5lKUXiVjhOscdrRw/Xq+mDM8cOVxseM4xf9qrmHdpJwzR4KzxAWx59pt6obSYy/KFymyi2qSEazMXREPqsprz0PnNMMdKlFMNK+cG95pgKkZFoz4rtKuVHLXNMIYWzDFc2yiKFoIYonolR9CJgxxAJPWtEUol1iFOsUn1qxmmkD843qkccwZS+XxMpta2r9Amnmn5ofr4+N//cUcc9Gs8tiBE1HAi7pX88A/+Kr54BUVI2WaoYYBGNiGGii8DJwPaCBBrIbOl9n1uQ0LWwVenIv9NiV34Il9pSbFXJkqBQNoRr0wmjY5B5xBGTaoJ2i11BN0mRVeb22LxW7nnWvFbunsrxwrSnzGd6wRzzcMTT0yKqOoNDeONZaeRa4Pd3VG2nZE4gCH7SYO7jdU0lMG/PpphQe2mXyAU2uGmr0b/VHUCxTz1ID4j7g4z9553uRPr7Yn7K4h0UvZ/iPqDCqK9fkcgNIAhjHbQON1/Y0d+X2JpJBikt5H3DI9JqJEhXpMC7l3xDn1s0NC/22CcNrWmEy/WZ49VjvwMTOmmZ00ZEc+PEIXvQW2hJe6i55MZXU6OHvPhuqrChS56eyn2sa/9LNOy7W++R4Ho73u/Ln/3aOnC3Tpzw/itn7V5F+0l4+vwf8Hy0MlOb617cSwBL0IGvTuUQTz0mT3zzbaTE0pCFvwYAuAQprg=="
 }
