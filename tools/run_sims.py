@@ -27,6 +27,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 from spec_routes import SPEC_ROUTES
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 def sim_commit(forever):
     """The simulator commit these numbers came from, read from the clone itself."""
@@ -279,6 +281,9 @@ def parse_gear_siml(path, db):
         if s.endswith(':'):
             in_gear = s == 'gear:'
             continue
+        if s.startswith(('bonus_stats(', 'prepull_bonus_stats(', 'item_swap')):
+            in_gear = False
+            continue
         if not in_gear:
             continue
         m = slot_re.match(s)
@@ -336,10 +341,12 @@ class Build:
         self.warnings = []
         self.player_base = None
         if self.mode == 'protojson':
-            if cfg.get('buildJson'):                # A full preset build JSON (warlock/shaman/priest): the whole Player protojson
+            if cfg.get('buildJson') or cfg.get('buildJsonFile'):                # A full preset build JSON (warlock/shaman/priest): the whole Player protojson
                 # rides along — race, professions, consumables, buffs, cooldowns, item swap —
                 # staying faithful to the repo file; only gear and sim options are ours.
-                bj = json.load(open(os.path.join(forever, cfg['repoFolder'], cfg['buildJson']), encoding='utf-8'))
+                bj_path = (os.path.join(ROOT, cfg['buildJsonFile']) if cfg.get('buildJsonFile')
+                          else os.path.join(forever, cfg['repoFolder'], cfg['buildJson']))
+                bj = json.load(open(bj_path, encoding='utf-8'))
                 pl = bj['player']
                 self.player_base = pl
                 self.talents = cfg.get('talents') or pl.get('talentsString', '')
@@ -368,6 +375,9 @@ class Build:
                 self.debuffs = cfg.get('debuffs') or tpl.get('debuffs') or {}
                 self.spec_options = cfg.get('specOptions') or tpl.get('specOptions') or {}
         else:
+            if not cfg.get('template') and cfg.get('templateFile'):
+                with open(os.path.join(ROOT, cfg['templateFile']), encoding='utf-8') as f:
+                    cfg['template'] = f.read()
             if cfg.get('presetBuild'):
                 cfg = dict(cfg, template=compose_preset(forever, cfg))
                 self.cfg = cfg

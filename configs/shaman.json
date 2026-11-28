@@ -19,12 +19,13 @@
   "builds": [
     {
       "id": "shaman-elemental",
-      "mode": "protojson",
+      "mode": "siml",
       "repoFolder": "ui/specs/shaman/elemental",
-      "buildJson": "builds/default.build.json",
+      "presetBuild": "defaults.siml",
+      "baseGear": "defaults.siml",
       "title": { "ru": "Элем", "en": "Elemental" },
-      "buildName": { "ru": "Elemental (билд симулятора)", "en": "Elemental (the sim's build)" },
-      "rotation": { "ru": "Стандартная ротация билда", "en": "the build's rotation" },
+      "buildName": { "ru": "Elemental (стандартный билд)", "en": "Elemental (the standard build)" },
+      "rotation": { "ru": "Стандартная ротация симулятора", "en": "the sim's default rotation" },
       "metric": "dps",
       "pool": "shaman-caster",
       "playerOverrides": {}

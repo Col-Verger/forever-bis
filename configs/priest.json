@@ -2,7 +2,7 @@
   "class": "priest",
   "className": {"ru": "Прист", "en": "Priest"},
 
-  "_comment": "Прист: тень — из defaults.siml репозитория (таланты/сет/ротация внутри) + пресетные буфы/расходники. Смайт — из smite_testing.build.json. Хил-прист выключен: ротации в репозитории нет.",
+  "_comment": "Прист: тень — из defaults.siml репозитория (таланты/сет/ротация внутри) + пресетные буфы/расходники. Смайт — из сохранённой копии smite_testing.build.json (upstream убрал пресет). Хил-прист выключен: ротации в репозитории нет.",
 
   "playerTemplate": {
     "classEnum": "ClassPriest",
@@ -54,9 +54,10 @@
       "mode": "protojson",
       "repoFolder": "ui/specs/priest/dps",
       "buildJson": "builds/smite_testing.build.json",
+      "buildJsonFile": "configs/templates/smite_testing.build.json",
       "title": { "ru": "Смайт", "en": "Smite" },
-      "buildName": { "ru": "Smite (билд симулятора)", "en": "Smite (the sim's build)" },
-      "rotation": { "ru": "Ротация смайта из билда", "en": "the build's Smite rotation" },
+      "buildName": { "ru": "Smite (сохранённый билд)", "en": "Smite (frozen upstream build)" },
+      "rotation": { "ru": "Ротация из сохранённого билда симулятора", "en": "the saved sim build's Smite rotation" },
       "metric": "dps",
       "pool": "priest-dps",
       "playerOverrides": {}

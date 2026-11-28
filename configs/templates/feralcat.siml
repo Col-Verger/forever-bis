@@ -1,0 +1,53 @@
+siml 1
+spec feral_cat_druid
+talents "050021-53200032123012125001-055"
+use "{{APL}}"
+
+settings:
+  race tauren
+  profession1 engineering
+  profession2 enchanting
+  reaction_time 250ms
+  distance_from_target 25
+  assume_bleed_active
+
+consumables:
+  flask flask_of_natural_aggression
+  food swiftstrike_steak
+  conjured demonic_rune
+  mh_imbue dense_weightstone
+  resource_pot major_mana_potion
+  offensive_pot mighty_rage_potion
+  elixir elixir_of_cunning, elixir_of_sages, elixir_of_the_phalanx, greater_mageblood_elixir, elixir_of_the_grizzly
+  extra juju_might, ground_scorpok_assay, goblin_sapper_charge
+
+buffs:
+  greater_blessing_of_kings
+  greater_blessing_of_might 1
+
+party_buffs: mana_spring_totem
+
+raid_buffs:
+  arcane_intellect, prayer_of_spirit, mark_of_the_wild, power_word_fortitude
+  strength_of_earth_totem 1
+  grace_of_air_totem 1
+  windfury_totem
+  battle_shout 1
+
+debuffs: judgement_of_wisdom, sunder_armor, gift_of_arthas, vindication
+
+sim:
+  iterations {{ITERS}}
+  fixed_rng_seed {{SEED}}
+
+encounter:
+  duration 180
+  duration_variation 5
+  execute_proportion_20 0.2
+  execute_proportion_35 0.35
+  targets(id=31146, name="Raid Target", level=63, mob_type=mechanical,
+      stats(attack_power=320, block_value=54, armor=3731, health=1428900),
+      min_base_damage=2601, damage_spread=0.5, swing_speed=2, parry_haste, can_crush)
+
+gear:
+{{GEAR}}
