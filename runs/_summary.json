@@ -1,9 +1,9 @@
 {
  "builds": [
   {
-   "id": "shaman-elemental-max",
+   "id": "druid-feralbear-cheap",
    "status": "ok",
-   "value": 851.66,
+   "value": 480.14,
    "metric": "dps"
   }
  ]

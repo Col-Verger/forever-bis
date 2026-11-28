@@ -1,106 +1,98 @@
 {
+ "settings": {
+  "iterations": 10000,
+  "fixedRngSeed": "20261120"
+ },
+ "raidBuffs": {
+  "arcaneIntellect": true,
+  "prayerOfSpirit": true,
+  "markOfTheWild": true,
+  "powerWordFortitude": true,
+  "shadowProtection": true,
+  "strengthOfEarthTotem": 1,
+  "graceOfAirTotem": 1,
+  "windfuryTotem": true,
+  "battleShout": 1
+ },
+ "debuffs": {
+  "judgementOfLight": true,
+  "judgementOfWisdom": true,
+  "exposeArmor": true,
+  "sunderArmor": true,
+  "vindication": true
+ },
+ "partyBuffs": {
+  "devotionAura": true,
+  "manaSpringTotem": "TristateEffectRegular",
+  "retributionAura": true
+ },
  "player": {
-  "name": "druid-feralbear",
-  "class": "ClassDruid",
   "race": "RaceTauren",
+  "class": "ClassDruid",
   "equipment": {
    "items": [
     {
-     "id": 226792,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 226792
     },
     {
-     "id": 19491,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 18404
     },
     {
-     "id": 12927,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 12927
     },
     {
-     "id": 272414,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 13340
     },
     {
-     "id": 226795,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 226795
     },
     {
-     "id": 19587,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 19587
     },
     {
-     "id": 19049,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 19049
     },
     {
-     "id": 272396,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 272396
     },
     {
-     "id": 12963,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 12963
     },
     {
-     "id": 226794,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 226794
     },
     {
-     "id": 284716,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 284716
     },
     {
-     "id": 19325,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 19325
     },
     {
-     "id": 19289,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 19289
     },
     {
-     "id": 272437,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 272437
     },
     {
-     "id": 19323,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 19323
     },
     {},
     {
-     "id": 272428,
-     "enchant": 0,
-     "randomSuffix": 0
+     "id": 272428
     }
    ]
   },
-  "talentsString": "050022-5023030212310112501-055",
-  "profession1": "Enchanting",
-  "profession2": "Tailoring",
-  "reactionTimeMs": 250,
-  "channelClipDelayMs": 100,
-  "distanceFromTarget": 25,
   "consumables": {
    "flaskId": 274275,
    "foodId": 21023,
    "conjuredId": 9421,
    "mhImbueId": 18262,
-   "defensivePotId": 13455,
-   "offensivePotId": 13442,
+   "extraIds": [
+    10646,
+    12460,
+    10307,
+    8411
+   ],
    "elixirIds": [
     9088,
     250351,
@@ -108,20 +100,31 @@
     250329,
     13445
    ],
-   "extraIds": [
-    10646,
-    12460,
-    10307,
-    8411
-   ]
+   "defensivePotId": 13455,
+   "offensivePotId": 13442
   },
   "buffs": {
    "greaterBlessingOfKings": true,
    "greaterBlessingOfMight": 1,
    "thorns": true
   },
+  "feralBearDruid": {
+   "options": {
+    "classOptions": {},
+    "assumeBleedActive": true
+   }
+  },
+  "talentsString": "050022-5023030212310112501-055",
+  "profession1": "Engineering",
+  "profession2": "Enchanting",
   "rotation": {
    "type": "TypeAPL",
+   "simple": {
+    "specRotationJson": "{}",
+    "cooldowns": {
+     "hpPercentForDefensives": 0.4
+    }
+   },
    "prepullActions": [
     {
      "action": {
@@ -487,7 +490,8 @@
          {
           "spellIsKnown": {
            "spellId": {
-            "spellId": 1235827
+            "spellId": 1235827,
+            "rank": 3
            }
           }
          },
@@ -503,7 +507,8 @@
            "rhs": {
             "spellCurrentCost": {
              "spellId": {
-              "spellId": 1235827
+              "spellId": 1235827,
+              "rank": 3
              }
             }
            }
@@ -541,12 +546,16 @@
          {
           "spellIsKnown": {
            "spellId": {
-            "spellId": 9907
+            "spellId": 9907,
+            "rank": 4
            }
           }
          },
          {
           "auraShouldRefresh": {
+           "sourceUnit": {
+            "type": "CurrentTarget"
+           },
            "auraId": {
             "spellId": 9907
            },
@@ -554,9 +563,6 @@
             "const": {
              "val": "0s"
             }
-           },
-           "sourceUnit": {
-            "type": "CurrentTarget"
            }
           }
          }
@@ -565,7 +571,8 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 9907
+        "spellId": 9907,
+        "rank": 4
        }
       }
      }
@@ -584,7 +591,8 @@
       },
       "castSpell": {
        "spellId": {
-        "spellId": 9898
+        "spellId": 9898,
+        "rank": 5
        }
       }
      }
@@ -595,23 +603,66 @@
       "condition": {
        "spellIsKnown": {
         "spellId": {
-         "spellId": 1238070
+         "spellId": 1238070,
+         "rank": 3
         }
        }
       },
       "castSpell": {
        "spellId": {
-        "spellId": 1238070
+        "spellId": 1238070,
+        "rank": 3
        }
       }
      }
     },
     {
-     "notes": "Build or refresh Lacerate when no higher-priority attack needs the global",
+     "notes": "Build or refresh Lacerate when no higher-priority attack needs the global and bleeds can land",
      "action": {
+      "condition": {
+       "not": {
+        "val": {
+         "targetIsBleedImmune": {}
+        }
+       }
+      },
       "castSpell": {
        "spellId": {
-        "spellId": 1235827
+        "spellId": 1235827,
+        "rank": 3
+       }
+      }
+     }
+    },
+    {
+     "notes": "Bleeds cannot land on this target: Swipe takes Lacerate's global when rage allows",
+     "action": {
+      "condition": {
+       "and": {
+        "vals": [
+         {
+          "targetIsBleedImmune": {}
+         },
+         {
+          "cmp": {
+           "op": "OpGe",
+           "lhs": {
+            "currentRage": {}
+           },
+           "rhs": {
+            "variableRef": {
+             "name": "Bleed-immune Swipe minimum rage"
+            }
+           }
+          }
+         }
+        ]
+       }
+      },
+      "castSpell": {
+       "spellId": {
+        "spellId": 9908,
+        "rank": 5
        }
       }
      }
@@ -651,16 +702,12 @@
      }
     }
    ],
-   "simple": {
-    "cooldowns": {
-     "hpPercentForDefensives": 0.4
-    }
-   },
    "groups": [
     {
      "name": "Optional on-use items",
      "actions": [
       {
+       "hide": true,
        "notes": "Enable Earthstrike when equipped",
        "action": {
         "condition": {
@@ -675,10 +722,10 @@
           "itemId": 21180
          }
         }
-       },
-       "hide": true
+       }
       },
       {
+       "hide": true,
        "notes": "Enable Slayer\u2019s Crest when equipped",
        "action": {
         "condition": {
@@ -693,10 +740,10 @@
           "itemId": 23041
          }
         }
-       },
-       "hide": true
+       }
       },
       {
+       "hide": true,
        "notes": "Enable Badge of the Swarmguard when equipped",
        "action": {
         "condition": {
@@ -711,10 +758,10 @@
           "itemId": 21670
          }
         }
-       },
-       "hide": true
+       }
       },
       {
+       "hide": true,
        "notes": "Enable Jom Gabbar when equipped",
        "action": {
         "condition": {
@@ -729,10 +776,10 @@
           "spellId": 29602
          }
         }
-       },
-       "hide": true
+       }
       },
       {
+       "hide": true,
        "notes": "Enable Kiss of the Spider when equipped",
        "action": {
         "condition": {
@@ -747,10 +794,10 @@
           "itemId": 22954
          }
         }
-       },
-       "hide": true
+       }
       },
       {
+       "hide": true,
        "notes": "Enable Molten Heart of the Mountain when equipped",
        "action": {
         "condition": {
@@ -765,10 +812,10 @@
           "itemId": 249470
          }
         }
-       },
-       "hide": true
+       }
       },
       {
+       "hide": true,
        "notes": "Enable Flamebreak Talisman when equipped",
        "action": {
         "condition": {
@@ -783,10 +830,10 @@
           "itemId": 280071
          }
         }
-       },
-       "hide": true
+       }
       },
       {
+       "hide": true,
        "notes": "Enable Adaptive Combat Assistant at 40% health or lower",
        "action": {
         "condition": {
@@ -820,10 +867,10 @@
           "itemId": 272437
          }
         }
-       },
-       "hide": true
+       }
       },
       {
+       "hide": true,
        "notes": "Enable Smoking Heart of the Mountain at 40% health or lower",
        "action": {
         "condition": {
@@ -857,10 +904,10 @@
           "itemId": 11811
          }
         }
-       },
-       "hide": true
+       }
       },
       {
+       "hide": true,
        "notes": "Enable Arena Grand Master at 40% health or lower",
        "action": {
         "condition": {
@@ -894,8 +941,7 @@
           "itemId": 19024
          }
         }
-       },
-       "hide": true
+       }
       }
      ]
     }
@@ -926,6 +972,14 @@
      }
     },
     {
+     "name": "Bleed-immune Swipe minimum rage",
+     "value": {
+      "const": {
+       "val": "30"
+      }
+     }
+    },
+    {
      "name": "Attack-power reduction is covered",
      "value": {
       "or": {
@@ -934,6 +988,9 @@
          "not": {
           "val": {
            "auraShouldRefresh": {
+            "sourceUnit": {
+             "type": "CurrentTarget"
+            },
             "auraId": {
              "spellId": 9898
             },
@@ -1041,7 +1098,8 @@
           "val": {
            "spellIsKnown": {
             "spellId": {
-             "spellId": 1238070
+             "spellId": 1238070,
+             "rank": 3
             }
            }
           }
@@ -1053,7 +1111,8 @@
           "lhs": {
            "spellTimeToReady": {
             "spellId": {
-             "spellId": 1238070
+             "spellId": 1238070,
+             "rank": 3
             }
            }
           },
@@ -1077,7 +1136,8 @@
              "spellCurrentCost": {
               "spellId": {
                "spellId": 9881,
-               "tag": 1
+               "tag": 1,
+               "rank": 7
               }
              }
             }
@@ -1086,7 +1146,8 @@
           "rhs": {
            "spellCurrentCost": {
             "spellId": {
-             "spellId": 1238070
+             "spellId": 1238070,
+             "rank": 3
             }
            }
           }
@@ -1098,11 +1159,9 @@
     }
    ]
   },
-  "feralBearDruid": {
-   "options": {
-    "assumeBleedActive": true
-   }
-  },
+  "reactionTimeMs": 250,
+  "inFrontOfTarget": true,
+  "distanceFromTarget": 25,
   "healingModel": {
    "hps": 2200,
    "cadenceSeconds": 0.4,
@@ -1110,31 +1169,7 @@
    "absorbFrac": 0.02,
    "burstWindow": 6,
    "inspirationUptime": 0.25
-  },
-  "inFrontOfTarget": true
- },
- "partyBuffs": {
-  "devotionAura": true,
-  "manaSpringTotem": "TristateEffectRegular",
-  "retributionAura": true
- },
- "raidBuffs": {
-  "arcaneIntellect": true,
-  "prayerOfSpirit": true,
-  "markOfTheWild": true,
-  "powerWordFortitude": true,
-  "shadowProtection": true,
-  "strengthOfEarthTotem": 1,
-  "graceOfAirTotem": 1,
-  "windfuryTotem": true,
-  "battleShout": 1
- },
- "debuffs": {
-  "judgementOfLight": true,
-  "judgementOfWisdom": true,
-  "exposeArmor": true,
-  "sunderArmor": true,
-  "vindication": true
+  }
  },
  "encounter": {
   "duration": 180,
@@ -1148,36 +1183,45 @@
     "level": 63,
     "mobType": "MobTypeMechanical",
     "stats": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     320.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     54.0,
-     0.0,
-     0.0,
-     3731.0,
-     0.0,
-     1428900.0
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     320,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     54,
+     0,
+     0,
+     3731,
+     0,
+     1428900,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
     ],
     "minBaseDamage": 6000,
     "damageSpread": 0.5,
@@ -1186,9 +1230,5 @@
     "canCrush": true
    }
   ]
- },
- "settings": {
-  "iterations": 10000,
-  "fixedRngSeed": 20261120
  }
 }
