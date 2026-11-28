@@ -113,6 +113,7 @@ const STR = {
   fresh_sets: { ru: 'Сетов', en: 'Sets' },
   fresh_wait: { ru: 'Ждут прогона', en: 'Waiting' },
   fresh_sum: { ru: 'Обновлено в этот прогон: {n} из {m} классов', en: 'Refreshed in this run: {n} of {m} classes' },
+  set_lag: { ru: 'не пересчитан в последнем прогоне', en: 'not refreshed in the latest run' },
   delta_vs_bis: { ru: 'Статы против BiS', en: 'Stats vs BiS' },
   delta_note: { ru: 'Бонусы комплектов и эффекты не учтены', en: 'Set bonuses and effects are not included' },
   delta_why_title: { ru: 'Сравнение с BiS', en: 'Compared with BiS' },
@@ -722,7 +723,7 @@ function renderDoll() {
         ${!wh && L.talents ? `<dt>${esc(T('talents'))}</dt><dd><a href="${esc(WH_TALENTS(state.cls, L.talents))}" target="_blank" rel="noopener" title="Wowhead"><code>${esc(L.talents)}</code></a></dd>` : ''}
         ${!wh && L.rotation ? `<dt>${esc(T('rotation'))}</dt><dd>${esc(L2(L.rotation))}</dd>` : ''}
         ${L.vsOther ? `<dt>${esc(T('vs_other'))}</dt><dd>${esc(L2(L.vsOther))}</dd>` : ''}
-        ${L.simmedAt ? `<dt>${esc(T('simmed_on'))}</dt><dd>${esc(fmtStamp(L.simmedAt))}</dd>` : ''}
+        ${L.simmedAt ? `<dt>${esc(T('simmed_on'))}</dt><dd${setLag(L.simmedAt) ? ' class="lag"' : ''}>${esc(fmtStamp(L.simmedAt))}${setLag(L.simmedAt) ? ` · ${esc(T('set_lag'))}` : ''}</dd>` : ''}
       </dl>
       ${wh && L.wowheadUrl ? `<a class="btn primary" href="${esc(L.wowheadUrl)}" target="_blank" rel="noopener">${esc(T('open_guide'))}</a>` : ''}
       <div class="center-actions">
@@ -1267,6 +1268,17 @@ function planText() {
 }
 
 
+// A set is "lagging" when it is older than the site-wide date by more than the
+// refresh cycle: the watchdog re-runs at least daily, so two days means this
+// particular build was skipped (a broken preset, a failed job) while others ran.
+const setStaleDays = () => G.meta.setStaleAfterDays || 2;
+function setLag(iso) {
+  if (!iso) return false;
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return false;
+  return (Date.now() - d.getTime()) / 86400000 > setStaleDays();
+}
+
 function chipState() {
   const m = G.meta;
   if (!m.hasData) return { cls: 'none', text: T('chip_no_data') };
@@ -1318,7 +1330,8 @@ function renderRefresh() {
     const f = classFreshness(c);
     const date = f.last ? fmtStamp(f.last).split(' · ')[0] : '—';
     const wait = f.waiting + f.failed;
-    return `<tr><td>${esc(L2(c.name))}</td><td>${esc(date)}</td><td>${f.sets}</td><td${wait ? ' class="warn"' : ''}>${wait}</td></tr>`;
+    const lag = setLag(f.last);
+    return `<tr><td>${esc(L2(c.name))}</td><td${lag ? ' class="warn"' : ''}>${esc(date)}</td><td>${f.sets}</td><td${wait ? ' class="warn"' : ''}>${wait}</td></tr>`;
   }).join('');
   const freshN = G.classes.filter(c => {
     const f = classFreshness(c);

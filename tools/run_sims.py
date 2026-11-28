@@ -843,6 +843,18 @@ def main():
     json.dump({'builds': summary}, open(os.path.join(a.out, '_summary.json'), 'w', encoding='utf-8'), indent=1)
     print('summary →', os.path.join(a.out, '_summary.json'))
 
+    # A build that fails internally must not leave a green job behind: that is how
+    # three specs sat days behind while every run reported success. Fail the job so
+    # the run goes red, the failure issue opens and the stale set is visible.
+    # Publish still runs (it needs only !cancelled()), so a partial refresh deploys.
+    failed = [s for s in summary if s.get('status') == 'failed']
+    if failed:
+        print(f'{len(failed)} build(s) failed:', flush=True)
+        for s in failed:
+            print(f"  {s['id']}: {s.get('reason', '')}", flush=True)
+        return 1
+    return 0
+
 
 if __name__ == '__main__':
     sys.exit(main())

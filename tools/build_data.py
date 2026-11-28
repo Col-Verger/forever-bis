@@ -716,6 +716,7 @@ def main():
             'repoUrl': f'https://github.com/{a.repo}' if a.repo else '',
             'workflowUrl': f'https://github.com/{a.repo}/actions/workflows/resim.yml' if a.repo else '',
             'staleAfterDays': 7,
+            'setStaleAfterDays': 2,
             'lede': {'ru': 'WoW Forever · Фаза 1 · пререйд-BiS по симам для каждого класса и спека',
                      'en': 'WoW Forever · Phase 1 · simmed pre-raid best in slot for every class and spec'},
             'target': {'ru': 'Сим: один босс 63 уровня, 180 секунд, рейд-бафы и расходники.',

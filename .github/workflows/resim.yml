@@ -179,6 +179,9 @@ jobs:
           ${{ matrix.only && format('--only {0}', matrix.only) || '' }}
 
       - name: Upload the runs
+        # A broken build must not cost the class its good runs: upload whatever
+        # was produced even when the search step exits red.
+        if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: runs-${{ matrix.class }}-${{ matrix.budget }}${{ matrix.part && format('-{0}', matrix.part) || '' }}
